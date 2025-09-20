@@ -9,10 +9,10 @@ class TwColorUtils {
     if (style.color == null) return null;
     
     final config = TwConfig.of(context);
-    final color = config.colors[style.color];
+    final color = _getColorValue(config.colors, style.color!);
     
     if (color == null) {
-      _handleMissingColor(style.color!, config.colors.keys.toList());
+      _handleMissingColor(style.color!, _getAvailableColors());
     }
     
     return color;
@@ -34,6 +34,16 @@ class TwColorUtils {
     return resolve(context, style);
   }
   
+  /// Gets color value from TwColors class
+  static Color? _getColorValue(TwColors colors, String key) {
+    return colors[key];
+  }
+
+  /// Gets list of available color keys
+  static List<String> _getAvailableColors() {
+    return TwColors.defaultColors.values.keys.toList();
+  }
+
   /// Handles missing color errors with helpful messages
   static void _handleMissingColor(String colorKey, List<String> availableColors) {
     final sortedColors = availableColors.toList()..sort();

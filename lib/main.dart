@@ -14,9 +14,9 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: TwConfig(
-        spacing: defaultSpacing,
-        colors: defaultColors,
-        borderRadius: defaultBorderRadius,
+        spacing: TwSpacing.defaultSpacing,
+        colors: TwColors.defaultColors,
+        borderRadius: TwBorderRadius.defaultBorderRadius,
         child: const HomePage(),
       ),
     );
@@ -28,6 +28,19 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Access theme values from TwConfig
+    final twConfig = TwConfig.of(context);
+    final spacing = twConfig.spacing;
+    final colors = twConfig.colors;
+    final borderRadius = twConfig.borderRadius;
+    
+    // Example usage - you can now use these values with type safety!
+    print('Spacing 2 value: ${spacing.s2}'); // This will print 8.0
+    print('Spacing 2 value (bracket): ${spacing[2]}'); // This will also print 8.0
+    print('Blue 600 color: ${colors.blue600}'); // This will print Color(0xFF2563EB)
+    print('Blue 600 color (bracket): ${colors['blue600']}'); // This will also print Color(0xFF2563EB)
+    print('Large border radius: ${borderRadius.lg}'); // This will print 8.0
+    print('Large border radius (bracket): ${borderRadius['lg']}'); // This will also print 8.0
     return Scaffold(
       body: SizedBox.expand(
         child: SingleChildScrollView(

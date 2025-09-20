@@ -12,9 +12,9 @@ void main() {
       // Create a test widget with TwTheme
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -34,9 +34,9 @@ void main() {
     testWidgets('resolve returns correct uniform padding', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -56,9 +56,9 @@ void main() {
     testWidgets('resolve returns correct horizontal padding', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -78,9 +78,9 @@ void main() {
     testWidgets('resolve returns correct vertical padding', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -100,9 +100,9 @@ void main() {
     testWidgets('resolve returns correct individual side padding', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -127,9 +127,9 @@ void main() {
     testWidgets('resolve combines uniform and directional padding correctly', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -154,9 +154,9 @@ void main() {
     testWidgets('resolve handles mixed directional padding', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -181,9 +181,9 @@ void main() {
     testWidgets('apply returns child when no padding is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -204,9 +204,9 @@ void main() {
     testWidgets('apply wraps child with Padding when padding is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;

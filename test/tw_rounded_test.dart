@@ -9,9 +9,9 @@ void main() {
     testWidgets('resolve returns zero border radius when no border radius is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (context) {
               const style = TwStyle();
@@ -29,9 +29,9 @@ void main() {
     testWidgets('resolve returns correct uniform border radius', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (context) {
               const style = TwStyle(rounded: 'lg');
@@ -49,9 +49,9 @@ void main() {
     testWidgets('resolve returns correct top border radius', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (context) {
               const style = TwStyle(roundedT: '');
@@ -72,9 +72,9 @@ void main() {
     testWidgets('resolve returns correct individual corner border radius', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (context) {
               const style = TwStyle(roundedTl: 'md', roundedTr: 'lg', roundedBl: 'xl', roundedBr: '2xl');
@@ -95,9 +95,9 @@ void main() {
     testWidgets('resolve combines uniform and directional border radius correctly', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (context) {
               const style = TwStyle(rounded: '', roundedT: 'lg');
@@ -120,9 +120,9 @@ void main() {
     testWidgets('resolve handles mixed directional border radius', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (context) {
               const style = TwStyle(roundedT: '', roundedR: 'md', roundedB: 'lg', roundedL: 'xl');
@@ -147,9 +147,9 @@ void main() {
     testWidgets('apply returns child when no border radius is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (context) {
               const style = TwStyle();
@@ -168,9 +168,9 @@ void main() {
     testWidgets('apply wraps child with ClipRRect when border radius is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (context) {
               const style = TwStyle(rounded: '');

@@ -8,9 +8,9 @@ void main() {
     Widget createTestWidget(Widget child) {
       return MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Scaffold(
             body: child,
           ),

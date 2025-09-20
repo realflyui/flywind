@@ -6,7 +6,7 @@ import 'tw_spacing.dart';
 class TwPaddingUtils {
   /// Resolves padding from TwStyle and TwTheme into EdgeInsets
   static EdgeInsets resolve(BuildContext context, TwStyle style) {
-    return TwSpacing.resolve(
+    return TwSpacingUtils.resolve(
       context,
       style,
       getUniform: (s) => s.p,

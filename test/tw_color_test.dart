@@ -11,9 +11,9 @@ void main() {
     testWidgets('resolve returns null when no color is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -33,9 +33,9 @@ void main() {
     testWidgets('resolve returns correct color for valid color key', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -55,9 +55,9 @@ void main() {
     testWidgets('resolve returns correct color for white', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -77,9 +77,9 @@ void main() {
     testWidgets('resolve returns correct color for black', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -99,9 +99,9 @@ void main() {
     testWidgets('applyToTextStyle returns base style when no color is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -122,9 +122,9 @@ void main() {
     testWidgets('applyToTextStyle applies color to TextStyle', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -146,9 +146,9 @@ void main() {
     testWidgets('applyToTextStyle creates new TextStyle when baseStyle is null', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -168,9 +168,9 @@ void main() {
     testWidgets('applyToContainer returns null when no color is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -190,9 +190,9 @@ void main() {
     testWidgets('applyToContainer returns correct color for valid color key', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -212,9 +212,9 @@ void main() {
     testWidgets('resolve handles missing color gracefully in debug mode', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;

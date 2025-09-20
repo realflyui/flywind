@@ -87,14 +87,15 @@ class TwRoundedUtils {
   }
 
   /// Gets rounded value with error handling for invalid keys
-  static double _getRoundedValue(Map<String, double> borderRadius, String key, String direction) {
+  static double _getRoundedValue(TwBorderRadius borderRadius, String key, String direction) {
     final value = borderRadius[key];
     
     if (value == null) {
-      _handleMissingRounded(key, direction, borderRadius.keys.toList());
+      _handleMissingRounded(key, direction, borderRadius.values.keys.toList());
+      return 0.0;
     }
     
-    return value ?? 0.0;
+    return value;
   }
 
   /// Handles missing rounded errors with helpful messages

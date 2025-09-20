@@ -12,9 +12,9 @@ void main() {
       // Create a test widget with TwTheme
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -34,9 +34,9 @@ void main() {
     testWidgets('resolve returns correct uniform margin', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -56,9 +56,9 @@ void main() {
     testWidgets('resolve returns correct horizontal margin', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -78,9 +78,9 @@ void main() {
     testWidgets('resolve returns correct vertical margin', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -100,9 +100,9 @@ void main() {
     testWidgets('resolve returns correct individual side margin', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -127,9 +127,9 @@ void main() {
     testWidgets('resolve combines uniform and directional margin correctly', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -154,9 +154,9 @@ void main() {
     testWidgets('resolve handles mixed directional margin', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -181,9 +181,9 @@ void main() {
     testWidgets('apply returns child when no margin is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -205,9 +205,9 @@ void main() {
     testWidgets('apply wraps child with Container when margin is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwConfig(
-          spacing: defaultSpacing,
-          colors: defaultColors,
-          borderRadius: defaultBorderRadius,
+          spacing: TwSpacing.defaultSpacing,
+          colors: TwColors.defaultColors,
+          borderRadius: TwBorderRadius.defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;

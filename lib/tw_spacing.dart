@@ -3,7 +3,7 @@ import 'tw_config.dart';
 import 'tw_style.dart';
 
 /// Common spacing utilities for padding and margin
-class TwSpacing {
+class TwSpacingUtils {
   /// Resolves spacing from TwStyle and TwConfig into EdgeInsets
   static EdgeInsets resolve(BuildContext context, TwStyle style, {
     required int? Function(TwStyle) getUniform,
@@ -67,14 +67,15 @@ class TwSpacing {
   }
 
   /// Gets spacing value with error handling for invalid keys
-  static double _getSpacingValue(Map<int, double> spacing, int key, String direction) {
+  static double _getSpacingValue(TwSpacing spacing, int key, String direction) {
     final value = spacing[key];
     
     if (value == null) {
-      _handleMissingSpacing(key, direction, spacing.keys.toList());
+      _handleMissingSpacing(key, direction, spacing.values.keys.toList());
+      return 0.0;
     }
     
-    return value ?? 0.0;
+    return value;
   }
 
   /// Handles missing spacing errors with helpful messages
