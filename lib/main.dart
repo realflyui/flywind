@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'tw_theme.dart';
+import 'tw_config.dart';
 import 'tw_text.dart';
 import 'tw_container.dart';
 
@@ -13,7 +13,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: TwTheme(
+      home: TwConfig(
         spacing: defaultSpacing,
         colors: defaultColors,
         borderRadius: defaultBorderRadius,

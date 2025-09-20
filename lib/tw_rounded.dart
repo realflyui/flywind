@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'tw_theme.dart';
+import 'tw_config.dart';
 import 'tw_style.dart';
 
 /// Utility class for handling Tailwind-like rounded logic
 class TwRoundedUtils {
-  /// Resolves rounded values from TwStyle and TwTheme into BorderRadius
+  /// Resolves rounded values from TwStyle and TwConfig into BorderRadius
   static BorderRadius resolve(BuildContext context, TwStyle style) {
-    final theme = TwTheme.of(context);
-    final borderRadius = theme.borderRadius;
+    final config = TwConfig.of(context);
+    final borderRadius = config.borderRadius;
     
     // Calculate border radius values
     double topLeft = 0;
@@ -101,7 +101,7 @@ class TwRoundedUtils {
   static void _handleMissingRounded(String roundedKey, String direction, List<String> availableKeys) {
     final sortedKeys = availableKeys.toList()..sort();
     
-    String errorMessage = 'Rounded key "$roundedKey" not found in TwTheme for $direction rounded. Available rounded keys: ${sortedKeys.join(', ')}.';
+    String errorMessage = 'Rounded key "$roundedKey" not found in TwConfig for $direction rounded. Available rounded keys: ${sortedKeys.join(', ')}.';
     
     // In debug mode, throw an assertion error with helpful message
     assert(false, errorMessage);
@@ -162,7 +162,7 @@ mixin TwRounded<T> {
     return copyWith(style.copyWith(roundedBr: size));
   }
 
-  /// Resolves rounded styling from TwStyle and TwTheme into BorderRadius
+  /// Resolves rounded styling from TwStyle and TwConfig into BorderRadius
   BorderRadius resolveRounded(BuildContext context) {
     return TwRoundedUtils.resolve(context, style);
   }

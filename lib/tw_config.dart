@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 /// Inherited widget that provides Tailwind-like design tokens
-class TwTheme extends InheritedWidget {
-  const TwTheme({
+class TwConfig extends InheritedWidget {
+  const TwConfig({
     super.key,
     required this.spacing,
     required this.colors,
@@ -14,15 +14,15 @@ class TwTheme extends InheritedWidget {
   final Map<String, Color> colors;
   final Map<String, double> borderRadius;
 
-  /// Get the current TwTheme from the widget tree
-  static TwTheme of(BuildContext context) {
-    final TwTheme? result = context.dependOnInheritedWidgetOfExactType<TwTheme>();
-    assert(result != null, 'No TwTheme found in context');
+  /// Get the current TwConfig from the widget tree
+  static TwConfig of(BuildContext context) {
+    final TwConfig? result = context.dependOnInheritedWidgetOfExactType<TwConfig>();
+    assert(result != null, 'No TwConfig found in context');
     return result!;
   }
 
   @override
-  bool updateShouldNotify(TwTheme oldWidget) {
+  bool updateShouldNotify(TwConfig oldWidget) {
     return spacing != oldWidget.spacing || colors != oldWidget.colors || borderRadius != oldWidget.borderRadius;
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'tw_theme.dart';
+import 'tw_config.dart';
 import 'tw_style.dart';
 
 /// Common spacing utilities for padding and margin
 class TwSpacing {
-  /// Resolves spacing from TwStyle and TwTheme into EdgeInsets
+  /// Resolves spacing from TwStyle and TwConfig into EdgeInsets
   static EdgeInsets resolve(BuildContext context, TwStyle style, {
     required int? Function(TwStyle) getUniform,
     required int? Function(TwStyle) getX,
@@ -14,8 +14,8 @@ class TwSpacing {
     required int? Function(TwStyle) getTop,
     required int? Function(TwStyle) getBottom,
   }) {
-    final theme = TwTheme.of(context);
-    final spacing = theme.spacing;
+    final config = TwConfig.of(context);
+    final spacing = config.spacing;
     
     // Calculate spacing values
     double left = 0;
@@ -81,7 +81,7 @@ class TwSpacing {
   static void _handleMissingSpacing(int spacingKey, String direction, List<int> availableKeys) {
     final sortedKeys = availableKeys.toList()..sort();
     
-    String errorMessage = 'Spacing key "$spacingKey" not found in TwTheme for $direction spacing. Available spacing keys: ${sortedKeys.join(', ')}.';
+    String errorMessage = 'Spacing key "$spacingKey" not found in TwConfig for $direction spacing. Available spacing keys: ${sortedKeys.join(', ')}.';
     
     // In debug mode, throw an assertion error with helpful message
     assert(false, errorMessage);

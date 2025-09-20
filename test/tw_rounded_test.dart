@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/tw_theme.dart';
+import 'package:flywind/tw_config.dart';
 import 'package:flywind/tw_style.dart';
 import 'package:flywind/tw_rounded.dart';
 
@@ -8,7 +8,7 @@ void main() {
   group('TwRounded resolve', () {
     testWidgets('resolve returns zero border radius when no border radius is set', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -28,7 +28,7 @@ void main() {
 
     testWidgets('resolve returns correct uniform border radius', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -48,7 +48,7 @@ void main() {
 
     testWidgets('resolve returns correct top border radius', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -71,7 +71,7 @@ void main() {
 
     testWidgets('resolve returns correct individual corner border radius', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -94,7 +94,7 @@ void main() {
 
     testWidgets('resolve combines uniform and directional border radius correctly', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -119,7 +119,7 @@ void main() {
 
     testWidgets('resolve handles mixed directional border radius', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -146,7 +146,7 @@ void main() {
   group('TwRounded apply', () {
     testWidgets('apply returns child when no border radius is set', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -167,7 +167,7 @@ void main() {
 
     testWidgets('apply wraps child with ClipRRect when border radius is set', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flywind/tw_margin.dart';
 import 'package:flywind/tw_style.dart';
-import 'package:flywind/tw_theme.dart';
+import 'package:flywind/tw_config.dart';
 
 void main() {
   group('TwMargin', () {
@@ -11,7 +11,7 @@ void main() {
     testWidgets('resolve returns EdgeInsets.zero when no margin is set', (tester) async {
       // Create a test widget with TwTheme
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -33,7 +33,7 @@ void main() {
 
     testWidgets('resolve returns correct uniform margin', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -55,7 +55,7 @@ void main() {
 
     testWidgets('resolve returns correct horizontal margin', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -77,7 +77,7 @@ void main() {
 
     testWidgets('resolve returns correct vertical margin', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -99,7 +99,7 @@ void main() {
 
     testWidgets('resolve returns correct individual side margin', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -126,7 +126,7 @@ void main() {
 
     testWidgets('resolve combines uniform and directional margin correctly', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -153,7 +153,7 @@ void main() {
 
     testWidgets('resolve handles mixed directional margin', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -180,7 +180,7 @@ void main() {
 
     testWidgets('apply returns child when no margin is set', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -204,7 +204,7 @@ void main() {
 
     testWidgets('apply wraps child with Container when margin is set', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,

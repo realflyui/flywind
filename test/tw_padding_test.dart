@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flywind/tw_padding.dart';
 import 'package:flywind/tw_style.dart';
-import 'package:flywind/tw_theme.dart';
+import 'package:flywind/tw_config.dart';
 
 void main() {
   group('TwPadding', () {
@@ -11,7 +11,7 @@ void main() {
     testWidgets('resolve returns EdgeInsets.zero when no padding is set', (tester) async {
       // Create a test widget with TwTheme
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -33,7 +33,7 @@ void main() {
 
     testWidgets('resolve returns correct uniform padding', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -55,7 +55,7 @@ void main() {
 
     testWidgets('resolve returns correct horizontal padding', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -77,7 +77,7 @@ void main() {
 
     testWidgets('resolve returns correct vertical padding', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -99,7 +99,7 @@ void main() {
 
     testWidgets('resolve returns correct individual side padding', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -126,7 +126,7 @@ void main() {
 
     testWidgets('resolve combines uniform and directional padding correctly', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -153,7 +153,7 @@ void main() {
 
     testWidgets('resolve handles mixed directional padding', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -180,7 +180,7 @@ void main() {
 
     testWidgets('apply returns child when no padding is set', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -203,7 +203,7 @@ void main() {
 
     testWidgets('apply wraps child with Padding when padding is set', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,

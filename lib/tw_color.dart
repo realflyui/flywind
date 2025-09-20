@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'tw_theme.dart';
+import 'tw_config.dart';
 import 'tw_style.dart';
 
 /// Utility class for handling Tailwind-like color logic
 class TwColorUtils {
-  /// Resolves color from TwStyle and TwTheme into Color
+  /// Resolves color from TwStyle and TwConfig into Color
   static Color? resolve(BuildContext context, TwStyle style) {
     if (style.color == null) return null;
     
-    final theme = TwTheme.of(context);
-    final color = theme.colors[style.color];
+    final config = TwConfig.of(context);
+    final color = config.colors[style.color];
     
     if (color == null) {
-      _handleMissingColor(style.color!, theme.colors.keys.toList());
+      _handleMissingColor(style.color!, config.colors.keys.toList());
     }
     
     return color;
@@ -38,7 +38,7 @@ class TwColorUtils {
   static void _handleMissingColor(String colorKey, List<String> availableColors) {
     final sortedColors = availableColors.toList()..sort();
     
-    String errorMessage = 'Color "$colorKey" not found in TwTheme. Available colors: ${sortedColors.join(', ')}.';
+    String errorMessage = 'Color "$colorKey" not found in TwConfig. Available colors: ${sortedColors.join(', ')}.';
     
     // In debug mode, throw an assertion error with helpful message
     assert(false, errorMessage);

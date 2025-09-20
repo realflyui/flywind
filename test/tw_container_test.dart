@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flywind/tw_container.dart';
 import 'package:flywind/tw_text.dart';
-import 'package:flywind/tw_theme.dart';
+import 'package:flywind/tw_config.dart';
 
 void main() {
   group('TwContainer Widget Tests', () {
     Widget createTestWidget(Widget child) {
       return MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,

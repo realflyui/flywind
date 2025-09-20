@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flywind/tw_color.dart';
 import 'package:flywind/tw_style.dart';
-import 'package:flywind/tw_theme.dart';
+import 'package:flywind/tw_config.dart';
 
 void main() {
   group('TwColor', () {
@@ -10,7 +10,7 @@ void main() {
 
     testWidgets('resolve returns null when no color is set', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -32,7 +32,7 @@ void main() {
 
     testWidgets('resolve returns correct color for valid color key', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -54,7 +54,7 @@ void main() {
 
     testWidgets('resolve returns correct color for white', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -76,7 +76,7 @@ void main() {
 
     testWidgets('resolve returns correct color for black', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -98,7 +98,7 @@ void main() {
 
     testWidgets('applyToTextStyle returns base style when no color is set', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -121,7 +121,7 @@ void main() {
 
     testWidgets('applyToTextStyle applies color to TextStyle', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -145,7 +145,7 @@ void main() {
 
     testWidgets('applyToTextStyle creates new TextStyle when baseStyle is null', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -167,7 +167,7 @@ void main() {
 
     testWidgets('applyToContainer returns null when no color is set', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -189,7 +189,7 @@ void main() {
 
     testWidgets('applyToContainer returns correct color for valid color key', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
@@ -211,7 +211,7 @@ void main() {
 
     testWidgets('resolve handles missing color gracefully in debug mode', (tester) async {
       final testWidget = MaterialApp(
-        home: TwTheme(
+        home: TwConfig(
           spacing: defaultSpacing,
           colors: defaultColors,
           borderRadius: defaultBorderRadius,
