@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'tw_style.dart';
 import 'tw_padding_mixin.dart';
+import 'tw_margin_mixin.dart';
 import 'tw_color_mixin.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for text
-class TwText extends StatelessWidget with TwPaddingMixin<TwText>, TwColorMixin<TwText> {
+class TwText extends StatelessWidget with TwPaddingMixin<TwText>, TwMarginMixin<TwText>, TwColorMixin<TwText> {
   const TwText(this.text, [this._style = const TwStyle()]);
 
   final String text;

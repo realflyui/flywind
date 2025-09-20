@@ -94,6 +94,34 @@ class HomePage extends StatelessWidget {
               child: TwText('White background with black text').color('black'),
             ).bg('white').p(2).pb(2),
             
+            // Margin examples - using pb for spacing
+            TwText('Margin Examples:').color('gray800').pb(3),
+            
+            // Basic margin
+            TwContainer(
+              child: TwText('Container with margin m(2)').color('white'),
+            ).bg('blue600').p(2).m(2),
+            
+            // Horizontal margin
+            TwContainer(
+              child: TwText('Container with horizontal margin mx(3)').color('white'),
+            ).bg('green600').p(2).mx(3),
+            
+            // Vertical margin
+            TwContainer(
+              child: TwText('Container with vertical margin my(1)').color('white'),
+            ).bg('red600').p(2).my(1),
+            
+            // Individual margins
+            TwContainer(
+              child: TwText('Container with left margin ml(4)').color('white'),
+            ).bg('purple600').p(2).ml(4),
+            
+            // Complex margin + padding + background
+            TwContainer(
+              child: TwText('Complex: m(1) + p(3) + bg(orange600)').color('white'),
+            ).m(1).p(3).bg('orange600').pb(2),
+            
             // Test error handling (uncomment to see error message)
             // TwText('This will show an error').color('nonexistent'),
           ],

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'tw_style.dart';
 import 'tw_padding_mixin.dart';
+import 'tw_margin_mixin.dart';
 import 'tw_color_mixin.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for containers
-class TwContainer extends StatelessWidget with TwPaddingMixin<TwContainer>, TwColorMixin<TwContainer> {
+class TwContainer extends StatelessWidget with TwPaddingMixin<TwContainer>, TwMarginMixin<TwContainer>, TwColorMixin<TwContainer> {
   const TwContainer({
     super.key,
     required this.child,

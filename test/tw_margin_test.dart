@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/tw_padding.dart';
+import 'package:flywind/tw_margin.dart';
 import 'package:flywind/tw_style.dart';
 import 'package:flywind/tw_theme.dart';
 
 void main() {
-  group('TwPadding', () {
+  group('TwMargin', () {
     late BuildContext context;
 
-    testWidgets('resolve returns EdgeInsets.zero when no padding is set', (tester) async {
+    testWidgets('resolve returns EdgeInsets.zero when no margin is set', (tester) async {
       // Create a test widget with TwTheme
       final testWidget = MaterialApp(
         home: TwTheme(
@@ -26,11 +26,11 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle();
-      final padding = TwPadding.resolve(context, style);
-      expect(padding, EdgeInsets.zero);
+      final margin = TwMargin.resolve(context, style);
+      expect(margin, EdgeInsets.zero);
     });
 
-    testWidgets('resolve returns correct uniform padding', (tester) async {
+    testWidgets('resolve returns correct uniform margin', (tester) async {
       final testWidget = MaterialApp(
         home: TwTheme(
           spacing: defaultSpacing,
@@ -46,12 +46,12 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(p: 3);
-      final padding = TwPadding.resolve(context, style);
-      expect(padding, const EdgeInsets.all(12.0)); // 3 * 4.0 = 12.0
+      const style = TwStyle(m: 3);
+      final margin = TwMargin.resolve(context, style);
+      expect(margin, const EdgeInsets.all(12.0)); // 3 * 4.0 = 12.0
     });
 
-    testWidgets('resolve returns correct horizontal padding', (tester) async {
+    testWidgets('resolve returns correct horizontal margin', (tester) async {
       final testWidget = MaterialApp(
         home: TwTheme(
           spacing: defaultSpacing,
@@ -67,12 +67,12 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(px: 2);
-      final padding = TwPadding.resolve(context, style);
-      expect(padding, const EdgeInsets.only(left: 8.0, right: 8.0)); // 2 * 4.0 = 8.0
+      const style = TwStyle(mx: 2);
+      final margin = TwMargin.resolve(context, style);
+      expect(margin, const EdgeInsets.only(left: 8.0, right: 8.0)); // 2 * 4.0 = 8.0
     });
 
-    testWidgets('resolve returns correct vertical padding', (tester) async {
+    testWidgets('resolve returns correct vertical margin', (tester) async {
       final testWidget = MaterialApp(
         home: TwTheme(
           spacing: defaultSpacing,
@@ -88,12 +88,12 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(py: 4);
-      final padding = TwPadding.resolve(context, style);
-      expect(padding, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // 4 * 4.0 = 16.0
+      const style = TwStyle(my: 4);
+      final margin = TwMargin.resolve(context, style);
+      expect(margin, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // 4 * 4.0 = 16.0
     });
 
-    testWidgets('resolve returns correct individual side padding', (tester) async {
+    testWidgets('resolve returns correct individual side margin', (tester) async {
       final testWidget = MaterialApp(
         home: TwTheme(
           spacing: defaultSpacing,
@@ -109,9 +109,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(pl: 1, pr: 2, pt: 3, pb: 4);
-      final padding = TwPadding.resolve(context, style);
-      expect(padding, const EdgeInsets.only(
+      const style = TwStyle(ml: 1, mr: 2, mt: 3, mb: 4);
+      final margin = TwMargin.resolve(context, style);
+      expect(margin, const EdgeInsets.only(
         left: 4.0,   // 1 * 4.0
         right: 8.0,  // 2 * 4.0
         top: 12.0,   // 3 * 4.0
@@ -119,7 +119,7 @@ void main() {
       ));
     });
 
-    testWidgets('resolve combines uniform and directional padding correctly', (tester) async {
+    testWidgets('resolve combines uniform and directional margin correctly', (tester) async {
       final testWidget = MaterialApp(
         home: TwTheme(
           spacing: defaultSpacing,
@@ -135,17 +135,17 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(p: 2, px: 4, pl: 1);
-      final padding = TwPadding.resolve(context, style);
-      expect(padding, const EdgeInsets.only(
-        left: 4.0,   // pl overrides px and padding
-        right: 16.0, // px overrides padding
-        top: 8.0,    // padding value
-        bottom: 8.0, // padding value
+      const style = TwStyle(m: 2, mx: 4, ml: 1);
+      final margin = TwMargin.resolve(context, style);
+      expect(margin, const EdgeInsets.only(
+        left: 4.0,   // ml overrides mx and margin
+        right: 16.0, // mx overrides margin
+        top: 8.0,    // margin value
+        bottom: 8.0, // margin value
       ));
     });
 
-    testWidgets('resolve handles mixed directional padding', (tester) async {
+    testWidgets('resolve handles mixed directional margin', (tester) async {
       final testWidget = MaterialApp(
         home: TwTheme(
           spacing: defaultSpacing,
@@ -161,17 +161,17 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(px: 2, py: 3, pl: 1);
-      final padding = TwPadding.resolve(context, style);
-      expect(padding, const EdgeInsets.only(
-        left: 4.0,   // pl overrides px
-        right: 8.0,  // px value
-        top: 12.0,   // py value
-        bottom: 12.0, // py value
+      const style = TwStyle(mx: 2, my: 3, ml: 1, mt: 4);
+      final margin = TwMargin.resolve(context, style);
+      expect(margin, const EdgeInsets.only(
+        left: 4.0,   // ml overrides mx
+        right: 8.0,  // mx value
+        top: 16.0,   // mt overrides my
+        bottom: 12.0, // my value
       ));
     });
 
-    testWidgets('apply returns child when no padding is set', (tester) async {
+    testWidgets('apply returns child when no margin is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwTheme(
           spacing: defaultSpacing,
@@ -188,12 +188,13 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle();
-      const child = Text('test');
-      final result = TwPadding.apply(context, style, child);
+      const child = Text('Test');
+      final result = TwMargin.apply(context, style, child);
+      
       expect(result, equals(child));
     });
 
-    testWidgets('apply wraps child with Padding when padding is set', (tester) async {
+    testWidgets('apply wraps child with Container when margin is set', (tester) async {
       final testWidget = MaterialApp(
         home: TwTheme(
           spacing: defaultSpacing,
@@ -209,14 +210,14 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(p: 2);
-      const child = Text('test');
-      final result = TwPadding.apply(context, style, child);
+      const style = TwStyle(m: 2);
+      const child = Text('Test');
+      final result = TwMargin.apply(context, style, child);
       
-      expect(result, isA<Padding>());
-      final padding = result as Padding;
-      expect(padding.padding, const EdgeInsets.all(8.0));
-      expect(padding.child, equals(child));
+      expect(result, isA<Container>());
+      final container = result as Container;
+      expect(container.margin, const EdgeInsets.all(8.0));
+      expect(container.child, equals(child));
     });
   });
 }

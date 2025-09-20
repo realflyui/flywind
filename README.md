@@ -8,7 +8,7 @@ A Tailwind-like utility-first Flutter component library that brings the power an
 - **Fluent API**: Method chaining for clean, readable code
 - **Design Tokens**: Centralized spacing and color management
 - **Type-Safe**: Full TypeScript-like safety with Dart
-- **Comprehensive Testing**: 45+ tests ensuring reliability
+- **Comprehensive Testing**: tests ensuring reliability
 
 ## 📦 Components
 
@@ -24,11 +24,18 @@ TwText('Hello World')
   .pr(2)          // right padding: 8px
   .pt(3)          // top padding: 12px
   .pb(4)          // bottom padding: 16px
+  .m(2)           // margin: 8px
+  .mx(3)          // horizontal margin: 12px
+  .my(1)          // vertical margin: 4px
+  .ml(2)          // left margin: 8px
+  .mr(3)          // right margin: 12px
+  .mt(1)          // top margin: 4px
+  .mb(2)          // bottom margin: 8px
   .color('blue600') // text color
 ```
 
 ### TwContainer
-A container widget with background color and padding utilities:
+A container widget with background color, padding, and margin utilities:
 
 ```dart
 TwContainer(
@@ -37,17 +44,20 @@ TwContainer(
   .bg('red600')   // background color
   .p(4)           // padding: 16px
   .px(6)          // horizontal padding: 24px
+  .m(2)           // margin: 8px
+  .mx(3)          // horizontal margin: 12px
+  .my(1)          // vertical margin: 4px
 ```
 
 ## 🎨 Design System
 
 ### Spacing Scale
 Based on a 4px grid system:
-- `p(1)` = 4px
-- `p(2)` = 8px
-- `p(3)` = 12px
-- `p(4)` = 16px
-- `p(5)` = 20px
+- `p(1)` / `m(1)` = 4px
+- `p(2)` / `m(2)` = 8px
+- `p(3)` / `m(3)` = 12px
+- `p(4)` / `m(4)` = 16px
+- `p(5)` / `m(5)` = 20px
 - etc.
 
 ### Color Palette
@@ -93,24 +103,29 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // Text with padding and color
+          // Text with padding, margin, and color
           TwText('Welcome to Flywind')
             .p(4)
+            .m(2)
             .color('blue600'),
           
-          // Container with background and padding
+          // Container with background, padding, and margin
           TwContainer(
             child: TwText('Card Content').color('white'),
           )
             .bg('gray800')
             .p(6)
-            .px(8),
+            .px(8)
+            .m(3)
+            .mx(4),
           
-          // Complex combinations
+          // Complex combinations with both padding and margin
           TwText('Complex Styling')
             .p(2)
             .px(4)
             .pl(6)
+            .m(1)
+            .my(2)
             .color('green600'),
         ],
       ),
@@ -123,15 +138,31 @@ class HomePage extends StatelessWidget {
 
 This project includes a comprehensive test suite covering all functionality:
 
-- **Unit Tests**: Testing utility classes and logic
-- **Widget Tests**: Testing component rendering and behavior
-- **Integration Tests**: Testing complex combinations
+- **Unit Tests**: Testing utility classes and logic (`TwPadding`, `TwMargin`, `TwColor`, `TwStyle`)
+- **Widget Tests**: Testing component rendering and behavior (`TwText`, `TwContainer`)
+- **Integration Tests**: Testing complex combinations of padding, margin, and colors
+
+### Test Coverage
+
+- **Padding Tests**: 8 comprehensive tests covering all padding scenarios
+- **Margin Tests**: 9 comprehensive tests covering all margin scenarios  
+- **Color Tests**: 8 tests covering color resolution and application
+- **Style Tests**: 8 tests covering style combinations and application
+- **Widget Tests**: 21 tests covering component behavior and method chaining
 
 ### Running Tests
 
 ```bash
 # Run all tests
 flutter test
+
+# Run specific test files
+flutter test test/tw_padding_test.dart
+flutter test test/tw_margin_test.dart
+flutter test test/tw_color_test.dart
+flutter test test/tw_style_test.dart
+flutter test test/tw_text_test.dart
+flutter test test/tw_container_test.dart
 ```
 
 For detailed testing information, see [test/README.md](test/README.md).
@@ -164,7 +195,23 @@ Method chaining allows for clean, readable code:
 TwText('Hello')
   .p(3)           // Returns TwText
   .px(4)          // Returns TwText
+  .m(2)           // Returns TwText
   .color('blue')  // Returns TwText
+```
+
+### Padding vs Margin
+Understanding the difference between padding and margin:
+
+- **Padding**: Space inside the element (background color extends into padding area)
+- **Margin**: Space outside the element (background color does not extend into margin area)
+
+```dart
+TwContainer(
+  child: TwText('Content'),
+)
+  .bg('blue600')  // Background color
+  .p(4)           // Padding: background extends here
+  .m(2)           // Margin: background does NOT extend here
 ```
 
 ### Utility-First Approach
@@ -174,6 +221,7 @@ Instead of creating custom styles, use utility classes:
 // Instead of custom styling
 Container(
   padding: EdgeInsets.all(16),
+  margin: EdgeInsets.all(8),
   color: Colors.blue,
   child: Text('Hello'),
 )
@@ -182,8 +230,9 @@ Container(
 TwContainer(
   child: TwText('Hello'),
 )
-  .p(4)
-  .bg('blue600')
+  .p(4)           // padding: 16px
+  .m(2)           // margin: 8px
+  .bg('blue600')  // background color
 ```
 
 ## 🚀 Getting Started

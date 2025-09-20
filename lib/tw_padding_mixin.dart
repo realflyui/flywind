@@ -8,7 +8,7 @@ mixin TwPaddingMixin<T> {
 
   /// Set uniform padding using token scale
   T p(int step) {
-    return copyWith(style.copyWith(padding: step));
+    return copyWith(style.copyWith(p: step));
   }
 
   /// Set horizontal padding (left + right) using token scale

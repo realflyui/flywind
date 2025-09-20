@@ -23,12 +23,12 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const original = TwStyle(padding: 2, color: 'blue600');
-      final updated = original.copyWith(padding: 3, color: 'red600');
+      const original = TwStyle(p: 2, color: 'blue600');
+      final updated = original.copyWith(p: 3, color: 'red600');
       
-      expect(updated.padding, 3);
+      expect(updated.p, 3);
       expect(updated.color, 'red600');
-      expect(original.padding, 2); // Original should be unchanged
+      expect(original.p, 2); // Original should be unchanged
       expect(original.color, 'blue600');
     });
 
@@ -48,10 +48,10 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const original = TwStyle(padding: 2, px: 3, color: 'blue600');
-      final updated = original.copyWith(padding: 4);
+      const original = TwStyle(p: 2, px: 3, color: 'blue600');
+      final updated = original.copyWith(p: 4);
       
-      expect(updated.padding, 4);
+      expect(updated.p, 4);
       expect(updated.px, 3); // Should be preserved
       expect(updated.color, 'blue600'); // Should be preserved
     });
@@ -72,7 +72,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      expect(const TwStyle(padding: 2).hasPadding, isTrue);
+      expect(const TwStyle(p: 2).hasPadding, isTrue);
       expect(const TwStyle(px: 2).hasPadding, isTrue);
       expect(const TwStyle(py: 2).hasPadding, isTrue);
       expect(const TwStyle(pl: 2).hasPadding, isTrue);
@@ -197,7 +197,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'red600', padding: 3);
+      const style = TwStyle(color: 'red600', p: 3);
       const child = Text('Hello');
       
       final result = style.apply(context, child);
@@ -229,7 +229,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(padding: 2, px: 4, pl: 1);
+      const style = TwStyle(p: 2, px: 4, pl: 1);
       const child = Text('Hello');
       
       final result = style.apply(context, child);
