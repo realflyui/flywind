@@ -1,0 +1,235 @@
+# Flywind
+
+A Tailwind-like utility-first Flutter component library that brings the power and flexibility of Tailwind CSS to Flutter development.
+
+## 🚀 Features
+
+- **Utility-First Approach**: Build UIs using utility classes instead of custom CSS
+- **Fluent API**: Method chaining for clean, readable code
+- **Design Tokens**: Centralized spacing and color management
+- **Type-Safe**: Full TypeScript-like safety with Dart
+- **Comprehensive Testing**: 45+ tests ensuring reliability
+
+## 📦 Components
+
+### TwText
+A text widget with Tailwind-like utilities for styling:
+
+```dart
+TwText('Hello World')
+  .p(3)           // padding: 12px
+  .px(4)          // horizontal padding: 16px
+  .py(2)          // vertical padding: 8px
+  .pl(1)          // left padding: 4px
+  .pr(2)          // right padding: 8px
+  .pt(3)          // top padding: 12px
+  .pb(4)          // bottom padding: 16px
+  .color('blue600') // text color
+```
+
+### TwContainer
+A container widget with background color and padding utilities:
+
+```dart
+TwContainer(
+  child: TwText('Content'),
+)
+  .bg('red600')   // background color
+  .p(4)           // padding: 16px
+  .px(6)          // horizontal padding: 24px
+```
+
+## 🎨 Design System
+
+### Spacing Scale
+Based on a 4px grid system:
+- `p(1)` = 4px
+- `p(2)` = 8px
+- `p(3)` = 12px
+- `p(4)` = 16px
+- `p(5)` = 20px
+- etc.
+
+### Color Palette
+Comprehensive color system with semantic naming:
+- **Grays**: `gray50`, `gray100`, `gray200`, ..., `gray800`
+- **Primary Colors**: `blue600`, `red600`, `green600`, `yellow600`
+- **Extended Colors**: `purple600`, `teal600`, `orange600`
+- **Basic Colors**: `white`, `black`
+
+## 🛠️ Usage
+
+### 1. Wrap your app with TwTheme
+
+```dart
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: TwTheme(
+        spacing: defaultSpacing,
+        colors: defaultColors,
+        child: const HomePage(),
+      ),
+    );
+  }
+}
+```
+
+### 2. Use utility components
+
+```dart
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          // Text with padding and color
+          TwText('Welcome to Flywind')
+            .p(4)
+            .color('blue600'),
+          
+          // Container with background and padding
+          TwContainer(
+            child: TwText('Card Content').color('white'),
+          )
+            .bg('gray800')
+            .p(6)
+            .px(8),
+          
+          // Complex combinations
+          TwText('Complex Styling')
+            .p(2)
+            .px(4)
+            .pl(6)
+            .color('green600'),
+        ],
+      ),
+    );
+  }
+}
+```
+
+## 🧪 Testing
+
+This project includes a comprehensive test suite covering all functionality:
+
+- **Unit Tests**: Testing utility classes and logic
+- **Widget Tests**: Testing component rendering and behavior
+- **Integration Tests**: Testing complex combinations
+
+### Running Tests
+
+```bash
+# Run all tests
+flutter test
+```
+
+For detailed testing information, see [test/README.md](test/README.md).
+
+
+## 🎯 Key Concepts
+
+### Design Tokens
+Centralized values for spacing and colors that can be easily customized:
+
+```dart
+const Map<int, double> defaultSpacing = {
+  1: 4.0,
+  2: 8.0,
+  3: 12.0,
+  // ...
+};
+
+const Map<String, Color> defaultColors = {
+  'blue600': Color(0xFF2563EB),
+  'red600': Color(0xFFDC2626),
+  // ...
+};
+```
+
+### Fluent API
+Method chaining allows for clean, readable code:
+
+```dart
+TwText('Hello')
+  .p(3)           // Returns TwText
+  .px(4)          // Returns TwText
+  .color('blue')  // Returns TwText
+```
+
+### Utility-First Approach
+Instead of creating custom styles, use utility classes:
+
+```dart
+// Instead of custom styling
+Container(
+  padding: EdgeInsets.all(16),
+  color: Colors.blue,
+  child: Text('Hello'),
+)
+
+// Use utilities
+TwContainer(
+  child: TwText('Hello'),
+)
+  .p(4)
+  .bg('blue600')
+```
+
+## 🚀 Getting Started
+
+1. **Clone the repository**
+2. **Run the example app**:
+   ```bash
+   flutter run
+   ```
+3. **Explore the code** in `lib/main.dart`
+4. **Run the tests**:
+   ```bash
+   flutter test
+   ```
+
+## 🔧 Troubleshooting
+
+### Build Issues and Stale Files
+
+If you encounter warnings about "stale files located outside of the allowed root paths" or other build-related issues, try these cleanup steps:
+
+```bash
+# Clean all build artifacts and cache
+flutter clean
+
+# Reinstall dependencies
+flutter pub get
+
+# Verify your Flutter environment
+flutter doctor
+```
+
+This will remove all build artifacts, clear the cache, and reinstall dependencies, resolving most build-related issues.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Ensure all tests pass
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+**Flywind** - Bringing Tailwind's utility-first approach to Flutter development. 🎨✨
