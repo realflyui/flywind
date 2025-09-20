@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flywind/tw_theme.dart';
+import 'package:flywind/theme.dart';
 
-/// Helper function to create test widgets with TwTheme
+/// Helper function to create test widgets with FlyTheme
 Widget createTestWidget(Widget child) {
   return MaterialApp(
     theme: ThemeData(
-      extensions: [TwTheme.defaultTheme],
+      extensions: [FlyTheme.defaultTheme],
     ),
     home: Scaffold(
       body: child,
@@ -13,8 +13,8 @@ Widget createTestWidget(Widget child) {
   );
 }
 
-/// Helper function to create test widgets with custom TwTheme
-Widget createTestWidgetWithTheme(Widget child, TwTheme theme) {
+/// Helper function to create test widgets with custom FlyTheme
+Widget createTestWidgetWithTheme(Widget child, FlyTheme theme) {
   return MaterialApp(
     theme: ThemeData(
       extensions: [theme],
@@ -29,7 +29,7 @@ Widget createTestWidgetWithTheme(Widget child, TwTheme theme) {
 Widget createTestWidgetWithContext(Widget Function(BuildContext) builder) {
   return MaterialApp(
     theme: ThemeData(
-      extensions: [TwTheme.defaultTheme],
+      extensions: [FlyTheme.defaultTheme],
     ),
     home: Builder(
       builder: builder,
@@ -38,7 +38,7 @@ Widget createTestWidgetWithContext(Widget Function(BuildContext) builder) {
 }
 
 /// Helper function to create test widgets with custom theme that need BuildContext access
-Widget createTestWidgetWithContextAndTheme(Widget Function(BuildContext) builder, TwTheme theme) {
+Widget createTestWidgetWithContextAndTheme(Widget Function(BuildContext) builder, FlyTheme theme) {
   return MaterialApp(
     theme: ThemeData(
       extensions: [theme],

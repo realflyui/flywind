@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/tw_text.dart';
-import 'test_helper.dart';
+import 'package:flywind/text.dart';
+import 'flight_school.dart';
 
 void main() {
-  group('TwText Widget Tests', () {
+  group('FlyText Widget Tests', () {
 
     testWidgets('renders basic text without padding or color', (tester) async {
-      const widget = TwText('Hello World');
+      const widget = FlyText('Hello World');
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
@@ -17,7 +17,7 @@ void main() {
     });
 
     testWidgets('applies uniform padding correctly', (tester) async {
-      final widget = TwText('Hello World').p(3);
+      final widget = FlyText('Hello World').p(3);
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
@@ -28,7 +28,7 @@ void main() {
     });
 
     testWidgets('applies horizontal padding correctly', (tester) async {
-      final widget = TwText('Hello World').px(2);
+      final widget = FlyText('Hello World').px(2);
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
@@ -38,7 +38,7 @@ void main() {
     });
 
     testWidgets('applies vertical padding correctly', (tester) async {
-      final widget = TwText('Hello World').py(4);
+      final widget = FlyText('Hello World').py(4);
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
@@ -48,7 +48,7 @@ void main() {
     });
 
     testWidgets('applies individual side padding correctly', (tester) async {
-      final widget = TwText('Hello World').pl(1).pr(2).pt(3).pb(4);
+      final widget = FlyText('Hello World').pl(1).pr(2).pt(3).pb(4);
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
@@ -63,7 +63,7 @@ void main() {
     });
 
     testWidgets('applies color correctly', (tester) async {
-      final widget = TwText('Hello World').color('blue600');
+      final widget = FlyText('Hello World').color('blue600');
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
@@ -73,7 +73,7 @@ void main() {
     });
 
     testWidgets('applies both padding and color correctly', (tester) async {
-      final widget = TwText('Hello World').p(2).color('red600');
+      final widget = FlyText('Hello World').p(2).color('red600');
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
@@ -88,7 +88,7 @@ void main() {
     });
 
     testWidgets('applies mixed padding combinations correctly', (tester) async {
-      final widget = TwText('Hello World').p(1).px(3).pl(2);
+      final widget = FlyText('Hello World').p(1).px(3).pl(2);
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
@@ -103,7 +103,7 @@ void main() {
     });
 
     testWidgets('method chaining works correctly', (tester) async {
-      final widget = TwText('Hello World')
+      final widget = FlyText('Hello World')
           .p(3)
           .px(2)
           .color('green600')

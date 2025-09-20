@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/tw_rounded.dart';
-import 'package:flywind/tw_style.dart';
-import 'test_helper.dart';
+import 'package:flywind/rounded.dart';
+import 'package:flywind/style.dart';
+import 'flight_school.dart';
 
 void main() {
-  group('TwRounded resolve', () {
+  group('FlyRounded resolve', () {
     testWidgets('resolve returns zero border radius when no border radius is set', (tester) async {
       final testWidget = createTestWidgetWithContext((context) {
-        const style = TwStyle();
-        final borderRadius = TwRoundedUtils.resolve(context, style);
+        const style = FlyStyle();
+        final borderRadius = FlyRoundedUtils.resolve(context, style);
         expect(borderRadius, BorderRadius.zero);
         return const SizedBox();
       });
@@ -19,8 +19,8 @@ void main() {
 
     testWidgets('resolve returns correct uniform border radius', (tester) async {
       final testWidget = createTestWidgetWithContext((context) {
-        const style = TwStyle(rounded: 'lg');
-        final borderRadius = TwRoundedUtils.resolve(context, style);
+        const style = FlyStyle(rounded: 'lg');
+        final borderRadius = FlyRoundedUtils.resolve(context, style);
         expect(borderRadius, BorderRadius.circular(8.0));
         return const SizedBox();
       });
@@ -30,8 +30,8 @@ void main() {
 
     testWidgets('resolve returns correct top border radius', (tester) async {
       final testWidget = createTestWidgetWithContext((context) {
-        const style = TwStyle(roundedT: 'md');
-        final borderRadius = TwRoundedUtils.resolve(context, style);
+        const style = FlyStyle(roundedT: 'md');
+        final borderRadius = FlyRoundedUtils.resolve(context, style);
         expect(borderRadius, const BorderRadius.only(
           topLeft: Radius.circular(6.0),
           topRight: Radius.circular(6.0),
@@ -44,8 +44,8 @@ void main() {
 
     testWidgets('resolve returns correct individual corner border radius', (tester) async {
       final testWidget = createTestWidgetWithContext((context) {
-        const style = TwStyle(roundedTl: 'md', roundedTr: 'lg', roundedBl: 'xl', roundedBr: '2xl');
-        final borderRadius = TwRoundedUtils.resolve(context, style);
+        const style = FlyStyle(roundedTl: 'md', roundedTr: 'lg', roundedBl: 'xl', roundedBr: '2xl');
+        final borderRadius = FlyRoundedUtils.resolve(context, style);
         expect(borderRadius, const BorderRadius.only(
           topLeft: Radius.circular(6.0),   // md
           topRight: Radius.circular(8.0),  // lg
@@ -60,8 +60,8 @@ void main() {
 
     testWidgets('resolve combines uniform and directional border radius correctly', (tester) async {
       final testWidget = createTestWidgetWithContext((context) {
-        const style = TwStyle(rounded: 'sm', roundedT: 'lg');
-        final borderRadius = TwRoundedUtils.resolve(context, style);
+        const style = FlyStyle(rounded: 'sm', roundedT: 'lg');
+        final borderRadius = FlyRoundedUtils.resolve(context, style);
         expect(borderRadius, const BorderRadius.only(
           topLeft: Radius.circular(8.0),   // roundedT overrides rounded
           topRight: Radius.circular(8.0),  // roundedT overrides rounded
@@ -76,8 +76,8 @@ void main() {
 
     testWidgets('resolve handles mixed directional border radius', (tester) async {
       final testWidget = createTestWidgetWithContext((context) {
-        const style = TwStyle(roundedT: 'sm', roundedR: 'md', roundedB: 'lg', roundedL: 'xl');
-        final borderRadius = TwRoundedUtils.resolve(context, style);
+        const style = FlyStyle(roundedT: 'sm', roundedR: 'md', roundedB: 'lg', roundedL: 'xl');
+        final borderRadius = FlyRoundedUtils.resolve(context, style);
         expect(borderRadius, const BorderRadius.only(
           topLeft: Radius.circular(12.0),   // xl (from roundedL)
           topRight: Radius.circular(6.0),   // md (from roundedR)
@@ -91,12 +91,12 @@ void main() {
     });
   });
 
-  group('TwRounded apply', () {
+  group('FlyRounded apply', () {
     testWidgets('apply returns child when no border radius is set', (tester) async {
       final testWidget = createTestWidgetWithContext((context) {
-        const style = TwStyle();
+        const style = FlyStyle();
         const child = SizedBox(width: 100, height: 50);
-        final result = TwRoundedUtils.apply(context, style, child);
+        final result = FlyRoundedUtils.apply(context, style, child);
         expect(result, equals(child));
         return const SizedBox();
       });
@@ -106,9 +106,9 @@ void main() {
 
     testWidgets('apply wraps child with ClipRRect when border radius is set', (tester) async {
       final testWidget = createTestWidgetWithContext((context) {
-        const style = TwStyle(rounded: 'md');
+        const style = FlyStyle(rounded: 'md');
         const child = SizedBox(width: 100, height: 50);
-        final result = TwRoundedUtils.apply(context, style, child);
+        final result = FlyRoundedUtils.apply(context, style, child);
         expect(result, isA<ClipRRect>());
         final clipRRect = result as ClipRRect;
         expect(clipRRect.borderRadius, BorderRadius.circular(6.0));

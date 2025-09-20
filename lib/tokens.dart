@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 /// Spacing scale class with type-safe access to spacing values
-class TwSpacing {
-  const TwSpacing({
+class FlySpacing {
+  const FlySpacing({
     required this.s0,
     required this.s1,
     required this.s2,
@@ -33,16 +33,16 @@ class TwSpacing {
 
 
   /// Default spacing scale (0-12 steps)
-  static const TwSpacing defaultSpacing = TwSpacing(
+  static const FlySpacing defaultSpacing = FlySpacing(
     s0: 0.0, s1: 4.0, s2: 8.0, s3: 12.0, s4: 16.0, s5: 20.0,
     s6: 24.0, s7: 28.0, s8: 32.0, s9: 36.0, s10: 40.0, s11: 44.0, s12: 48.0,
   );
 
-  /// Create a new TwSpacing instance with custom spacing overrides
-  TwSpacing copyWith({
+  /// Create a new FlySpacing instance with custom spacing overrides
+  FlySpacing copyWith({
     Map<String, double>? customSpacing,
   }) {
-    return TwSpacing(
+    return FlySpacing(
       s0: s0, s1: s1, s2: s2, s3: s3, s4: s4, s5: s5,
       s6: s6, s7: s7, s8: s8, s9: s9, s10: s10, s11: s11, s12: s12,
       customSpacing: customSpacing ?? this.customSpacing,
@@ -51,8 +51,8 @@ class TwSpacing {
 }
 
 /// Color palette class with type-safe access to color values
-class TwColors {
-  const TwColors({
+class FlyColors {
+  const FlyColors({
     required this.gray800, required this.gray700, required this.gray600, required this.gray500, required this.gray400,
     required this.gray300, required this.gray200, required this.gray100, required this.gray50,
     required this.blue600, required this.blue500, required this.blue400,
@@ -96,7 +96,7 @@ class TwColors {
 
 
   /// Default color palette
-  static const TwColors defaultColors = TwColors(
+  static const FlyColors defaultColors = FlyColors(
     gray800: Color(0xFF1F2937), gray700: Color(0xFF374151), gray600: Color(0xFF4B5563), gray500: Color(0xFF6B7280), gray400: Color(0xFF9CA3AF),
     gray300: Color(0xFFD1D5DB), gray200: Color(0xFFE5E7EB), gray100: Color(0xFFF3F4F6), gray50: Color(0xFFF9FAFB),
     blue600: Color(0xFF2563EB), blue500: Color(0xFF3B82F6), blue400: Color(0xFF60A5FA),
@@ -111,8 +111,8 @@ class TwColors {
 }
 
 /// Border radius scale class with type-safe access to radius values
-class TwBorderRadius {
-  const TwBorderRadius({
+class FlyBorderRadius {
+  const FlyBorderRadius({
     required this.none, required this.sm, required this.md, required this.lg, required this.xl,
     required this.xl2, required this.xl3, required this.full, required this.defaultRadius,
   });
@@ -129,16 +129,16 @@ class TwBorderRadius {
   double? operator [](String key) => values[key];
 
   /// Default border radius scale matching Tailwind CSS
-  static const TwBorderRadius defaultBorderRadius = TwBorderRadius(
+  static const FlyBorderRadius defaultBorderRadius = FlyBorderRadius(
     none: 0.0, sm: 2.0, md: 6.0, lg: 8.0, xl: 12.0,
     xl2: 16.0, xl3: 24.0, full: 9999.0, defaultRadius: 4.0,
   );
 }
 
-/// Extension on TwColors to easily override specific colors
-extension TwColorsExtension on TwColors {
-  /// Create a new TwColors instance with specific color overrides
-  TwColors copyWith({
+/// Extension on FlyColors to easily override specific colors
+extension FlyColorsExtension on FlyColors {
+  /// Create a new FlyColors instance with specific color overrides
+  FlyColors copyWith({
     Color? gray800, Color? gray700, Color? gray600, Color? gray500, Color? gray400,
     Color? gray300, Color? gray200, Color? gray100, Color? gray50,
     Color? blue600, Color? blue500, Color? blue400,
@@ -151,7 +151,7 @@ extension TwColorsExtension on TwColors {
     Color? white, Color? black,
     Map<String, Color>? customColors,
   }) {
-    return TwColors(
+    return FlyColors(
       gray800: gray800 ?? this.gray800, gray700: gray700 ?? this.gray700, gray600: gray600 ?? this.gray600,
       gray500: gray500 ?? this.gray500, gray400: gray400 ?? this.gray400, gray300: gray300 ?? this.gray300,
       gray200: gray200 ?? this.gray200, gray100: gray100 ?? this.gray100, gray50: gray50 ?? this.gray50,

@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'tw_tokens.dart';
-import 'tw_style.dart';
-import 'tw_theme.dart';
+import 'tokens.dart';
+import 'style.dart';
+import 'theme.dart';
 
 /// Common spacing utilities for padding and margin
-class TwSpacingUtils {
-  /// Resolves spacing from TwStyle and TwConfig into EdgeInsets
-  static EdgeInsets resolve(BuildContext context, TwStyle style, {
-    required int? Function(TwStyle) getUniform,
-    required int? Function(TwStyle) getX,
-    required int? Function(TwStyle) getY,
-    required int? Function(TwStyle) getLeft,
-    required int? Function(TwStyle) getRight,
-    required int? Function(TwStyle) getTop,
-    required int? Function(TwStyle) getBottom,
+class FlySpacingUtils {
+  /// Resolves spacing from FlyStyle and FlyConfig into EdgeInsets
+  static EdgeInsets resolve(BuildContext context, FlyStyle style, {
+    required int? Function(FlyStyle) getUniform,
+    required int? Function(FlyStyle) getX,
+    required int? Function(FlyStyle) getY,
+    required int? Function(FlyStyle) getLeft,
+    required int? Function(FlyStyle) getRight,
+    required int? Function(FlyStyle) getTop,
+    required int? Function(FlyStyle) getBottom,
   }) {
     final theme = Theme.of(context);
-    final tailwind = theme.extension<TwTheme>();
+    final tailwind = theme.extension<FlyTheme>();
     if (tailwind == null) {
-      throw FlutterError('TwTheme extension not found. Make sure to add TwTheme to your ThemeData.extensions');
+      throw FlutterError('FlyTheme extension not found. Make sure to add FlyTheme to your ThemeData.extensions');
     }
     final spacing = tailwind.spacing;
     
@@ -72,7 +72,7 @@ class TwSpacingUtils {
   }
 
   /// Gets spacing value with error handling for invalid keys
-  static double _getSpacingValue(TwSpacing spacing, int key, String direction) {
+  static double _getSpacingValue(FlySpacing spacing, int key, String direction) {
     final value = spacing[key];
     
     if (value == null) {
@@ -87,12 +87,12 @@ class TwSpacingUtils {
   static void _handleMissingSpacing(int spacingKey, String direction, List<int> availableKeys) {
     final sortedKeys = availableKeys.toList()..sort();
     
-    String errorMessage = 'Spacing key "$spacingKey" not found in TwConfig for $direction spacing. Available spacing keys: ${sortedKeys.join(', ')}.';
+    String errorMessage = 'Spacing key "$spacingKey" not found in FlyConfig for $direction spacing. Available spacing keys: ${sortedKeys.join(', ')}.';
     
     // In debug mode, throw an assertion error with helpful message
     assert(false, errorMessage);
     
     // In release mode, print a warning
-    print('⚠️ TwSpacing Warning: $errorMessage');
+    print('⚠️ FlySpacing Warning: $errorMessage');
   }
 }

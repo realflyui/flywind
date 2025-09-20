@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'tw_style.dart';
-import 'tw_spacing.dart';
+import 'style.dart';
+import 'spacing.dart';
 
 /// Utility class for handling Tailwind-like margin logic
-class TwMarginUtils {
-  /// Resolves margin from TwStyle and TwTheme into EdgeInsets
-  static EdgeInsets resolve(BuildContext context, TwStyle style) {
-    return TwSpacingUtils.resolve(
+class FlyMarginUtils {
+  /// Resolves margin from FlyStyle and FlyTheme into EdgeInsets
+  static EdgeInsets resolve(BuildContext context, FlyStyle style) {
+    return FlySpacingUtils.resolve(
       context,
       style,
       getUniform: (s) => s.m,
@@ -20,7 +20,7 @@ class TwMarginUtils {
   }
 
   /// Applies margin to a widget using the resolved EdgeInsets
-  static Widget apply(BuildContext context, TwStyle style, Widget child) {
+  static Widget apply(BuildContext context, FlyStyle style, Widget child) {
     final margin = resolve(context, style);
     
     // If no margin is set, return the child as-is
@@ -37,10 +37,10 @@ class TwMarginUtils {
 }
 
 /// Mixin that provides Tailwind-like margin methods for any widget
-mixin TwMargin<T> {
-  TwStyle get style;
+mixin FlyMargin<T> {
+  FlyStyle get style;
   
-  T Function(TwStyle newStyle) get copyWith;
+  T Function(FlyStyle newStyle) get copyWith;
 
   /// Set uniform margin using token scale
   T m(int step) {
@@ -77,13 +77,13 @@ mixin TwMargin<T> {
     return copyWith(style.copyWith(ml: step));
   }
 
-  /// Resolves margin from TwStyle and TwTheme into EdgeInsets
+  /// Resolves margin from FlyStyle and FlyTheme into EdgeInsets
   EdgeInsets resolveMargin(BuildContext context) {
-    return TwMarginUtils.resolve(context, style);
+    return FlyMarginUtils.resolve(context, style);
   }
 
   /// Applies margin to a widget using the resolved EdgeInsets
   Widget applyMargin(BuildContext context, Widget child) {
-    return TwMarginUtils.apply(context, style, child);
+    return FlyMarginUtils.apply(context, style, child);
   }
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'tw_padding.dart';
-import 'tw_margin.dart';
-import 'tw_color.dart';
-import 'tw_rounded.dart';
+import 'padding.dart';
+import 'margin.dart';
+import 'color.dart';
+import 'rounded.dart';
 
-/// Internal style storage for TwText widget
-class TwStyle {
-  const TwStyle({
+/// Internal style storage for FlyText widget
+class FlyStyle {
+  const FlyStyle({
     this.p,
     this.px,
     this.py,
@@ -59,7 +59,7 @@ class TwStyle {
   final String? roundedBr;  // Bottom-right border radius
 
   /// Create a copy of this style with updated values
-  TwStyle copyWith({
+  FlyStyle copyWith({
     int? p,
     int? px,
     int? py,
@@ -85,7 +85,7 @@ class TwStyle {
     String? roundedBl,
     String? roundedBr,
   }) {
-    return TwStyle(
+    return FlyStyle(
       p: p ?? this.p,
       px: px ?? this.px,
       py: py ?? this.py,
@@ -125,7 +125,7 @@ class TwStyle {
     
     // 1. Padding (applied to the content)
     if (hasPadding) {
-      result = TwPaddingUtils.apply(context, this, result);
+      result = FlyPaddingUtils.apply(context, this, result);
     }
     
     // 2. Background Color (for non-text widgets or containers)
@@ -135,12 +135,12 @@ class TwStyle {
     
     // 3. Border Radius (applied to the background container)
     if (hasBorderRadius) {
-      result = TwRoundedUtils.apply(context, this, result);
+      result = FlyRoundedUtils.apply(context, this, result);
     }
     
     // 4. Margin (outermost - wraps the background)
     if (hasMargin) {
-      result = TwMarginUtils.apply(context, this, result);
+      result = FlyMarginUtils.apply(context, this, result);
     }
     
     // Future utilities would go here:
@@ -166,7 +166,7 @@ class TwStyle {
   Widget _applyTextColorDirect(BuildContext context, Text textWidget) {
     return Text(
       textWidget.data ?? '',
-      style: TwColorUtils.applyToTextStyle(context, this, textWidget.style),
+      style: FlyColorUtils.applyToTextStyle(context, this, textWidget.style),
       textAlign: textWidget.textAlign,
       textDirection: textWidget.textDirection,
       locale: textWidget.locale,
@@ -183,7 +183,7 @@ class TwStyle {
   /// Apply background color to a widget
   Widget _applyBackgroundColor(BuildContext context, Widget child) {
     return Container(
-      color: TwColorUtils.applyToContainer(context, this),
+      color: FlyColorUtils.applyToContainer(context, this),
       child: child,
     );
   }

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/tw_padding.dart';
-import 'package:flywind/tw_style.dart';
-import 'test_helper.dart';
+import 'package:flywind/padding.dart';
+import 'package:flywind/style.dart';
+import 'flight_school.dart';
 
 void main() {
-  group('TwPadding', () {
+  group('FlyPadding', () {
     late BuildContext context;
 
     testWidgets('resolve returns EdgeInsets.zero when no padding is set', (tester) async {
-      // Create a test widget with TwTheme
+      // Create a test widget with FlyTheme
       final testWidget = createTestWidgetWithContext((ctx) {
         context = ctx;
         return const SizedBox.shrink();
@@ -17,8 +17,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle();
-      final padding = TwPaddingUtils.resolve(context, style);
+      const style = FlyStyle();
+      final padding = FlyPaddingUtils.resolve(context, style);
       expect(padding, EdgeInsets.zero);
     });
 
@@ -30,8 +30,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(p: 3);
-      final padding = TwPaddingUtils.resolve(context, style);
+      const style = FlyStyle(p: 3);
+      final padding = FlyPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.all(12.0)); // 3 * 4.0 = 12.0
     });
 
@@ -43,8 +43,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(px: 2);
-      final padding = TwPaddingUtils.resolve(context, style);
+      const style = FlyStyle(px: 2);
+      final padding = FlyPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(left: 8.0, right: 8.0)); // 2 * 4.0 = 8.0
     });
 
@@ -56,8 +56,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(py: 4);
-      final padding = TwPaddingUtils.resolve(context, style);
+      const style = FlyStyle(py: 4);
+      final padding = FlyPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // 4 * 4.0 = 16.0
     });
 
@@ -69,8 +69,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(pl: 1, pr: 2, pt: 3, pb: 4);
-      final padding = TwPaddingUtils.resolve(context, style);
+      const style = FlyStyle(pl: 1, pr: 2, pt: 3, pb: 4);
+      final padding = FlyPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(
         left: 4.0,   // 1 * 4.0
         right: 8.0,  // 2 * 4.0
@@ -87,8 +87,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(p: 2, px: 4, pl: 1);
-      final padding = TwPaddingUtils.resolve(context, style);
+      const style = FlyStyle(p: 2, px: 4, pl: 1);
+      final padding = FlyPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(
         left: 4.0,   // pl overrides px and padding
         right: 16.0, // px overrides padding
@@ -105,8 +105,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(px: 2, py: 3, pl: 1);
-      final padding = TwPaddingUtils.resolve(context, style);
+      const style = FlyStyle(px: 2, py: 3, pl: 1);
+      final padding = FlyPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(
         left: 4.0,   // pl overrides px
         right: 8.0,  // px value
@@ -123,9 +123,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle();
+      const style = FlyStyle();
       const child = Text('test');
-      final result = TwPaddingUtils.apply(context, style, child);
+      final result = FlyPaddingUtils.apply(context, style, child);
       expect(result, equals(child));
     });
 
@@ -137,9 +137,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(p: 2);
+      const style = FlyStyle(p: 2);
       const child = Text('test');
-      final result = TwPaddingUtils.apply(context, style, child);
+      final result = FlyPaddingUtils.apply(context, style, child);
       
       expect(result, isA<Padding>());
       final padding = result as Padding;

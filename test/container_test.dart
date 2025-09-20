@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/tw_container.dart';
-import 'package:flywind/tw_text.dart';
-import 'test_helper.dart';
+import 'package:flywind/container.dart';
+import 'package:flywind/text.dart';
+import 'flight_school.dart';
 
 void main() {
-  group('TwContainer Widget Tests', () {
+  group('FlyContainer Widget Tests', () {
 
     testWidgets('renders basic container without padding or background', (tester) async {
-      const widget = TwContainer(
-        child: TwText('Hello World'),
+      const widget = FlyContainer(
+        child: FlyText('Hello World'),
       );
       await tester.pumpWidget(createTestWidget(widget));
 
@@ -21,8 +21,8 @@ void main() {
     });
 
     testWidgets('applies background color correctly', (tester) async {
-      final widget = TwContainer(
-        child: TwText('Hello World'),
+      final widget = FlyContainer(
+        child: FlyText('Hello World'),
       ).bg('blue600');
       
       await tester.pumpWidget(createTestWidget(widget));
@@ -38,8 +38,8 @@ void main() {
     });
 
     testWidgets('applies uniform padding correctly', (tester) async {
-      final widget = TwContainer(
-        child: TwText('Hello World'),
+      final widget = FlyContainer(
+        child: FlyText('Hello World'),
       ).p(3);
       
       await tester.pumpWidget(createTestWidget(widget));
@@ -52,8 +52,8 @@ void main() {
     });
 
     testWidgets('applies horizontal padding correctly', (tester) async {
-      final widget = TwContainer(
-        child: TwText('Hello World'),
+      final widget = FlyContainer(
+        child: FlyText('Hello World'),
       ).px(2);
       
       await tester.pumpWidget(createTestWidget(widget));
@@ -65,8 +65,8 @@ void main() {
     });
 
     testWidgets('applies both background color and padding correctly', (tester) async {
-      final widget = TwContainer(
-        child: TwText('Hello World'),
+      final widget = FlyContainer(
+        child: FlyText('Hello World'),
       ).bg('red600').p(2);
       
       await tester.pumpWidget(createTestWidget(widget));
@@ -86,8 +86,8 @@ void main() {
     });
 
     testWidgets('applies mixed padding combinations correctly', (tester) async {
-      final widget = TwContainer(
-        child: TwText('Hello World'),
+      final widget = FlyContainer(
+        child: FlyText('Hello World'),
       ).p(1).px(3).pl(2);
       
       await tester.pumpWidget(createTestWidget(widget));
@@ -104,8 +104,8 @@ void main() {
     });
 
     testWidgets('method chaining works correctly', (tester) async {
-      final widget = TwContainer(
-        child: TwText('Hello World'),
+      final widget = FlyContainer(
+        child: FlyText('Hello World'),
       ).p(3).px(2).bg('green600').pl(1);
       
       await tester.pumpWidget(createTestWidget(widget));
@@ -130,8 +130,8 @@ void main() {
     });
 
     testWidgets('handles complex nested content correctly', (tester) async {
-      final widget = TwContainer(
-        child: TwText('Nested Text').color('white'),
+      final widget = FlyContainer(
+        child: FlyText('Nested Text').color('white'),
       ).bg('purple600').p(4).px(2);
       
       await tester.pumpWidget(createTestWidget(widget));

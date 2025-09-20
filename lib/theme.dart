@@ -1,49 +1,49 @@
 import 'package:flutter/material.dart';
-import 'tw_tokens.dart';
+import 'tokens.dart';
 
 /// Simplified Tailwind theme extension for Flutter's ThemeData
 /// Uses your existing token classes for full autocomplete support
-class TwTheme extends ThemeExtension<TwTheme> {
-  const TwTheme({
+class FlyTheme extends ThemeExtension<FlyTheme> {
+  const FlyTheme({
     required this.spacing,
     required this.colors,
     required this.borderRadius,
   });
 
-  final TwSpacing spacing;
-  final TwColors colors;
-  final TwBorderRadius borderRadius;
+  final FlySpacing spacing;
+  final FlyColors colors;
+  final FlyBorderRadius borderRadius;
 
   /// Default Tailwind theme
-  static const TwTheme defaultTheme = TwTheme(
-    spacing: TwSpacing.defaultSpacing,
-    colors: TwColors.defaultColors,
-    borderRadius: TwBorderRadius.defaultBorderRadius,
+  static const FlyTheme defaultTheme = FlyTheme(
+    spacing: FlySpacing.defaultSpacing,
+    colors: FlyColors.defaultColors,
+    borderRadius: FlyBorderRadius.defaultBorderRadius,
   );
 
   /// Create a theme with custom colors and spacing
-  static TwTheme withCustom({
+  static FlyTheme withCustom({
     Map<String, Color>? customColors,
     Map<String, double>? customSpacing,
   }) {
-    return TwTheme(
-      spacing: TwSpacing.defaultSpacing.copyWith(
+    return FlyTheme(
+      spacing: FlySpacing.defaultSpacing.copyWith(
         customSpacing: customSpacing,
       ),
-      colors: TwColors.defaultColors.copyWith(
+      colors: FlyColors.defaultColors.copyWith(
         customColors: customColors,
       ),
-      borderRadius: TwBorderRadius.defaultBorderRadius,
+      borderRadius: FlyBorderRadius.defaultBorderRadius,
     );
   }
 
   @override
-  TwTheme copyWith({
-    TwSpacing? spacing,
-    TwColors? colors,
-    TwBorderRadius? borderRadius,
+  FlyTheme copyWith({
+    FlySpacing? spacing,
+    FlyColors? colors,
+    FlyBorderRadius? borderRadius,
   }) {
-    return TwTheme(
+    return FlyTheme(
       spacing: spacing ?? this.spacing,
       colors: colors ?? this.colors,
       borderRadius: borderRadius ?? this.borderRadius,
@@ -51,8 +51,8 @@ class TwTheme extends ThemeExtension<TwTheme> {
   }
 
   @override
-  TwTheme lerp(TwTheme? other, double t) {
-    if (other is! TwTheme) return this;
+  FlyTheme lerp(FlyTheme? other, double t) {
+    if (other is! FlyTheme) return this;
     
     // For simplicity, just return the current theme
     // In a real implementation, you'd interpolate between values
@@ -62,9 +62,9 @@ class TwTheme extends ThemeExtension<TwTheme> {
 
 /// Extension on BuildContext for easy access to Tailwind theme
 /// Provides both dot notation and convenience methods
-extension TwContext on BuildContext {
+extension FlyContext on BuildContext {
   /// Get the Tailwind theme from the current context
-  TwTheme get tw => Theme.of(this).extension<TwTheme>()!;
+  FlyTheme get tw => Theme.of(this).extension<FlyTheme>()!;
   
   /// Convenience method for spacing values
   double spacing(int value) => tw.spacing[value] ?? 0.0;

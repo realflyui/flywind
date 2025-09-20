@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/tw_color.dart';
-import 'package:flywind/tw_style.dart';
-import 'test_helper.dart';
+import 'package:flywind/color.dart';
+import 'package:flywind/style.dart';
+import 'flight_school.dart';
 
 void main() {
-  group('TwColor', () {
+  group('FlyColor', () {
     late BuildContext context;
 
     testWidgets('resolve returns null when no color is set', (tester) async {
@@ -16,8 +16,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle();
-      final color = TwColorUtils.resolve(context, style);
+      const style = FlyStyle();
+      final color = FlyColorUtils.resolve(context, style);
       expect(color, isNull);
     });
 
@@ -29,8 +29,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'blue600');
-      final color = TwColorUtils.resolve(context, style);
+      const style = FlyStyle(color: 'blue600');
+      final color = FlyColorUtils.resolve(context, style);
       expect(color, const Color(0xFF2563EB));
     });
 
@@ -42,8 +42,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'white');
-      final color = TwColorUtils.resolve(context, style);
+      const style = FlyStyle(color: 'white');
+      final color = FlyColorUtils.resolve(context, style);
       expect(color, const Color(0xFFFFFFFF));
     });
 
@@ -55,8 +55,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'black');
-      final color = TwColorUtils.resolve(context, style);
+      const style = FlyStyle(color: 'black');
+      final color = FlyColorUtils.resolve(context, style);
       expect(color, const Color(0xFF000000));
     });
 
@@ -68,9 +68,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle();
+      const style = FlyStyle();
       const baseStyle = TextStyle(fontSize: 16);
-      final result = TwColorUtils.applyToTextStyle(context, style, baseStyle);
+      final result = FlyColorUtils.applyToTextStyle(context, style, baseStyle);
       expect(result, equals(baseStyle));
     });
 
@@ -82,9 +82,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'red600');
+      const style = FlyStyle(color: 'red600');
       const baseStyle = TextStyle(fontSize: 16);
-      final result = TwColorUtils.applyToTextStyle(context, style, baseStyle);
+      final result = FlyColorUtils.applyToTextStyle(context, style, baseStyle);
       expect(result.color, const Color(0xFFDC2626));
       expect(result.fontSize, 16);
     });
@@ -97,8 +97,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'green600');
-      final result = TwColorUtils.applyToTextStyle(context, style, null);
+      const style = FlyStyle(color: 'green600');
+      final result = FlyColorUtils.applyToTextStyle(context, style, null);
       expect(result.color, const Color(0xFF16A34A));
     });
 
@@ -110,8 +110,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle();
-      final color = TwColorUtils.applyToContainer(context, style);
+      const style = FlyStyle();
+      final color = FlyColorUtils.applyToContainer(context, style);
       expect(color, isNull);
     });
 
@@ -123,8 +123,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'purple600');
-      final color = TwColorUtils.applyToContainer(context, style);
+      const style = FlyStyle(color: 'purple600');
+      final color = FlyColorUtils.applyToContainer(context, style);
       expect(color, const Color(0xFF9333EA));
     });
 
@@ -136,9 +136,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'nonexistent');
+      const style = FlyStyle(color: 'nonexistent');
       // In debug mode, this should throw an assertion error
-      expect(() => TwColorUtils.resolve(context, style), throwsA(isA<AssertionError>()));
+      expect(() => FlyColorUtils.resolve(context, style), throwsA(isA<AssertionError>()));
     });
   });
 }

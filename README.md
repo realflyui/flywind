@@ -14,11 +14,11 @@ A Tailwind-like utility-first Flutter component library that brings the power an
 
 ## 📦 Components
 
-### TwText
+### FlyText
 A text widget with Tailwind-like utilities for styling:
 
 ```dart
-TwText('Hello World')
+FlyText('Hello World')
   .p(3)           // padding: 12px
   .px(4)          // horizontal padding: 16px
   .py(2)          // vertical padding: 8px
@@ -39,12 +39,12 @@ TwText('Hello World')
   .roundedTl('sm') // border radius: 2px top-left corner
 ```
 
-### TwContainer
+### FlyContainer
 A container widget with background color, padding, and margin utilities:
 
 ```dart
-TwContainer(
-  child: TwText('Content'),
+FlyContainer(
+  child: FlyText('Content'),
 )
   .bg('red600')   // background color
   .p(4)           // padding: 16px
@@ -93,7 +93,7 @@ Matching Tailwind CSS border radius system:
 
 ## 🛠️ Usage
 
-### 1. Wrap your app with TwConfig
+### 1. Wrap your app with FlyConfig
 
 ```dart
 void main() {
@@ -106,7 +106,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: TwConfig(
+      home: FlyConfig(
         spacing: defaultSpacing,
         colors: defaultColors,
         borderRadius: defaultBorderRadius,
@@ -129,15 +129,15 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           // Text with padding, margin, color, and border radius
-          TwText('Welcome to Flywind')
+          FlyText('Welcome to Flywind')
             .p(4)
             .m(2)
             .color('blue600')
             .rounded('lg'),
           
           // Container with background, padding, margin, and border radius
-          TwContainer(
-            child: TwText('Card Content').color('white'),
+          FlyContainer(
+            child: FlyText('Card Content').color('white'),
           )
             .bg('gray800')
             .p(6)
@@ -147,7 +147,7 @@ class HomePage extends StatelessWidget {
             .rounded('xl'),
           
           // Complex combinations with all utilities
-          TwText('Complex Styling')
+          FlyText('Complex Styling')
             .p(2)
             .px(4)
             .pl(6)
@@ -167,8 +167,8 @@ class HomePage extends StatelessWidget {
 
 This project includes a comprehensive test suite covering all functionality:
 
-- **Unit Tests**: Testing utility classes and logic (`TwPadding`, `TwMargin`, `TwColor`, `TwStyle`)
-- **Widget Tests**: Testing component rendering and behavior (`TwText`, `TwContainer`)
+- **Unit Tests**: Testing utility classes and logic (`FlyPadding`, `FlyMargin`, `FlyColor`, `FlyStyle`)
+- **Widget Tests**: Testing component rendering and behavior (`FlyText`, `FlyContainer`)
 - **Integration Tests**: Testing complex combinations of padding, margin, and colors
 
 ### Test Coverage
@@ -235,12 +235,12 @@ const Map<String, double> defaultBorderRadius = {
 Method chaining allows for clean, readable code:
 
 ```dart
-TwText('Hello')
-  .p(3)           // Returns TwText
-  .px(4)          // Returns TwText
-  .m(2)           // Returns TwText
-  .color('blue')  // Returns TwText
-  .rounded('lg')  // Returns TwText
+FlyText('Hello')
+  .p(3)           // Returns FlyText
+  .px(4)          // Returns FlyText
+  .m(2)           // Returns FlyText
+  .color('blue')  // Returns FlyText
+  .rounded('lg')  // Returns FlyText
 ```
 
 ### Padding vs Margin
@@ -250,8 +250,8 @@ Understanding the difference between padding and margin:
 - **Margin**: Space outside the element (background color does not extend into margin area)
 
 ```dart
-TwContainer(
-  child: TwText('Content'),
+FlyContainer(
+  child: FlyText('Content'),
 )
   .bg('blue600')  // Background color
   .p(4)           // Padding: background extends here
@@ -275,8 +275,8 @@ Container(
 )
 
 // Use utilities
-TwContainer(
-  child: TwText('Hello'),
+FlyContainer(
+  child: FlyText('Hello'),
 )
   .p(4)           // padding: 16px
   .m(2)           // margin: 8px

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'tw_tokens.dart';
-import 'tw_style.dart';
-import 'tw_theme.dart';
+import 'tokens.dart';
+import 'style.dart';
+import 'theme.dart';
 
 /// Utility class for handling Tailwind-like rounded logic
-class TwRoundedUtils {
-  /// Resolves rounded values from TwStyle and TwConfig into BorderRadius
-  static BorderRadius resolve(BuildContext context, TwStyle style) {
+class FlyRoundedUtils {
+  /// Resolves rounded values from FlyStyle and FlyConfig into BorderRadius
+  static BorderRadius resolve(BuildContext context, FlyStyle style) {
     final theme = Theme.of(context);
-    final tailwind = theme.extension<TwTheme>();
+    final tailwind = theme.extension<FlyTheme>();
     if (tailwind == null) {
-      throw FlutterError('TwTheme extension not found. Make sure to add TwTheme to your ThemeData.extensions');
+      throw FlutterError('FlyTheme extension not found. Make sure to add FlyTheme to your ThemeData.extensions');
     }
     final config = tailwind;
     final borderRadius = config.borderRadius;
@@ -77,7 +77,7 @@ class TwRoundedUtils {
   }
 
   /// Applies rounded styling to a widget using the resolved BorderRadius
-  static Widget apply(BuildContext context, TwStyle style, Widget child) {
+  static Widget apply(BuildContext context, FlyStyle style, Widget child) {
     final borderRadius = resolve(context, style);
     
     // If no border radius is set, return the child as-is
@@ -93,7 +93,7 @@ class TwRoundedUtils {
   }
 
   /// Gets rounded value with error handling for invalid keys
-  static double _getRoundedValue(TwBorderRadius borderRadius, String key, String direction) {
+  static double _getRoundedValue(FlyBorderRadius borderRadius, String key, String direction) {
     final value = borderRadius[key];
     
     if (value == null) {
@@ -108,21 +108,21 @@ class TwRoundedUtils {
   static void _handleMissingRounded(String roundedKey, String direction, List<String> availableKeys) {
     final sortedKeys = availableKeys.toList()..sort();
     
-    String errorMessage = 'Rounded key "$roundedKey" not found in TwConfig for $direction rounded. Available rounded keys: ${sortedKeys.join(', ')}.';
+    String errorMessage = 'Rounded key "$roundedKey" not found in FlyConfig for $direction rounded. Available rounded keys: ${sortedKeys.join(', ')}.';
     
     // In debug mode, throw an assertion error with helpful message
     assert(false, errorMessage);
     
     // In release mode, print a warning
-    print('⚠️ TwRounded Warning: $errorMessage');
+    print('⚠️ FlyRounded Warning: $errorMessage');
   }
 }
 
 /// Mixin that provides Tailwind-like rounded methods for any widget
-mixin TwRounded<T> {
-  TwStyle get style;
+mixin FlyRounded<T> {
+  FlyStyle get style;
   
-  T Function(TwStyle newStyle) get copyWith;
+  T Function(FlyStyle newStyle) get copyWith;
 
   /// Set uniform rounded styling using Tailwind scale
   T rounded([String size = '']) {
@@ -169,13 +169,13 @@ mixin TwRounded<T> {
     return copyWith(style.copyWith(roundedBr: size));
   }
 
-  /// Resolves rounded styling from TwStyle and TwConfig into BorderRadius
+  /// Resolves rounded styling from FlyStyle and FlyConfig into BorderRadius
   BorderRadius resolveRounded(BuildContext context) {
-    return TwRoundedUtils.resolve(context, style);
+    return FlyRoundedUtils.resolve(context, style);
   }
 
   /// Applies rounded styling to a widget using the resolved BorderRadius
   Widget applyRounded(BuildContext context, Widget child) {
-    return TwRoundedUtils.apply(context, style, child);
+    return FlyRoundedUtils.apply(context, style, child);
   }
 }

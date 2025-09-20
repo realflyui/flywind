@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
-import 'tw_style.dart';
-import 'tw_padding.dart';
-import 'tw_margin.dart';
-import 'tw_color.dart';
-import 'tw_rounded.dart';
+import 'style.dart';
+import 'padding.dart';
+import 'margin.dart';
+import 'color.dart';
+import 'rounded.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for containers
-class TwContainer extends StatelessWidget with TwPadding<TwContainer>, TwMargin<TwContainer>, TwColor<TwContainer>, TwRounded<TwContainer> {
-  const TwContainer({
+class FlyContainer extends StatelessWidget with FlyPadding<FlyContainer>, FlyMargin<FlyContainer>, FlyColor<FlyContainer>, FlyRounded<FlyContainer> {
+  const FlyContainer({
     super.key,
     required this.child,
-    TwStyle style = const TwStyle(),
+    FlyStyle style = const FlyStyle(),
   }) : _style = style;
 
   final Widget child;
-  final TwStyle _style;
+  final FlyStyle _style;
 
   @override
-  TwStyle get style => _style;
+  FlyStyle get style => _style;
 
   @override
-  TwContainer Function(TwStyle newStyle) get copyWith => (newStyle) => TwContainer(
+  FlyContainer Function(FlyStyle newStyle) get copyWith => (newStyle) => FlyContainer(
     child: child,
     style: newStyle,
   );
 
   /// Set background color using named token (alias for color)
-  TwContainer bg(String key) {
-    return TwContainer(
+  FlyContainer bg(String key) {
+    return FlyContainer(
       child: child,
       style: _style.copyWith(color: key),
     );
@@ -38,7 +38,7 @@ class TwContainer extends StatelessWidget with TwPadding<TwContainer>, TwMargin<
     // Create the base Container widget
     Widget containerWidget = Container(child: child);
 
-    // Apply all style utilities (color, padding, etc.) using TwStyle.apply()
+    // Apply all style utilities (color, padding, etc.) using FlyStyle.apply()
     return _style.apply(context, containerWidget);
   }
 }

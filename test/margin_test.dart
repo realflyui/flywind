@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/tw_margin.dart';
-import 'package:flywind/tw_style.dart';
-import 'test_helper.dart';
+import 'package:flywind/margin.dart';
+import 'package:flywind/style.dart';
+import 'flight_school.dart';
 
 void main() {
-  group('TwMargin', () {
+  group('FlyMargin', () {
     late BuildContext context;
 
     testWidgets('resolve returns EdgeInsets.zero when no margin is set', (tester) async {
-      // Create a test widget with TwTheme
+      // Create a test widget with FlyTheme
       final testWidget = createTestWidgetWithContext((ctx) {
         context = ctx;
         return const SizedBox.shrink();
@@ -17,8 +17,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle();
-      final margin = TwMarginUtils.resolve(context, style);
+      const style = FlyStyle();
+      final margin = FlyMarginUtils.resolve(context, style);
       expect(margin, EdgeInsets.zero);
     });
 
@@ -30,8 +30,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(m: 3);
-      final margin = TwMarginUtils.resolve(context, style);
+      const style = FlyStyle(m: 3);
+      final margin = FlyMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.all(12.0)); // 3 * 4.0 = 12.0
     });
 
@@ -43,8 +43,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(mx: 2);
-      final margin = TwMarginUtils.resolve(context, style);
+      const style = FlyStyle(mx: 2);
+      final margin = FlyMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(left: 8.0, right: 8.0)); // 2 * 4.0 = 8.0
     });
 
@@ -56,8 +56,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(my: 4);
-      final margin = TwMarginUtils.resolve(context, style);
+      const style = FlyStyle(my: 4);
+      final margin = FlyMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // 4 * 4.0 = 16.0
     });
 
@@ -69,8 +69,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(ml: 1, mr: 2, mt: 3, mb: 4);
-      final margin = TwMarginUtils.resolve(context, style);
+      const style = FlyStyle(ml: 1, mr: 2, mt: 3, mb: 4);
+      final margin = FlyMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(
         left: 4.0,   // 1 * 4.0
         right: 8.0,  // 2 * 4.0
@@ -87,8 +87,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(m: 2, mx: 4, ml: 1);
-      final margin = TwMarginUtils.resolve(context, style);
+      const style = FlyStyle(m: 2, mx: 4, ml: 1);
+      final margin = FlyMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(
         left: 4.0,   // ml overrides mx and margin
         right: 16.0, // mx overrides margin
@@ -105,8 +105,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(mx: 2, my: 3, ml: 1, mt: 4);
-      final margin = TwMarginUtils.resolve(context, style);
+      const style = FlyStyle(mx: 2, my: 3, ml: 1, mt: 4);
+      final margin = FlyMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(
         left: 4.0,   // ml overrides mx
         right: 8.0,  // mx value
@@ -123,9 +123,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle();
+      const style = FlyStyle();
       const child = Text('Test');
-      final result = TwMarginUtils.apply(context, style, child);
+      final result = FlyMarginUtils.apply(context, style, child);
       
       expect(result, equals(child));
     });
@@ -138,9 +138,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(m: 2);
+      const style = FlyStyle(m: 2);
       const child = Text('Test');
-      final result = TwMarginUtils.apply(context, style, child);
+      final result = FlyMarginUtils.apply(context, style, child);
       
       expect(result, isA<Container>());
       final container = result as Container;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/tw_style.dart';
-import 'test_helper.dart';
+import 'package:flywind/style.dart';
+import 'flight_school.dart';
 
 void main() {
-  group('TwStyle', () {
+  group('FlyStyle', () {
     late BuildContext context;
 
     testWidgets('copyWith creates new instance with updated values', (tester) async {
@@ -15,7 +15,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const original = TwStyle(p: 2, color: 'blue600');
+      const original = FlyStyle(p: 2, color: 'blue600');
       final updated = original.copyWith(p: 4, color: 'red600');
 
       expect(updated.p, 4);
@@ -32,13 +32,13 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      expect(const TwStyle(p: 2).hasPadding, isTrue);
-      expect(const TwStyle(px: 2).hasPadding, isTrue);
-      expect(const TwStyle(py: 2).hasPadding, isTrue);
-      expect(const TwStyle(pl: 2).hasPadding, isTrue);
-      expect(const TwStyle(pr: 2).hasPadding, isTrue);
-      expect(const TwStyle(pt: 2).hasPadding, isTrue);
-      expect(const TwStyle(pb: 2).hasPadding, isTrue);
+      expect(const FlyStyle(p: 2).hasPadding, isTrue);
+      expect(const FlyStyle(px: 2).hasPadding, isTrue);
+      expect(const FlyStyle(py: 2).hasPadding, isTrue);
+      expect(const FlyStyle(pl: 2).hasPadding, isTrue);
+      expect(const FlyStyle(pr: 2).hasPadding, isTrue);
+      expect(const FlyStyle(pt: 2).hasPadding, isTrue);
+      expect(const FlyStyle(pb: 2).hasPadding, isTrue);
     });
 
     testWidgets('hasPadding returns false when no padding is set', (tester) async {
@@ -49,13 +49,13 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      expect(const TwStyle().hasPadding, isFalse);
-      expect(const TwStyle(color: 'blue600').hasPadding, isFalse);
-      expect(const TwStyle(rounded: 'md').hasPadding, isFalse);
+      expect(const FlyStyle().hasPadding, isFalse);
+      expect(const FlyStyle(color: 'blue600').hasPadding, isFalse);
+      expect(const FlyStyle(rounded: 'md').hasPadding, isFalse);
     });
   });
 
-  group('TwStyle apply', () {
+  group('FlyStyle apply', () {
     late BuildContext context;
 
     testWidgets('apply handles Text widget color correctly', (tester) async {
@@ -66,7 +66,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'green600');
+      const style = FlyStyle(color: 'green600');
       const child = Text('Hello');
       final result = style.apply(context, child);
 
@@ -84,7 +84,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'purple600');
+      const style = FlyStyle(color: 'purple600');
       final child = Container(child: const Text('Hello'));
       final result = style.apply(context, child);
 
@@ -101,7 +101,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'orange600');
+      const style = FlyStyle(color: 'orange600');
       const child = SizedBox(width: 100, height: 50);
       final result = style.apply(context, child);
 
@@ -119,7 +119,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(color: 'red600', p: 3);
+      const style = FlyStyle(color: 'red600', p: 3);
       const child = Text('Hello');
       final result = style.apply(context, child);
 
@@ -139,7 +139,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = TwStyle(p: 2, px: 4, pl: 1);
+      const style = FlyStyle(p: 2, px: 4, pl: 1);
       const child = Text('Hello');
       final result = style.apply(context, child);
 

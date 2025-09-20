@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'tw_style.dart';
-import 'tw_spacing.dart';
+import 'style.dart';
+import 'spacing.dart';
 
 /// Utility class for handling Tailwind-like padding logic
-class TwPaddingUtils {
-  /// Resolves padding from TwStyle and TwTheme into EdgeInsets
-  static EdgeInsets resolve(BuildContext context, TwStyle style) {
-    return TwSpacingUtils.resolve(
+class FlyPaddingUtils {
+  /// Resolves padding from FlyStyle and FlyTheme into EdgeInsets
+  static EdgeInsets resolve(BuildContext context, FlyStyle style) {
+    return FlySpacingUtils.resolve(
       context,
       style,
       getUniform: (s) => s.p,
@@ -20,7 +20,7 @@ class TwPaddingUtils {
   }
 
   /// Applies padding to a widget using the resolved EdgeInsets
-  static Widget apply(BuildContext context, TwStyle style, Widget child) {
+  static Widget apply(BuildContext context, FlyStyle style, Widget child) {
     final padding = resolve(context, style);
     
     // If no padding is set, return the child as-is
@@ -37,10 +37,10 @@ class TwPaddingUtils {
 }
 
 /// Mixin that provides Tailwind-like padding methods for any widget
-mixin TwPadding<T> {
-  TwStyle get style;
+mixin FlyPadding<T> {
+  FlyStyle get style;
   
-  T Function(TwStyle newStyle) get copyWith;
+  T Function(FlyStyle newStyle) get copyWith;
 
   /// Set uniform padding using token scale
   T p(int step) {
@@ -77,13 +77,13 @@ mixin TwPadding<T> {
     return copyWith(style.copyWith(pl: step));
   }
 
-  /// Resolves padding from TwStyle and TwTheme into EdgeInsets
+  /// Resolves padding from FlyStyle and FlyTheme into EdgeInsets
   EdgeInsets resolvePadding(BuildContext context) {
-    return TwPaddingUtils.resolve(context, style);
+    return FlyPaddingUtils.resolve(context, style);
   }
 
   /// Applies padding to a widget using the resolved EdgeInsets
   Widget applyPadding(BuildContext context, Widget child) {
-    return TwPaddingUtils.apply(context, style, child);
+    return FlyPaddingUtils.apply(context, style, child);
   }
 }
