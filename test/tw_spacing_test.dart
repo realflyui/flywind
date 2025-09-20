@@ -13,6 +13,7 @@ void main() {
         home: TwTheme(
           spacing: {1: 4.0, 2: 8.0, 3: 12.0}, // Only keys 1, 2, 3 available
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -48,6 +49,7 @@ void main() {
         home: TwTheme(
           spacing: {1: 4.0, 2: 8.0, 3: 12.0, 4: 16.0, 5: 20.0},
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -83,6 +85,7 @@ void main() {
         home: TwTheme(
           spacing: {1: 4.0, 2: 8.0, 3: 12.0},
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;

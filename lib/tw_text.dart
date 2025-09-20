@@ -3,9 +3,10 @@ import 'tw_style.dart';
 import 'tw_padding.dart';
 import 'tw_margin.dart';
 import 'tw_color.dart';
+import 'tw_rounded.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for text
-class TwText extends StatelessWidget with TwPadding<TwText>, TwMargin<TwText>, TwColor<TwText> {
+class TwText extends StatelessWidget with TwPadding<TwText>, TwMargin<TwText>, TwColor<TwText>, TwRounded<TwText> {
   const TwText(this.text, [this._style = const TwStyle()]);
 
   final String text;

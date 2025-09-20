@@ -3,9 +3,10 @@ import 'tw_style.dart';
 import 'tw_padding.dart';
 import 'tw_margin.dart';
 import 'tw_color.dart';
+import 'tw_rounded.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for containers
-class TwContainer extends StatelessWidget with TwPadding<TwContainer>, TwMargin<TwContainer>, TwColor<TwContainer> {
+class TwContainer extends StatelessWidget with TwPadding<TwContainer>, TwMargin<TwContainer>, TwColor<TwContainer>, TwRounded<TwContainer> {
   const TwContainer({
     super.key,
     required this.child,

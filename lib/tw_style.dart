@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'tw_padding.dart';
 import 'tw_margin.dart';
 import 'tw_color.dart';
+import 'tw_rounded.dart';
 
 /// Internal style storage for TwText widget
 class TwStyle {
@@ -21,6 +22,15 @@ class TwStyle {
     this.mb,
     this.mt,
     this.color,
+    this.rounded,
+    this.roundedT,
+    this.roundedR,
+    this.roundedB,
+    this.roundedL,
+    this.roundedTl,
+    this.roundedTr,
+    this.roundedBl,
+    this.roundedBr,
   });
 
   final int? p;        // Uniform padding (all sides)
@@ -38,6 +48,15 @@ class TwStyle {
   final int? mb;       // Bottom margin
   final int? mt;       // Top margin
   final String? color;
+  final String? rounded;    // Uniform border radius (all corners)
+  final String? roundedT;   // Top border radius (top-left + top-right)
+  final String? roundedR;   // Right border radius (top-right + bottom-right)
+  final String? roundedB;   // Bottom border radius (bottom-left + bottom-right)
+  final String? roundedL;   // Left border radius (top-left + bottom-left)
+  final String? roundedTl;  // Top-left border radius
+  final String? roundedTr;  // Top-right border radius
+  final String? roundedBl;  // Bottom-left border radius
+  final String? roundedBr;  // Bottom-right border radius
 
   /// Create a copy of this style with updated values
   TwStyle copyWith({
@@ -56,6 +75,15 @@ class TwStyle {
     int? mb,
     int? mt,
     String? color,
+    String? rounded,
+    String? roundedT,
+    String? roundedR,
+    String? roundedB,
+    String? roundedL,
+    String? roundedTl,
+    String? roundedTr,
+    String? roundedBl,
+    String? roundedBr,
   }) {
     return TwStyle(
       p: p ?? this.p,
@@ -73,6 +101,15 @@ class TwStyle {
       mb: mb ?? this.mb,
       mt: mt ?? this.mt,
       color: color ?? this.color,
+      rounded: rounded ?? this.rounded,
+      roundedT: roundedT ?? this.roundedT,
+      roundedR: roundedR ?? this.roundedR,
+      roundedB: roundedB ?? this.roundedB,
+      roundedL: roundedL ?? this.roundedL,
+      roundedTl: roundedTl ?? this.roundedTl,
+      roundedTr: roundedTr ?? this.roundedTr,
+      roundedBl: roundedBl ?? this.roundedBl,
+      roundedBr: roundedBr ?? this.roundedBr,
     );
   }
 
@@ -96,14 +133,19 @@ class TwStyle {
       result = _applyBackgroundColor(context, result);
     }
     
-    // 3. Margin (outermost - wraps the background)
+    // 3. Border Radius (applied to the background container)
+    if (hasBorderRadius) {
+      result = TwRoundedUtils.apply(context, this, result);
+    }
+    
+    // 4. Margin (outermost - wraps the background)
     if (hasMargin) {
       result = TwMarginUtils.apply(context, this, result);
     }
     
     // Future utilities would go here:
-    // 4. Border (wraps margin)
-    // 5. Shadow (wraps border)
+    // 5. Border (wraps margin)
+    // 6. Shadow (wraps border)
     
     return result;
   }
@@ -115,6 +157,10 @@ class TwStyle {
   /// Check if any margin is set
   bool get hasMargin => m != null || mx != null || my != null || 
                        ml != null || mr != null || mb != null || mt != null;
+
+  /// Check if any border radius is set
+  bool get hasBorderRadius => rounded != null || roundedT != null || roundedR != null || roundedB != null || roundedL != null ||
+                             roundedTl != null || roundedTr != null || roundedBl != null || roundedBr != null;
 
   /// Apply text color directly to a Text widget
   Widget _applyTextColorDirect(BuildContext context, Text textWidget) {

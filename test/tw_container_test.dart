@@ -11,6 +11,7 @@ void main() {
         home: TwTheme(
           spacing: defaultSpacing,
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Scaffold(
             body: child,
           ),

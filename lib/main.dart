@@ -16,6 +16,7 @@ class MainApp extends StatelessWidget {
       home: TwTheme(
         spacing: defaultSpacing,
         colors: defaultColors,
+        borderRadius: defaultBorderRadius,
         child: const HomePage(),
       ),
     );
@@ -28,8 +29,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Uniform padding
             TwText('Uniform padding p(3)').p(3),
@@ -122,9 +125,92 @@ class HomePage extends StatelessWidget {
               child: TwText('Complex: m(1) + p(3) + bg(orange600)').color('white'),
             ).m(1).p(3).bg('orange600').pb(2),
             
+            // Border Radius Examples - using pb for spacing
+            TwText('Border Radius Examples:').color('gray800').pb(3),
+            
+            // Uniform border radius
+            TwContainer(
+              child: TwText('rounded("sm") - 2px all corners').color('white'),
+            ).bg('blue600').p(2).rounded('sm').pb(2),
+            
+            TwContainer(
+              child: TwText('rounded("") - 4px all corners (default)').color('white'),
+            ).bg('green600').p(2).rounded('').pb(2),
+            
+            TwContainer(
+              child: TwText('rounded("lg") - 8px all corners').color('white'),
+            ).bg('red600').p(2).rounded('lg').pb(2),
+            
+            TwContainer(
+              child: TwText('rounded("xl") - 12px all corners').color('white'),
+            ).bg('purple600').p(2).rounded('xl').pb(2),
+            
+            TwContainer(
+              child: TwText('rounded("2xl") - 16px all corners').color('white'),
+            ).bg('orange600').p(2).rounded('2xl').pb(2),
+            
+            TwContainer(
+              child: TwText('rounded("full") - 9999px (circular)').color('white'),
+            ).bg('teal600').p(2).rounded('full').pb(2),
+            
+            // Directional border radius
+            TwText('Directional Border Radius:').color('gray800').pb(2),
+            
+            TwContainer(
+              child: TwText('roundedT("lg") - 8px top corners').color('white'),
+            ).bg('blue600').p(2).roundedT('lg').pb(2),
+            
+            TwContainer(
+              child: TwText('roundedR("xl") - 12px right corners').color('white'),
+            ).bg('green600').p(2).roundedR('xl').pb(2),
+            
+            TwContainer(
+              child: TwText('roundedB("md") - 6px bottom corners').color('white'),
+            ).bg('red600').p(2).roundedB('md').pb(2),
+            
+            TwContainer(
+              child: TwText('roundedL("2xl") - 16px left corners').color('white'),
+            ).bg('purple600').p(2).roundedL('2xl').pb(2),
+            
+            // Individual corner border radius
+            TwText('Individual Corner Border Radius:').color('gray800').pb(2),
+            
+            TwContainer(
+              child: TwText('roundedTl("xl") - 12px top-left').color('white'),
+            ).bg('blue600').p(2).roundedTl('xl').pb(2),
+            
+            TwContainer(
+              child: TwText('roundedTr("lg") - 8px top-right').color('white'),
+            ).bg('green600').p(2).roundedTr('lg').pb(2),
+            
+            TwContainer(
+              child: TwText('roundedBl("md") - 6px bottom-left').color('white'),
+            ).bg('red600').p(2).roundedBl('md').pb(2),
+            
+            TwContainer(
+              child: TwText('roundedBr("2xl") - 16px bottom-right').color('white'),
+            ).bg('purple600').p(2).roundedBr('2xl').pb(2),
+            
+            // Complex combinations
+            TwText('Complex Combinations:').color('gray800').pb(2),
+            
+            TwContainer(
+              child: TwText('rounded("sm") + roundedT("lg")').color('white'),
+            ).bg('blue600').p(2).rounded('sm').roundedT('lg').pb(2),
+            
+            TwContainer(
+              child: TwText('roundedTl("xl") + roundedBr("2xl")').color('white'),
+            ).bg('green600').p(2).roundedTl('xl').roundedBr('2xl').pb(2),
+            
+            // Full example with padding, margin, color, and border radius
+            TwContainer(
+              child: TwText('Complete: p(3) + m(2) + bg(red600) + rounded("lg")').color('white'),
+            ).p(3).m(2).bg('red600').rounded('lg').pb(2),
+            
             // Test error handling (uncomment to see error message)
             // TwText('This will show an error').color('nonexistent'),
           ],
+        ),
       ),
     );
   }

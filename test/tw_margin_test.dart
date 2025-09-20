@@ -14,6 +14,7 @@ void main() {
         home: TwTheme(
           spacing: defaultSpacing,
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -35,6 +36,7 @@ void main() {
         home: TwTheme(
           spacing: defaultSpacing,
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -56,6 +58,7 @@ void main() {
         home: TwTheme(
           spacing: defaultSpacing,
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -77,6 +80,7 @@ void main() {
         home: TwTheme(
           spacing: defaultSpacing,
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -98,6 +102,7 @@ void main() {
         home: TwTheme(
           spacing: defaultSpacing,
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -124,6 +129,7 @@ void main() {
         home: TwTheme(
           spacing: defaultSpacing,
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -150,6 +156,7 @@ void main() {
         home: TwTheme(
           spacing: defaultSpacing,
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -176,6 +183,7 @@ void main() {
         home: TwTheme(
           spacing: defaultSpacing,
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;
@@ -199,6 +207,7 @@ void main() {
         home: TwTheme(
           spacing: defaultSpacing,
           colors: defaultColors,
+          borderRadius: defaultBorderRadius,
           child: Builder(
             builder: (ctx) {
               context = ctx;

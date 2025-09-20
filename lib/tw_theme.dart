@@ -6,11 +6,13 @@ class TwTheme extends InheritedWidget {
     super.key,
     required this.spacing,
     required this.colors,
+    required this.borderRadius,
     required super.child,
   });
 
   final Map<int, double> spacing;
   final Map<String, Color> colors;
+  final Map<String, double> borderRadius;
 
   /// Get the current TwTheme from the widget tree
   static TwTheme of(BuildContext context) {
@@ -21,7 +23,7 @@ class TwTheme extends InheritedWidget {
 
   @override
   bool updateShouldNotify(TwTheme oldWidget) {
-    return spacing != oldWidget.spacing || colors != oldWidget.colors;
+    return spacing != oldWidget.spacing || colors != oldWidget.colors || borderRadius != oldWidget.borderRadius;
   }
 }
 
@@ -40,6 +42,19 @@ const Map<int, double> defaultSpacing = {
   10: 40.0,
   11: 44.0,
   12: 48.0,
+};
+
+/// Default border radius scale matching Tailwind CSS
+const Map<String, double> defaultBorderRadius = {
+  'none': 0.0,
+  'sm': 2.0,      // 0.125rem
+  '': 4.0,        // 0.25rem (default)
+  'md': 6.0,      // 0.375rem
+  'lg': 8.0,      // 0.5rem
+  'xl': 12.0,     // 0.75rem
+  '2xl': 16.0,    // 1rem
+  '3xl': 24.0,    // 1.5rem
+  'full': 9999.0, // 9999px
 };
 
 /// Default color palette
