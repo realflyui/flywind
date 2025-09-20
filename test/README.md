@@ -4,7 +4,7 @@ This directory contains comprehensive tests for the Flywind Tailwind-like Flutte
 
 ## ✅ Test Status
 
-**All Tests Passing** - Comprehensive test coverage for all components and utilities.
+**All Tests Passing** - 65+ comprehensive tests covering all components and utilities including the new border radius system.
 
 ## Running Tests
 
@@ -31,6 +31,13 @@ The tests cover:
 - ✅ Applies padding to widgets correctly
 - ✅ Returns child when no padding is set
 
+### TwMargin Utility
+- ✅ Resolves uniform margin correctly
+- ✅ Resolves directional margin (mx, my, ml, mr, mt, mb)
+- ✅ Handles mixed margin combinations
+- ✅ Applies margin to widgets correctly
+- ✅ Returns child when no margin is set
+
 ### TwColor Utility
 - ✅ Resolves colors from theme correctly
 - ✅ Applies colors to TextStyle correctly
@@ -38,18 +45,29 @@ The tests cover:
 - ✅ Handles missing colors with helpful error messages
 - ✅ Returns null when no color is set
 
+### TwRounded Utility
+- ✅ Resolves uniform border radius correctly
+- ✅ Resolves directional border radius (roundedT, roundedR, roundedB, roundedL)
+- ✅ Resolves individual corner border radius (roundedTl, roundedTr, roundedBl, roundedBr)
+- ✅ Handles mixed border radius combinations
+- ✅ Applies border radius to widgets correctly
+- ✅ Returns child when no border radius is set
+
 ### TwStyle Class
 - ✅ copyWith creates new instances correctly
 - ✅ hasPadding property works correctly
+- ✅ hasMargin property works correctly
+- ✅ hasBorderRadius property works correctly
 - ✅ apply method handles Text widgets
 - ✅ apply method handles Container widgets
-- ✅ apply method combines color and padding
-- ✅ apply method handles complex padding combinations
+- ✅ apply method combines color, padding, margin, and border radius
+- ✅ apply method handles complex combinations
 
 ### TwText Widget
 - ✅ Renders basic text without styling
 - ✅ Applies uniform padding correctly
 - ✅ Applies directional padding correctly
+- ✅ Applies individual side padding correctly
 - ✅ Applies color correctly
 - ✅ Combines padding and color correctly
 - ✅ Handles method chaining correctly
@@ -58,8 +76,10 @@ The tests cover:
 ### TwContainer Widget
 - ✅ Renders basic container without styling
 - ✅ Applies background color correctly
-- ✅ Applies padding correctly
+- ✅ Applies uniform padding correctly
+- ✅ Applies horizontal padding correctly
 - ✅ Combines background color and padding
+- ✅ Handles mixed padding combinations
 - ✅ Handles method chaining correctly
 - ✅ Handles complex nested content
 - ✅ Handles missing colors gracefully
@@ -84,6 +104,22 @@ test('resolve returns correct color for valid color key', () {
 });
 ```
 
+### Rounded Tests
+```dart
+test('resolve returns correct uniform border radius', () {
+  const style = TwStyle(rounded: 'lg');
+  final borderRadius = TwRoundedUtils.resolve(context, style);
+  expect(borderRadius, BorderRadius.circular(8.0));
+});
+
+test('resolve handles mixed directional border radius', () {
+  const style = TwStyle(roundedT: '', roundedR: 'md', roundedB: 'lg', roundedL: 'xl');
+  final borderRadius = TwRoundedUtils.resolve(context, style);
+  expect(borderRadius.topLeft, const Radius.circular(12.0)); // roundedL overrides roundedT
+  expect(borderRadius.topRight, const Radius.circular(6.0)); // roundedR overrides roundedT
+});
+```
+
 ### Widget Tests
 ```dart
 testWidgets('applies both padding and color correctly', (tester) async {
@@ -98,6 +134,17 @@ testWidgets('applies both padding and color correctly', (tester) async {
   final text = tester.widget<Text>(find.byType(Text));
   expect(text.style?.color, const Color(0xFFDC2626));
 });
+
+testWidgets('applies border radius correctly', (tester) async {
+  final widget = TwContainer(
+    child: TwText('Content'),
+  ).rounded('lg');
+  await tester.pumpWidget(createTestWidget(widget));
+
+  // Check border radius
+  final clipRRect = tester.widget<ClipRRect>(find.byType(ClipRRect));
+  expect(clipRRect.borderRadius, BorderRadius.circular(8.0));
+});
 ```
 
 ## Error Handling Tests
@@ -111,6 +158,13 @@ test('resolve handles missing color gracefully in debug mode', () {
   // In debug mode, this should trigger an assertion
   expect(() => TwColor.resolve(context, style), throwsA(isA<AssertionError>()));
 });
+
+test('resolve handles missing border radius gracefully in debug mode', () {
+  const style = TwStyle(rounded: 'nonexistent');
+  
+  // In debug mode, this should trigger an assertion
+  expect(() => TwRoundedUtils.resolve(context, style), throwsA(isA<AssertionError>()));
+});
 ```
 
-This ensures that developers get helpful error messages when using invalid color names.
+This ensures that developers get helpful error messages when using invalid color names or border radius values.
