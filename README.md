@@ -93,7 +93,7 @@ Matching Tailwind CSS border radius system:
 
 ## 🛠️ Usage
 
-### 1. Wrap your app with TwTheme
+### 1. Wrap your app with TwConfig
 
 ```dart
 void main() {
@@ -106,7 +106,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: TwTheme(
+      home: TwConfig(
         spacing: defaultSpacing,
         colors: defaultColors,
         borderRadius: defaultBorderRadius,
