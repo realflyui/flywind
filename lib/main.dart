@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'tw_theme.dart';
 import 'tw_text.dart';
 import 'tw_container.dart';
+import 'tw_config.dart';
 
 void main() {
   runApp(const MainApp());
@@ -21,7 +22,8 @@ class MainApp extends StatelessWidget {
         
         // Your custom Tailwind theme
         extensions: [
-          TwTheme.defaultTheme,
+          // TwTheme.defaultTheme,
+          TwConfig.createTheme(),
         ],
       ),
       home: const HomePage(),
@@ -59,6 +61,42 @@ class HomePage extends StatelessWidget {
           child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Test the custom "leif" color
+            TwText('Custom "leif" Color Test:').color('gray800').pb(3),
+            
+            // Background color examples
+            TwContainer(
+              child: TwText('Container with leif background').color('white'),
+            ).bg('leif').p(3).pb(2),
+            
+            TwContainer(
+              child: TwText('Rounded container with leif background').color('white'),
+            ).bg('leif').p(3).rounded('lg').pb(2),
+            
+            // Text color examples
+            TwText('This text uses leif color').color('leif').pb(2),
+            TwText('Large leif text').color('leif').pb(2),
+            
+            // Mixed examples
+            TwContainer(
+              child: TwText('White text on leif background with padding').color('white'),
+            ).bg('leif').p(4).rounded('xl').pb(2),
+            
+            TwContainer(
+              child: TwText('Leif text on white background').color('leif'),
+            ).bg('white').p(3).rounded('md').pb(2),
+            
+            // Show the actual color value
+            TwText('The "leif" color value: ${colors['leif']}').color('gray600').pb(2),
+            
+            // Clean dot notation with full autocomplete!
+            TwText('Clean dot notation with autocomplete:').color('gray800').pb(2),
+            TwText('colors.leif = ${colors.leif}').color('gray600').pb(1),
+            TwText('colors.brand = ${colors.brand}').color('gray600').pb(1),
+            TwText('colors.accent = ${colors.accent}').color('gray600').pb(1),
+            TwText('spacing.leif = ${spacing.leif}').color('gray600').pb(1),
+            TwText('spacing.brand = ${spacing.brand}').color('gray600').pb(3),
+            
             // Uniform padding
             TwText('Uniform padding p(3)').p(10),
             
@@ -267,7 +305,7 @@ class HomePage extends StatelessWidget {
               padding: EdgeInsets.only(bottom: spacing.s2),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: colors.blue600,
+                  backgroundColor: colors.leif,
                   foregroundColor: Colors.white,
                   padding: EdgeInsets.all(spacing.s4),
                   shape: RoundedRectangleBorder(

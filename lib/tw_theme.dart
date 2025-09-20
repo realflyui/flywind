@@ -21,6 +21,22 @@ class TwTheme extends ThemeExtension<TwTheme> {
     borderRadius: TwBorderRadius.defaultBorderRadius,
   );
 
+  /// Create a theme with custom colors and spacing
+  static TwTheme withCustom({
+    Map<String, Color>? customColors,
+    Map<String, double>? customSpacing,
+  }) {
+    return TwTheme(
+      spacing: TwSpacing.defaultSpacing.copyWith(
+        customSpacing: customSpacing,
+      ),
+      colors: TwColors.defaultColors.copyWith(
+        customColors: customColors,
+      ),
+      borderRadius: TwBorderRadius.defaultBorderRadius,
+    );
+  }
+
   @override
   TwTheme copyWith({
     TwSpacing? spacing,

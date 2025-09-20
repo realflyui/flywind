@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'tw_tokens.dart';
 import 'tw_style.dart';
 import 'tw_theme.dart';
 
@@ -18,7 +17,7 @@ class TwColorUtils {
     final color = _getColorValue(config, style.color!);
     
     if (color == null) {
-      _handleMissingColor(style.color!, _getAvailableColors());
+      _handleMissingColor(style.color!, _getAvailableColors(config));
     }
     
     return color;
@@ -45,9 +44,11 @@ class TwColorUtils {
     return theme.colors[key];
   }
 
-  /// Gets list of available color keys
-  static List<String> _getAvailableColors() {
-    return TwColors.defaultColors.values.keys.toList();
+  /// Gets list of available color keys from the actual theme
+  static List<String> _getAvailableColors(TwTheme theme) {
+    final defaultColors = theme.colors.values.keys.toList();
+    final customColors = theme.colors.customColors?.keys.toList() ?? [];
+    return [...defaultColors, ...customColors];
   }
 
   /// Handles missing color errors with helpful messages

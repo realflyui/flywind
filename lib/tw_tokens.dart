@@ -16,9 +16,11 @@ class TwSpacing {
     required this.s10,
     required this.s11,
     required this.s12,
+    this.customSpacing,
   });
 
   final double s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
+  final Map<String, double>? customSpacing;
 
   /// Get all spacing values as a map
   Map<int, double> get values => {
@@ -29,11 +31,23 @@ class TwSpacing {
   /// Access spacing values by index (0-12)
   double? operator [](int index) => values[index];
 
+
   /// Default spacing scale (0-12 steps)
   static const TwSpacing defaultSpacing = TwSpacing(
     s0: 0.0, s1: 4.0, s2: 8.0, s3: 12.0, s4: 16.0, s5: 20.0,
     s6: 24.0, s7: 28.0, s8: 32.0, s9: 36.0, s10: 40.0, s11: 44.0, s12: 48.0,
   );
+
+  /// Create a new TwSpacing instance with custom spacing overrides
+  TwSpacing copyWith({
+    Map<String, double>? customSpacing,
+  }) {
+    return TwSpacing(
+      s0: s0, s1: s1, s2: s2, s3: s3, s4: s4, s5: s5,
+      s6: s6, s7: s7, s8: s8, s9: s9, s10: s10, s11: s11, s12: s12,
+      customSpacing: customSpacing ?? this.customSpacing,
+    );
+  }
 }
 
 /// Color palette class with type-safe access to color values
@@ -80,8 +94,6 @@ class TwColors {
   /// Access color values by key
   Color? operator [](String key) => values[key] ?? customColors?[key];
 
-  /// Dynamic getter for all colors (enables dot notation)
-  dynamic get $ => _ColorProxy(this);
 
   /// Default color palette
   static const TwColors defaultColors = TwColors(
@@ -156,18 +168,3 @@ extension TwColorsExtension on TwColors {
   }
 }
 
-/// Proxy class for dynamic color access
-class _ColorProxy {
-  final TwColors _colors;
-  _ColorProxy(this._colors);
-  
-  @override
-  dynamic noSuchMethod(Invocation invocation) {
-    if (invocation.isGetter) {
-      final String name = invocation.memberName.toString().replaceAll('Symbol("', '').replaceAll('")', '');
-      // First check predefined colors, then custom colors
-      return _colors.values[name] ?? _colors.customColors?[name];
-    }
-    return super.noSuchMethod(invocation);
-  }
-}
