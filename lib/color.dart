@@ -9,11 +9,11 @@ class FlyColorUtils {
     if (style.color == null) return null;
     
     final theme = Theme.of(context);
-    final tailwind = theme.extension<FlyTheme>();
-    if (tailwind == null) {
+    final flywind = theme.extension<FlyTheme>();
+    if (flywind == null) {
       throw FlutterError('FlyTheme extension not found. Make sure to add FlyTheme to your ThemeData.extensions');
     }
-    final config = tailwind;
+    final config = flywind;
     final color = _getColorValue(config, style.color!);
     
     if (color == null) {

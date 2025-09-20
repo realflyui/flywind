@@ -20,7 +20,7 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
         
-        // Your custom Tailwind theme
+        // Your custom Flywind theme
         extensions: [
           // FlyTheme.defaultTheme,
           FlyConfig.createTheme(),
@@ -36,11 +36,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Access Tailwind theme via the new simplified system
-    final tailwind = context.tw; // Using our new extension!
-    final spacing = tailwind.spacing;
-    final colors = tailwind.colors;
-    final borderRadius = tailwind.borderRadius;
+    // Access Flywind theme via the new simplified system
+    final flywind = context.tw; // Using our new extension!
+    final spacing = flywind.spacing;
+    final colors = flywind.colors;
+    final borderRadius = flywind.borderRadius;
     
     // Example usage - you can now use these values with type safety!
     print('Spacing 2 value: ${spacing.s2}'); // This will print 8.0 (default)
@@ -299,8 +299,8 @@ class HomePage extends StatelessWidget {
             FlyText('Current Border Radius Values:').color('gray800').pb(2),
             FlyText('sm: ${borderRadius.sm}, md: ${borderRadius.md}, lg: ${borderRadius.lg}, xl: ${borderRadius.xl}').color('gray600').pb(2),
             
-            // Material button using Tailwind theme
-            FlyText('Material Button with Tailwind Theme:').color('gray800').pb(2),
+            // Material button using Flywind theme
+            FlyText('Material Button with Flywind Theme:').color('gray800').pb(2),
             Padding(
               padding: EdgeInsets.only(bottom: spacing.s2),
               child: ElevatedButton(
@@ -313,7 +313,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {},
-                child: Text('Tailwind Button'),
+                child: Text('Flywind Button'),
               ),
             ),
           ],

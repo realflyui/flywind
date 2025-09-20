@@ -8,11 +8,11 @@ class FlyRoundedUtils {
   /// Resolves rounded values from FlyStyle and FlyConfig into BorderRadius
   static BorderRadius resolve(BuildContext context, FlyStyle style) {
     final theme = Theme.of(context);
-    final tailwind = theme.extension<FlyTheme>();
-    if (tailwind == null) {
+    final flywind = theme.extension<FlyTheme>();
+    if (flywind == null) {
       throw FlutterError('FlyTheme extension not found. Make sure to add FlyTheme to your ThemeData.extensions');
     }
-    final config = tailwind;
+    final config = flywind;
     final borderRadius = config.borderRadius;
     
     // Calculate border radius values

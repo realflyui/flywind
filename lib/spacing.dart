@@ -16,11 +16,11 @@ class FlySpacingUtils {
     required int? Function(FlyStyle) getBottom,
   }) {
     final theme = Theme.of(context);
-    final tailwind = theme.extension<FlyTheme>();
-    if (tailwind == null) {
+    final flywind = theme.extension<FlyTheme>();
+    if (flywind == null) {
       throw FlutterError('FlyTheme extension not found. Make sure to add FlyTheme to your ThemeData.extensions');
     }
-    final spacing = tailwind.spacing;
+    final spacing = flywind.spacing;
     
     // Calculate spacing values
     double left = 0;

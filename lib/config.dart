@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'tokens.dart';
 import 'theme.dart';
 
-/// Single source of truth for all custom Tailwind values
+/// Single source of truth for all custom Flywind values
 /// This is the ONLY place you need to define your custom colors and spacing
 class FlyConfig {
   /// Custom colors - add your custom colors here
