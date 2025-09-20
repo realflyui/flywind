@@ -26,36 +26,36 @@ class TwSpacing {
     // Apply uniform spacing
     final uniformValue = getUniform(style);
     if (uniformValue != null) {
-      final value = spacing[uniformValue] ?? 0.0;
+      final value = _getSpacingValue(spacing, uniformValue, 'uniform');
       left = right = top = bottom = value;
     }
     
     // Apply directional spacing (these override uniform spacing)
     final xValue = getX(style);
     if (xValue != null) {
-      final value = spacing[xValue] ?? 0.0;
+      final value = _getSpacingValue(spacing, xValue, 'horizontal');
       left = right = value;
     }
     final yValue = getY(style);
     if (yValue != null) {
-      final value = spacing[yValue] ?? 0.0;
+      final value = _getSpacingValue(spacing, yValue, 'vertical');
       top = bottom = value;
     }
     final leftValue = getLeft(style);
     if (leftValue != null) {
-      left = spacing[leftValue] ?? 0.0;
+      left = _getSpacingValue(spacing, leftValue, 'left');
     }
     final rightValue = getRight(style);
     if (rightValue != null) {
-      right = spacing[rightValue] ?? 0.0;
+      right = _getSpacingValue(spacing, rightValue, 'right');
     }
     final topValue = getTop(style);
     if (topValue != null) {
-      top = spacing[topValue] ?? 0.0;
+      top = _getSpacingValue(spacing, topValue, 'top');
     }
     final bottomValue = getBottom(style);
     if (bottomValue != null) {
-      bottom = spacing[bottomValue] ?? 0.0;
+      bottom = _getSpacingValue(spacing, bottomValue, 'bottom');
     }
     
     return EdgeInsets.only(
@@ -64,5 +64,29 @@ class TwSpacing {
       top: top,
       bottom: bottom,
     );
+  }
+
+  /// Gets spacing value with error handling for invalid keys
+  static double _getSpacingValue(Map<int, double> spacing, int key, String direction) {
+    final value = spacing[key];
+    
+    if (value == null) {
+      _handleMissingSpacing(key, direction, spacing.keys.toList());
+    }
+    
+    return value ?? 0.0;
+  }
+
+  /// Handles missing spacing errors with helpful messages
+  static void _handleMissingSpacing(int spacingKey, String direction, List<int> availableKeys) {
+    final sortedKeys = availableKeys.toList()..sort();
+    
+    String errorMessage = 'Spacing key "$spacingKey" not found in TwTheme for $direction spacing. Available spacing keys: ${sortedKeys.join(', ')}.';
+    
+    // In debug mode, throw an assertion error with helpful message
+    assert(false, errorMessage);
+    
+    // In release mode, print a warning
+    print('⚠️ TwSpacing Warning: $errorMessage');
   }
 }

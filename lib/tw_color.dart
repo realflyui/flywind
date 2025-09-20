@@ -36,19 +36,9 @@ class TwColor {
   
   /// Handles missing color errors with helpful messages
   static void _handleMissingColor(String colorKey, List<String> availableColors) {
-    // Find similar color names (simple fuzzy matching)
-    final similarColors = availableColors.where((available) {
-      return available.toLowerCase().contains(colorKey.toLowerCase()) ||
-             colorKey.toLowerCase().contains(available.toLowerCase());
-    }).toList();
+    final sortedColors = availableColors.toList()..sort();
     
-    String errorMessage = 'Color "$colorKey" not found in TwTheme.';
-    
-    if (similarColors.isNotEmpty) {
-      errorMessage += ' Did you mean: ${similarColors.join(', ')}?';
-    } else {
-      errorMessage += ' Available colors: ${availableColors.join(', ')}.';
-    }
+    String errorMessage = 'Color "$colorKey" not found in TwTheme. Available colors: ${sortedColors.join(', ')}.';
     
     // In debug mode, throw an assertion error with helpful message
     assert(false, errorMessage);
