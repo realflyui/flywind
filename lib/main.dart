@@ -29,9 +29,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
+      body: SizedBox.expand(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Uniform padding
@@ -210,6 +211,7 @@ class HomePage extends StatelessWidget {
             // Test error handling (uncomment to see error message)
             // TwText('This will show an error').color('nonexistent'),
           ],
+        ),
         ),
       ),
     );
