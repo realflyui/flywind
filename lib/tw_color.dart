@@ -3,7 +3,7 @@ import 'tw_theme.dart';
 import 'tw_style.dart';
 
 /// Utility class for handling Tailwind-like color logic
-class TwColor {
+class TwColorUtils {
   /// Resolves color from TwStyle and TwTheme into Color
   static Color? resolve(BuildContext context, TwStyle style) {
     if (style.color == null) return null;
@@ -45,5 +45,17 @@ class TwColor {
     
     // In release mode, print a warning
     print('⚠️ TwColor Warning: $errorMessage');
+  }
+}
+
+/// Mixin that provides Tailwind-like color methods for any widget
+mixin TwColor<T> {
+  TwStyle get style;
+  
+  T Function(TwStyle newStyle) get copyWith;
+
+  /// Set text color using named token
+  T color(String key) {
+    return copyWith(style.copyWith(color: key));
   }
 }

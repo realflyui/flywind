@@ -88,7 +88,7 @@ class TwStyle {
     
     // 1. Padding (applied to the content)
     if (hasPadding) {
-      result = TwPadding.apply(context, this, result);
+      result = TwPaddingUtils.apply(context, this, result);
     }
     
     // 2. Background Color (for non-text widgets or containers)
@@ -98,7 +98,7 @@ class TwStyle {
     
     // 3. Margin (outermost - wraps the background)
     if (hasMargin) {
-      result = TwMargin.apply(context, this, result);
+      result = TwMarginUtils.apply(context, this, result);
     }
     
     // Future utilities would go here:
@@ -120,7 +120,7 @@ class TwStyle {
   Widget _applyTextColorDirect(BuildContext context, Text textWidget) {
     return Text(
       textWidget.data ?? '',
-      style: TwColor.applyToTextStyle(context, this, textWidget.style),
+      style: TwColorUtils.applyToTextStyle(context, this, textWidget.style),
       textAlign: textWidget.textAlign,
       textDirection: textWidget.textDirection,
       locale: textWidget.locale,
@@ -137,7 +137,7 @@ class TwStyle {
   /// Apply background color to a widget
   Widget _applyBackgroundColor(BuildContext context, Widget child) {
     return Container(
-      color: TwColor.applyToContainer(context, this),
+      color: TwColorUtils.applyToContainer(context, this),
       child: child,
     );
   }

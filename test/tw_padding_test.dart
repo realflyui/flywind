@@ -26,7 +26,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle();
-      final padding = TwPadding.resolve(context, style);
+      final padding = TwPaddingUtils.resolve(context, style);
       expect(padding, EdgeInsets.zero);
     });
 
@@ -47,7 +47,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(p: 3);
-      final padding = TwPadding.resolve(context, style);
+      final padding = TwPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.all(12.0)); // 3 * 4.0 = 12.0
     });
 
@@ -68,7 +68,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(px: 2);
-      final padding = TwPadding.resolve(context, style);
+      final padding = TwPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(left: 8.0, right: 8.0)); // 2 * 4.0 = 8.0
     });
 
@@ -89,7 +89,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(py: 4);
-      final padding = TwPadding.resolve(context, style);
+      final padding = TwPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // 4 * 4.0 = 16.0
     });
 
@@ -110,7 +110,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(pl: 1, pr: 2, pt: 3, pb: 4);
-      final padding = TwPadding.resolve(context, style);
+      final padding = TwPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(
         left: 4.0,   // 1 * 4.0
         right: 8.0,  // 2 * 4.0
@@ -136,7 +136,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(p: 2, px: 4, pl: 1);
-      final padding = TwPadding.resolve(context, style);
+      final padding = TwPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(
         left: 4.0,   // pl overrides px and padding
         right: 16.0, // px overrides padding
@@ -162,7 +162,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(px: 2, py: 3, pl: 1);
-      final padding = TwPadding.resolve(context, style);
+      final padding = TwPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(
         left: 4.0,   // pl overrides px
         right: 8.0,  // px value
@@ -189,7 +189,7 @@ void main() {
 
       const style = TwStyle();
       const child = Text('test');
-      final result = TwPadding.apply(context, style, child);
+      final result = TwPaddingUtils.apply(context, style, child);
       expect(result, equals(child));
     });
 
@@ -211,7 +211,7 @@ void main() {
 
       const style = TwStyle(p: 2);
       const child = Text('test');
-      final result = TwPadding.apply(context, style, child);
+      final result = TwPaddingUtils.apply(context, style, child);
       
       expect(result, isA<Padding>());
       final padding = result as Padding;

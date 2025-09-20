@@ -25,7 +25,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle();
-      final color = TwColor.resolve(context, style);
+      final color = TwColorUtils.resolve(context, style);
       expect(color, isNull);
     });
 
@@ -46,7 +46,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(color: 'blue600');
-      final color = TwColor.resolve(context, style);
+      final color = TwColorUtils.resolve(context, style);
       expect(color, const Color(0xFF2563EB));
     });
 
@@ -67,7 +67,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(color: 'white');
-      final color = TwColor.resolve(context, style);
+      final color = TwColorUtils.resolve(context, style);
       expect(color, const Color(0xFFFFFFFF));
     });
 
@@ -88,7 +88,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(color: 'black');
-      final color = TwColor.resolve(context, style);
+      final color = TwColorUtils.resolve(context, style);
       expect(color, const Color(0xFF000000));
     });
 
@@ -110,7 +110,7 @@ void main() {
 
       const style = TwStyle();
       const baseStyle = TextStyle(fontSize: 16);
-      final result = TwColor.applyToTextStyle(context, style, baseStyle);
+      final result = TwColorUtils.applyToTextStyle(context, style, baseStyle);
       expect(result, equals(baseStyle));
     });
 
@@ -132,7 +132,7 @@ void main() {
 
       const style = TwStyle(color: 'red600');
       const baseStyle = TextStyle(fontSize: 16);
-      final result = TwColor.applyToTextStyle(context, style, baseStyle);
+      final result = TwColorUtils.applyToTextStyle(context, style, baseStyle);
       expect(result.color, const Color(0xFFDC2626));
       expect(result.fontSize, 16);
     });
@@ -154,7 +154,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(color: 'green600');
-      final result = TwColor.applyToTextStyle(context, style, null);
+      final result = TwColorUtils.applyToTextStyle(context, style, null);
       expect(result.color, const Color(0xFF16A34A));
     });
 
@@ -175,7 +175,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle();
-      final color = TwColor.applyToContainer(context, style);
+      final color = TwColorUtils.applyToContainer(context, style);
       expect(color, isNull);
     });
 
@@ -196,7 +196,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(color: 'purple600');
-      final color = TwColor.applyToContainer(context, style);
+      final color = TwColorUtils.applyToContainer(context, style);
       expect(color, const Color(0xFF9333EA));
     });
 
@@ -218,7 +218,7 @@ void main() {
 
       const style = TwStyle(color: 'nonexistent');
       // In debug mode, this should throw an assertion error
-      expect(() => TwColor.resolve(context, style), throwsA(isA<AssertionError>()));
+      expect(() => TwColorUtils.resolve(context, style), throwsA(isA<AssertionError>()));
     });
   });
 }

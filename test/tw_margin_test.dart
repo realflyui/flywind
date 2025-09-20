@@ -26,7 +26,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle();
-      final margin = TwMargin.resolve(context, style);
+      final margin = TwMarginUtils.resolve(context, style);
       expect(margin, EdgeInsets.zero);
     });
 
@@ -47,7 +47,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(m: 3);
-      final margin = TwMargin.resolve(context, style);
+      final margin = TwMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.all(12.0)); // 3 * 4.0 = 12.0
     });
 
@@ -68,7 +68,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(mx: 2);
-      final margin = TwMargin.resolve(context, style);
+      final margin = TwMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(left: 8.0, right: 8.0)); // 2 * 4.0 = 8.0
     });
 
@@ -89,7 +89,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(my: 4);
-      final margin = TwMargin.resolve(context, style);
+      final margin = TwMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // 4 * 4.0 = 16.0
     });
 
@@ -110,7 +110,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(ml: 1, mr: 2, mt: 3, mb: 4);
-      final margin = TwMargin.resolve(context, style);
+      final margin = TwMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(
         left: 4.0,   // 1 * 4.0
         right: 8.0,  // 2 * 4.0
@@ -136,7 +136,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(m: 2, mx: 4, ml: 1);
-      final margin = TwMargin.resolve(context, style);
+      final margin = TwMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(
         left: 4.0,   // ml overrides mx and margin
         right: 16.0, // mx overrides margin
@@ -162,7 +162,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       const style = TwStyle(mx: 2, my: 3, ml: 1, mt: 4);
-      final margin = TwMargin.resolve(context, style);
+      final margin = TwMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(
         left: 4.0,   // ml overrides mx
         right: 8.0,  // mx value
@@ -189,7 +189,7 @@ void main() {
 
       const style = TwStyle();
       const child = Text('Test');
-      final result = TwMargin.apply(context, style, child);
+      final result = TwMarginUtils.apply(context, style, child);
       
       expect(result, equals(child));
     });
@@ -212,7 +212,7 @@ void main() {
 
       const style = TwStyle(m: 2);
       const child = Text('Test');
-      final result = TwMargin.apply(context, style, child);
+      final result = TwMarginUtils.apply(context, style, child);
       
       expect(result, isA<Container>());
       final container = result as Container;

@@ -3,7 +3,7 @@ import 'tw_style.dart';
 import 'tw_spacing.dart';
 
 /// Utility class for handling Tailwind-like padding logic
-class TwPadding {
+class TwPaddingUtils {
   /// Resolves padding from TwStyle and TwTheme into EdgeInsets
   static EdgeInsets resolve(BuildContext context, TwStyle style) {
     return TwSpacing.resolve(
@@ -33,5 +33,57 @@ class TwPadding {
       padding: padding,
       child: child,
     );
+  }
+}
+
+/// Mixin that provides Tailwind-like padding methods for any widget
+mixin TwPadding<T> {
+  TwStyle get style;
+  
+  T Function(TwStyle newStyle) get copyWith;
+
+  /// Set uniform padding using token scale
+  T p(int step) {
+    return copyWith(style.copyWith(p: step));
+  }
+
+  /// Set horizontal padding (left + right) using token scale
+  T px(int step) {
+    return copyWith(style.copyWith(px: step));
+  }
+
+  /// Set vertical padding (top + bottom) using token scale
+  T py(int step) {
+    return copyWith(style.copyWith(py: step));
+  }
+
+  /// Set top padding using token scale
+  T pt(int step) {
+    return copyWith(style.copyWith(pt: step));
+  }
+
+  /// Set right padding using token scale
+  T pr(int step) {
+    return copyWith(style.copyWith(pr: step));
+  }
+
+  /// Set bottom padding using token scale
+  T pb(int step) {
+    return copyWith(style.copyWith(pb: step));
+  }
+
+  /// Set left padding using token scale
+  T pl(int step) {
+    return copyWith(style.copyWith(pl: step));
+  }
+
+  /// Resolves padding from TwStyle and TwTheme into EdgeInsets
+  EdgeInsets resolvePadding(BuildContext context) {
+    return TwPaddingUtils.resolve(context, style);
+  }
+
+  /// Applies padding to a widget using the resolved EdgeInsets
+  Widget applyPadding(BuildContext context, Widget child) {
+    return TwPaddingUtils.apply(context, style, child);
   }
 }
