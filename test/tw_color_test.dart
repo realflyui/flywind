@@ -2,26 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flywind/tw_color.dart';
 import 'package:flywind/tw_style.dart';
-import 'package:flywind/tw_config.dart';
+import 'package:flywind/tw_theme.dart';
+import 'test_helper.dart';
 
 void main() {
   group('TwColor', () {
     late BuildContext context;
 
     testWidgets('resolve returns null when no color is set', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -31,19 +23,10 @@ void main() {
     });
 
     testWidgets('resolve returns correct color for valid color key', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -53,19 +36,10 @@ void main() {
     });
 
     testWidgets('resolve returns correct color for white', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -75,19 +49,10 @@ void main() {
     });
 
     testWidgets('resolve returns correct color for black', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -97,19 +62,10 @@ void main() {
     });
 
     testWidgets('applyToTextStyle returns base style when no color is set', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -120,19 +76,10 @@ void main() {
     });
 
     testWidgets('applyToTextStyle applies color to TextStyle', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -144,19 +91,10 @@ void main() {
     });
 
     testWidgets('applyToTextStyle creates new TextStyle when baseStyle is null', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -166,19 +104,10 @@ void main() {
     });
 
     testWidgets('applyToContainer returns null when no color is set', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -188,19 +117,10 @@ void main() {
     });
 
     testWidgets('applyToContainer returns correct color for valid color key', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -210,19 +130,10 @@ void main() {
     });
 
     testWidgets('resolve handles missing color gracefully in debug mode', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 

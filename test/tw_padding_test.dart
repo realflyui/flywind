@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flywind/tw_padding.dart';
 import 'package:flywind/tw_style.dart';
-import 'package:flywind/tw_config.dart';
+import 'package:flywind/tw_theme.dart';
+import 'test_helper.dart';
 
 void main() {
   group('TwPadding', () {
@@ -10,19 +11,10 @@ void main() {
 
     testWidgets('resolve returns EdgeInsets.zero when no padding is set', (tester) async {
       // Create a test widget with TwTheme
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -32,19 +24,10 @@ void main() {
     });
 
     testWidgets('resolve returns correct uniform padding', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -54,19 +37,10 @@ void main() {
     });
 
     testWidgets('resolve returns correct horizontal padding', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -76,19 +50,10 @@ void main() {
     });
 
     testWidgets('resolve returns correct vertical padding', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -98,19 +63,10 @@ void main() {
     });
 
     testWidgets('resolve returns correct individual side padding', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -125,19 +81,10 @@ void main() {
     });
 
     testWidgets('resolve combines uniform and directional padding correctly', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -152,19 +99,10 @@ void main() {
     });
 
     testWidgets('resolve handles mixed directional padding', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -179,19 +117,10 @@ void main() {
     });
 
     testWidgets('apply returns child when no padding is set', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 
@@ -202,19 +131,10 @@ void main() {
     });
 
     testWidgets('apply wraps child with Padding when padding is set', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final testWidget = createTestWidgetWithContext((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      });
       
       await tester.pumpWidget(testWidget);
 

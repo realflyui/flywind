@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'tw_config.dart';
+import 'tw_tokens.dart';
 import 'tw_style.dart';
+import 'tw_theme.dart';
 
 /// Utility class for handling Tailwind-like rounded logic
 class TwRoundedUtils {
   /// Resolves rounded values from TwStyle and TwConfig into BorderRadius
   static BorderRadius resolve(BuildContext context, TwStyle style) {
-    final config = TwConfig.of(context);
+    final theme = Theme.of(context);
+    final tailwind = theme.extension<TwTheme>();
+    if (tailwind == null) {
+      throw FlutterError('TwTheme extension not found. Make sure to add TwTheme to your ThemeData.extensions');
+    }
+    final config = tailwind;
     final borderRadius = config.borderRadius;
     
     // Calculate border radius values

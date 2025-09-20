@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'tw_config.dart';
+import 'tw_theme.dart';
 import 'tw_text.dart';
 import 'tw_container.dart';
 
@@ -13,12 +13,18 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: TwConfig(
-        spacing: TwSpacing.defaultSpacing,
-        colors: TwColors.defaultColors,
-        borderRadius: TwBorderRadius.defaultBorderRadius,
-        child: const HomePage(),
+      title: 'Flywind Demo',
+      theme: ThemeData(
+        // Standard Material theme
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+        
+        // Your custom Tailwind theme
+        extensions: [
+          TwTheme.defaultTheme,
+        ],
       ),
+      home: const HomePage(),
     );
   }
 }
@@ -28,19 +34,24 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Access theme values from TwConfig
-    final twConfig = TwConfig.of(context);
-    final spacing = twConfig.spacing;
-    final colors = twConfig.colors;
-    final borderRadius = twConfig.borderRadius;
+    // Access Tailwind theme via the new simplified system
+    final tailwind = context.tw; // Using our new extension!
+    final spacing = tailwind.spacing;
+    final colors = tailwind.colors;
+    final borderRadius = tailwind.borderRadius;
     
     // Example usage - you can now use these values with type safety!
-    print('Spacing 2 value: ${spacing.s2}'); // This will print 8.0
+    print('Spacing 2 value: ${spacing.s2}'); // This will print 8.0 (default)
     print('Spacing 2 value (bracket): ${spacing[2]}'); // This will also print 8.0
-    print('Blue 600 color: ${colors.blue600}'); // This will print Color(0xFF2563EB)
-    print('Blue 600 color (bracket): ${colors['blue600']}'); // This will also print Color(0xFF2563EB)
-    print('Large border radius: ${borderRadius.lg}'); // This will print 8.0
-    print('Large border radius (bracket): ${borderRadius['lg']}'); // This will also print 8.0
+    
+    // Standard colors using dot notation (type-safe!)
+    print('Blue600: ${colors.blue600}'); // This will print the blue color
+    print('Gray800: ${colors.gray800}'); // This will print the gray color
+    
+    
+    // Bracket notation still works
+    print('Blue 600 color (bracket): ${colors['blue600']}'); // This will also print the blue color
+    
     return Scaffold(
       body: SizedBox.expand(
         child: SingleChildScrollView(
@@ -49,7 +60,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Uniform padding
-            TwText('Uniform padding p(3)').p(3),
+            TwText('Uniform padding p(3)').p(10),
             
             // Horizontal and vertical padding
             TwText('Horizontal padding px(4)').px(4),
@@ -71,7 +82,7 @@ class HomePage extends StatelessWidget {
             TwText('Complex: p(2) + pl(5) + pt(1)').p(2).pl(5).pt(1),
             
             // Color examples (separate section) - using pb for spacing
-            TwText('Blue text').color('blue600').pb(5),
+            TwText('Blue text').color('blue600').mb(5),
             TwText('Red text').color('red600').pb(5),
             TwText('Green text').color('green600').pb(5),
             
@@ -90,7 +101,7 @@ class HomePage extends StatelessWidget {
             // Containers with padding
             TwContainer(
               child: TwText('Container with padding p(3)').color('white'),
-            ).bg('red600').p(3).pb(2),
+            ).bg('red600').p(10).pb(2).m(4),
             
             TwContainer(
               child: TwText('Container with horizontal padding px(4)').color('white'),
@@ -223,6 +234,50 @@ class HomePage extends StatelessWidget {
             
             // Test error handling (uncomment to see error message)
             // TwText('This will show an error').color('nonexistent'),
+            
+            // TwApp Custom Theme Demo
+            TwText('TwApp Custom Theme Demo:').color('gray800').pb(3),
+            
+            // Show current theme values
+            TwText('Current Spacing Values:').color('gray800').pb(2),
+            TwText('s0: ${spacing.s0}, s1: ${spacing.s1}, s2: ${spacing.s2}, s3: ${spacing.s3}').color('blue600').pb(1),
+            TwText('s4: ${spacing.s4}, s5: ${spacing.s5}, s6: ${spacing.s6}, s7: ${spacing.s7}').color('blue600').pb(1),
+            TwText('s8: ${spacing.s8}, s9: ${spacing.s9}, s10: ${spacing.s10}, s11: ${spacing.s11}, s12: ${spacing.s12}').color('blue600').pb(2),
+            
+            // Show current color values
+            TwText('Current Color Values:').color('gray800').pb(2),
+            TwContainer(
+              child: TwText('Blue 600: ${colors.blue600}').color('white'),
+            ).bg('blue600').p(2).pb(1),
+            TwContainer(
+              child: TwText('Red 600: ${colors.red600}').color('white'),
+            ).bg('red600').p(2).pb(1),
+            TwContainer(
+              child: TwText('Green 600: ${colors.green600}').color('white'),
+            ).bg('green600').p(2).pb(2),
+            
+            
+            // Show border radius values
+            TwText('Current Border Radius Values:').color('gray800').pb(2),
+            TwText('sm: ${borderRadius.sm}, md: ${borderRadius.md}, lg: ${borderRadius.lg}, xl: ${borderRadius.xl}').color('gray600').pb(2),
+            
+            // Material button using Tailwind theme
+            TwText('Material Button with Tailwind Theme:').color('gray800').pb(2),
+            Padding(
+              padding: EdgeInsets.only(bottom: spacing.s2),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: colors.blue600,
+                  foregroundColor: Colors.white,
+                  padding: EdgeInsets.all(spacing.s4),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(borderRadius.lg),
+                  ),
+                ),
+                onPressed: () {},
+                child: Text('Tailwind Button'),
+              ),
+            ),
           ],
         ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'tw_config.dart';
+import 'tw_tokens.dart';
 import 'tw_style.dart';
+import 'tw_theme.dart';
 
 /// Common spacing utilities for padding and margin
 class TwSpacingUtils {
@@ -14,8 +15,12 @@ class TwSpacingUtils {
     required int? Function(TwStyle) getTop,
     required int? Function(TwStyle) getBottom,
   }) {
-    final config = TwConfig.of(context);
-    final spacing = config.spacing;
+    final theme = Theme.of(context);
+    final tailwind = theme.extension<TwTheme>();
+    if (tailwind == null) {
+      throw FlutterError('TwTheme extension not found. Make sure to add TwTheme to your ThemeData.extensions');
+    }
+    final spacing = tailwind.spacing;
     
     // Calculate spacing values
     double left = 0;

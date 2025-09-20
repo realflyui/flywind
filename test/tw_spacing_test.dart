@@ -2,29 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flywind/tw_spacing.dart';
 import 'package:flywind/tw_style.dart';
-import 'package:flywind/tw_config.dart';
+import 'package:flywind/tw_tokens.dart';
+import 'package:flywind/tw_theme.dart';
+import 'test_helper.dart';
 
 void main() {
   group('TwSpacing Error Handling', () {
     late BuildContext context;
 
     testWidgets('handles missing spacing key gracefully in debug mode', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: const TwSpacing(
-            s0: 0.0, s1: 4.0, s2: 8.0, s3: 12.0, s4: 0.0, s5: 0.0,
-            s6: 0.0, s7: 0.0, s8: 0.0, s9: 0.0, s10: 0.0, s11: 0.0, s12: 0.0,
-          ), // Only keys 1, 2, 3 available
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      );
+      final customSpacing = const TwSpacing(
+        s0: 0.0, s1: 4.0, s2: 8.0, s3: 12.0, s4: 0.0, s5: 0.0,
+        s6: 0.0, s7: 0.0, s8: 0.0, s9: 0.0, s10: 0.0, s11: 0.0, s12: 0.0,
+      ); // Only keys 1, 2, 3 available
+      
+      final customTheme = TwTheme.defaultTheme.copyWith(spacing: customSpacing);
+      
+      final testWidget = createTestWidgetWithContextAndTheme((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      }, customTheme);
       
       await tester.pumpWidget(testWidget);
 
@@ -48,22 +45,17 @@ void main() {
     });
 
     testWidgets('handles missing spacing key with helpful error message', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: const TwSpacing(
-            s0: 0.0, s1: 4.0, s2: 8.0, s3: 12.0, s4: 16.0, s5: 20.0,
-            s6: 0.0, s7: 0.0, s8: 0.0, s9: 0.0, s10: 0.0, s11: 0.0, s12: 0.0,
-          ),
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
+      final customSpacing = const TwSpacing(
+        s0: 0.0, s1: 4.0, s2: 8.0, s3: 12.0, s4: 16.0, s5: 20.0,
+        s6: 0.0, s7: 0.0, s8: 0.0, s9: 0.0, s10: 0.0, s11: 0.0, s12: 0.0,
       );
+      
+      final customTheme = TwTheme.defaultTheme.copyWith(spacing: customSpacing);
+      
+      final testWidget = createTestWidgetWithContextAndTheme((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      }, customTheme);
       
       await tester.pumpWidget(testWidget);
 
@@ -88,22 +80,17 @@ void main() {
     });
 
     testWidgets('works correctly with valid spacing keys', (tester) async {
-      final testWidget = MaterialApp(
-        home: TwConfig(
-          spacing: const TwSpacing(
-            s0: 0.0, s1: 4.0, s2: 8.0, s3: 12.0, s4: 0.0, s5: 0.0,
-            s6: 0.0, s7: 0.0, s8: 0.0, s9: 0.0, s10: 0.0, s11: 0.0, s12: 0.0,
-          ),
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Builder(
-            builder: (ctx) {
-              context = ctx;
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
+      final customSpacing = const TwSpacing(
+        s0: 0.0, s1: 4.0, s2: 8.0, s3: 12.0, s4: 0.0, s5: 0.0,
+        s6: 0.0, s7: 0.0, s8: 0.0, s9: 0.0, s10: 0.0, s11: 0.0, s12: 0.0,
       );
+      
+      final customTheme = TwTheme.defaultTheme.copyWith(spacing: customSpacing);
+      
+      final testWidget = createTestWidgetWithContextAndTheme((ctx) {
+        context = ctx;
+        return const SizedBox.shrink();
+      }, customTheme);
       
       await tester.pumpWidget(testWidget);
 

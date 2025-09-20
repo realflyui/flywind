@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flywind/tw_text.dart';
-import 'package:flywind/tw_config.dart';
+import 'test_helper.dart';
 
 void main() {
   group('TwText Widget Tests', () {
-    Widget createTestWidget(Widget child) {
-      return MaterialApp(
-        home: TwConfig(
-          spacing: TwSpacing.defaultSpacing,
-          colors: TwColors.defaultColors,
-          borderRadius: TwBorderRadius.defaultBorderRadius,
-          child: Scaffold(
-            body: child,
-          ),
-        ),
-      );
-    }
 
     testWidgets('renders basic text without padding or color', (tester) async {
       const widget = TwText('Hello World');
