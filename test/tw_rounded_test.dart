@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flywind/tw_rounded.dart';
 import 'package:flywind/tw_style.dart';
-import 'package:flywind/tw_theme.dart';
 import 'test_helper.dart';
 
 void main() {
