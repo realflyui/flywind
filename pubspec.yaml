@@ -1,7 +1,11 @@
 name: flywind
-description: "A new Flutter project."
-publish_to: 'none'
+description: "A Tailwind-like utility-first Flutter component library that brings the power and flexibility of Tailwind CSS to Flutter development."
+publish_to: 'https://pub.dev'
 version: 0.1.0
+homepage: https://github.com/flyui-xyz/flywind
+repository: https://github.com/flyui-xyz/flywind
+issue_tracker: https://github.com/flyui-xyz/flywind/issues
+documentation: https://github.com/flyui-xyz/flywind#readme
 
 environment:
   sdk: ^3.9.2
@@ -18,3 +22,23 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+# Additional metadata for pub.dev
+topics:
+  - flutter
+  - tailwind
+  - utility-first
+  - ui-components
+  - design-system
+  - styling
+  - widgets
+
+# Keywords for better discoverability
+keywords:
+  - flutter
+  - tailwind
+  - utility
+  - components
+  - ui
+  - styling
+  - design-system
