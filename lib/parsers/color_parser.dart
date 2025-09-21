@@ -15,12 +15,12 @@ class FlyColorParser {
     if (value is Color) {
       return value;
     }
-    
+
     // Otherwise, treat it as a string
     if (value is! String) {
       return null;
     }
-    
+
     final trimmed = value.trim().toLowerCase();
 
     // Handle hex colors
@@ -37,7 +37,6 @@ class FlyColorParser {
     if (trimmed.startsWith('rgba(')) {
       return _parseRgbaColor(trimmed);
     }
-
 
     // Handle theme colors (if themeColors map is provided)
     if (themeColors != null && themeColors.containsKey(trimmed)) {
@@ -56,23 +55,23 @@ class FlyColorParser {
   /// Parse hex color string
   static Color? _parseHexColor(String value) {
     String hex = value.replaceFirst('#', '');
-    
+
     // Handle 3-character hex (e.g., "f53" -> "ff5533")
     if (hex.length == 3) {
       hex = hex.split('').map((char) => char + char).join();
     }
-    
+
     // Add alpha channel if not present
     if (hex.length == 6) {
       hex = 'FF$hex';
     }
-    
+
     // Parse as 8-character hex
     if (hex.length == 8) {
       final colorValue = int.tryParse(hex, radix: 16);
       return colorValue != null ? Color(colorValue) : null;
     }
-    
+
     return null;
   }
 
@@ -80,17 +79,17 @@ class FlyColorParser {
   static Color? _parseRgbColor(String value) {
     final rgbPattern = RegExp(r'rgb\((\d+),\s*(\d+),\s*(\d+)\)');
     final match = rgbPattern.firstMatch(value);
-    
+
     if (match != null) {
       final r = int.tryParse(match.group(1) ?? '');
       final g = int.tryParse(match.group(2) ?? '');
       final b = int.tryParse(match.group(3) ?? '');
-      
+
       if (r != null && g != null && b != null) {
         return Color.fromRGBO(r, g, b, 1.0);
       }
     }
-    
+
     return null;
   }
 
@@ -98,18 +97,18 @@ class FlyColorParser {
   static Color? _parseRgbaColor(String value) {
     final rgbaPattern = RegExp(r'rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)');
     final match = rgbaPattern.firstMatch(value);
-    
+
     if (match != null) {
       final r = int.tryParse(match.group(1) ?? '');
       final g = int.tryParse(match.group(2) ?? '');
       final b = int.tryParse(match.group(3) ?? '');
       final a = double.tryParse(match.group(4) ?? '');
-      
+
       if (r != null && g != null && b != null && a != null) {
         return Color.fromRGBO(r, g, b, a);
       }
     }
-    
+
     return null;
   }
 }

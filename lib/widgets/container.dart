@@ -6,7 +6,12 @@ import '../helpers/color.dart';
 import '../helpers/rounded.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for containers
-class FlyContainer extends StatelessWidget with FlyPadding<FlyContainer>, FlyMargin<FlyContainer>, FlyColor<FlyContainer>, FlyRounded<FlyContainer> {
+class FlyContainer extends StatelessWidget
+    with
+        FlyPadding<FlyContainer>,
+        FlyMargin<FlyContainer>,
+        FlyColor<FlyContainer>,
+        FlyRounded<FlyContainer> {
   const FlyContainer({
     super.key,
     required this.child,
@@ -20,10 +25,8 @@ class FlyContainer extends StatelessWidget with FlyPadding<FlyContainer>, FlyMar
   FlyStyle get style => _style;
 
   @override
-  FlyContainer Function(FlyStyle newStyle) get copyWith => (newStyle) => FlyContainer(
-    child: child,
-    style: newStyle,
-  );
+  FlyContainer Function(FlyStyle newStyle) get copyWith =>
+      (newStyle) => FlyContainer(style: newStyle, child: child);
 
   /// Set background color using named token or direct Color object
   FlyContainer bg(dynamic colorValue) {
@@ -33,15 +36,14 @@ class FlyContainer extends StatelessWidget with FlyPadding<FlyContainer>, FlyMar
       colorKey = colorValue;
     } else if (colorValue is Color) {
       // Convert Color to hex string for storage
-      colorKey = '#${colorValue.value.toRadixString(16).padLeft(8, '0')}';
+      colorKey = '#${colorValue.toARGB32().toRadixString(16).padLeft(8, '0')}';
     }
-    
+
     return FlyContainer(
-      child: child,
       style: _style.copyWith(color: colorKey),
+      child: child,
     );
   }
-
 
   @override
   Widget build(BuildContext context) {

@@ -10,24 +10,26 @@ class FlyRoundedUtils {
     final theme = Theme.of(context);
     final flywind = theme.extension<FlyTheme>();
     if (flywind == null) {
-      throw FlutterError('FlyTheme extension not found. Make sure to add FlyTheme to your ThemeData.extensions');
+      throw FlutterError(
+        'FlyTheme extension not found. Make sure to add FlyTheme to your ThemeData.extensions',
+      );
     }
     final config = flywind;
     final borderRadius = config.borderRadius;
-    
+
     // Calculate border radius values
     double topLeft = 0;
     double topRight = 0;
     double bottomLeft = 0;
     double bottomRight = 0;
-    
+
     // Apply uniform border radius
     final uniformValue = style.rounded;
     if (uniformValue != null) {
       final value = _getRoundedValue(borderRadius, uniformValue, 'uniform');
       topLeft = topRight = bottomLeft = bottomRight = value;
     }
-    
+
     // Apply directional border radius (these override uniform border radius)
     final topValue = style.roundedT;
     if (topValue != null) {
@@ -49,7 +51,7 @@ class FlyRoundedUtils {
       final value = _getRoundedValue(borderRadius, leftValue, 'left');
       topLeft = bottomLeft = value;
     }
-    
+
     // Apply individual corner border radius (these override directional border radius)
     final topLeftValue = style.roundedTl;
     if (topLeftValue != null) {
@@ -61,13 +63,21 @@ class FlyRoundedUtils {
     }
     final bottomLeftValue = style.roundedBl;
     if (bottomLeftValue != null) {
-      bottomLeft = _getRoundedValue(borderRadius, bottomLeftValue, 'bottom-left');
+      bottomLeft = _getRoundedValue(
+        borderRadius,
+        bottomLeftValue,
+        'bottom-left',
+      );
     }
     final bottomRightValue = style.roundedBr;
     if (bottomRightValue != null) {
-      bottomRight = _getRoundedValue(borderRadius, bottomRightValue, 'bottom-right');
+      bottomRight = _getRoundedValue(
+        borderRadius,
+        bottomRightValue,
+        'bottom-right',
+      );
     }
-    
+
     return BorderRadius.only(
       topLeft: Radius.circular(topLeft),
       topRight: Radius.circular(topRight),
@@ -79,47 +89,53 @@ class FlyRoundedUtils {
   /// Applies rounded styling to a widget using the resolved BorderRadius
   static Widget apply(BuildContext context, FlyStyle style, Widget child) {
     final borderRadius = resolve(context, style);
-    
+
     // If no border radius is set, return the child as-is
     if (borderRadius == BorderRadius.zero) {
       return child;
     }
-    
+
     // Apply border radius using ClipRRect
-    return ClipRRect(
-      borderRadius: borderRadius,
-      child: child,
-    );
+    return ClipRRect(borderRadius: borderRadius, child: child);
   }
 
   /// Gets rounded value with error handling for invalid keys
-  static double _getRoundedValue(FlyBorderRadius borderRadius, String input, String direction) {
+  static double _getRoundedValue(
+    FlyBorderRadius borderRadius,
+    String input,
+    String direction,
+  ) {
     // First try to look up as a key
     final value = borderRadius.getValue(input);
     if (value != null) {
       return value;
     }
-    
+
     // If not found as key, try to parse as direct value
     final directValue = double.tryParse(input);
     if (directValue != null) {
       return directValue;
     }
-    
+
     // If neither works, show error
     _handleMissingRounded(input, direction, borderRadius.values.keys.toList());
     return 0.0;
   }
 
   /// Handles missing rounded errors with helpful messages
-  static void _handleMissingRounded(String roundedKey, String direction, List<String> availableKeys) {
+  static void _handleMissingRounded(
+    String roundedKey,
+    String direction,
+    List<String> availableKeys,
+  ) {
     final sortedKeys = availableKeys.toList()..sort();
-    
-    String errorMessage = 'Rounded key "$roundedKey" not found in FlyConfig for $direction rounded. Available rounded keys: ${sortedKeys.join(', ')}.';
-    
+
+    String errorMessage =
+        'Rounded key "$roundedKey" not found in FlyConfig for $direction rounded. Available rounded keys: ${sortedKeys.join(', ')}.';
+
     // In debug mode, throw an assertion error with helpful message
     assert(false, errorMessage);
-    
+
     // In release mode, print a warning
     print('⚠️ FlyRounded Warning: $errorMessage');
   }
@@ -128,7 +144,7 @@ class FlyRoundedUtils {
 /// Mixin that provides Tailwind-like rounded methods for any widget
 mixin FlyRounded<T> {
   FlyStyle get style;
-  
+
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set uniform rounded styling using Tailwind scale

@@ -6,8 +6,14 @@ import '../helpers/color.dart';
 import '../helpers/rounded.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for text
-class FlyText extends StatelessWidget with FlyPadding<FlyText>, FlyMargin<FlyText>, FlyColor<FlyText>, FlyRounded<FlyText> {
-  const FlyText(this.text, [this._style = const FlyStyle()]);
+class FlyText extends StatelessWidget
+    with
+        FlyPadding<FlyText>,
+        FlyMargin<FlyText>,
+        FlyColor<FlyText>,
+        FlyRounded<FlyText> {
+  const FlyText(this.text, {style = const FlyStyle(), super.key})
+    : _style = style;
 
   final String text;
   final FlyStyle _style;
@@ -16,7 +22,8 @@ class FlyText extends StatelessWidget with FlyPadding<FlyText>, FlyMargin<FlyTex
   FlyStyle get style => _style;
 
   @override
-  FlyText Function(FlyStyle newStyle) get copyWith => (newStyle) => FlyText(text, newStyle);
+  FlyText Function(FlyStyle newStyle) get copyWith =>
+      (newStyle) => FlyText(text, style: newStyle);
 
   @override
   Widget build(BuildContext context) {

@@ -40,14 +40,12 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
         }
       }
     }
-    
+
     return FlyTheme(
       spacing: FlySpacing.defaultSpacing.copyWith(
         customSpacing: customSpacing ?? {},
       ),
-      colors: FlyColors.defaultColors.copyWith(
-        customColors: parsedColors,
-      ),
+      colors: FlyColors.defaultColors.copyWith(customColors: parsedColors),
       borderRadius: FlyBorderRadius.defaultBorderRadius.copyWith(
         customBorderRadius: customBorderRadius ?? {},
       ),
@@ -70,25 +68,44 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
   @override
   FlyTheme lerp(FlyTheme? other, double t) {
     if (other is! FlyTheme) return this;
-    
+
     // For simplicity, just return the current theme
     // In a real implementation, you'd interpolate between values
     return this;
+  }
+
+  /// Get the FlyTheme from the current context
+  /// This follows the standard Flutter pattern for accessing theme extensions
+  static FlyTheme of(BuildContext context) {
+    final theme = Theme.of(context).extension<FlyTheme>();
+    if (theme == null) {
+      throw FlutterError(
+        'FlyTheme.of() called with a context that does not contain a FlyTheme.\n'
+        'No ancestor could be found starting from the context that was passed to FlyTheme.of().\n'
+        'This can happen when the context you use comes from a widget above the MaterialApp or WidgetsApp.\n'
+        'The context used was:\n'
+        '  $context',
+      );
+    }
+    return theme;
+  }
+
+  /// Get the FlyTheme from the current context, or return null if not found
+  static FlyTheme? maybeOf(BuildContext context) {
+    return Theme.of(context).extension<FlyTheme>();
   }
 }
 
 /// Extension on BuildContext for easy access to Flywind theme
 /// Provides both dot notation and convenience methods
 extension FlyContext on BuildContext {
-  /// Get the Flywind theme from the current context
-  FlyTheme get flywind => Theme.of(this).extension<FlyTheme>()!;
-  
   /// Convenience method for spacing values
-  String spacing(int value) => flywind.spacing[value] ?? '0';
-  
+  String spacing(int value) => FlyTheme.of(this).spacing[value] ?? '0';
+
   /// Convenience method for color values
-  Color color(String name) => flywind.colors[name] ?? Colors.black;
-  
+  Color color(String name) => FlyTheme.of(this).colors[name] ?? Colors.black;
+
   /// Convenience method for border radius values
-  double radius(String name) => flywind.borderRadius.getValue(name) ?? 0.0;
+  double radius(String name) =>
+      FlyTheme.of(this).borderRadius.getValue(name) ?? 0.0;
 }

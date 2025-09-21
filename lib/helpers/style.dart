@@ -33,30 +33,30 @@ class FlyStyle {
     this.roundedBr,
   });
 
-  final String? p;        // Uniform padding (all sides)
-  final String? px;       // Horizontal padding (left + right)
-  final String? py;       // Vertical padding (top + bottom)
-  final String? pl;       // Left padding
-  final String? pr;       // Right padding
-  final String? pb;       // Bottom padding
-  final String? pt;       // Top padding
-  final String? m;        // Uniform margin (all sides)
-  final String? mx;       // Horizontal margin (left + right)
-  final String? my;       // Vertical margin (top + bottom)
-  final String? ml;       // Left margin
-  final String? mr;       // Right margin
-  final String? mb;       // Bottom margin
-  final String? mt;       // Top margin
+  final String? p; // Uniform padding (all sides)
+  final String? px; // Horizontal padding (left + right)
+  final String? py; // Vertical padding (top + bottom)
+  final String? pl; // Left padding
+  final String? pr; // Right padding
+  final String? pb; // Bottom padding
+  final String? pt; // Top padding
+  final String? m; // Uniform margin (all sides)
+  final String? mx; // Horizontal margin (left + right)
+  final String? my; // Vertical margin (top + bottom)
+  final String? ml; // Left margin
+  final String? mr; // Right margin
+  final String? mb; // Bottom margin
+  final String? mt; // Top margin
   final String? color;
-  final String? rounded;    // Uniform border radius (all corners)
-  final String? roundedT;   // Top border radius (top-left + top-right)
-  final String? roundedR;   // Right border radius (top-right + bottom-right)
-  final String? roundedB;   // Bottom border radius (bottom-left + bottom-right)
-  final String? roundedL;   // Left border radius (top-left + bottom-left)
-  final String? roundedTl;  // Top-left border radius
-  final String? roundedTr;  // Top-right border radius
-  final String? roundedBl;  // Bottom-left border radius
-  final String? roundedBr;  // Bottom-right border radius
+  final String? rounded; // Uniform border radius (all corners)
+  final String? roundedT; // Top border radius (top-left + top-right)
+  final String? roundedR; // Right border radius (top-right + bottom-right)
+  final String? roundedB; // Bottom border radius (bottom-left + bottom-right)
+  final String? roundedL; // Left border radius (top-left + bottom-left)
+  final String? roundedTl; // Top-left border radius
+  final String? roundedTr; // Top-right border radius
+  final String? roundedBl; // Bottom-left border radius
+  final String? roundedBr; // Bottom-right border radius
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -116,51 +116,71 @@ class FlyStyle {
   /// Apply all style utilities to a widget in the correct order
   Widget apply(BuildContext context, Widget child) {
     Widget result = child;
-    
+
     // Apply utilities in the correct order (inner to outer)
     // For text widgets, we need to apply color first to preserve text styling
     if (child is Text && color != null) {
       result = _applyTextColorDirect(context, child);
     }
-    
+
     // 1. Padding (applied to the content)
     if (hasPadding) {
       result = FlyPaddingUtils.apply(context, this, result);
     }
-    
+
     // 2. Background Color (for non-text widgets or containers)
     if (color != null && child is! Text) {
       result = _applyBackgroundColor(context, result);
     }
-    
+
     // 3. Border Radius (applied to the background container)
     if (hasBorderRadius) {
       result = FlyRoundedUtils.apply(context, this, result);
     }
-    
+
     // 4. Margin (outermost - wraps the background)
     if (hasMargin) {
       result = FlyMarginUtils.apply(context, this, result);
     }
-    
+
     // Future utilities would go here:
     // 5. Border (wraps margin)
     // 6. Shadow (wraps border)
-    
+
     return result;
   }
 
   /// Check if any padding is set
-  bool get hasPadding => p != null || px != null || py != null || 
-                        pl != null || pr != null || pb != null || pt != null;
+  bool get hasPadding =>
+      p != null ||
+      px != null ||
+      py != null ||
+      pl != null ||
+      pr != null ||
+      pb != null ||
+      pt != null;
 
   /// Check if any margin is set
-  bool get hasMargin => m != null || mx != null || my != null || 
-                       ml != null || mr != null || mb != null || mt != null;
+  bool get hasMargin =>
+      m != null ||
+      mx != null ||
+      my != null ||
+      ml != null ||
+      mr != null ||
+      mb != null ||
+      mt != null;
 
   /// Check if any border radius is set
-  bool get hasBorderRadius => rounded != null || roundedT != null || roundedR != null || roundedB != null || roundedL != null ||
-                             roundedTl != null || roundedTr != null || roundedBl != null || roundedBr != null;
+  bool get hasBorderRadius =>
+      rounded != null ||
+      roundedT != null ||
+      roundedR != null ||
+      roundedB != null ||
+      roundedL != null ||
+      roundedTl != null ||
+      roundedTr != null ||
+      roundedBl != null ||
+      roundedBr != null;
 
   /// Apply text color directly to a Text widget
   Widget _applyTextColorDirect(BuildContext context, Text textWidget) {
@@ -187,5 +207,4 @@ class FlyStyle {
       child: child,
     );
   }
-
 }

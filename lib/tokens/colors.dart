@@ -4,265 +4,888 @@ import 'package:flutter/material.dart';
 class FlyColors {
   const FlyColors({
     // Special colors
-    required this.inherit, required this.current, required this.transparent,
-    required this.black, required this.white,
-    
+    required this.inherit,
+    required this.current,
+    required this.transparent,
+    required this.black,
+    required this.white,
+
     // Red palette
-    required this.red50, required this.red100, required this.red200, required this.red300, required this.red400,
-    required this.red500, required this.red600, required this.red700, required this.red800, required this.red900, required this.red950,
-    
+    required this.red50,
+    required this.red100,
+    required this.red200,
+    required this.red300,
+    required this.red400,
+    required this.red500,
+    required this.red600,
+    required this.red700,
+    required this.red800,
+    required this.red900,
+    required this.red950,
+
     // Orange palette
-    required this.orange50, required this.orange100, required this.orange200, required this.orange300, required this.orange400,
-    required this.orange500, required this.orange600, required this.orange700, required this.orange800, required this.orange900, required this.orange950,
-    
+    required this.orange50,
+    required this.orange100,
+    required this.orange200,
+    required this.orange300,
+    required this.orange400,
+    required this.orange500,
+    required this.orange600,
+    required this.orange700,
+    required this.orange800,
+    required this.orange900,
+    required this.orange950,
+
     // Amber palette
-    required this.amber50, required this.amber100, required this.amber200, required this.amber300, required this.amber400,
-    required this.amber500, required this.amber600, required this.amber700, required this.amber800, required this.amber900, required this.amber950,
-    
+    required this.amber50,
+    required this.amber100,
+    required this.amber200,
+    required this.amber300,
+    required this.amber400,
+    required this.amber500,
+    required this.amber600,
+    required this.amber700,
+    required this.amber800,
+    required this.amber900,
+    required this.amber950,
+
     // Yellow palette
-    required this.yellow50, required this.yellow100, required this.yellow200, required this.yellow300, required this.yellow400,
-    required this.yellow500, required this.yellow600, required this.yellow700, required this.yellow800, required this.yellow900, required this.yellow950,
-    
+    required this.yellow50,
+    required this.yellow100,
+    required this.yellow200,
+    required this.yellow300,
+    required this.yellow400,
+    required this.yellow500,
+    required this.yellow600,
+    required this.yellow700,
+    required this.yellow800,
+    required this.yellow900,
+    required this.yellow950,
+
     // Lime palette
-    required this.lime50, required this.lime100, required this.lime200, required this.lime300, required this.lime400,
-    required this.lime500, required this.lime600, required this.lime700, required this.lime800, required this.lime900, required this.lime950,
-    
+    required this.lime50,
+    required this.lime100,
+    required this.lime200,
+    required this.lime300,
+    required this.lime400,
+    required this.lime500,
+    required this.lime600,
+    required this.lime700,
+    required this.lime800,
+    required this.lime900,
+    required this.lime950,
+
     // Green palette
-    required this.green50, required this.green100, required this.green200, required this.green300, required this.green400,
-    required this.green500, required this.green600, required this.green700, required this.green800, required this.green900, required this.green950,
-    
+    required this.green50,
+    required this.green100,
+    required this.green200,
+    required this.green300,
+    required this.green400,
+    required this.green500,
+    required this.green600,
+    required this.green700,
+    required this.green800,
+    required this.green900,
+    required this.green950,
+
     // Emerald palette
-    required this.emerald50, required this.emerald100, required this.emerald200, required this.emerald300, required this.emerald400,
-    required this.emerald500, required this.emerald600, required this.emerald700, required this.emerald800, required this.emerald900, required this.emerald950,
-    
+    required this.emerald50,
+    required this.emerald100,
+    required this.emerald200,
+    required this.emerald300,
+    required this.emerald400,
+    required this.emerald500,
+    required this.emerald600,
+    required this.emerald700,
+    required this.emerald800,
+    required this.emerald900,
+    required this.emerald950,
+
     // Teal palette
-    required this.teal50, required this.teal100, required this.teal200, required this.teal300, required this.teal400,
-    required this.teal500, required this.teal600, required this.teal700, required this.teal800, required this.teal900, required this.teal950,
-    
+    required this.teal50,
+    required this.teal100,
+    required this.teal200,
+    required this.teal300,
+    required this.teal400,
+    required this.teal500,
+    required this.teal600,
+    required this.teal700,
+    required this.teal800,
+    required this.teal900,
+    required this.teal950,
+
     // Cyan palette
-    required this.cyan50, required this.cyan100, required this.cyan200, required this.cyan300, required this.cyan400,
-    required this.cyan500, required this.cyan600, required this.cyan700, required this.cyan800, required this.cyan900, required this.cyan950,
-    
+    required this.cyan50,
+    required this.cyan100,
+    required this.cyan200,
+    required this.cyan300,
+    required this.cyan400,
+    required this.cyan500,
+    required this.cyan600,
+    required this.cyan700,
+    required this.cyan800,
+    required this.cyan900,
+    required this.cyan950,
+
     // Sky palette
-    required this.sky50, required this.sky100, required this.sky200, required this.sky300, required this.sky400,
-    required this.sky500, required this.sky600, required this.sky700, required this.sky800, required this.sky900, required this.sky950,
-    
+    required this.sky50,
+    required this.sky100,
+    required this.sky200,
+    required this.sky300,
+    required this.sky400,
+    required this.sky500,
+    required this.sky600,
+    required this.sky700,
+    required this.sky800,
+    required this.sky900,
+    required this.sky950,
+
     // Blue palette
-    required this.blue50, required this.blue100, required this.blue200, required this.blue300, required this.blue400,
-    required this.blue500, required this.blue600, required this.blue700, required this.blue800, required this.blue900, required this.blue950,
-    
+    required this.blue50,
+    required this.blue100,
+    required this.blue200,
+    required this.blue300,
+    required this.blue400,
+    required this.blue500,
+    required this.blue600,
+    required this.blue700,
+    required this.blue800,
+    required this.blue900,
+    required this.blue950,
+
     // Indigo palette
-    required this.indigo50, required this.indigo100, required this.indigo200, required this.indigo300, required this.indigo400,
-    required this.indigo500, required this.indigo600, required this.indigo700, required this.indigo800, required this.indigo900, required this.indigo950,
-    
+    required this.indigo50,
+    required this.indigo100,
+    required this.indigo200,
+    required this.indigo300,
+    required this.indigo400,
+    required this.indigo500,
+    required this.indigo600,
+    required this.indigo700,
+    required this.indigo800,
+    required this.indigo900,
+    required this.indigo950,
+
     // Violet palette
-    required this.violet50, required this.violet100, required this.violet200, required this.violet300, required this.violet400,
-    required this.violet500, required this.violet600, required this.violet700, required this.violet800, required this.violet900, required this.violet950,
-    
+    required this.violet50,
+    required this.violet100,
+    required this.violet200,
+    required this.violet300,
+    required this.violet400,
+    required this.violet500,
+    required this.violet600,
+    required this.violet700,
+    required this.violet800,
+    required this.violet900,
+    required this.violet950,
+
     // Purple palette
-    required this.purple50, required this.purple100, required this.purple200, required this.purple300, required this.purple400,
-    required this.purple500, required this.purple600, required this.purple700, required this.purple800, required this.purple900, required this.purple950,
-    
+    required this.purple50,
+    required this.purple100,
+    required this.purple200,
+    required this.purple300,
+    required this.purple400,
+    required this.purple500,
+    required this.purple600,
+    required this.purple700,
+    required this.purple800,
+    required this.purple900,
+    required this.purple950,
+
     // Fuchsia palette
-    required this.fuchsia50, required this.fuchsia100, required this.fuchsia200, required this.fuchsia300, required this.fuchsia400,
-    required this.fuchsia500, required this.fuchsia600, required this.fuchsia700, required this.fuchsia800, required this.fuchsia900, required this.fuchsia950,
-    
+    required this.fuchsia50,
+    required this.fuchsia100,
+    required this.fuchsia200,
+    required this.fuchsia300,
+    required this.fuchsia400,
+    required this.fuchsia500,
+    required this.fuchsia600,
+    required this.fuchsia700,
+    required this.fuchsia800,
+    required this.fuchsia900,
+    required this.fuchsia950,
+
     // Pink palette
-    required this.pink50, required this.pink100, required this.pink200, required this.pink300, required this.pink400,
-    required this.pink500, required this.pink600, required this.pink700, required this.pink800, required this.pink900, required this.pink950,
-    
+    required this.pink50,
+    required this.pink100,
+    required this.pink200,
+    required this.pink300,
+    required this.pink400,
+    required this.pink500,
+    required this.pink600,
+    required this.pink700,
+    required this.pink800,
+    required this.pink900,
+    required this.pink950,
+
     // Rose palette
-    required this.rose50, required this.rose100, required this.rose200, required this.rose300, required this.rose400,
-    required this.rose500, required this.rose600, required this.rose700, required this.rose800, required this.rose900, required this.rose950,
-    
+    required this.rose50,
+    required this.rose100,
+    required this.rose200,
+    required this.rose300,
+    required this.rose400,
+    required this.rose500,
+    required this.rose600,
+    required this.rose700,
+    required this.rose800,
+    required this.rose900,
+    required this.rose950,
+
     // Slate palette
-    required this.slate50, required this.slate100, required this.slate200, required this.slate300, required this.slate400,
-    required this.slate500, required this.slate600, required this.slate700, required this.slate800, required this.slate900, required this.slate950,
-    
+    required this.slate50,
+    required this.slate100,
+    required this.slate200,
+    required this.slate300,
+    required this.slate400,
+    required this.slate500,
+    required this.slate600,
+    required this.slate700,
+    required this.slate800,
+    required this.slate900,
+    required this.slate950,
+
     // Gray palette
-    required this.gray50, required this.gray100, required this.gray200, required this.gray300, required this.gray400,
-    required this.gray500, required this.gray600, required this.gray700, required this.gray800, required this.gray900, required this.gray950,
-    
+    required this.gray50,
+    required this.gray100,
+    required this.gray200,
+    required this.gray300,
+    required this.gray400,
+    required this.gray500,
+    required this.gray600,
+    required this.gray700,
+    required this.gray800,
+    required this.gray900,
+    required this.gray950,
+
     // Zinc palette
-    required this.zinc50, required this.zinc100, required this.zinc200, required this.zinc300, required this.zinc400,
-    required this.zinc500, required this.zinc600, required this.zinc700, required this.zinc800, required this.zinc900, required this.zinc950,
-    
+    required this.zinc50,
+    required this.zinc100,
+    required this.zinc200,
+    required this.zinc300,
+    required this.zinc400,
+    required this.zinc500,
+    required this.zinc600,
+    required this.zinc700,
+    required this.zinc800,
+    required this.zinc900,
+    required this.zinc950,
+
     // Neutral palette
-    required this.neutral50, required this.neutral100, required this.neutral200, required this.neutral300, required this.neutral400,
-    required this.neutral500, required this.neutral600, required this.neutral700, required this.neutral800, required this.neutral900, required this.neutral950,
-    
+    required this.neutral50,
+    required this.neutral100,
+    required this.neutral200,
+    required this.neutral300,
+    required this.neutral400,
+    required this.neutral500,
+    required this.neutral600,
+    required this.neutral700,
+    required this.neutral800,
+    required this.neutral900,
+    required this.neutral950,
+
     // Stone palette
-    required this.stone50, required this.stone100, required this.stone200, required this.stone300, required this.stone400,
-    required this.stone500, required this.stone600, required this.stone700, required this.stone800, required this.stone900, required this.stone950,
-    
+    required this.stone50,
+    required this.stone100,
+    required this.stone200,
+    required this.stone300,
+    required this.stone400,
+    required this.stone500,
+    required this.stone600,
+    required this.stone700,
+    required this.stone800,
+    required this.stone900,
+    required this.stone950,
+
     this.customColors = const {},
   });
 
   // Special colors
   final Color inherit, current, transparent, black, white;
-  
+
   // Red palette
-  final Color red50, red100, red200, red300, red400, red500, red600, red700, red800, red900, red950;
-  
+  final Color red50,
+      red100,
+      red200,
+      red300,
+      red400,
+      red500,
+      red600,
+      red700,
+      red800,
+      red900,
+      red950;
+
   // Orange palette
-  final Color orange50, orange100, orange200, orange300, orange400, orange500, orange600, orange700, orange800, orange900, orange950;
-  
+  final Color orange50,
+      orange100,
+      orange200,
+      orange300,
+      orange400,
+      orange500,
+      orange600,
+      orange700,
+      orange800,
+      orange900,
+      orange950;
+
   // Amber palette
-  final Color amber50, amber100, amber200, amber300, amber400, amber500, amber600, amber700, amber800, amber900, amber950;
-  
+  final Color amber50,
+      amber100,
+      amber200,
+      amber300,
+      amber400,
+      amber500,
+      amber600,
+      amber700,
+      amber800,
+      amber900,
+      amber950;
+
   // Yellow palette
-  final Color yellow50, yellow100, yellow200, yellow300, yellow400, yellow500, yellow600, yellow700, yellow800, yellow900, yellow950;
-  
+  final Color yellow50,
+      yellow100,
+      yellow200,
+      yellow300,
+      yellow400,
+      yellow500,
+      yellow600,
+      yellow700,
+      yellow800,
+      yellow900,
+      yellow950;
+
   // Lime palette
-  final Color lime50, lime100, lime200, lime300, lime400, lime500, lime600, lime700, lime800, lime900, lime950;
-  
+  final Color lime50,
+      lime100,
+      lime200,
+      lime300,
+      lime400,
+      lime500,
+      lime600,
+      lime700,
+      lime800,
+      lime900,
+      lime950;
+
   // Green palette
-  final Color green50, green100, green200, green300, green400, green500, green600, green700, green800, green900, green950;
-  
+  final Color green50,
+      green100,
+      green200,
+      green300,
+      green400,
+      green500,
+      green600,
+      green700,
+      green800,
+      green900,
+      green950;
+
   // Emerald palette
-  final Color emerald50, emerald100, emerald200, emerald300, emerald400, emerald500, emerald600, emerald700, emerald800, emerald900, emerald950;
-  
+  final Color emerald50,
+      emerald100,
+      emerald200,
+      emerald300,
+      emerald400,
+      emerald500,
+      emerald600,
+      emerald700,
+      emerald800,
+      emerald900,
+      emerald950;
+
   // Teal palette
-  final Color teal50, teal100, teal200, teal300, teal400, teal500, teal600, teal700, teal800, teal900, teal950;
-  
+  final Color teal50,
+      teal100,
+      teal200,
+      teal300,
+      teal400,
+      teal500,
+      teal600,
+      teal700,
+      teal800,
+      teal900,
+      teal950;
+
   // Cyan palette
-  final Color cyan50, cyan100, cyan200, cyan300, cyan400, cyan500, cyan600, cyan700, cyan800, cyan900, cyan950;
-  
+  final Color cyan50,
+      cyan100,
+      cyan200,
+      cyan300,
+      cyan400,
+      cyan500,
+      cyan600,
+      cyan700,
+      cyan800,
+      cyan900,
+      cyan950;
+
   // Sky palette
-  final Color sky50, sky100, sky200, sky300, sky400, sky500, sky600, sky700, sky800, sky900, sky950;
-  
+  final Color sky50,
+      sky100,
+      sky200,
+      sky300,
+      sky400,
+      sky500,
+      sky600,
+      sky700,
+      sky800,
+      sky900,
+      sky950;
+
   // Blue palette
-  final Color blue50, blue100, blue200, blue300, blue400, blue500, blue600, blue700, blue800, blue900, blue950;
-  
+  final Color blue50,
+      blue100,
+      blue200,
+      blue300,
+      blue400,
+      blue500,
+      blue600,
+      blue700,
+      blue800,
+      blue900,
+      blue950;
+
   // Indigo palette
-  final Color indigo50, indigo100, indigo200, indigo300, indigo400, indigo500, indigo600, indigo700, indigo800, indigo900, indigo950;
-  
+  final Color indigo50,
+      indigo100,
+      indigo200,
+      indigo300,
+      indigo400,
+      indigo500,
+      indigo600,
+      indigo700,
+      indigo800,
+      indigo900,
+      indigo950;
+
   // Violet palette
-  final Color violet50, violet100, violet200, violet300, violet400, violet500, violet600, violet700, violet800, violet900, violet950;
-  
+  final Color violet50,
+      violet100,
+      violet200,
+      violet300,
+      violet400,
+      violet500,
+      violet600,
+      violet700,
+      violet800,
+      violet900,
+      violet950;
+
   // Purple palette
-  final Color purple50, purple100, purple200, purple300, purple400, purple500, purple600, purple700, purple800, purple900, purple950;
-  
+  final Color purple50,
+      purple100,
+      purple200,
+      purple300,
+      purple400,
+      purple500,
+      purple600,
+      purple700,
+      purple800,
+      purple900,
+      purple950;
+
   // Fuchsia palette
-  final Color fuchsia50, fuchsia100, fuchsia200, fuchsia300, fuchsia400, fuchsia500, fuchsia600, fuchsia700, fuchsia800, fuchsia900, fuchsia950;
-  
+  final Color fuchsia50,
+      fuchsia100,
+      fuchsia200,
+      fuchsia300,
+      fuchsia400,
+      fuchsia500,
+      fuchsia600,
+      fuchsia700,
+      fuchsia800,
+      fuchsia900,
+      fuchsia950;
+
   // Pink palette
-  final Color pink50, pink100, pink200, pink300, pink400, pink500, pink600, pink700, pink800, pink900, pink950;
-  
+  final Color pink50,
+      pink100,
+      pink200,
+      pink300,
+      pink400,
+      pink500,
+      pink600,
+      pink700,
+      pink800,
+      pink900,
+      pink950;
+
   // Rose palette
-  final Color rose50, rose100, rose200, rose300, rose400, rose500, rose600, rose700, rose800, rose900, rose950;
-  
+  final Color rose50,
+      rose100,
+      rose200,
+      rose300,
+      rose400,
+      rose500,
+      rose600,
+      rose700,
+      rose800,
+      rose900,
+      rose950;
+
   // Slate palette
-  final Color slate50, slate100, slate200, slate300, slate400, slate500, slate600, slate700, slate800, slate900, slate950;
-  
+  final Color slate50,
+      slate100,
+      slate200,
+      slate300,
+      slate400,
+      slate500,
+      slate600,
+      slate700,
+      slate800,
+      slate900,
+      slate950;
+
   // Gray palette
-  final Color gray50, gray100, gray200, gray300, gray400, gray500, gray600, gray700, gray800, gray900, gray950;
-  
+  final Color gray50,
+      gray100,
+      gray200,
+      gray300,
+      gray400,
+      gray500,
+      gray600,
+      gray700,
+      gray800,
+      gray900,
+      gray950;
+
   // Zinc palette
-  final Color zinc50, zinc100, zinc200, zinc300, zinc400, zinc500, zinc600, zinc700, zinc800, zinc900, zinc950;
-  
+  final Color zinc50,
+      zinc100,
+      zinc200,
+      zinc300,
+      zinc400,
+      zinc500,
+      zinc600,
+      zinc700,
+      zinc800,
+      zinc900,
+      zinc950;
+
   // Neutral palette
-  final Color neutral50, neutral100, neutral200, neutral300, neutral400, neutral500, neutral600, neutral700, neutral800, neutral900, neutral950;
-  
+  final Color neutral50,
+      neutral100,
+      neutral200,
+      neutral300,
+      neutral400,
+      neutral500,
+      neutral600,
+      neutral700,
+      neutral800,
+      neutral900,
+      neutral950;
+
   // Stone palette
-  final Color stone50, stone100, stone200, stone300, stone400, stone500, stone600, stone700, stone800, stone900, stone950;
-  
+  final Color stone50,
+      stone100,
+      stone200,
+      stone300,
+      stone400,
+      stone500,
+      stone600,
+      stone700,
+      stone800,
+      stone900,
+      stone950;
+
   final Map<String, Color> customColors;
 
   /// Get all color values as a map
   Map<String, Color> get values => {
     // Special colors
-    'inherit': inherit, 'current': current, 'transparent': transparent, 'black': black, 'white': white,
-    
+    'inherit': inherit,
+    'current': current,
+    'transparent': transparent,
+    'black': black,
+    'white': white,
+
     // Red palette
-    'red50': red50, 'red100': red100, 'red200': red200, 'red300': red300, 'red400': red400,
-    'red500': red500, 'red600': red600, 'red700': red700, 'red800': red800, 'red900': red900, 'red950': red950,
-    
+    'red50': red50,
+    'red100': red100,
+    'red200': red200,
+    'red300': red300,
+    'red400': red400,
+    'red500': red500,
+    'red600': red600,
+    'red700': red700,
+    'red800': red800,
+    'red900': red900,
+    'red950': red950,
+
     // Orange palette
-    'orange50': orange50, 'orange100': orange100, 'orange200': orange200, 'orange300': orange300, 'orange400': orange400,
-    'orange500': orange500, 'orange600': orange600, 'orange700': orange700, 'orange800': orange800, 'orange900': orange900, 'orange950': orange950,
-    
+    'orange50': orange50,
+    'orange100': orange100,
+    'orange200': orange200,
+    'orange300': orange300,
+    'orange400': orange400,
+    'orange500': orange500,
+    'orange600': orange600,
+    'orange700': orange700,
+    'orange800': orange800,
+    'orange900': orange900,
+    'orange950': orange950,
+
     // Amber palette
-    'amber50': amber50, 'amber100': amber100, 'amber200': amber200, 'amber300': amber300, 'amber400': amber400,
-    'amber500': amber500, 'amber600': amber600, 'amber700': amber700, 'amber800': amber800, 'amber900': amber900, 'amber950': amber950,
-    
+    'amber50': amber50,
+    'amber100': amber100,
+    'amber200': amber200,
+    'amber300': amber300,
+    'amber400': amber400,
+    'amber500': amber500,
+    'amber600': amber600,
+    'amber700': amber700,
+    'amber800': amber800,
+    'amber900': amber900,
+    'amber950': amber950,
+
     // Yellow palette
-    'yellow50': yellow50, 'yellow100': yellow100, 'yellow200': yellow200, 'yellow300': yellow300, 'yellow400': yellow400,
-    'yellow500': yellow500, 'yellow600': yellow600, 'yellow700': yellow700, 'yellow800': yellow800, 'yellow900': yellow900, 'yellow950': yellow950,
-    
+    'yellow50': yellow50,
+    'yellow100': yellow100,
+    'yellow200': yellow200,
+    'yellow300': yellow300,
+    'yellow400': yellow400,
+    'yellow500': yellow500,
+    'yellow600': yellow600,
+    'yellow700': yellow700,
+    'yellow800': yellow800,
+    'yellow900': yellow900,
+    'yellow950': yellow950,
+
     // Lime palette
-    'lime50': lime50, 'lime100': lime100, 'lime200': lime200, 'lime300': lime300, 'lime400': lime400,
-    'lime500': lime500, 'lime600': lime600, 'lime700': lime700, 'lime800': lime800, 'lime900': lime900, 'lime950': lime950,
-    
+    'lime50': lime50,
+    'lime100': lime100,
+    'lime200': lime200,
+    'lime300': lime300,
+    'lime400': lime400,
+    'lime500': lime500,
+    'lime600': lime600,
+    'lime700': lime700,
+    'lime800': lime800,
+    'lime900': lime900,
+    'lime950': lime950,
+
     // Green palette
-    'green50': green50, 'green100': green100, 'green200': green200, 'green300': green300, 'green400': green400,
-    'green500': green500, 'green600': green600, 'green700': green700, 'green800': green800, 'green900': green900, 'green950': green950,
-    
+    'green50': green50,
+    'green100': green100,
+    'green200': green200,
+    'green300': green300,
+    'green400': green400,
+    'green500': green500,
+    'green600': green600,
+    'green700': green700,
+    'green800': green800,
+    'green900': green900,
+    'green950': green950,
+
     // Emerald palette
-    'emerald50': emerald50, 'emerald100': emerald100, 'emerald200': emerald200, 'emerald300': emerald300, 'emerald400': emerald400,
-    'emerald500': emerald500, 'emerald600': emerald600, 'emerald700': emerald700, 'emerald800': emerald800, 'emerald900': emerald900, 'emerald950': emerald950,
-    
+    'emerald50': emerald50,
+    'emerald100': emerald100,
+    'emerald200': emerald200,
+    'emerald300': emerald300,
+    'emerald400': emerald400,
+    'emerald500': emerald500,
+    'emerald600': emerald600,
+    'emerald700': emerald700,
+    'emerald800': emerald800,
+    'emerald900': emerald900,
+    'emerald950': emerald950,
+
     // Teal palette
-    'teal50': teal50, 'teal100': teal100, 'teal200': teal200, 'teal300': teal300, 'teal400': teal400,
-    'teal500': teal500, 'teal600': teal600, 'teal700': teal700, 'teal800': teal800, 'teal900': teal900, 'teal950': teal950,
-    
+    'teal50': teal50,
+    'teal100': teal100,
+    'teal200': teal200,
+    'teal300': teal300,
+    'teal400': teal400,
+    'teal500': teal500,
+    'teal600': teal600,
+    'teal700': teal700,
+    'teal800': teal800,
+    'teal900': teal900,
+    'teal950': teal950,
+
     // Cyan palette
-    'cyan50': cyan50, 'cyan100': cyan100, 'cyan200': cyan200, 'cyan300': cyan300, 'cyan400': cyan400,
-    'cyan500': cyan500, 'cyan600': cyan600, 'cyan700': cyan700, 'cyan800': cyan800, 'cyan900': cyan900, 'cyan950': cyan950,
-    
+    'cyan50': cyan50,
+    'cyan100': cyan100,
+    'cyan200': cyan200,
+    'cyan300': cyan300,
+    'cyan400': cyan400,
+    'cyan500': cyan500,
+    'cyan600': cyan600,
+    'cyan700': cyan700,
+    'cyan800': cyan800,
+    'cyan900': cyan900,
+    'cyan950': cyan950,
+
     // Sky palette
-    'sky50': sky50, 'sky100': sky100, 'sky200': sky200, 'sky300': sky300, 'sky400': sky400,
-    'sky500': sky500, 'sky600': sky600, 'sky700': sky700, 'sky800': sky800, 'sky900': sky900, 'sky950': sky950,
-    
+    'sky50': sky50,
+    'sky100': sky100,
+    'sky200': sky200,
+    'sky300': sky300,
+    'sky400': sky400,
+    'sky500': sky500,
+    'sky600': sky600,
+    'sky700': sky700,
+    'sky800': sky800,
+    'sky900': sky900,
+    'sky950': sky950,
+
     // Blue palette
-    'blue50': blue50, 'blue100': blue100, 'blue200': blue200, 'blue300': blue300, 'blue400': blue400,
-    'blue500': blue500, 'blue600': blue600, 'blue700': blue700, 'blue800': blue800, 'blue900': blue900, 'blue950': blue950,
-    
+    'blue50': blue50,
+    'blue100': blue100,
+    'blue200': blue200,
+    'blue300': blue300,
+    'blue400': blue400,
+    'blue500': blue500,
+    'blue600': blue600,
+    'blue700': blue700,
+    'blue800': blue800,
+    'blue900': blue900,
+    'blue950': blue950,
+
     // Indigo palette
-    'indigo50': indigo50, 'indigo100': indigo100, 'indigo200': indigo200, 'indigo300': indigo300, 'indigo400': indigo400,
-    'indigo500': indigo500, 'indigo600': indigo600, 'indigo700': indigo700, 'indigo800': indigo800, 'indigo900': indigo900, 'indigo950': indigo950,
-    
+    'indigo50': indigo50,
+    'indigo100': indigo100,
+    'indigo200': indigo200,
+    'indigo300': indigo300,
+    'indigo400': indigo400,
+    'indigo500': indigo500,
+    'indigo600': indigo600,
+    'indigo700': indigo700,
+    'indigo800': indigo800,
+    'indigo900': indigo900,
+    'indigo950': indigo950,
+
     // Violet palette
-    'violet50': violet50, 'violet100': violet100, 'violet200': violet200, 'violet300': violet300, 'violet400': violet400,
-    'violet500': violet500, 'violet600': violet600, 'violet700': violet700, 'violet800': violet800, 'violet900': violet900, 'violet950': violet950,
-    
+    'violet50': violet50,
+    'violet100': violet100,
+    'violet200': violet200,
+    'violet300': violet300,
+    'violet400': violet400,
+    'violet500': violet500,
+    'violet600': violet600,
+    'violet700': violet700,
+    'violet800': violet800,
+    'violet900': violet900,
+    'violet950': violet950,
+
     // Purple palette
-    'purple50': purple50, 'purple100': purple100, 'purple200': purple200, 'purple300': purple300, 'purple400': purple400,
-    'purple500': purple500, 'purple600': purple600, 'purple700': purple700, 'purple800': purple800, 'purple900': purple900, 'purple950': purple950,
-    
+    'purple50': purple50,
+    'purple100': purple100,
+    'purple200': purple200,
+    'purple300': purple300,
+    'purple400': purple400,
+    'purple500': purple500,
+    'purple600': purple600,
+    'purple700': purple700,
+    'purple800': purple800,
+    'purple900': purple900,
+    'purple950': purple950,
+
     // Fuchsia palette
-    'fuchsia50': fuchsia50, 'fuchsia100': fuchsia100, 'fuchsia200': fuchsia200, 'fuchsia300': fuchsia300, 'fuchsia400': fuchsia400,
-    'fuchsia500': fuchsia500, 'fuchsia600': fuchsia600, 'fuchsia700': fuchsia700, 'fuchsia800': fuchsia800, 'fuchsia900': fuchsia900, 'fuchsia950': fuchsia950,
-    
+    'fuchsia50': fuchsia50,
+    'fuchsia100': fuchsia100,
+    'fuchsia200': fuchsia200,
+    'fuchsia300': fuchsia300,
+    'fuchsia400': fuchsia400,
+    'fuchsia500': fuchsia500,
+    'fuchsia600': fuchsia600,
+    'fuchsia700': fuchsia700,
+    'fuchsia800': fuchsia800,
+    'fuchsia900': fuchsia900,
+    'fuchsia950': fuchsia950,
+
     // Pink palette
-    'pink50': pink50, 'pink100': pink100, 'pink200': pink200, 'pink300': pink300, 'pink400': pink400,
-    'pink500': pink500, 'pink600': pink600, 'pink700': pink700, 'pink800': pink800, 'pink900': pink900, 'pink950': pink950,
-    
+    'pink50': pink50,
+    'pink100': pink100,
+    'pink200': pink200,
+    'pink300': pink300,
+    'pink400': pink400,
+    'pink500': pink500,
+    'pink600': pink600,
+    'pink700': pink700,
+    'pink800': pink800,
+    'pink900': pink900,
+    'pink950': pink950,
+
     // Rose palette
-    'rose50': rose50, 'rose100': rose100, 'rose200': rose200, 'rose300': rose300, 'rose400': rose400,
-    'rose500': rose500, 'rose600': rose600, 'rose700': rose700, 'rose800': rose800, 'rose900': rose900, 'rose950': rose950,
-    
+    'rose50': rose50,
+    'rose100': rose100,
+    'rose200': rose200,
+    'rose300': rose300,
+    'rose400': rose400,
+    'rose500': rose500,
+    'rose600': rose600,
+    'rose700': rose700,
+    'rose800': rose800,
+    'rose900': rose900,
+    'rose950': rose950,
+
     // Slate palette
-    'slate50': slate50, 'slate100': slate100, 'slate200': slate200, 'slate300': slate300, 'slate400': slate400,
-    'slate500': slate500, 'slate600': slate600, 'slate700': slate700, 'slate800': slate800, 'slate900': slate900, 'slate950': slate950,
-    
+    'slate50': slate50,
+    'slate100': slate100,
+    'slate200': slate200,
+    'slate300': slate300,
+    'slate400': slate400,
+    'slate500': slate500,
+    'slate600': slate600,
+    'slate700': slate700,
+    'slate800': slate800,
+    'slate900': slate900,
+    'slate950': slate950,
+
     // Gray palette
-    'gray50': gray50, 'gray100': gray100, 'gray200': gray200, 'gray300': gray300, 'gray400': gray400,
-    'gray500': gray500, 'gray600': gray600, 'gray700': gray700, 'gray800': gray800, 'gray900': gray900, 'gray950': gray950,
-    
+    'gray50': gray50,
+    'gray100': gray100,
+    'gray200': gray200,
+    'gray300': gray300,
+    'gray400': gray400,
+    'gray500': gray500,
+    'gray600': gray600,
+    'gray700': gray700,
+    'gray800': gray800,
+    'gray900': gray900,
+    'gray950': gray950,
+
     // Zinc palette
-    'zinc50': zinc50, 'zinc100': zinc100, 'zinc200': zinc200, 'zinc300': zinc300, 'zinc400': zinc400,
-    'zinc500': zinc500, 'zinc600': zinc600, 'zinc700': zinc700, 'zinc800': zinc800, 'zinc900': zinc900, 'zinc950': zinc950,
-    
+    'zinc50': zinc50,
+    'zinc100': zinc100,
+    'zinc200': zinc200,
+    'zinc300': zinc300,
+    'zinc400': zinc400,
+    'zinc500': zinc500,
+    'zinc600': zinc600,
+    'zinc700': zinc700,
+    'zinc800': zinc800,
+    'zinc900': zinc900,
+    'zinc950': zinc950,
+
     // Neutral palette
-    'neutral50': neutral50, 'neutral100': neutral100, 'neutral200': neutral200, 'neutral300': neutral300, 'neutral400': neutral400,
-    'neutral500': neutral500, 'neutral600': neutral600, 'neutral700': neutral700, 'neutral800': neutral800, 'neutral900': neutral900, 'neutral950': neutral950,
-    
+    'neutral50': neutral50,
+    'neutral100': neutral100,
+    'neutral200': neutral200,
+    'neutral300': neutral300,
+    'neutral400': neutral400,
+    'neutral500': neutral500,
+    'neutral600': neutral600,
+    'neutral700': neutral700,
+    'neutral800': neutral800,
+    'neutral900': neutral900,
+    'neutral950': neutral950,
+
     // Stone palette
-    'stone50': stone50, 'stone100': stone100, 'stone200': stone200, 'stone300': stone300, 'stone400': stone400,
-    'stone500': stone500, 'stone600': stone600, 'stone700': stone700, 'stone800': stone800, 'stone900': stone900, 'stone950': stone950,
+    'stone50': stone50,
+    'stone100': stone100,
+    'stone200': stone200,
+    'stone300': stone300,
+    'stone400': stone400,
+    'stone500': stone500,
+    'stone600': stone600,
+    'stone700': stone700,
+    'stone800': stone800,
+    'stone900': stone900,
+    'stone950': stone950,
   };
-  
+
   /// Access color values by key
   Color? operator [](String key) => values[key] ?? customColors[key];
 
@@ -274,94 +897,292 @@ class FlyColors {
     transparent: Color(0x00000000),
     black: Color(0xFF000000),
     white: Color(0xFFFFFFFF),
-    
+
     // Red palette
-    red50: Color(0xFFFEF2F2), red100: Color(0xFFFEE2E2), red200: Color(0xFFFECACA), red300: Color(0xFFFCA5A5), red400: Color(0xFFF87171),
-    red500: Color(0xFFEF4444), red600: Color(0xFFDC2626), red700: Color(0xFFB91C1C), red800: Color(0xFF991B1B), red900: Color(0xFF7F1D1D), red950: Color(0xFF450A0A),
-    
+    red50: Color(0xFFFEF2F2),
+    red100: Color(0xFFFEE2E2),
+    red200: Color(0xFFFECACA),
+    red300: Color(0xFFFCA5A5),
+    red400: Color(0xFFF87171),
+    red500: Color(0xFFEF4444),
+    red600: Color(0xFFDC2626),
+    red700: Color(0xFFB91C1C),
+    red800: Color(0xFF991B1B),
+    red900: Color(0xFF7F1D1D),
+    red950: Color(0xFF450A0A),
+
     // Orange palette
-    orange50: Color(0xFFFFF7ED), orange100: Color(0xFFFFEDD5), orange200: Color(0xFFFED7AA), orange300: Color(0xFFFDBA74), orange400: Color(0xFFFB923C),
-    orange500: Color(0xFFF97316), orange600: Color(0xFFEA580C), orange700: Color(0xFFC2410C), orange800: Color(0xFF9A3412), orange900: Color(0xFF7C2D12), orange950: Color(0xFF431407),
-    
+    orange50: Color(0xFFFFF7ED),
+    orange100: Color(0xFFFFEDD5),
+    orange200: Color(0xFFFED7AA),
+    orange300: Color(0xFFFDBA74),
+    orange400: Color(0xFFFB923C),
+    orange500: Color(0xFFF97316),
+    orange600: Color(0xFFEA580C),
+    orange700: Color(0xFFC2410C),
+    orange800: Color(0xFF9A3412),
+    orange900: Color(0xFF7C2D12),
+    orange950: Color(0xFF431407),
+
     // Amber palette
-    amber50: Color(0xFFFFFBEB), amber100: Color(0xFFFEF3C7), amber200: Color(0xFFFDE68A), amber300: Color(0xFFFCD34D), amber400: Color(0xFFFBBF24),
-    amber500: Color(0xFFF59E0B), amber600: Color(0xFFD97706), amber700: Color(0xFFB45309), amber800: Color(0xFF92400E), amber900: Color(0xFF78350F), amber950: Color(0xFF451A03),
-    
+    amber50: Color(0xFFFFFBEB),
+    amber100: Color(0xFFFEF3C7),
+    amber200: Color(0xFFFDE68A),
+    amber300: Color(0xFFFCD34D),
+    amber400: Color(0xFFFBBF24),
+    amber500: Color(0xFFF59E0B),
+    amber600: Color(0xFFD97706),
+    amber700: Color(0xFFB45309),
+    amber800: Color(0xFF92400E),
+    amber900: Color(0xFF78350F),
+    amber950: Color(0xFF451A03),
+
     // Yellow palette
-    yellow50: Color(0xFFFEFCE8), yellow100: Color(0xFFFEF9C3), yellow200: Color(0xFFFEF08A), yellow300: Color(0xFFFDE047), yellow400: Color(0xFFFACC15),
-    yellow500: Color(0xFFEAB308), yellow600: Color(0xFFCA8A04), yellow700: Color(0xFFA16207), yellow800: Color(0xFF854D0E), yellow900: Color(0xFF713F12), yellow950: Color(0xFF422006),
-    
+    yellow50: Color(0xFFFEFCE8),
+    yellow100: Color(0xFFFEF9C3),
+    yellow200: Color(0xFFFEF08A),
+    yellow300: Color(0xFFFDE047),
+    yellow400: Color(0xFFFACC15),
+    yellow500: Color(0xFFEAB308),
+    yellow600: Color(0xFFCA8A04),
+    yellow700: Color(0xFFA16207),
+    yellow800: Color(0xFF854D0E),
+    yellow900: Color(0xFF713F12),
+    yellow950: Color(0xFF422006),
+
     // Lime palette
-    lime50: Color(0xFFF7FEE7), lime100: Color(0xFFECFCCB), lime200: Color(0xFFD9F99D), lime300: Color(0xFFBEF264), lime400: Color(0xFFA3E635),
-    lime500: Color(0xFF84CC16), lime600: Color(0xFF65A30D), lime700: Color(0xFF4D7C0F), lime800: Color(0xFF3F6212), lime900: Color(0xFF365314), lime950: Color(0xFF1A2E05),
-    
+    lime50: Color(0xFFF7FEE7),
+    lime100: Color(0xFFECFCCB),
+    lime200: Color(0xFFD9F99D),
+    lime300: Color(0xFFBEF264),
+    lime400: Color(0xFFA3E635),
+    lime500: Color(0xFF84CC16),
+    lime600: Color(0xFF65A30D),
+    lime700: Color(0xFF4D7C0F),
+    lime800: Color(0xFF3F6212),
+    lime900: Color(0xFF365314),
+    lime950: Color(0xFF1A2E05),
+
     // Green palette
-    green50: Color(0xFFF0FDF4), green100: Color(0xFFDCFCE7), green200: Color(0xFFBBF7D0), green300: Color(0xFF86EFAC), green400: Color(0xFF4ADE80),
-    green500: Color(0xFF22C55E), green600: Color(0xFF16A34A), green700: Color(0xFF15803D), green800: Color(0xFF166534), green900: Color(0xFF14532D), green950: Color(0xFF052E16),
-    
+    green50: Color(0xFFF0FDF4),
+    green100: Color(0xFFDCFCE7),
+    green200: Color(0xFFBBF7D0),
+    green300: Color(0xFF86EFAC),
+    green400: Color(0xFF4ADE80),
+    green500: Color(0xFF22C55E),
+    green600: Color(0xFF16A34A),
+    green700: Color(0xFF15803D),
+    green800: Color(0xFF166534),
+    green900: Color(0xFF14532D),
+    green950: Color(0xFF052E16),
+
     // Emerald palette
-    emerald50: Color(0xFFECFDF5), emerald100: Color(0xFFD1FAE5), emerald200: Color(0xFFA7F3D0), emerald300: Color(0xFF6EE7B7), emerald400: Color(0xFF34D399),
-    emerald500: Color(0xFF10B981), emerald600: Color(0xFF059669), emerald700: Color(0xFF047857), emerald800: Color(0xFF065F46), emerald900: Color(0xFF064E3B), emerald950: Color(0xFF022C22),
-    
+    emerald50: Color(0xFFECFDF5),
+    emerald100: Color(0xFFD1FAE5),
+    emerald200: Color(0xFFA7F3D0),
+    emerald300: Color(0xFF6EE7B7),
+    emerald400: Color(0xFF34D399),
+    emerald500: Color(0xFF10B981),
+    emerald600: Color(0xFF059669),
+    emerald700: Color(0xFF047857),
+    emerald800: Color(0xFF065F46),
+    emerald900: Color(0xFF064E3B),
+    emerald950: Color(0xFF022C22),
+
     // Teal palette
-    teal50: Color(0xFFF0FDFA), teal100: Color(0xFFCCFBF1), teal200: Color(0xFF99F6E4), teal300: Color(0xFF5EEAD4), teal400: Color(0xFF2DD4BF),
-    teal500: Color(0xFF14B8A6), teal600: Color(0xFF0D9488), teal700: Color(0xFF0F766E), teal800: Color(0xFF115E59), teal900: Color(0xFF134E4A), teal950: Color(0xFF042F2E),
-    
+    teal50: Color(0xFFF0FDFA),
+    teal100: Color(0xFFCCFBF1),
+    teal200: Color(0xFF99F6E4),
+    teal300: Color(0xFF5EEAD4),
+    teal400: Color(0xFF2DD4BF),
+    teal500: Color(0xFF14B8A6),
+    teal600: Color(0xFF0D9488),
+    teal700: Color(0xFF0F766E),
+    teal800: Color(0xFF115E59),
+    teal900: Color(0xFF134E4A),
+    teal950: Color(0xFF042F2E),
+
     // Cyan palette
-    cyan50: Color(0xFFECFEFF), cyan100: Color(0xFFCFFAFE), cyan200: Color(0xFFA5F3FC), cyan300: Color(0xFF67E8F9), cyan400: Color(0xFF22D3EE),
-    cyan500: Color(0xFF06B6D4), cyan600: Color(0xFF0891B2), cyan700: Color(0xFF0E7490), cyan800: Color(0xFF155E75), cyan900: Color(0xFF164E63), cyan950: Color(0xFF083344),
-    
+    cyan50: Color(0xFFECFEFF),
+    cyan100: Color(0xFFCFFAFE),
+    cyan200: Color(0xFFA5F3FC),
+    cyan300: Color(0xFF67E8F9),
+    cyan400: Color(0xFF22D3EE),
+    cyan500: Color(0xFF06B6D4),
+    cyan600: Color(0xFF0891B2),
+    cyan700: Color(0xFF0E7490),
+    cyan800: Color(0xFF155E75),
+    cyan900: Color(0xFF164E63),
+    cyan950: Color(0xFF083344),
+
     // Sky palette
-    sky50: Color(0xFFF0F9FF), sky100: Color(0xFFE0F2FE), sky200: Color(0xFFBAE6FD), sky300: Color(0xFF7DD3FC), sky400: Color(0xFF38BDF8),
-    sky500: Color(0xFF0EA5E9), sky600: Color(0xFF0284C7), sky700: Color(0xFF0369A1), sky800: Color(0xFF075985), sky900: Color(0xFF0C4A6E), sky950: Color(0xFF082F49),
-    
+    sky50: Color(0xFFF0F9FF),
+    sky100: Color(0xFFE0F2FE),
+    sky200: Color(0xFFBAE6FD),
+    sky300: Color(0xFF7DD3FC),
+    sky400: Color(0xFF38BDF8),
+    sky500: Color(0xFF0EA5E9),
+    sky600: Color(0xFF0284C7),
+    sky700: Color(0xFF0369A1),
+    sky800: Color(0xFF075985),
+    sky900: Color(0xFF0C4A6E),
+    sky950: Color(0xFF082F49),
+
     // Blue palette
-    blue50: Color(0xFFEFF6FF), blue100: Color(0xFFDBEAFE), blue200: Color(0xFFBFDBFE), blue300: Color(0xFF93C5FD), blue400: Color(0xFF60A5FA),
-    blue500: Color(0xFF3B82F6), blue600: Color(0xFF2563EB), blue700: Color(0xFF1D4ED8), blue800: Color(0xFF1E40AF), blue900: Color(0xFF1E3A8A), blue950: Color(0xFF172554),
-    
+    blue50: Color(0xFFEFF6FF),
+    blue100: Color(0xFFDBEAFE),
+    blue200: Color(0xFFBFDBFE),
+    blue300: Color(0xFF93C5FD),
+    blue400: Color(0xFF60A5FA),
+    blue500: Color(0xFF3B82F6),
+    blue600: Color(0xFF2563EB),
+    blue700: Color(0xFF1D4ED8),
+    blue800: Color(0xFF1E40AF),
+    blue900: Color(0xFF1E3A8A),
+    blue950: Color(0xFF172554),
+
     // Indigo palette
-    indigo50: Color(0xFFEEF2FF), indigo100: Color(0xFFE0E7FF), indigo200: Color(0xFFC7D2FE), indigo300: Color(0xFFA5B4FC), indigo400: Color(0xFF818CF8),
-    indigo500: Color(0xFF6366F1), indigo600: Color(0xFF4F46E5), indigo700: Color(0xFF4338CA), indigo800: Color(0xFF3730A3), indigo900: Color(0xFF312E81), indigo950: Color(0xFF1E1B4B),
-    
+    indigo50: Color(0xFFEEF2FF),
+    indigo100: Color(0xFFE0E7FF),
+    indigo200: Color(0xFFC7D2FE),
+    indigo300: Color(0xFFA5B4FC),
+    indigo400: Color(0xFF818CF8),
+    indigo500: Color(0xFF6366F1),
+    indigo600: Color(0xFF4F46E5),
+    indigo700: Color(0xFF4338CA),
+    indigo800: Color(0xFF3730A3),
+    indigo900: Color(0xFF312E81),
+    indigo950: Color(0xFF1E1B4B),
+
     // Violet palette
-    violet50: Color(0xFFF5F3FF), violet100: Color(0xFFEDE9FE), violet200: Color(0xFFDDD6FE), violet300: Color(0xFFC4B5FD), violet400: Color(0xFFA78BFA),
-    violet500: Color(0xFF8B5CF6), violet600: Color(0xFF7C3AED), violet700: Color(0xFF6D28D9), violet800: Color(0xFF5B21B6), violet900: Color(0xFF4C1D95), violet950: Color(0xFF2E1065),
-    
+    violet50: Color(0xFFF5F3FF),
+    violet100: Color(0xFFEDE9FE),
+    violet200: Color(0xFFDDD6FE),
+    violet300: Color(0xFFC4B5FD),
+    violet400: Color(0xFFA78BFA),
+    violet500: Color(0xFF8B5CF6),
+    violet600: Color(0xFF7C3AED),
+    violet700: Color(0xFF6D28D9),
+    violet800: Color(0xFF5B21B6),
+    violet900: Color(0xFF4C1D95),
+    violet950: Color(0xFF2E1065),
+
     // Purple palette
-    purple50: Color(0xFFFAF5FF), purple100: Color(0xFFF3E8FF), purple200: Color(0xFFE9D5FF), purple300: Color(0xFFD8B4FE), purple400: Color(0xFFC084FC),
-    purple500: Color(0xFFA855F7), purple600: Color(0xFF9333EA), purple700: Color(0xFF7E22CE), purple800: Color(0xFF6B21A8), purple900: Color(0xFF581C87), purple950: Color(0xFF3B0764),
-    
+    purple50: Color(0xFFFAF5FF),
+    purple100: Color(0xFFF3E8FF),
+    purple200: Color(0xFFE9D5FF),
+    purple300: Color(0xFFD8B4FE),
+    purple400: Color(0xFFC084FC),
+    purple500: Color(0xFFA855F7),
+    purple600: Color(0xFF9333EA),
+    purple700: Color(0xFF7E22CE),
+    purple800: Color(0xFF6B21A8),
+    purple900: Color(0xFF581C87),
+    purple950: Color(0xFF3B0764),
+
     // Fuchsia palette
-    fuchsia50: Color(0xFFFDF4FF), fuchsia100: Color(0xFFFAE8FF), fuchsia200: Color(0xFFF5D0FE), fuchsia300: Color(0xFFF0ABFC), fuchsia400: Color(0xFFE879F9),
-    fuchsia500: Color(0xFFD946EF), fuchsia600: Color(0xFFC026D3), fuchsia700: Color(0xFFA21CAF), fuchsia800: Color(0xFF86198F), fuchsia900: Color(0xFF701A75), fuchsia950: Color(0xFF4A044E),
-    
+    fuchsia50: Color(0xFFFDF4FF),
+    fuchsia100: Color(0xFFFAE8FF),
+    fuchsia200: Color(0xFFF5D0FE),
+    fuchsia300: Color(0xFFF0ABFC),
+    fuchsia400: Color(0xFFE879F9),
+    fuchsia500: Color(0xFFD946EF),
+    fuchsia600: Color(0xFFC026D3),
+    fuchsia700: Color(0xFFA21CAF),
+    fuchsia800: Color(0xFF86198F),
+    fuchsia900: Color(0xFF701A75),
+    fuchsia950: Color(0xFF4A044E),
+
     // Pink palette
-    pink50: Color(0xFFFDF2F8), pink100: Color(0xFFFCE7F3), pink200: Color(0xFFFBCFE8), pink300: Color(0xFFF9A8D4), pink400: Color(0xFFF472B6),
-    pink500: Color(0xFFEC4899), pink600: Color(0xFFDB2777), pink700: Color(0xFFBE185D), pink800: Color(0xFF9D174D), pink900: Color(0xFF831843), pink950: Color(0xFF500724),
-    
+    pink50: Color(0xFFFDF2F8),
+    pink100: Color(0xFFFCE7F3),
+    pink200: Color(0xFFFBCFE8),
+    pink300: Color(0xFFF9A8D4),
+    pink400: Color(0xFFF472B6),
+    pink500: Color(0xFFEC4899),
+    pink600: Color(0xFFDB2777),
+    pink700: Color(0xFFBE185D),
+    pink800: Color(0xFF9D174D),
+    pink900: Color(0xFF831843),
+    pink950: Color(0xFF500724),
+
     // Rose palette
-    rose50: Color(0xFFFFF1F2), rose100: Color(0xFFFFE4E6), rose200: Color(0xFFFECDD3), rose300: Color(0xFFFDA4AF), rose400: Color(0xFFFB7185),
-    rose500: Color(0xFFF43F5E), rose600: Color(0xFFE11D48), rose700: Color(0xFFBE123C), rose800: Color(0xFF9F1239), rose900: Color(0xFF881337), rose950: Color(0xFF4C0519),
-    
+    rose50: Color(0xFFFFF1F2),
+    rose100: Color(0xFFFFE4E6),
+    rose200: Color(0xFFFECDD3),
+    rose300: Color(0xFFFDA4AF),
+    rose400: Color(0xFFFB7185),
+    rose500: Color(0xFFF43F5E),
+    rose600: Color(0xFFE11D48),
+    rose700: Color(0xFFBE123C),
+    rose800: Color(0xFF9F1239),
+    rose900: Color(0xFF881337),
+    rose950: Color(0xFF4C0519),
+
     // Slate palette
-    slate50: Color(0xFFF8FAFC), slate100: Color(0xFFF1F5F9), slate200: Color(0xFFE2E8F0), slate300: Color(0xFFCBD5E1), slate400: Color(0xFF94A3B8),
-    slate500: Color(0xFF64748B), slate600: Color(0xFF475569), slate700: Color(0xFF334155), slate800: Color(0xFF1E293B), slate900: Color(0xFF0F172A), slate950: Color(0xFF020617),
-    
+    slate50: Color(0xFFF8FAFC),
+    slate100: Color(0xFFF1F5F9),
+    slate200: Color(0xFFE2E8F0),
+    slate300: Color(0xFFCBD5E1),
+    slate400: Color(0xFF94A3B8),
+    slate500: Color(0xFF64748B),
+    slate600: Color(0xFF475569),
+    slate700: Color(0xFF334155),
+    slate800: Color(0xFF1E293B),
+    slate900: Color(0xFF0F172A),
+    slate950: Color(0xFF020617),
+
     // Gray palette
-    gray50: Color(0xFFF9FAFB), gray100: Color(0xFFF3F4F6), gray200: Color(0xFFE5E7EB), gray300: Color(0xFFD1D5DB), gray400: Color(0xFF9CA3AF),
-    gray500: Color(0xFF6B7280), gray600: Color(0xFF4B5563), gray700: Color(0xFF374151), gray800: Color(0xFF1F2937), gray900: Color(0xFF111827), gray950: Color(0xFF030712),
-    
+    gray50: Color(0xFFF9FAFB),
+    gray100: Color(0xFFF3F4F6),
+    gray200: Color(0xFFE5E7EB),
+    gray300: Color(0xFFD1D5DB),
+    gray400: Color(0xFF9CA3AF),
+    gray500: Color(0xFF6B7280),
+    gray600: Color(0xFF4B5563),
+    gray700: Color(0xFF374151),
+    gray800: Color(0xFF1F2937),
+    gray900: Color(0xFF111827),
+    gray950: Color(0xFF030712),
+
     // Zinc palette
-    zinc50: Color(0xFFFAFAFA), zinc100: Color(0xFFF4F4F5), zinc200: Color(0xFFE4E4E7), zinc300: Color(0xFFD4D4D8), zinc400: Color(0xFFA1A1AA),
-    zinc500: Color(0xFF71717A), zinc600: Color(0xFF52525B), zinc700: Color(0xFF3F3F46), zinc800: Color(0xFF27272A), zinc900: Color(0xFF18181B), zinc950: Color(0xFF09090B),
-    
+    zinc50: Color(0xFFFAFAFA),
+    zinc100: Color(0xFFF4F4F5),
+    zinc200: Color(0xFFE4E4E7),
+    zinc300: Color(0xFFD4D4D8),
+    zinc400: Color(0xFFA1A1AA),
+    zinc500: Color(0xFF71717A),
+    zinc600: Color(0xFF52525B),
+    zinc700: Color(0xFF3F3F46),
+    zinc800: Color(0xFF27272A),
+    zinc900: Color(0xFF18181B),
+    zinc950: Color(0xFF09090B),
+
     // Neutral palette
-    neutral50: Color(0xFFFAFAFA), neutral100: Color(0xFFF5F5F5), neutral200: Color(0xFFE5E5E5), neutral300: Color(0xFFD4D4D4), neutral400: Color(0xFFA3A3A3),
-    neutral500: Color(0xFF737373), neutral600: Color(0xFF525252), neutral700: Color(0xFF404040), neutral800: Color(0xFF262626), neutral900: Color(0xFF171717), neutral950: Color(0xFF0A0A0A),
-    
+    neutral50: Color(0xFFFAFAFA),
+    neutral100: Color(0xFFF5F5F5),
+    neutral200: Color(0xFFE5E5E5),
+    neutral300: Color(0xFFD4D4D4),
+    neutral400: Color(0xFFA3A3A3),
+    neutral500: Color(0xFF737373),
+    neutral600: Color(0xFF525252),
+    neutral700: Color(0xFF404040),
+    neutral800: Color(0xFF262626),
+    neutral900: Color(0xFF171717),
+    neutral950: Color(0xFF0A0A0A),
+
     // Stone palette
-    stone50: Color(0xFFFAFAF9), stone100: Color(0xFFF5F5F4), stone200: Color(0xFFE7E5E4), stone300: Color(0xFFD6D3D1), stone400: Color(0xFFA8A29E),
-    stone500: Color(0xFF78716C), stone600: Color(0xFF57534E), stone700: Color(0xFF44403C), stone800: Color(0xFF292524), stone900: Color(0xFF1C1917), stone950: Color(0xFF0C0A09),
+    stone50: Color(0xFFFAFAF9),
+    stone100: Color(0xFFF5F5F4),
+    stone200: Color(0xFFE7E5E4),
+    stone300: Color(0xFFD6D3D1),
+    stone400: Color(0xFFA8A29E),
+    stone500: Color(0xFF78716C),
+    stone600: Color(0xFF57534E),
+    stone700: Color(0xFF44403C),
+    stone800: Color(0xFF292524),
+    stone900: Color(0xFF1C1917),
+    stone950: Color(0xFF0C0A09),
   );
 }
 
@@ -370,168 +1191,594 @@ extension FlyColorsExtension on FlyColors {
   /// Create a new FlyColors instance with specific color overrides
   FlyColors copyWith({
     // Special colors
-    Color? inherit, Color? current, Color? transparent, Color? black, Color? white,
-    
+    Color? inherit,
+    Color? current,
+    Color? transparent,
+    Color? black,
+    Color? white,
+
     // Red palette
-    Color? red50, Color? red100, Color? red200, Color? red300, Color? red400, Color? red500, Color? red600, Color? red700, Color? red800, Color? red900, Color? red950,
-    
+    Color? red50,
+    Color? red100,
+    Color? red200,
+    Color? red300,
+    Color? red400,
+    Color? red500,
+    Color? red600,
+    Color? red700,
+    Color? red800,
+    Color? red900,
+    Color? red950,
+
     // Orange palette
-    Color? orange50, Color? orange100, Color? orange200, Color? orange300, Color? orange400, Color? orange500, Color? orange600, Color? orange700, Color? orange800, Color? orange900, Color? orange950,
-    
+    Color? orange50,
+    Color? orange100,
+    Color? orange200,
+    Color? orange300,
+    Color? orange400,
+    Color? orange500,
+    Color? orange600,
+    Color? orange700,
+    Color? orange800,
+    Color? orange900,
+    Color? orange950,
+
     // Amber palette
-    Color? amber50, Color? amber100, Color? amber200, Color? amber300, Color? amber400, Color? amber500, Color? amber600, Color? amber700, Color? amber800, Color? amber900, Color? amber950,
-    
+    Color? amber50,
+    Color? amber100,
+    Color? amber200,
+    Color? amber300,
+    Color? amber400,
+    Color? amber500,
+    Color? amber600,
+    Color? amber700,
+    Color? amber800,
+    Color? amber900,
+    Color? amber950,
+
     // Yellow palette
-    Color? yellow50, Color? yellow100, Color? yellow200, Color? yellow300, Color? yellow400, Color? yellow500, Color? yellow600, Color? yellow700, Color? yellow800, Color? yellow900, Color? yellow950,
-    
+    Color? yellow50,
+    Color? yellow100,
+    Color? yellow200,
+    Color? yellow300,
+    Color? yellow400,
+    Color? yellow500,
+    Color? yellow600,
+    Color? yellow700,
+    Color? yellow800,
+    Color? yellow900,
+    Color? yellow950,
+
     // Lime palette
-    Color? lime50, Color? lime100, Color? lime200, Color? lime300, Color? lime400, Color? lime500, Color? lime600, Color? lime700, Color? lime800, Color? lime900, Color? lime950,
-    
+    Color? lime50,
+    Color? lime100,
+    Color? lime200,
+    Color? lime300,
+    Color? lime400,
+    Color? lime500,
+    Color? lime600,
+    Color? lime700,
+    Color? lime800,
+    Color? lime900,
+    Color? lime950,
+
     // Green palette
-    Color? green50, Color? green100, Color? green200, Color? green300, Color? green400, Color? green500, Color? green600, Color? green700, Color? green800, Color? green900, Color? green950,
-    
+    Color? green50,
+    Color? green100,
+    Color? green200,
+    Color? green300,
+    Color? green400,
+    Color? green500,
+    Color? green600,
+    Color? green700,
+    Color? green800,
+    Color? green900,
+    Color? green950,
+
     // Emerald palette
-    Color? emerald50, Color? emerald100, Color? emerald200, Color? emerald300, Color? emerald400, Color? emerald500, Color? emerald600, Color? emerald700, Color? emerald800, Color? emerald900, Color? emerald950,
-    
+    Color? emerald50,
+    Color? emerald100,
+    Color? emerald200,
+    Color? emerald300,
+    Color? emerald400,
+    Color? emerald500,
+    Color? emerald600,
+    Color? emerald700,
+    Color? emerald800,
+    Color? emerald900,
+    Color? emerald950,
+
     // Teal palette
-    Color? teal50, Color? teal100, Color? teal200, Color? teal300, Color? teal400, Color? teal500, Color? teal600, Color? teal700, Color? teal800, Color? teal900, Color? teal950,
-    
+    Color? teal50,
+    Color? teal100,
+    Color? teal200,
+    Color? teal300,
+    Color? teal400,
+    Color? teal500,
+    Color? teal600,
+    Color? teal700,
+    Color? teal800,
+    Color? teal900,
+    Color? teal950,
+
     // Cyan palette
-    Color? cyan50, Color? cyan100, Color? cyan200, Color? cyan300, Color? cyan400, Color? cyan500, Color? cyan600, Color? cyan700, Color? cyan800, Color? cyan900, Color? cyan950,
-    
+    Color? cyan50,
+    Color? cyan100,
+    Color? cyan200,
+    Color? cyan300,
+    Color? cyan400,
+    Color? cyan500,
+    Color? cyan600,
+    Color? cyan700,
+    Color? cyan800,
+    Color? cyan900,
+    Color? cyan950,
+
     // Sky palette
-    Color? sky50, Color? sky100, Color? sky200, Color? sky300, Color? sky400, Color? sky500, Color? sky600, Color? sky700, Color? sky800, Color? sky900, Color? sky950,
-    
+    Color? sky50,
+    Color? sky100,
+    Color? sky200,
+    Color? sky300,
+    Color? sky400,
+    Color? sky500,
+    Color? sky600,
+    Color? sky700,
+    Color? sky800,
+    Color? sky900,
+    Color? sky950,
+
     // Blue palette
-    Color? blue50, Color? blue100, Color? blue200, Color? blue300, Color? blue400, Color? blue500, Color? blue600, Color? blue700, Color? blue800, Color? blue900, Color? blue950,
-    
+    Color? blue50,
+    Color? blue100,
+    Color? blue200,
+    Color? blue300,
+    Color? blue400,
+    Color? blue500,
+    Color? blue600,
+    Color? blue700,
+    Color? blue800,
+    Color? blue900,
+    Color? blue950,
+
     // Indigo palette
-    Color? indigo50, Color? indigo100, Color? indigo200, Color? indigo300, Color? indigo400, Color? indigo500, Color? indigo600, Color? indigo700, Color? indigo800, Color? indigo900, Color? indigo950,
-    
+    Color? indigo50,
+    Color? indigo100,
+    Color? indigo200,
+    Color? indigo300,
+    Color? indigo400,
+    Color? indigo500,
+    Color? indigo600,
+    Color? indigo700,
+    Color? indigo800,
+    Color? indigo900,
+    Color? indigo950,
+
     // Violet palette
-    Color? violet50, Color? violet100, Color? violet200, Color? violet300, Color? violet400, Color? violet500, Color? violet600, Color? violet700, Color? violet800, Color? violet900, Color? violet950,
-    
+    Color? violet50,
+    Color? violet100,
+    Color? violet200,
+    Color? violet300,
+    Color? violet400,
+    Color? violet500,
+    Color? violet600,
+    Color? violet700,
+    Color? violet800,
+    Color? violet900,
+    Color? violet950,
+
     // Purple palette
-    Color? purple50, Color? purple100, Color? purple200, Color? purple300, Color? purple400, Color? purple500, Color? purple600, Color? purple700, Color? purple800, Color? purple900, Color? purple950,
-    
+    Color? purple50,
+    Color? purple100,
+    Color? purple200,
+    Color? purple300,
+    Color? purple400,
+    Color? purple500,
+    Color? purple600,
+    Color? purple700,
+    Color? purple800,
+    Color? purple900,
+    Color? purple950,
+
     // Fuchsia palette
-    Color? fuchsia50, Color? fuchsia100, Color? fuchsia200, Color? fuchsia300, Color? fuchsia400, Color? fuchsia500, Color? fuchsia600, Color? fuchsia700, Color? fuchsia800, Color? fuchsia900, Color? fuchsia950,
-    
+    Color? fuchsia50,
+    Color? fuchsia100,
+    Color? fuchsia200,
+    Color? fuchsia300,
+    Color? fuchsia400,
+    Color? fuchsia500,
+    Color? fuchsia600,
+    Color? fuchsia700,
+    Color? fuchsia800,
+    Color? fuchsia900,
+    Color? fuchsia950,
+
     // Pink palette
-    Color? pink50, Color? pink100, Color? pink200, Color? pink300, Color? pink400, Color? pink500, Color? pink600, Color? pink700, Color? pink800, Color? pink900, Color? pink950,
-    
+    Color? pink50,
+    Color? pink100,
+    Color? pink200,
+    Color? pink300,
+    Color? pink400,
+    Color? pink500,
+    Color? pink600,
+    Color? pink700,
+    Color? pink800,
+    Color? pink900,
+    Color? pink950,
+
     // Rose palette
-    Color? rose50, Color? rose100, Color? rose200, Color? rose300, Color? rose400, Color? rose500, Color? rose600, Color? rose700, Color? rose800, Color? rose900, Color? rose950,
-    
+    Color? rose50,
+    Color? rose100,
+    Color? rose200,
+    Color? rose300,
+    Color? rose400,
+    Color? rose500,
+    Color? rose600,
+    Color? rose700,
+    Color? rose800,
+    Color? rose900,
+    Color? rose950,
+
     // Slate palette
-    Color? slate50, Color? slate100, Color? slate200, Color? slate300, Color? slate400, Color? slate500, Color? slate600, Color? slate700, Color? slate800, Color? slate900, Color? slate950,
-    
+    Color? slate50,
+    Color? slate100,
+    Color? slate200,
+    Color? slate300,
+    Color? slate400,
+    Color? slate500,
+    Color? slate600,
+    Color? slate700,
+    Color? slate800,
+    Color? slate900,
+    Color? slate950,
+
     // Gray palette
-    Color? gray50, Color? gray100, Color? gray200, Color? gray300, Color? gray400, Color? gray500, Color? gray600, Color? gray700, Color? gray800, Color? gray900, Color? gray950,
-    
+    Color? gray50,
+    Color? gray100,
+    Color? gray200,
+    Color? gray300,
+    Color? gray400,
+    Color? gray500,
+    Color? gray600,
+    Color? gray700,
+    Color? gray800,
+    Color? gray900,
+    Color? gray950,
+
     // Zinc palette
-    Color? zinc50, Color? zinc100, Color? zinc200, Color? zinc300, Color? zinc400, Color? zinc500, Color? zinc600, Color? zinc700, Color? zinc800, Color? zinc900, Color? zinc950,
-    
+    Color? zinc50,
+    Color? zinc100,
+    Color? zinc200,
+    Color? zinc300,
+    Color? zinc400,
+    Color? zinc500,
+    Color? zinc600,
+    Color? zinc700,
+    Color? zinc800,
+    Color? zinc900,
+    Color? zinc950,
+
     // Neutral palette
-    Color? neutral50, Color? neutral100, Color? neutral200, Color? neutral300, Color? neutral400, Color? neutral500, Color? neutral600, Color? neutral700, Color? neutral800, Color? neutral900, Color? neutral950,
-    
+    Color? neutral50,
+    Color? neutral100,
+    Color? neutral200,
+    Color? neutral300,
+    Color? neutral400,
+    Color? neutral500,
+    Color? neutral600,
+    Color? neutral700,
+    Color? neutral800,
+    Color? neutral900,
+    Color? neutral950,
+
     // Stone palette
-    Color? stone50, Color? stone100, Color? stone200, Color? stone300, Color? stone400, Color? stone500, Color? stone600, Color? stone700, Color? stone800, Color? stone900, Color? stone950,
-    
+    Color? stone50,
+    Color? stone100,
+    Color? stone200,
+    Color? stone300,
+    Color? stone400,
+    Color? stone500,
+    Color? stone600,
+    Color? stone700,
+    Color? stone800,
+    Color? stone900,
+    Color? stone950,
+
     Map<String, Color>? customColors,
   }) {
     return FlyColors(
       // Special colors
-      inherit: inherit ?? this.inherit, current: current ?? this.current, transparent: transparent ?? this.transparent, black: black ?? this.black, white: white ?? this.white,
-      
+      inherit: inherit ?? this.inherit,
+      current: current ?? this.current,
+      transparent: transparent ?? this.transparent,
+      black: black ?? this.black,
+      white: white ?? this.white,
+
       // Red palette
-      red50: red50 ?? this.red50, red100: red100 ?? this.red100, red200: red200 ?? this.red200, red300: red300 ?? this.red300, red400: red400 ?? this.red400,
-      red500: red500 ?? this.red500, red600: red600 ?? this.red600, red700: red700 ?? this.red700, red800: red800 ?? this.red800, red900: red900 ?? this.red900, red950: red950 ?? this.red950,
-      
+      red50: red50 ?? this.red50,
+      red100: red100 ?? this.red100,
+      red200: red200 ?? this.red200,
+      red300: red300 ?? this.red300,
+      red400: red400 ?? this.red400,
+      red500: red500 ?? this.red500,
+      red600: red600 ?? this.red600,
+      red700: red700 ?? this.red700,
+      red800: red800 ?? this.red800,
+      red900: red900 ?? this.red900,
+      red950: red950 ?? this.red950,
+
       // Orange palette
-      orange50: orange50 ?? this.orange50, orange100: orange100 ?? this.orange100, orange200: orange200 ?? this.orange200, orange300: orange300 ?? this.orange300, orange400: orange400 ?? this.orange400,
-      orange500: orange500 ?? this.orange500, orange600: orange600 ?? this.orange600, orange700: orange700 ?? this.orange700, orange800: orange800 ?? this.orange800, orange900: orange900 ?? this.orange900, orange950: orange950 ?? this.orange950,
-      
+      orange50: orange50 ?? this.orange50,
+      orange100: orange100 ?? this.orange100,
+      orange200: orange200 ?? this.orange200,
+      orange300: orange300 ?? this.orange300,
+      orange400: orange400 ?? this.orange400,
+      orange500: orange500 ?? this.orange500,
+      orange600: orange600 ?? this.orange600,
+      orange700: orange700 ?? this.orange700,
+      orange800: orange800 ?? this.orange800,
+      orange900: orange900 ?? this.orange900,
+      orange950: orange950 ?? this.orange950,
+
       // Amber palette
-      amber50: amber50 ?? this.amber50, amber100: amber100 ?? this.amber100, amber200: amber200 ?? this.amber200, amber300: amber300 ?? this.amber300, amber400: amber400 ?? this.amber400,
-      amber500: amber500 ?? this.amber500, amber600: amber600 ?? this.amber600, amber700: amber700 ?? this.amber700, amber800: amber800 ?? this.amber800, amber900: amber900 ?? this.amber900, amber950: amber950 ?? this.amber950,
-      
+      amber50: amber50 ?? this.amber50,
+      amber100: amber100 ?? this.amber100,
+      amber200: amber200 ?? this.amber200,
+      amber300: amber300 ?? this.amber300,
+      amber400: amber400 ?? this.amber400,
+      amber500: amber500 ?? this.amber500,
+      amber600: amber600 ?? this.amber600,
+      amber700: amber700 ?? this.amber700,
+      amber800: amber800 ?? this.amber800,
+      amber900: amber900 ?? this.amber900,
+      amber950: amber950 ?? this.amber950,
+
       // Yellow palette
-      yellow50: yellow50 ?? this.yellow50, yellow100: yellow100 ?? this.yellow100, yellow200: yellow200 ?? this.yellow200, yellow300: yellow300 ?? this.yellow300, yellow400: yellow400 ?? this.yellow400,
-      yellow500: yellow500 ?? this.yellow500, yellow600: yellow600 ?? this.yellow600, yellow700: yellow700 ?? this.yellow700, yellow800: yellow800 ?? this.yellow800, yellow900: yellow900 ?? this.yellow900, yellow950: yellow950 ?? this.yellow950,
-      
+      yellow50: yellow50 ?? this.yellow50,
+      yellow100: yellow100 ?? this.yellow100,
+      yellow200: yellow200 ?? this.yellow200,
+      yellow300: yellow300 ?? this.yellow300,
+      yellow400: yellow400 ?? this.yellow400,
+      yellow500: yellow500 ?? this.yellow500,
+      yellow600: yellow600 ?? this.yellow600,
+      yellow700: yellow700 ?? this.yellow700,
+      yellow800: yellow800 ?? this.yellow800,
+      yellow900: yellow900 ?? this.yellow900,
+      yellow950: yellow950 ?? this.yellow950,
+
       // Lime palette
-      lime50: lime50 ?? this.lime50, lime100: lime100 ?? this.lime100, lime200: lime200 ?? this.lime200, lime300: lime300 ?? this.lime300, lime400: lime400 ?? this.lime400,
-      lime500: lime500 ?? this.lime500, lime600: lime600 ?? this.lime600, lime700: lime700 ?? this.lime700, lime800: lime800 ?? this.lime800, lime900: lime900 ?? this.lime900, lime950: lime950 ?? this.lime950,
-      
+      lime50: lime50 ?? this.lime50,
+      lime100: lime100 ?? this.lime100,
+      lime200: lime200 ?? this.lime200,
+      lime300: lime300 ?? this.lime300,
+      lime400: lime400 ?? this.lime400,
+      lime500: lime500 ?? this.lime500,
+      lime600: lime600 ?? this.lime600,
+      lime700: lime700 ?? this.lime700,
+      lime800: lime800 ?? this.lime800,
+      lime900: lime900 ?? this.lime900,
+      lime950: lime950 ?? this.lime950,
+
       // Green palette
-      green50: green50 ?? this.green50, green100: green100 ?? this.green100, green200: green200 ?? this.green200, green300: green300 ?? this.green300, green400: green400 ?? this.green400,
-      green500: green500 ?? this.green500, green600: green600 ?? this.green600, green700: green700 ?? this.green700, green800: green800 ?? this.green800, green900: green900 ?? this.green900, green950: green950 ?? this.green950,
-      
+      green50: green50 ?? this.green50,
+      green100: green100 ?? this.green100,
+      green200: green200 ?? this.green200,
+      green300: green300 ?? this.green300,
+      green400: green400 ?? this.green400,
+      green500: green500 ?? this.green500,
+      green600: green600 ?? this.green600,
+      green700: green700 ?? this.green700,
+      green800: green800 ?? this.green800,
+      green900: green900 ?? this.green900,
+      green950: green950 ?? this.green950,
+
       // Emerald palette
-      emerald50: emerald50 ?? this.emerald50, emerald100: emerald100 ?? this.emerald100, emerald200: emerald200 ?? this.emerald200, emerald300: emerald300 ?? this.emerald300, emerald400: emerald400 ?? this.emerald400,
-      emerald500: emerald500 ?? this.emerald500, emerald600: emerald600 ?? this.emerald600, emerald700: emerald700 ?? this.emerald700, emerald800: emerald800 ?? this.emerald800, emerald900: emerald900 ?? this.emerald900, emerald950: emerald950 ?? this.emerald950,
-      
+      emerald50: emerald50 ?? this.emerald50,
+      emerald100: emerald100 ?? this.emerald100,
+      emerald200: emerald200 ?? this.emerald200,
+      emerald300: emerald300 ?? this.emerald300,
+      emerald400: emerald400 ?? this.emerald400,
+      emerald500: emerald500 ?? this.emerald500,
+      emerald600: emerald600 ?? this.emerald600,
+      emerald700: emerald700 ?? this.emerald700,
+      emerald800: emerald800 ?? this.emerald800,
+      emerald900: emerald900 ?? this.emerald900,
+      emerald950: emerald950 ?? this.emerald950,
+
       // Teal palette
-      teal50: teal50 ?? this.teal50, teal100: teal100 ?? this.teal100, teal200: teal200 ?? this.teal200, teal300: teal300 ?? this.teal300, teal400: teal400 ?? this.teal400,
-      teal500: teal500 ?? this.teal500, teal600: teal600 ?? this.teal600, teal700: teal700 ?? this.teal700, teal800: teal800 ?? this.teal800, teal900: teal900 ?? this.teal900, teal950: teal950 ?? this.teal950,
-      
+      teal50: teal50 ?? this.teal50,
+      teal100: teal100 ?? this.teal100,
+      teal200: teal200 ?? this.teal200,
+      teal300: teal300 ?? this.teal300,
+      teal400: teal400 ?? this.teal400,
+      teal500: teal500 ?? this.teal500,
+      teal600: teal600 ?? this.teal600,
+      teal700: teal700 ?? this.teal700,
+      teal800: teal800 ?? this.teal800,
+      teal900: teal900 ?? this.teal900,
+      teal950: teal950 ?? this.teal950,
+
       // Cyan palette
-      cyan50: cyan50 ?? this.cyan50, cyan100: cyan100 ?? this.cyan100, cyan200: cyan200 ?? this.cyan200, cyan300: cyan300 ?? this.cyan300, cyan400: cyan400 ?? this.cyan400,
-      cyan500: cyan500 ?? this.cyan500, cyan600: cyan600 ?? this.cyan600, cyan700: cyan700 ?? this.cyan700, cyan800: cyan800 ?? this.cyan800, cyan900: cyan900 ?? this.cyan900, cyan950: cyan950 ?? this.cyan950,
-      
+      cyan50: cyan50 ?? this.cyan50,
+      cyan100: cyan100 ?? this.cyan100,
+      cyan200: cyan200 ?? this.cyan200,
+      cyan300: cyan300 ?? this.cyan300,
+      cyan400: cyan400 ?? this.cyan400,
+      cyan500: cyan500 ?? this.cyan500,
+      cyan600: cyan600 ?? this.cyan600,
+      cyan700: cyan700 ?? this.cyan700,
+      cyan800: cyan800 ?? this.cyan800,
+      cyan900: cyan900 ?? this.cyan900,
+      cyan950: cyan950 ?? this.cyan950,
+
       // Sky palette
-      sky50: sky50 ?? this.sky50, sky100: sky100 ?? this.sky100, sky200: sky200 ?? this.sky200, sky300: sky300 ?? this.sky300, sky400: sky400 ?? this.sky400,
-      sky500: sky500 ?? this.sky500, sky600: sky600 ?? this.sky600, sky700: sky700 ?? this.sky700, sky800: sky800 ?? this.sky800, sky900: sky900 ?? this.sky900, sky950: sky950 ?? this.sky950,
-      
+      sky50: sky50 ?? this.sky50,
+      sky100: sky100 ?? this.sky100,
+      sky200: sky200 ?? this.sky200,
+      sky300: sky300 ?? this.sky300,
+      sky400: sky400 ?? this.sky400,
+      sky500: sky500 ?? this.sky500,
+      sky600: sky600 ?? this.sky600,
+      sky700: sky700 ?? this.sky700,
+      sky800: sky800 ?? this.sky800,
+      sky900: sky900 ?? this.sky900,
+      sky950: sky950 ?? this.sky950,
+
       // Blue palette
-      blue50: blue50 ?? this.blue50, blue100: blue100 ?? this.blue100, blue200: blue200 ?? this.blue200, blue300: blue300 ?? this.blue300, blue400: blue400 ?? this.blue400,
-      blue500: blue500 ?? this.blue500, blue600: blue600 ?? this.blue600, blue700: blue700 ?? this.blue700, blue800: blue800 ?? this.blue800, blue900: blue900 ?? this.blue900, blue950: blue950 ?? this.blue950,
-      
+      blue50: blue50 ?? this.blue50,
+      blue100: blue100 ?? this.blue100,
+      blue200: blue200 ?? this.blue200,
+      blue300: blue300 ?? this.blue300,
+      blue400: blue400 ?? this.blue400,
+      blue500: blue500 ?? this.blue500,
+      blue600: blue600 ?? this.blue600,
+      blue700: blue700 ?? this.blue700,
+      blue800: blue800 ?? this.blue800,
+      blue900: blue900 ?? this.blue900,
+      blue950: blue950 ?? this.blue950,
+
       // Indigo palette
-      indigo50: indigo50 ?? this.indigo50, indigo100: indigo100 ?? this.indigo100, indigo200: indigo200 ?? this.indigo200, indigo300: indigo300 ?? this.indigo300, indigo400: indigo400 ?? this.indigo400,
-      indigo500: indigo500 ?? this.indigo500, indigo600: indigo600 ?? this.indigo600, indigo700: indigo700 ?? this.indigo700, indigo800: indigo800 ?? this.indigo800, indigo900: indigo900 ?? this.indigo900, indigo950: indigo950 ?? this.indigo950,
-      
+      indigo50: indigo50 ?? this.indigo50,
+      indigo100: indigo100 ?? this.indigo100,
+      indigo200: indigo200 ?? this.indigo200,
+      indigo300: indigo300 ?? this.indigo300,
+      indigo400: indigo400 ?? this.indigo400,
+      indigo500: indigo500 ?? this.indigo500,
+      indigo600: indigo600 ?? this.indigo600,
+      indigo700: indigo700 ?? this.indigo700,
+      indigo800: indigo800 ?? this.indigo800,
+      indigo900: indigo900 ?? this.indigo900,
+      indigo950: indigo950 ?? this.indigo950,
+
       // Violet palette
-      violet50: violet50 ?? this.violet50, violet100: violet100 ?? this.violet100, violet200: violet200 ?? this.violet200, violet300: violet300 ?? this.violet300, violet400: violet400 ?? this.violet400,
-      violet500: violet500 ?? this.violet500, violet600: violet600 ?? this.violet600, violet700: violet700 ?? this.violet700, violet800: violet800 ?? this.violet800, violet900: violet900 ?? this.violet900, violet950: violet950 ?? this.violet950,
-      
+      violet50: violet50 ?? this.violet50,
+      violet100: violet100 ?? this.violet100,
+      violet200: violet200 ?? this.violet200,
+      violet300: violet300 ?? this.violet300,
+      violet400: violet400 ?? this.violet400,
+      violet500: violet500 ?? this.violet500,
+      violet600: violet600 ?? this.violet600,
+      violet700: violet700 ?? this.violet700,
+      violet800: violet800 ?? this.violet800,
+      violet900: violet900 ?? this.violet900,
+      violet950: violet950 ?? this.violet950,
+
       // Purple palette
-      purple50: purple50 ?? this.purple50, purple100: purple100 ?? this.purple100, purple200: purple200 ?? this.purple200, purple300: purple300 ?? this.purple300, purple400: purple400 ?? this.purple400,
-      purple500: purple500 ?? this.purple500, purple600: purple600 ?? this.purple600, purple700: purple700 ?? this.purple700, purple800: purple800 ?? this.purple800, purple900: purple900 ?? this.purple900, purple950: purple950 ?? this.purple950,
-      
+      purple50: purple50 ?? this.purple50,
+      purple100: purple100 ?? this.purple100,
+      purple200: purple200 ?? this.purple200,
+      purple300: purple300 ?? this.purple300,
+      purple400: purple400 ?? this.purple400,
+      purple500: purple500 ?? this.purple500,
+      purple600: purple600 ?? this.purple600,
+      purple700: purple700 ?? this.purple700,
+      purple800: purple800 ?? this.purple800,
+      purple900: purple900 ?? this.purple900,
+      purple950: purple950 ?? this.purple950,
+
       // Fuchsia palette
-      fuchsia50: fuchsia50 ?? this.fuchsia50, fuchsia100: fuchsia100 ?? this.fuchsia100, fuchsia200: fuchsia200 ?? this.fuchsia200, fuchsia300: fuchsia300 ?? this.fuchsia300, fuchsia400: fuchsia400 ?? this.fuchsia400,
-      fuchsia500: fuchsia500 ?? this.fuchsia500, fuchsia600: fuchsia600 ?? this.fuchsia600, fuchsia700: fuchsia700 ?? this.fuchsia700, fuchsia800: fuchsia800 ?? this.fuchsia800, fuchsia900: fuchsia900 ?? this.fuchsia900, fuchsia950: fuchsia950 ?? this.fuchsia950,
-      
+      fuchsia50: fuchsia50 ?? this.fuchsia50,
+      fuchsia100: fuchsia100 ?? this.fuchsia100,
+      fuchsia200: fuchsia200 ?? this.fuchsia200,
+      fuchsia300: fuchsia300 ?? this.fuchsia300,
+      fuchsia400: fuchsia400 ?? this.fuchsia400,
+      fuchsia500: fuchsia500 ?? this.fuchsia500,
+      fuchsia600: fuchsia600 ?? this.fuchsia600,
+      fuchsia700: fuchsia700 ?? this.fuchsia700,
+      fuchsia800: fuchsia800 ?? this.fuchsia800,
+      fuchsia900: fuchsia900 ?? this.fuchsia900,
+      fuchsia950: fuchsia950 ?? this.fuchsia950,
+
       // Pink palette
-      pink50: pink50 ?? this.pink50, pink100: pink100 ?? this.pink100, pink200: pink200 ?? this.pink200, pink300: pink300 ?? this.pink300, pink400: pink400 ?? this.pink400,
-      pink500: pink500 ?? this.pink500, pink600: pink600 ?? this.pink600, pink700: pink700 ?? this.pink700, pink800: pink800 ?? this.pink800, pink900: pink900 ?? this.pink900, pink950: pink950 ?? this.pink950,
-      
+      pink50: pink50 ?? this.pink50,
+      pink100: pink100 ?? this.pink100,
+      pink200: pink200 ?? this.pink200,
+      pink300: pink300 ?? this.pink300,
+      pink400: pink400 ?? this.pink400,
+      pink500: pink500 ?? this.pink500,
+      pink600: pink600 ?? this.pink600,
+      pink700: pink700 ?? this.pink700,
+      pink800: pink800 ?? this.pink800,
+      pink900: pink900 ?? this.pink900,
+      pink950: pink950 ?? this.pink950,
+
       // Rose palette
-      rose50: rose50 ?? this.rose50, rose100: rose100 ?? this.rose100, rose200: rose200 ?? this.rose200, rose300: rose300 ?? this.rose300, rose400: rose400 ?? this.rose400,
-      rose500: rose500 ?? this.rose500, rose600: rose600 ?? this.rose600, rose700: rose700 ?? this.rose700, rose800: rose800 ?? this.rose800, rose900: rose900 ?? this.rose900, rose950: rose950 ?? this.rose950,
-      
+      rose50: rose50 ?? this.rose50,
+      rose100: rose100 ?? this.rose100,
+      rose200: rose200 ?? this.rose200,
+      rose300: rose300 ?? this.rose300,
+      rose400: rose400 ?? this.rose400,
+      rose500: rose500 ?? this.rose500,
+      rose600: rose600 ?? this.rose600,
+      rose700: rose700 ?? this.rose700,
+      rose800: rose800 ?? this.rose800,
+      rose900: rose900 ?? this.rose900,
+      rose950: rose950 ?? this.rose950,
+
       // Slate palette
-      slate50: slate50 ?? this.slate50, slate100: slate100 ?? this.slate100, slate200: slate200 ?? this.slate200, slate300: slate300 ?? this.slate300, slate400: slate400 ?? this.slate400,
-      slate500: slate500 ?? this.slate500, slate600: slate600 ?? this.slate600, slate700: slate700 ?? this.slate700, slate800: slate800 ?? this.slate800, slate900: slate900 ?? this.slate900, slate950: slate950 ?? this.slate950,
-      
+      slate50: slate50 ?? this.slate50,
+      slate100: slate100 ?? this.slate100,
+      slate200: slate200 ?? this.slate200,
+      slate300: slate300 ?? this.slate300,
+      slate400: slate400 ?? this.slate400,
+      slate500: slate500 ?? this.slate500,
+      slate600: slate600 ?? this.slate600,
+      slate700: slate700 ?? this.slate700,
+      slate800: slate800 ?? this.slate800,
+      slate900: slate900 ?? this.slate900,
+      slate950: slate950 ?? this.slate950,
+
       // Gray palette
-      gray50: gray50 ?? this.gray50, gray100: gray100 ?? this.gray100, gray200: gray200 ?? this.gray200, gray300: gray300 ?? this.gray300, gray400: gray400 ?? this.gray400,
-      gray500: gray500 ?? this.gray500, gray600: gray600 ?? this.gray600, gray700: gray700 ?? this.gray700, gray800: gray800 ?? this.gray800, gray900: gray900 ?? this.gray900, gray950: gray950 ?? this.gray950,
-      
+      gray50: gray50 ?? this.gray50,
+      gray100: gray100 ?? this.gray100,
+      gray200: gray200 ?? this.gray200,
+      gray300: gray300 ?? this.gray300,
+      gray400: gray400 ?? this.gray400,
+      gray500: gray500 ?? this.gray500,
+      gray600: gray600 ?? this.gray600,
+      gray700: gray700 ?? this.gray700,
+      gray800: gray800 ?? this.gray800,
+      gray900: gray900 ?? this.gray900,
+      gray950: gray950 ?? this.gray950,
+
       // Zinc palette
-      zinc50: zinc50 ?? this.zinc50, zinc100: zinc100 ?? this.zinc100, zinc200: zinc200 ?? this.zinc200, zinc300: zinc300 ?? this.zinc300, zinc400: zinc400 ?? this.zinc400,
-      zinc500: zinc500 ?? this.zinc500, zinc600: zinc600 ?? this.zinc600, zinc700: zinc700 ?? this.zinc700, zinc800: zinc800 ?? this.zinc800, zinc900: zinc900 ?? this.zinc900, zinc950: zinc950 ?? this.zinc950,
-      
+      zinc50: zinc50 ?? this.zinc50,
+      zinc100: zinc100 ?? this.zinc100,
+      zinc200: zinc200 ?? this.zinc200,
+      zinc300: zinc300 ?? this.zinc300,
+      zinc400: zinc400 ?? this.zinc400,
+      zinc500: zinc500 ?? this.zinc500,
+      zinc600: zinc600 ?? this.zinc600,
+      zinc700: zinc700 ?? this.zinc700,
+      zinc800: zinc800 ?? this.zinc800,
+      zinc900: zinc900 ?? this.zinc900,
+      zinc950: zinc950 ?? this.zinc950,
+
       // Neutral palette
-      neutral50: neutral50 ?? this.neutral50, neutral100: neutral100 ?? this.neutral100, neutral200: neutral200 ?? this.neutral200, neutral300: neutral300 ?? this.neutral300, neutral400: neutral400 ?? this.neutral400,
-      neutral500: neutral500 ?? this.neutral500, neutral600: neutral600 ?? this.neutral600, neutral700: neutral700 ?? this.neutral700, neutral800: neutral800 ?? this.neutral800, neutral900: neutral900 ?? this.neutral900, neutral950: neutral950 ?? this.neutral950,
-      
+      neutral50: neutral50 ?? this.neutral50,
+      neutral100: neutral100 ?? this.neutral100,
+      neutral200: neutral200 ?? this.neutral200,
+      neutral300: neutral300 ?? this.neutral300,
+      neutral400: neutral400 ?? this.neutral400,
+      neutral500: neutral500 ?? this.neutral500,
+      neutral600: neutral600 ?? this.neutral600,
+      neutral700: neutral700 ?? this.neutral700,
+      neutral800: neutral800 ?? this.neutral800,
+      neutral900: neutral900 ?? this.neutral900,
+      neutral950: neutral950 ?? this.neutral950,
+
       // Stone palette
-      stone50: stone50 ?? this.stone50, stone100: stone100 ?? this.stone100, stone200: stone200 ?? this.stone200, stone300: stone300 ?? this.stone300, stone400: stone400 ?? this.stone400,
-      stone500: stone500 ?? this.stone500, stone600: stone600 ?? this.stone600, stone700: stone700 ?? this.stone700, stone800: stone800 ?? this.stone800, stone900: stone900 ?? this.stone900, stone950: stone950 ?? this.stone950,
-      
+      stone50: stone50 ?? this.stone50,
+      stone100: stone100 ?? this.stone100,
+      stone200: stone200 ?? this.stone200,
+      stone300: stone300 ?? this.stone300,
+      stone400: stone400 ?? this.stone400,
+      stone500: stone500 ?? this.stone500,
+      stone600: stone600 ?? this.stone600,
+      stone700: stone700 ?? this.stone700,
+      stone800: stone800 ?? this.stone800,
+      stone900: stone900 ?? this.stone900,
+      stone950: stone950 ?? this.stone950,
+
       customColors: customColors ?? this.customColors,
     );
   }

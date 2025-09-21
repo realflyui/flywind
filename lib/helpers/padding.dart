@@ -22,24 +22,21 @@ class FlyPaddingUtils {
   /// Applies padding to a widget using the resolved EdgeInsets
   static Widget apply(BuildContext context, FlyStyle style, Widget child) {
     final padding = resolve(context, style);
-    
+
     // If no padding is set, return the child as-is
     if (padding == EdgeInsets.zero) {
       return child;
     }
-    
+
     // Apply padding using Padding widget
-    return Padding(
-      padding: padding,
-      child: child,
-    );
+    return Padding(padding: padding, child: child);
   }
 }
 
 /// Mixin that provides Tailwind-like padding methods for any widget
 mixin FlyPadding<T> {
   FlyStyle get style;
-  
+
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set uniform padding using string values (e.g., "10", "100px", "1rem")

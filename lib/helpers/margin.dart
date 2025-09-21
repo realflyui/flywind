@@ -22,24 +22,21 @@ class FlyMarginUtils {
   /// Applies margin to a widget using the resolved EdgeInsets
   static Widget apply(BuildContext context, FlyStyle style, Widget child) {
     final margin = resolve(context, style);
-    
+
     // If no margin is set, return the child as-is
     if (margin == EdgeInsets.zero) {
       return child;
     }
-    
+
     // Apply margin using Container
-    return Container(
-      margin: margin,
-      child: child,
-    );
+    return Container(margin: margin, child: child);
   }
 }
 
 /// Mixin that provides Tailwind-like margin methods for any widget
 mixin FlyMargin<T> {
   FlyStyle get style;
-  
+
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set uniform margin using string values (e.g., "10", "100px", "1rem")

@@ -5,7 +5,9 @@ import '../parsers/unit_parser.dart';
 /// Common spacing utilities for padding and margin
 class FlySpacingUtils {
   /// Resolves spacing from FlyStyle and FlyConfig into EdgeInsets
-  static EdgeInsets resolve(BuildContext context, FlyStyle style, {
+  static EdgeInsets resolve(
+    BuildContext context,
+    FlyStyle style, {
     required String? Function(FlyStyle) getUniform,
     required String? Function(FlyStyle) getX,
     required String? Function(FlyStyle) getY,
@@ -19,14 +21,14 @@ class FlySpacingUtils {
     double right = 0;
     double top = 0;
     double bottom = 0;
-    
+
     // Apply uniform spacing
     final uniformValue = getUniform(style);
     if (uniformValue != null) {
       final value = _parseSpacingValue(uniformValue, 'uniform');
       left = right = top = bottom = value;
     }
-    
+
     // Apply directional spacing (these override uniform spacing)
     final xValue = getX(style);
     if (xValue != null) {
@@ -54,13 +56,8 @@ class FlySpacingUtils {
     if (bottomValue != null) {
       bottom = _parseSpacingValue(bottomValue, 'bottom');
     }
-    
-    return EdgeInsets.only(
-      left: left,
-      right: right,
-      top: top,
-      bottom: bottom,
-    );
+
+    return EdgeInsets.only(left: left, right: right, top: top, bottom: bottom);
   }
 
   /// Parses spacing value from string with fallback to token scale
@@ -70,7 +67,7 @@ class FlySpacingUtils {
     if (parsedValue != null) {
       return parsedValue;
     }
-    
+
     // If parsing fails, try to treat it as a token scale index
     final tokenIndex = int.tryParse(value);
     if (tokenIndex != null) {
@@ -79,7 +76,7 @@ class FlySpacingUtils {
       _handleInvalidSpacingValue(value, direction);
       return 0.0;
     }
-    
+
     // If all parsing fails, show error and return 0
     _handleInvalidSpacingValue(value, direction);
     return 0.0;
@@ -87,12 +84,13 @@ class FlySpacingUtils {
 
   /// Handles invalid spacing values with helpful messages
   static void _handleInvalidSpacingValue(String value, String direction) {
-    String errorMessage = 'Invalid spacing value "$value" for $direction spacing. '
+    String errorMessage =
+        'Invalid spacing value "$value" for $direction spacing. '
         'Supported formats: "10", "10px", "1rem", "1em", "50%", etc.';
-    
+
     // In debug mode, throw an assertion error with helpful message
     assert(false, errorMessage);
-    
+
     // In release mode, print a warning
     print('⚠️ FlySpacing Warning: $errorMessage');
   }

@@ -4,16 +4,15 @@ import 'tokens/spacing.dart';
 import 'tokens/border_radius.dart';
 import 'helpers/theme.dart';
 
-
 /// Single source of truth for all custom Flywind values
 /// This is the ONLY place you need to define your custom colors and spacing
 class FlyConfig {
   /// Custom colors - add your custom colors here as strings
   static const Map<String, String> customColors = {
-    'leif': '#8B5CF6',     // Purple
-    'brand': '#10B981',    // Green
-    'accent': '#F59E0B',   // Orange
-    'primary': '#3B82F6',  // Blue
+    'leif': '#8B5CF6', // Purple
+    'brand': '#10B981', // Green
+    'accent': '#F59E0B', // Orange
+    'primary': '#3B82F6', // Blue
     'secondary': '#6B7280', // Gray
   };
 
@@ -35,7 +34,6 @@ class FlyConfig {
     'button': '8',
   };
 
-
   /// Create a complete FlyTheme with all custom values
   static FlyTheme createTheme() {
     return FlyTheme.withCustom(
@@ -44,17 +42,17 @@ class FlyConfig {
       customBorderRadius: customBorderRadius,
     );
   }
-  
+
   /// Get a custom spacing value
   static String? getCustomSpacing(String key) {
     return customSpacing[key];
   }
-  
+
   /// Get a custom color value as string
   static String? getCustomColor(String key) {
     return customColors[key];
   }
-  
+
   /// Get a custom border radius value
   static double? getCustomBorderRadius(String key) {
     final stringValue = customBorderRadius[key];
@@ -89,4 +87,3 @@ extension FlyCustomBorderRadius on FlyBorderRadius {
   String? get card => customBorderRadius['card'];
   String? get button => customBorderRadius['button'];
 }
-
