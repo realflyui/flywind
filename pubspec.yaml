@@ -6,6 +6,9 @@ repository: https://github.com/realflyui/flywind
 issue_tracker: https://github.com/realflyui/flywind/issues
 documentation: https://github.com/realflyui/flywind#readme
 
+executables:
+  fly: fly
+
 environment:
   sdk: ^3.9.2
 

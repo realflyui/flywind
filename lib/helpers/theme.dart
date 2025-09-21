@@ -43,7 +43,7 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
 
     return FlyTheme(
       spacing: FlySpacing.defaultSpacing.copyWith(
-        customSpacing: customSpacing ?? {},
+        customSpacing: customSpacing?.cast<int, String>() ?? {},
       ),
       colors: FlyColors.defaultColors.copyWith(customColors: parsedColors),
       borderRadius: FlyBorderRadius.defaultBorderRadius.copyWith(
