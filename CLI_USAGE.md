@@ -4,7 +4,19 @@ The FlyWind CLI provides easy-to-use commands for managing design tokens in your
 
 ## Installation
 
-### From pub.dev (when published)
+### Quick Setup (Recommended)
+```bash
+# 1. Add to your Flutter project
+flutter pub add flywind
+
+# 2. Activate CLI globally (one-time setup)
+dart pub global activate flywind
+
+# 3. Initialize FlyWind in your project
+fly init
+```
+
+### From pub.dev (CLI only)
 ```bash
 dart pub global activate flywind
 ```
@@ -61,13 +73,23 @@ fly help
 
 ## Workflow
 
-### 1. Initialize FlyWind
+### 1. Add FlyWind to your project
 ```bash
 cd your_flutter_project
+flutter pub add flywind
+```
+
+### 2. Activate CLI globally (one-time setup)
+```bash
+dart pub global activate flywind
+```
+
+### 3. Initialize FlyWind in your project
+```bash
 fly init
 ```
 
-### 2. Customize Your Tokens
+### 4. Customize Your Tokens
 Edit the JSON files in the `fly/` directory:
 
 ```json
@@ -83,12 +105,12 @@ Edit the JSON files in the `fly/` directory:
 }
 ```
 
-### 3. Generate Classes
+### 5. Generate Classes
 ```bash
 fly generate
 ```
 
-### 4. Use in Your App
+### 6. Use in Your App
 ```dart
 import 'package:your_app/tokens/colors.dart';
 import 'package:your_app/tokens/spacing.dart';

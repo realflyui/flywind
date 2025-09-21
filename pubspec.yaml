@@ -1,5 +1,11 @@
 name: flywind
-description: "A Tailwind-like utility-first Flutter component library that brings the power and flexibility of Tailwind CSS to Flutter development."
+description: |
+  A Tailwind-like utility-first Flutter component library that brings the power and flexibility of Tailwind CSS to Flutter development.
+
+  Quick start:
+  1. flutter pub add flywind
+  2. dart pub global activate flywind
+  3. fly init
 version: 0.1.0
 homepage: https://github.com/realflyui/flywind
 repository: https://github.com/realflyui/flywind

@@ -364,6 +364,22 @@ Widget build(BuildContext context) {
 
 ## 🚀 Getting Started
 
+### Quick Setup
+```bash
+# 1. Add to your Flutter project
+flutter pub add flywind
+
+# 2. Activate CLI globally (one-time setup)
+dart pub global activate flywind
+
+# 3. Initialize FlyWind in your project
+fly init
+
+# 4. Generate design tokens
+fly generate
+```
+
+### Development Setup
 1. **Clone the repository**
 2. **Run the example app**:
    ```bash
