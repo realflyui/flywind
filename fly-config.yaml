@@ -1,0 +1,23 @@
+# FlyWind Configuration
+# 
+# This file defines custom tokens that extend the default FlyWind tokens.
+# Run 'dart tailwind/generate_custom_tokens.dart' to generate custom token classes.
+
+extend:
+  colors:
+    brand-primary: '#FF6B35'
+    brand-secondary: '#004E89'
+    brand-accent: '#00D4AA'
+    semantic-success: '#10B981'
+    semantic-warning: '#F59E0B'
+    semantic-error: '#EF4444'
+    semantic-info: '#3B82F6'
+  
+  spacing:
+    xs: '2'
+    sm: '4'
+    md: '8'
+    lg: '16'
+    xl: '32'
+    2xl: '48'
+    
