@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
             // Custom border radius example using extension
             FlyContainer(
               child: FlyText('Custom pill border radius').color('white'),
-            ).bg('brand').p(spacing.s2).rounded('pill').mb(spacing.s2),
+            ).bg('brand').p(spacing.s2).rounded(borderRadius.pill).mb(spacing.s2),
 
             // Material button using Flywind theme
             Padding(
@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
                   foregroundColor: Colors.white,
                   padding: EdgeInsets.all(double.parse(spacing.s4)),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(borderRadius.lg),
+                    borderRadius: BorderRadius.circular(double.parse(borderRadius.lg)),
                   ),
                 ),
                 onPressed: () {},

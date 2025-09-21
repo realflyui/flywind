@@ -28,7 +28,7 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
   static FlyTheme withCustom({
     Map<String, String>? customColors,
     Map<String, String>? customSpacing,
-    Map<String, double>? customBorderRadius,
+    Map<String, String>? customBorderRadius,
   }) {
     // Parse string colors to Color objects
     Map<String, Color> parsedColors = {};
@@ -90,5 +90,5 @@ extension FlyContext on BuildContext {
   Color color(String name) => flywind.colors[name] ?? Colors.black;
   
   /// Convenience method for border radius values
-  double radius(String name) => flywind.borderRadius[name] ?? 0.0;
+  double radius(String name) => flywind.borderRadius.getValue(name) ?? 0.0;
 }

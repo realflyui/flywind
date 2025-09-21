@@ -93,15 +93,22 @@ class FlyRoundedUtils {
   }
 
   /// Gets rounded value with error handling for invalid keys
-  static double _getRoundedValue(FlyBorderRadius borderRadius, String key, String direction) {
-    final value = borderRadius[key];
-    
-    if (value == null) {
-      _handleMissingRounded(key, direction, borderRadius.values.keys.toList());
-      return 0.0;
+  static double _getRoundedValue(FlyBorderRadius borderRadius, String input, String direction) {
+    // First try to look up as a key
+    final value = borderRadius.getValue(input);
+    if (value != null) {
+      return value;
     }
     
-    return value;
+    // If not found as key, try to parse as direct value
+    final directValue = double.tryParse(input);
+    if (directValue != null) {
+      return directValue;
+    }
+    
+    // If neither works, show error
+    _handleMissingRounded(input, direction, borderRadius.values.keys.toList());
+    return 0.0;
   }
 
   /// Handles missing rounded errors with helpful messages
@@ -125,7 +132,7 @@ mixin FlyRounded<T> {
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set uniform rounded styling using Tailwind scale
-  T rounded([String size = '']) {
+  T rounded([String? size]) {
     return copyWith(style.copyWith(rounded: size));
   }
 

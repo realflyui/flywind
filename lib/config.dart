@@ -27,12 +27,12 @@ class FlyConfig {
   };
 
   /// Custom border radius - add your custom border radius here
-  static const Map<String, double> customBorderRadius = {
-    'leif': 20.0,
-    'brand': 16.0,
-    'pill': 50.0,
-    'card': 12.0,
-    'button': 8.0,
+  static const Map<String, String> customBorderRadius = {
+    'leif': '20',
+    'brand': '16',
+    'pill': '50',
+    'card': '12',
+    'button': '8',
   };
 
 
@@ -57,7 +57,9 @@ class FlyConfig {
   
   /// Get a custom border radius value
   static double? getCustomBorderRadius(String key) {
-    return customBorderRadius[key];
+    final stringValue = customBorderRadius[key];
+    if (stringValue == null) return null;
+    return double.tryParse(stringValue);
   }
 }
 
@@ -81,9 +83,10 @@ extension FlyCustomSpacing on FlySpacing {
 
 /// Extensions for custom border radius - provides clean dot notation
 extension FlyCustomBorderRadius on FlyBorderRadius {
-  double? get leif => customBorderRadius['leif'];
-  double? get brand => customBorderRadius['brand'];
-  double? get pill => customBorderRadius['pill'];
-  double? get card => customBorderRadius['card'];
-  double? get button => customBorderRadius['button'];
+  String? get leif => customBorderRadius['leif'];
+  String? get brand => customBorderRadius['brand'];
+  String? get pill => customBorderRadius['pill'];
+  String? get card => customBorderRadius['card'];
+  String? get button => customBorderRadius['button'];
 }
+
