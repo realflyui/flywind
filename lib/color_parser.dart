@@ -47,11 +47,6 @@ class FlyColorParser {
     return null; // Invalid format
   }
 
-  /// Parse a color string or Color object into a Color object, returning Colors.black if parsing fails
-  static Color parseOrBlack(dynamic value, {Map<String, Color>? themeColors}) {
-    return parse(value, themeColors: themeColors) ?? Colors.black;
-  }
-
   /// Check if a string is a hex color (with or without #)
   static bool _isHexColor(String value) {
     final hexPattern = RegExp(r'^[0-9a-f]{6}$|^[0-9a-f]{8}$');
@@ -67,17 +62,15 @@ class FlyColorParser {
       hex = hex.split('').map((char) => char + char).join();
     }
     
-    // Handle 6-character hex
+    // Add alpha channel if not present
     if (hex.length == 6) {
-      hex = 'FF$hex'; // Add alpha channel
+      hex = 'FF$hex';
     }
     
-    // Handle 8-character hex
+    // Parse as 8-character hex
     if (hex.length == 8) {
       final colorValue = int.tryParse(hex, radix: 16);
-      if (colorValue != null) {
-        return Color(colorValue);
-      }
+      return colorValue != null ? Color(colorValue) : null;
     }
     
     return null;
@@ -119,23 +112,4 @@ class FlyColorParser {
     
     return null;
   }
-
-}
-
-/// Extension methods for convenient color parsing on String
-extension FlyColorStringExtension on String {
-  Color? parseFlyColor({Map<String, Color>? themeColors}) => 
-    FlyColorParser.parse(this, themeColors: themeColors);
-  
-  Color parseFlyColorOrBlack({Map<String, Color>? themeColors}) => 
-    FlyColorParser.parseOrBlack(this, themeColors: themeColors);
-}
-
-/// Extension methods for convenient color parsing on Color
-extension FlyColorObjectExtension on Color {
-  Color? parseFlyColor({Map<String, Color>? themeColors}) => 
-    FlyColorParser.parse(this, themeColors: themeColors);
-  
-  Color parseFlyColorOrBlack({Map<String, Color>? themeColors}) => 
-    FlyColorParser.parseOrBlack(this, themeColors: themeColors);
 }

@@ -64,6 +64,9 @@ class HomePage extends StatelessWidget {
             // Mixed spacing examples
             FlyText('Mixed spacing example').px(spacing.s3).py(spacing.s2).color('teal600').mb('8'),
             
+            // Test 100px horizontal padding
+            FlyText('Testing 100px horizontal padding').px('100px').color('red600').mb('8'),
+            
             // Background color examples using string-based spacing
             FlyContainer(
               child: FlyText('Container with leif background').color('white'),
