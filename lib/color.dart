@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'style.dart';
 import 'theme.dart';
+import 'color_parser.dart';
 
 /// Utility class for handling Tailwind-like color logic
 class FlyColorUtils {
@@ -39,15 +40,22 @@ class FlyColorUtils {
     return resolve(context, style);
   }
   
-  /// Gets color value from FlyColors class
+  /// Gets color value from FlyColors class or parses color string
   static Color? _getColorValue(FlyTheme theme, String key) {
-    return theme.colors[key];
+    // First try to get from theme colors
+    final themeColor = theme.colors[key];
+    if (themeColor != null) {
+      return themeColor;
+    }
+    
+    // If not found in theme, try to parse as color string
+    return FlyColorParser.parse(key, themeColors: theme.colors.customColors);
   }
 
   /// Gets list of available color keys from the actual theme
   static List<String> _getAvailableColors(FlyTheme theme) {
     final defaultColors = theme.colors.values.keys.toList();
-    final customColors = theme.colors.customColors?.keys.toList() ?? [];
+    final customColors = theme.colors.customColors.keys.toList();
     return [...defaultColors, ...customColors];
   }
 

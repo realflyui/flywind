@@ -25,13 +25,23 @@ class FlyContainer extends StatelessWidget with FlyPadding<FlyContainer>, FlyMar
     style: newStyle,
   );
 
-  /// Set background color using named token (alias for color)
-  FlyContainer bg(String key) {
+  /// Set background color using named token or direct Color object
+  FlyContainer bg(dynamic colorValue) {
+    // Convert to string for storage - let FlyColorParser handle the conversion
+    String? colorKey;
+    if (colorValue is String) {
+      colorKey = colorValue;
+    } else if (colorValue is Color) {
+      // Convert Color to hex string for storage
+      colorKey = '#${colorValue.value.toRadixString(16).padLeft(8, '0')}';
+    }
+    
     return FlyContainer(
       child: child,
-      style: _style.copyWith(color: key),
+      style: _style.copyWith(color: colorKey),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'tokens.dart';
+import 'color_parser.dart';
 
 /// Simplified Flywind theme extension for Flutter's ThemeData
 /// Uses your existing token classes for full autocomplete support
@@ -21,19 +22,33 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
     borderRadius: FlyBorderRadius.defaultBorderRadius,
   );
 
-  /// Create a theme with custom colors and spacing
+  /// Create a theme with custom colors, spacing, and border radius
   static FlyTheme withCustom({
-    Map<String, Color>? customColors,
-    Map<String, double>? customSpacing,
+    Map<String, String>? customColors,
+    Map<String, String>? customSpacing,
+    Map<String, double>? customBorderRadius,
   }) {
+    // Parse string colors to Color objects
+    Map<String, Color> parsedColors = {};
+    if (customColors != null) {
+      for (final entry in customColors.entries) {
+        final color = FlyColorParser.parse(entry.value);
+        if (color != null) {
+          parsedColors[entry.key] = color;
+        }
+      }
+    }
+    
     return FlyTheme(
       spacing: FlySpacing.defaultSpacing.copyWith(
-        customSpacing: customSpacing,
+        customSpacing: customSpacing ?? {},
       ),
       colors: FlyColors.defaultColors.copyWith(
-        customColors: customColors,
+        customColors: parsedColors,
       ),
-      borderRadius: FlyBorderRadius.defaultBorderRadius,
+      borderRadius: FlyBorderRadius.defaultBorderRadius.copyWith(
+        customBorderRadius: customBorderRadius ?? {},
+      ),
     );
   }
 
@@ -67,7 +82,7 @@ extension FlyContext on BuildContext {
   FlyTheme get flywind => Theme.of(this).extension<FlyTheme>()!;
   
   /// Convenience method for spacing values
-  double spacing(int value) => flywind.spacing[value] ?? 0.0;
+  String spacing(int value) => flywind.spacing[value] ?? '0';
   
   /// Convenience method for color values
   Color color(String name) => flywind.colors[name] ?? Colors.black;

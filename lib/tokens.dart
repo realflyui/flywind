@@ -16,31 +16,31 @@ class FlySpacing {
     required this.s10,
     required this.s11,
     required this.s12,
-    this.customSpacing,
+    this.customSpacing = const {},
   });
 
-  final double s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
-  final Map<String, double>? customSpacing;
+  final String s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
+  final Map<String, String> customSpacing;
 
   /// Get all spacing values as a map
-  Map<int, double> get values => {
+  Map<int, String> get values => {
     0: s0, 1: s1, 2: s2, 3: s3, 4: s4, 5: s5,
     6: s6, 7: s7, 8: s8, 9: s9, 10: s10, 11: s11, 12: s12,
   };
   
   /// Access spacing values by index (0-12)
-  double? operator [](int index) => values[index];
+  String? operator [](int index) => values[index];
 
 
   /// Default spacing scale (0-12 steps)
   static const FlySpacing defaultSpacing = FlySpacing(
-    s0: 0.0, s1: 4.0, s2: 8.0, s3: 12.0, s4: 16.0, s5: 20.0,
-    s6: 24.0, s7: 28.0, s8: 32.0, s9: 36.0, s10: 40.0, s11: 44.0, s12: 48.0,
+    s0: '0', s1: '4', s2: '8', s3: '12', s4: '16', s5: '20',
+    s6: '24', s7: '28', s8: '32', s9: '36', s10: '40', s11: '44', s12: '48',
   );
 
   /// Create a new FlySpacing instance with custom spacing overrides
   FlySpacing copyWith({
-    Map<String, double>? customSpacing,
+    Map<String, String>? customSpacing,
   }) {
     return FlySpacing(
       s0: s0, s1: s1, s2: s2, s3: s3, s4: s4, s5: s5,
@@ -63,7 +63,7 @@ class FlyColors {
     required this.teal600, required this.teal500,
     required this.orange600, required this.orange500,
     required this.white, required this.black,
-    this.customColors,
+    this.customColors = const {},
   });
 
   final Color gray800, gray700, gray600, gray500, gray400, gray300, gray200, gray100, gray50;
@@ -75,7 +75,7 @@ class FlyColors {
   final Color teal600, teal500;
   final Color orange600, orange500;
   final Color white, black;
-  final Map<String, Color>? customColors;
+  final Map<String, Color> customColors;
 
   /// Get all color values as a map
   Map<String, Color> get values => {
@@ -115,18 +115,34 @@ class FlyBorderRadius {
   const FlyBorderRadius({
     required this.none, required this.sm, required this.md, required this.lg, required this.xl,
     required this.xl2, required this.xl3, required this.full, required this.defaultRadius,
+    this.customBorderRadius = const {},
   });
 
   final double none, sm, md, lg, xl, xl2, xl3, full, defaultRadius;
+  final Map<String, double> customBorderRadius;
 
   /// Get all border radius values as a map
   Map<String, double> get values => {
     'none': none, 'sm': sm, 'md': md, 'lg': lg, 'xl': xl,
     '2xl': xl2, '3xl': xl3, 'full': full, '': defaultRadius,
+    ...customBorderRadius,
   };
   
   /// Access border radius values by key
   double? operator [](String key) => values[key];
+
+  /// Create a copy with updated values
+  FlyBorderRadius copyWith({
+    double? none, double? sm, double? md, double? lg, double? xl,
+    double? xl2, double? xl3, double? full, double? defaultRadius,
+    Map<String, double>? customBorderRadius,
+  }) {
+    return FlyBorderRadius(
+      none: none ?? this.none, sm: sm ?? this.sm, md: md ?? this.md, lg: lg ?? this.lg, xl: xl ?? this.xl,
+      xl2: xl2 ?? this.xl2, xl3: xl3 ?? this.xl3, full: full ?? this.full, defaultRadius: defaultRadius ?? this.defaultRadius,
+      customBorderRadius: customBorderRadius ?? this.customBorderRadius,
+    );
+  }
 
   /// Default border radius scale matching Tailwind CSS
   static const FlyBorderRadius defaultBorderRadius = FlyBorderRadius(
