@@ -15,12 +15,12 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const original = FlyStyle(p: 2, color: 'blue600');
-      final updated = original.copyWith(p: 4, color: 'red600');
+      const original = FlyStyle(p: '8', color: 'blue600');
+      final updated = original.copyWith(p: '16', color: 'red600');
 
-      expect(updated.p, 4);
+      expect(updated.p, '16');
       expect(updated.color, 'red600');
-      expect(original.p, 2); // Original should be unchanged
+      expect(original.p, '8'); // Original should be unchanged
       expect(original.color, 'blue600');
     });
 
@@ -32,13 +32,13 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      expect(const FlyStyle(p: 2).hasPadding, isTrue);
-      expect(const FlyStyle(px: 2).hasPadding, isTrue);
-      expect(const FlyStyle(py: 2).hasPadding, isTrue);
-      expect(const FlyStyle(pl: 2).hasPadding, isTrue);
-      expect(const FlyStyle(pr: 2).hasPadding, isTrue);
-      expect(const FlyStyle(pt: 2).hasPadding, isTrue);
-      expect(const FlyStyle(pb: 2).hasPadding, isTrue);
+      expect(const FlyStyle(p: '8').hasPadding, isTrue);
+      expect(const FlyStyle(px: '8').hasPadding, isTrue);
+      expect(const FlyStyle(py: '8').hasPadding, isTrue);
+      expect(const FlyStyle(pl: '8').hasPadding, isTrue);
+      expect(const FlyStyle(pr: '8').hasPadding, isTrue);
+      expect(const FlyStyle(pt: '8').hasPadding, isTrue);
+      expect(const FlyStyle(pb: '8').hasPadding, isTrue);
     });
 
     testWidgets('hasPadding returns false when no padding is set', (tester) async {
@@ -119,7 +119,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(color: 'red600', p: 3);
+      const style = FlyStyle(color: 'red600', p: '12');
       const child = Text('Hello');
       final result = style.apply(context, child);
 
@@ -139,7 +139,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(p: 2, px: 4, pl: 1);
+      const style = FlyStyle(p: '8', px: '16', pl: '4');
       const child = Text('Hello');
       final result = style.apply(context, child);
 

@@ -42,39 +42,39 @@ mixin FlyMargin<T> {
   
   T Function(FlyStyle newStyle) get copyWith;
 
-  /// Set uniform margin using token scale
-  T m(int step) {
-    return copyWith(style.copyWith(m: step));
+  /// Set uniform margin using string values (e.g., "10", "100px", "1rem")
+  T m(String value) {
+    return copyWith(style.copyWith(m: value));
   }
 
-  /// Set horizontal margin (left + right) using token scale
-  T mx(int step) {
-    return copyWith(style.copyWith(mx: step));
+  /// Set horizontal margin (left + right) using string values
+  T mx(String value) {
+    return copyWith(style.copyWith(mx: value));
   }
 
-  /// Set vertical margin (top + bottom) using token scale
-  T my(int step) {
-    return copyWith(style.copyWith(my: step));
+  /// Set vertical margin (top + bottom) using string values
+  T my(String value) {
+    return copyWith(style.copyWith(my: value));
   }
 
-  /// Set top margin using token scale
-  T mt(int step) {
-    return copyWith(style.copyWith(mt: step));
+  /// Set top margin using string values
+  T mt(String value) {
+    return copyWith(style.copyWith(mt: value));
   }
 
-  /// Set right margin using token scale
-  T mr(int step) {
-    return copyWith(style.copyWith(mr: step));
+  /// Set right margin using string values
+  T mr(String value) {
+    return copyWith(style.copyWith(mr: value));
   }
 
-  /// Set bottom margin using token scale
-  T mb(int step) {
-    return copyWith(style.copyWith(mb: step));
+  /// Set bottom margin using string values
+  T mb(String value) {
+    return copyWith(style.copyWith(mb: value));
   }
 
-  /// Set left margin using token scale
-  T ml(int step) {
-    return copyWith(style.copyWith(ml: step));
+  /// Set left margin using string values
+  T ml(String value) {
+    return copyWith(style.copyWith(ml: value));
   }
 
   /// Resolves margin from FlyStyle and FlyTheme into EdgeInsets

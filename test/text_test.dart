@@ -17,48 +17,48 @@ void main() {
     });
 
     testWidgets('applies uniform padding correctly', (tester) async {
-      final widget = FlyText('Hello World').p(3);
+      final widget = FlyText('Hello World').p('12');
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
       
       // Should have padding
       final padding = tester.widget<Padding>(find.byType(Padding));
-      expect(padding.padding, const EdgeInsets.all(12.0)); // 3 * 4.0
+      expect(padding.padding, const EdgeInsets.all(12.0)); // Direct pixel value
     });
 
     testWidgets('applies horizontal padding correctly', (tester) async {
-      final widget = FlyText('Hello World').px(2);
+      final widget = FlyText('Hello World').px('8');
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
       
       final padding = tester.widget<Padding>(find.byType(Padding));
-      expect(padding.padding, const EdgeInsets.only(left: 8.0, right: 8.0)); // 2 * 4.0
+      expect(padding.padding, const EdgeInsets.only(left: 8.0, right: 8.0)); // Direct pixel value
     });
 
     testWidgets('applies vertical padding correctly', (tester) async {
-      final widget = FlyText('Hello World').py(4);
+      final widget = FlyText('Hello World').py('16');
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
       
       final padding = tester.widget<Padding>(find.byType(Padding));
-      expect(padding.padding, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // 4 * 4.0
+      expect(padding.padding, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // Direct pixel value
     });
 
     testWidgets('applies individual side padding correctly', (tester) async {
-      final widget = FlyText('Hello World').pl(1).pr(2).pt(3).pb(4);
+      final widget = FlyText('Hello World').pl('4').pr('8').pt('12').pb('16');
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
       
       final padding = tester.widget<Padding>(find.byType(Padding));
       expect(padding.padding, const EdgeInsets.only(
-        left: 4.0,   // 1 * 4.0
-        right: 8.0,  // 2 * 4.0
-        top: 12.0,   // 3 * 4.0
-        bottom: 16.0, // 4 * 4.0
+        left: 4.0,   // Direct pixel value
+        right: 8.0,  // Direct pixel value
+        top: 12.0,   // Direct pixel value
+        bottom: 16.0, // Direct pixel value
       ));
     });
 
@@ -73,14 +73,14 @@ void main() {
     });
 
     testWidgets('applies both padding and color correctly', (tester) async {
-      final widget = FlyText('Hello World').p(2).color('red600');
+      final widget = FlyText('Hello World').p('8').color('red600');
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
       
       // Check padding
       final padding = tester.widget<Padding>(find.byType(Padding));
-      expect(padding.padding, const EdgeInsets.all(8.0)); // 2 * 4.0
+      expect(padding.padding, const EdgeInsets.all(8.0)); // Direct pixel value
       
       // Check color
       final text = tester.widget<Text>(find.byType(Text));
@@ -88,7 +88,7 @@ void main() {
     });
 
     testWidgets('applies mixed padding combinations correctly', (tester) async {
-      final widget = FlyText('Hello World').p(1).px(3).pl(2);
+      final widget = FlyText('Hello World').p('4').px('12').pl('8');
       await tester.pumpWidget(createTestWidget(widget));
 
       expect(find.text('Hello World'), findsOneWidget);
@@ -104,10 +104,10 @@ void main() {
 
     testWidgets('method chaining works correctly', (tester) async {
       final widget = FlyText('Hello World')
-          .p(3)
-          .px(2)
+          .p('12')
+          .px('8')
           .color('green600')
-          .pl(1);
+          .pl('4');
       
       await tester.pumpWidget(createTestWidget(widget));
 

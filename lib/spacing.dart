@@ -1,27 +1,19 @@
 import 'package:flutter/material.dart';
-import 'tokens.dart';
 import 'style.dart';
-import 'theme.dart';
+import 'unit_parser.dart';
 
 /// Common spacing utilities for padding and margin
 class FlySpacingUtils {
   /// Resolves spacing from FlyStyle and FlyConfig into EdgeInsets
   static EdgeInsets resolve(BuildContext context, FlyStyle style, {
-    required int? Function(FlyStyle) getUniform,
-    required int? Function(FlyStyle) getX,
-    required int? Function(FlyStyle) getY,
-    required int? Function(FlyStyle) getLeft,
-    required int? Function(FlyStyle) getRight,
-    required int? Function(FlyStyle) getTop,
-    required int? Function(FlyStyle) getBottom,
+    required String? Function(FlyStyle) getUniform,
+    required String? Function(FlyStyle) getX,
+    required String? Function(FlyStyle) getY,
+    required String? Function(FlyStyle) getLeft,
+    required String? Function(FlyStyle) getRight,
+    required String? Function(FlyStyle) getTop,
+    required String? Function(FlyStyle) getBottom,
   }) {
-    final theme = Theme.of(context);
-    final flywind = theme.extension<FlyTheme>();
-    if (flywind == null) {
-      throw FlutterError('FlyTheme extension not found. Make sure to add FlyTheme to your ThemeData.extensions');
-    }
-    final spacing = flywind.spacing;
-    
     // Calculate spacing values
     double left = 0;
     double right = 0;
@@ -31,36 +23,36 @@ class FlySpacingUtils {
     // Apply uniform spacing
     final uniformValue = getUniform(style);
     if (uniformValue != null) {
-      final value = _getSpacingValue(spacing, uniformValue, 'uniform');
+      final value = _parseSpacingValue(uniformValue, 'uniform');
       left = right = top = bottom = value;
     }
     
     // Apply directional spacing (these override uniform spacing)
     final xValue = getX(style);
     if (xValue != null) {
-      final value = _getSpacingValue(spacing, xValue, 'horizontal');
+      final value = _parseSpacingValue(xValue, 'horizontal');
       left = right = value;
     }
     final yValue = getY(style);
     if (yValue != null) {
-      final value = _getSpacingValue(spacing, yValue, 'vertical');
+      final value = _parseSpacingValue(yValue, 'vertical');
       top = bottom = value;
     }
     final leftValue = getLeft(style);
     if (leftValue != null) {
-      left = _getSpacingValue(spacing, leftValue, 'left');
+      left = _parseSpacingValue(leftValue, 'left');
     }
     final rightValue = getRight(style);
     if (rightValue != null) {
-      right = _getSpacingValue(spacing, rightValue, 'right');
+      right = _parseSpacingValue(rightValue, 'right');
     }
     final topValue = getTop(style);
     if (topValue != null) {
-      top = _getSpacingValue(spacing, topValue, 'top');
+      top = _parseSpacingValue(topValue, 'top');
     }
     final bottomValue = getBottom(style);
     if (bottomValue != null) {
-      bottom = _getSpacingValue(spacing, bottomValue, 'bottom');
+      bottom = _parseSpacingValue(bottomValue, 'bottom');
     }
     
     return EdgeInsets.only(
@@ -71,23 +63,32 @@ class FlySpacingUtils {
     );
   }
 
-  /// Gets spacing value with error handling for invalid keys
-  static double _getSpacingValue(FlySpacing spacing, int key, String direction) {
-    final value = spacing[key];
+  /// Parses spacing value from string with fallback to token scale
+  static double _parseSpacingValue(String value, String direction) {
+    // First try to parse as a direct unit value (px, rem, em, %, etc.)
+    final parsedValue = FlyUnitParser.parse(value);
+    if (parsedValue != null) {
+      return parsedValue;
+    }
     
-    if (value == null) {
-      _handleMissingSpacing(key, direction, spacing.values.keys.toList());
+    // If parsing fails, try to treat it as a token scale index
+    final tokenIndex = int.tryParse(value);
+    if (tokenIndex != null) {
+      // For backward compatibility, we could still support token scale
+      // but for now, we'll just return 0 and show a warning
+      _handleInvalidSpacingValue(value, direction);
       return 0.0;
     }
     
-    return value;
+    // If all parsing fails, show error and return 0
+    _handleInvalidSpacingValue(value, direction);
+    return 0.0;
   }
 
-  /// Handles missing spacing errors with helpful messages
-  static void _handleMissingSpacing(int spacingKey, String direction, List<int> availableKeys) {
-    final sortedKeys = availableKeys.toList()..sort();
-    
-    String errorMessage = 'Spacing key "$spacingKey" not found in FlyConfig for $direction spacing. Available spacing keys: ${sortedKeys.join(', ')}.';
+  /// Handles invalid spacing values with helpful messages
+  static void _handleInvalidSpacingValue(String value, String direction) {
+    String errorMessage = 'Invalid spacing value "$value" for $direction spacing. '
+        'Supported formats: "10", "10px", "1rem", "1em", "50%", etc.';
     
     // In debug mode, throw an assertion error with helpful message
     assert(false, errorMessage);

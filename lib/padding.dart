@@ -42,39 +42,39 @@ mixin FlyPadding<T> {
   
   T Function(FlyStyle newStyle) get copyWith;
 
-  /// Set uniform padding using token scale
-  T p(int step) {
-    return copyWith(style.copyWith(p: step));
+  /// Set uniform padding using string values (e.g., "10", "100px", "1rem")
+  T p(String value) {
+    return copyWith(style.copyWith(p: value));
   }
 
-  /// Set horizontal padding (left + right) using token scale
-  T px(int step) {
-    return copyWith(style.copyWith(px: step));
+  /// Set horizontal padding (left + right) using string values
+  T px(String value) {
+    return copyWith(style.copyWith(px: value));
   }
 
-  /// Set vertical padding (top + bottom) using token scale
-  T py(int step) {
-    return copyWith(style.copyWith(py: step));
+  /// Set vertical padding (top + bottom) using string values
+  T py(String value) {
+    return copyWith(style.copyWith(py: value));
   }
 
-  /// Set top padding using token scale
-  T pt(int step) {
-    return copyWith(style.copyWith(pt: step));
+  /// Set top padding using string values
+  T pt(String value) {
+    return copyWith(style.copyWith(pt: value));
   }
 
-  /// Set right padding using token scale
-  T pr(int step) {
-    return copyWith(style.copyWith(pr: step));
+  /// Set right padding using string values
+  T pr(String value) {
+    return copyWith(style.copyWith(pr: value));
   }
 
-  /// Set bottom padding using token scale
-  T pb(int step) {
-    return copyWith(style.copyWith(pb: step));
+  /// Set bottom padding using string values
+  T pb(String value) {
+    return copyWith(style.copyWith(pb: value));
   }
 
-  /// Set left padding using token scale
-  T pl(int step) {
-    return copyWith(style.copyWith(pl: step));
+  /// Set left padding using string values
+  T pl(String value) {
+    return copyWith(style.copyWith(pl: value));
   }
 
   /// Resolves padding from FlyStyle and FlyTheme into EdgeInsets

@@ -25,8 +25,8 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      // Test with invalid spacing key (99)
-      const style = FlyStyle(p: 99);
+      // Test with invalid spacing value
+      const style = FlyStyle(p: 'invalid');
       
       // This should trigger an assertion error in debug mode
       expect(() {
@@ -59,24 +59,23 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      // Test with spacing key that's not available
-      const style = FlyStyle(p: 7); // 7 is not available in this test
+      // Test with invalid spacing value
+      const style = FlyStyle(p: 'invalid'); // Invalid value
       
-      // This should return 0.0 for invalid keys (with assertion in debug mode)
-      final padding = FlySpacingUtils.resolve(
-        context,
-        style,
-        getUniform: (s) => s.p,
-        getX: (s) => s.px,
-        getY: (s) => s.py,
-        getLeft: (s) => s.pl,
-        getRight: (s) => s.pr,
-        getTop: (s) => s.pt,
-        getBottom: (s) => s.pb,
-      );
-      
-      // Should return zero padding for invalid key
-      expect(padding, const EdgeInsets.all(0.0));
+      // This should trigger an assertion error in debug mode
+      expect(() {
+        FlySpacingUtils.resolve(
+          context,
+          style,
+          getUniform: (s) => s.p,
+          getX: (s) => s.px,
+          getY: (s) => s.py,
+          getLeft: (s) => s.pl,
+          getRight: (s) => s.pr,
+          getTop: (s) => s.pt,
+          getBottom: (s) => s.pb,
+        );
+      }, throwsA(isA<AssertionError>()));
     });
 
     testWidgets('works correctly with valid spacing keys', (tester) async {
@@ -95,7 +94,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       // Test with valid spacing key
-      const style = FlyStyle(p: 2);
+      const style = FlyStyle(p: '8');
       
       final padding = FlySpacingUtils.resolve(
         context,

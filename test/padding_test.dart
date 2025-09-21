@@ -30,9 +30,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(p: 3);
+      const style = FlyStyle(p: '12');
       final padding = FlyPaddingUtils.resolve(context, style);
-      expect(padding, const EdgeInsets.all(12.0)); // 3 * 4.0 = 12.0
+      expect(padding, const EdgeInsets.all(12.0)); // Direct pixel value
     });
 
     testWidgets('resolve returns correct horizontal padding', (tester) async {
@@ -43,9 +43,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(px: 2);
+      const style = FlyStyle(px: '8');
       final padding = FlyPaddingUtils.resolve(context, style);
-      expect(padding, const EdgeInsets.only(left: 8.0, right: 8.0)); // 2 * 4.0 = 8.0
+      expect(padding, const EdgeInsets.only(left: 8.0, right: 8.0)); // Direct pixel value
     });
 
     testWidgets('resolve returns correct vertical padding', (tester) async {
@@ -56,9 +56,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(py: 4);
+      const style = FlyStyle(py: '16');
       final padding = FlyPaddingUtils.resolve(context, style);
-      expect(padding, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // 4 * 4.0 = 16.0
+      expect(padding, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // Direct pixel value
     });
 
     testWidgets('resolve returns correct individual side padding', (tester) async {
@@ -69,13 +69,13 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(pl: 1, pr: 2, pt: 3, pb: 4);
+      const style = FlyStyle(pl: '4', pr: '8', pt: '12', pb: '16');
       final padding = FlyPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(
-        left: 4.0,   // 1 * 4.0
-        right: 8.0,  // 2 * 4.0
-        top: 12.0,   // 3 * 4.0
-        bottom: 16.0, // 4 * 4.0
+        left: 4.0,   // Direct pixel value
+        right: 8.0,  // Direct pixel value
+        top: 12.0,   // Direct pixel value
+        bottom: 16.0, // Direct pixel value
       ));
     });
 
@@ -87,7 +87,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(p: 2, px: 4, pl: 1);
+      const style = FlyStyle(p: '8', px: '16', pl: '4');
       final padding = FlyPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(
         left: 4.0,   // pl overrides px and padding
@@ -105,7 +105,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(px: 2, py: 3, pl: 1);
+      const style = FlyStyle(px: '8', py: '12', pl: '4');
       final padding = FlyPaddingUtils.resolve(context, style);
       expect(padding, const EdgeInsets.only(
         left: 4.0,   // pl overrides px
@@ -137,7 +137,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(p: 2);
+      const style = FlyStyle(p: '8');
       const child = Text('test');
       final result = FlyPaddingUtils.apply(context, style, child);
       

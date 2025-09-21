@@ -40,7 +40,7 @@ void main() {
     testWidgets('applies uniform padding correctly', (tester) async {
       final widget = FlyContainer(
         child: FlyText('Hello World'),
-      ).p(3);
+      ).p('12');
       
       await tester.pumpWidget(createTestWidget(widget));
 
@@ -54,7 +54,7 @@ void main() {
     testWidgets('applies horizontal padding correctly', (tester) async {
       final widget = FlyContainer(
         child: FlyText('Hello World'),
-      ).px(2);
+      ).px('8');
       
       await tester.pumpWidget(createTestWidget(widget));
 
@@ -67,7 +67,7 @@ void main() {
     testWidgets('applies both background color and padding correctly', (tester) async {
       final widget = FlyContainer(
         child: FlyText('Hello World'),
-      ).bg('red600').p(2);
+      ).bg('red600').p('8');
       
       await tester.pumpWidget(createTestWidget(widget));
 
@@ -88,7 +88,7 @@ void main() {
     testWidgets('applies mixed padding combinations correctly', (tester) async {
       final widget = FlyContainer(
         child: FlyText('Hello World'),
-      ).p(1).px(3).pl(2);
+      ).p('4').px('12').pl('8');
       
       await tester.pumpWidget(createTestWidget(widget));
 
@@ -106,7 +106,7 @@ void main() {
     testWidgets('method chaining works correctly', (tester) async {
       final widget = FlyContainer(
         child: FlyText('Hello World'),
-      ).p(3).px(2).bg('green600').pl(1);
+      ).p('12').px('8').bg('green600').pl('4');
       
       await tester.pumpWidget(createTestWidget(widget));
 
@@ -132,7 +132,7 @@ void main() {
     testWidgets('handles complex nested content correctly', (tester) async {
       final widget = FlyContainer(
         child: FlyText('Nested Text').color('white'),
-      ).bg('purple600').p(4).px(2);
+      ).bg('purple600').p('16').px('8');
       
       await tester.pumpWidget(createTestWidget(widget));
 

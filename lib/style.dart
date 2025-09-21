@@ -33,20 +33,20 @@ class FlyStyle {
     this.roundedBr,
   });
 
-  final int? p;        // Uniform padding (all sides)
-  final int? px;       // Horizontal padding (left + right)
-  final int? py;       // Vertical padding (top + bottom)
-  final int? pl;       // Left padding
-  final int? pr;       // Right padding
-  final int? pb;       // Bottom padding
-  final int? pt;       // Top padding
-  final int? m;        // Uniform margin (all sides)
-  final int? mx;       // Horizontal margin (left + right)
-  final int? my;       // Vertical margin (top + bottom)
-  final int? ml;       // Left margin
-  final int? mr;       // Right margin
-  final int? mb;       // Bottom margin
-  final int? mt;       // Top margin
+  final String? p;        // Uniform padding (all sides)
+  final String? px;       // Horizontal padding (left + right)
+  final String? py;       // Vertical padding (top + bottom)
+  final String? pl;       // Left padding
+  final String? pr;       // Right padding
+  final String? pb;       // Bottom padding
+  final String? pt;       // Top padding
+  final String? m;        // Uniform margin (all sides)
+  final String? mx;       // Horizontal margin (left + right)
+  final String? my;       // Vertical margin (top + bottom)
+  final String? ml;       // Left margin
+  final String? mr;       // Right margin
+  final String? mb;       // Bottom margin
+  final String? mt;       // Top margin
   final String? color;
   final String? rounded;    // Uniform border radius (all corners)
   final String? roundedT;   // Top border radius (top-left + top-right)
@@ -60,20 +60,20 @@ class FlyStyle {
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
-    int? p,
-    int? px,
-    int? py,
-    int? pl,
-    int? pr,
-    int? pb,
-    int? pt,
-    int? m,
-    int? mx,
-    int? my,
-    int? ml,
-    int? mr,
-    int? mb,
-    int? mt,
+    String? p,
+    String? px,
+    String? py,
+    String? pl,
+    String? pr,
+    String? pb,
+    String? pt,
+    String? m,
+    String? mx,
+    String? my,
+    String? ml,
+    String? mr,
+    String? mb,
+    String? mt,
     String? color,
     String? rounded,
     String? roundedT,

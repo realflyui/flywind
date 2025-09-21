@@ -30,9 +30,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(m: 3);
+      const style = FlyStyle(m: '12');
       final margin = FlyMarginUtils.resolve(context, style);
-      expect(margin, const EdgeInsets.all(12.0)); // 3 * 4.0 = 12.0
+      expect(margin, const EdgeInsets.all(12.0)); // Direct pixel value
     });
 
     testWidgets('resolve returns correct horizontal margin', (tester) async {
@@ -43,9 +43,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(mx: 2);
+      const style = FlyStyle(mx: '8');
       final margin = FlyMarginUtils.resolve(context, style);
-      expect(margin, const EdgeInsets.only(left: 8.0, right: 8.0)); // 2 * 4.0 = 8.0
+      expect(margin, const EdgeInsets.only(left: 8.0, right: 8.0)); // Direct pixel value
     });
 
     testWidgets('resolve returns correct vertical margin', (tester) async {
@@ -56,9 +56,9 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(my: 4);
+      const style = FlyStyle(my: '16');
       final margin = FlyMarginUtils.resolve(context, style);
-      expect(margin, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // 4 * 4.0 = 16.0
+      expect(margin, const EdgeInsets.only(top: 16.0, bottom: 16.0)); // Direct pixel value
     });
 
     testWidgets('resolve returns correct individual side margin', (tester) async {
@@ -69,13 +69,13 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(ml: 1, mr: 2, mt: 3, mb: 4);
+      const style = FlyStyle(ml: '4', mr: '8', mt: '12', mb: '16');
       final margin = FlyMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(
-        left: 4.0,   // 1 * 4.0
-        right: 8.0,  // 2 * 4.0
-        top: 12.0,   // 3 * 4.0
-        bottom: 16.0, // 4 * 4.0
+        left: 4.0,   // Direct pixel value
+        right: 8.0,  // Direct pixel value
+        top: 12.0,   // Direct pixel value
+        bottom: 16.0, // Direct pixel value
       ));
     });
 
@@ -87,7 +87,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(m: 2, mx: 4, ml: 1);
+      const style = FlyStyle(m: '8', mx: '16', ml: '4');
       final margin = FlyMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(
         left: 4.0,   // ml overrides mx and margin
@@ -105,7 +105,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(mx: 2, my: 3, ml: 1, mt: 4);
+      const style = FlyStyle(mx: '8', my: '12', ml: '4', mt: '16');
       final margin = FlyMarginUtils.resolve(context, style);
       expect(margin, const EdgeInsets.only(
         left: 4.0,   // ml overrides mx
@@ -138,7 +138,7 @@ void main() {
       
       await tester.pumpWidget(testWidget);
 
-      const style = FlyStyle(m: 2);
+      const style = FlyStyle(m: '8');
       const child = Text('Test');
       final result = FlyMarginUtils.apply(context, style, child);
       
