@@ -31,7 +31,7 @@ void main() {
 
       const style = FlyStyle(color: 'blue600');
       final color = FlyColorUtils.resolve(context, style);
-      expect(color, const Color(0xFF2563EB));
+      expect(color, const Color(0xFF155DFC));
     });
 
     testWidgets('resolve returns correct color for white', (tester) async {
@@ -85,7 +85,7 @@ void main() {
       const style = FlyStyle(color: 'red600');
       const baseStyle = TextStyle(fontSize: 16);
       final result = FlyColorUtils.applyToTextStyle(context, style, baseStyle);
-      expect(result.color, const Color(0xFFDC2626));
+      expect(result.color, const Color(0xFFE7000B));
       expect(result.fontSize, 16);
     });
 
@@ -99,7 +99,7 @@ void main() {
 
       const style = FlyStyle(color: 'green600');
       final result = FlyColorUtils.applyToTextStyle(context, style, null);
-      expect(result.color, const Color(0xFF16A34A));
+      expect(result.color, const Color(0xFF00A63E));
     });
 
     testWidgets('applyToContainer returns null when no color is set', (tester) async {
@@ -125,7 +125,7 @@ void main() {
 
       const style = FlyStyle(color: 'purple600');
       final color = FlyColorUtils.applyToContainer(context, style);
-      expect(color, const Color(0xFF9333EA));
+      expect(color, const Color(0xFF9810FA));
     });
 
     testWidgets('resolve handles missing color gracefully in debug mode', (tester) async {

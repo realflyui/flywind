@@ -12,9 +12,9 @@ void main() {
 
     testWidgets('handles missing spacing key gracefully in debug mode', (tester) async {
       final customSpacing = const FlySpacing(
-        s0: '0', s1: '4', s2: '8', s3: '12', s4: '0', s5: '0',
-        s6: '0', s7: '0', s8: '0', s9: '0', s10: '0', s11: '0', s12: '0',
-      ); // Only keys 1, 2, 3 available
+        base: '0.25rem',
+        customSpacing: {'1': '4px', '2': '8px', '3': '12px'},
+      ); // Only base and custom keys available
       
       final customTheme = FlyTheme.defaultTheme.copyWith(spacing: customSpacing);
       
@@ -46,8 +46,8 @@ void main() {
 
     testWidgets('handles missing spacing key with helpful error message', (tester) async {
       final customSpacing = const FlySpacing(
-        s0: '0', s1: '4', s2: '8', s3: '12', s4: '16', s5: '20',
-        s6: '0', s7: '0', s8: '0', s9: '0', s10: '0', s11: '0', s12: '0',
+        base: '0.25rem',
+        customSpacing: {'1': '4px', '2': '8px', '3': '12px', '4': '16px', '5': '20px'},
       );
       
       final customTheme = FlyTheme.defaultTheme.copyWith(spacing: customSpacing);
@@ -80,8 +80,8 @@ void main() {
 
     testWidgets('works correctly with valid spacing keys', (tester) async {
       final customSpacing = const FlySpacing(
-        s0: '0', s1: '4', s2: '8', s3: '12', s4: '0', s5: '0',
-        s6: '0', s7: '0', s8: '0', s9: '0', s10: '0', s11: '0', s12: '0',
+        base: '0.25rem',
+        customSpacing: {'1': '4px', '2': '8px', '3': '12px'},
       );
       
       final customTheme = FlyTheme.defaultTheme.copyWith(spacing: customSpacing);
@@ -94,7 +94,7 @@ void main() {
       await tester.pumpWidget(testWidget);
 
       // Test with valid spacing key
-      const style = FlyStyle(p: '8');
+      const style = FlyStyle(p: '2');
       
       final padding = FlySpacingUtils.resolve(
         context,
@@ -109,7 +109,7 @@ void main() {
       );
       
       // Should return correct padding
-      expect(padding, const EdgeInsets.all(8.0));
+      expect(padding, const EdgeInsets.all(2.0));
     });
   });
 }

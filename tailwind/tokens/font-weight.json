@@ -2,9 +2,7 @@
     "name": "FlyFontWeights",
     "type": "FontWeight",
     "description": "Font weight class with type-safe access to font weight values",
-    "imports": [
-        "package:flutter/material.dart"
-    ],
+    "imports": [],
     "values": {
         "thin": "FontWeight.w100",
         "extralight": "FontWeight.w200",

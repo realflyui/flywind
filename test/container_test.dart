@@ -32,9 +32,9 @@ void main() {
       // Find the container with the background color (the outer one)
       final containers = tester.widgetList<Container>(find.byType(Container));
       final coloredContainer = containers.firstWhere(
-        (container) => container.color == const Color(0xFF2563EB)
+        (container) => container.color == const Color(0xFF155DFC)
       );
-      expect(coloredContainer.color, const Color(0xFF2563EB));
+      expect(coloredContainer.color, const Color(0xFF155DFC));
     });
 
     testWidgets('applies uniform padding correctly', (tester) async {
@@ -76,9 +76,9 @@ void main() {
       // Check background color - find the container with the specific color
       final containers = tester.widgetList<Container>(find.byType(Container));
       final coloredContainer = containers.firstWhere(
-        (container) => container.color == const Color(0xFFDC2626)
+        (container) => container.color == const Color(0xFFE7000B)
       );
-      expect(coloredContainer.color, const Color(0xFFDC2626));
+      expect(coloredContainer.color, const Color(0xFFE7000B));
       
       // Check padding
       final padding = tester.widget<Padding>(find.byType(Padding));
@@ -115,9 +115,9 @@ void main() {
       // Check background color - find the container with the specific color
       final containers = tester.widgetList<Container>(find.byType(Container));
       final coloredContainer = containers.firstWhere(
-        (container) => container.color == const Color(0xFF16A34A)
+        (container) => container.color == const Color(0xFF00A63E)
       );
-      expect(coloredContainer.color, const Color(0xFF16A34A));
+      expect(coloredContainer.color, const Color(0xFF00A63E));
       
       // Check final padding (pl should override px and p for left side)
       final padding = tester.widget<Padding>(find.byType(Padding));
@@ -141,9 +141,9 @@ void main() {
       // Check background color - find the container with the specific color
       final containers = tester.widgetList<Container>(find.byType(Container));
       final coloredContainer = containers.firstWhere(
-        (container) => container.color == const Color(0xFF9333EA)
+        (container) => container.color == const Color(0xFF9810FA)
       );
-      expect(coloredContainer.color, const Color(0xFF9333EA));
+      expect(coloredContainer.color, const Color(0xFF9810FA));
       
       // Check padding
       final padding = tester.widget<Padding>(find.byType(Padding));

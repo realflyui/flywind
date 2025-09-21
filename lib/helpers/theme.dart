@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import '../tokens/color.dart';
-import '../tokens/spacing.dart';
-import '../tokens/radius.dart';
+import '../tokens/tokens.dart';
 import '../parsers/color_parser.dart';
 
 /// Simplified Flywind theme extension for Flutter's ThemeData
@@ -10,18 +8,60 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
   const FlyTheme({
     required this.spacing,
     required this.colors,
-    required this.borderRadius,
+    required this.radius,
+    required this.fontWeights,
+    required this.textSizes,
+    required this.letterSpacing,
+    required this.shadows,
+    required this.blurs,
+    required this.fontFamilies,
+    required this.containers,
+    required this.breakpoints,
+    required this.dropShadows,
+    required this.lineHeights,
+    required this.perspectives,
+    required this.textShadows,
+    required this.insetShadows,
+    required this.textLineHeights,
   });
 
   final FlySpacing spacing;
   final FlyColors colors;
-  final FlyBorderRadius borderRadius;
+  final FlyBorderRadius radius;
+  final FlyFontWeights fontWeights;
+  final FlyTextSizes textSizes;
+  final FlyLetterSpacing letterSpacing;
+  final FlyShadows shadows;
+  final FlyBlurs blurs;
+  final FlyFontFamilies fontFamilies;
+  final FlyContainers containers;
+  final FlyBreakpoints breakpoints;
+  final FlyDropShadows dropShadows;
+  final FlyLineHeights lineHeights;
+  final FlyPerspectives perspectives;
+  final FlyTextShadows textShadows;
+  final FlyInsetShadows insetShadows;
+  final FlyTextLineHeights textLineHeights;
 
   /// Default Flywind theme
   static const FlyTheme defaultTheme = FlyTheme(
     spacing: FlySpacing.defaultSpacing,
     colors: FlyColors.defaultColors,
-    borderRadius: FlyBorderRadius.defaultBorderRadius,
+    radius: FlyBorderRadius.defaultBorderRadius,
+    fontWeights: FlyFontWeights.defaultFontWeights,
+    textSizes: FlyTextSizes.defaultTextSizes,
+    letterSpacing: FlyLetterSpacing.defaultLetterSpacing,
+    shadows: FlyShadows.defaultShadows,
+    blurs: FlyBlurs.defaultBlurs,
+    fontFamilies: FlyFontFamilies.defaultFontFamilies,
+    containers: FlyContainers.defaultContainers,
+    breakpoints: FlyBreakpoints.defaultBreakpoints,
+    dropShadows: FlyDropShadows.defaultDropShadows,
+    lineHeights: FlyLineHeights.defaultLineHeights,
+    perspectives: FlyPerspectives.defaultPerspectives,
+    textShadows: FlyTextShadows.defaultTextShadows,
+    insetShadows: FlyInsetShadows.defaultInsetShadows,
+    textLineHeights: FlyTextLineHeights.defaultTextLineHeights,
   );
 
   /// Create a theme with custom colors, spacing, and border radius
@@ -44,7 +84,21 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
     return FlyTheme(
       spacing: FlySpacing.defaultSpacing,
       colors: FlyColors.defaultColors,
-      borderRadius: FlyBorderRadius.defaultBorderRadius,
+      radius: FlyBorderRadius.defaultBorderRadius,
+      fontWeights: FlyFontWeights.defaultFontWeights,
+      textSizes: FlyTextSizes.defaultTextSizes,
+      letterSpacing: FlyLetterSpacing.defaultLetterSpacing,
+      shadows: FlyShadows.defaultShadows,
+      blurs: FlyBlurs.defaultBlurs,
+      fontFamilies: FlyFontFamilies.defaultFontFamilies,
+      containers: FlyContainers.defaultContainers,
+      breakpoints: FlyBreakpoints.defaultBreakpoints,
+      dropShadows: FlyDropShadows.defaultDropShadows,
+      lineHeights: FlyLineHeights.defaultLineHeights,
+      perspectives: FlyPerspectives.defaultPerspectives,
+      textShadows: FlyTextShadows.defaultTextShadows,
+      insetShadows: FlyInsetShadows.defaultInsetShadows,
+      textLineHeights: FlyTextLineHeights.defaultTextLineHeights,
     );
   }
 
@@ -52,12 +106,40 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
   FlyTheme copyWith({
     FlySpacing? spacing,
     FlyColors? colors,
-    FlyBorderRadius? borderRadius,
+    FlyBorderRadius? radius,
+    FlyFontWeights? fontWeights,
+    FlyTextSizes? textSizes,
+    FlyLetterSpacing? letterSpacing,
+    FlyShadows? shadows,
+    FlyBlurs? blurs,
+    FlyFontFamilies? fontFamilies,
+    FlyContainers? containers,
+    FlyBreakpoints? breakpoints,
+    FlyDropShadows? dropShadows,
+    FlyLineHeights? lineHeights,
+    FlyPerspectives? perspectives,
+    FlyTextShadows? textShadows,
+    FlyInsetShadows? insetShadows,
+    FlyTextLineHeights? textLineHeights,
   }) {
     return FlyTheme(
       spacing: spacing ?? this.spacing,
       colors: colors ?? this.colors,
-      borderRadius: borderRadius ?? this.borderRadius,
+      radius: radius ?? this.radius,
+      fontWeights: fontWeights ?? this.fontWeights,
+      textSizes: textSizes ?? this.textSizes,
+      letterSpacing: letterSpacing ?? this.letterSpacing,
+      shadows: shadows ?? this.shadows,
+      blurs: blurs ?? this.blurs,
+      fontFamilies: fontFamilies ?? this.fontFamilies,
+      containers: containers ?? this.containers,
+      breakpoints: breakpoints ?? this.breakpoints,
+      dropShadows: dropShadows ?? this.dropShadows,
+      lineHeights: lineHeights ?? this.lineHeights,
+      perspectives: perspectives ?? this.perspectives,
+      textShadows: textShadows ?? this.textShadows,
+      insetShadows: insetShadows ?? this.insetShadows,
+      textLineHeights: textLineHeights ?? this.textLineHeights,
     );
   }
 
@@ -112,7 +194,7 @@ extension FlyContext on BuildContext {
 
   /// Convenience method for border radius values
   double radius(String name) {
-    final valueString = FlyTheme.of(this).borderRadius[name];
+    final valueString = FlyTheme.of(this).radius[name];
     if (valueString != null) {
       return double.tryParse(valueString) ?? 0.0;
     }

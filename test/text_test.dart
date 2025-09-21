@@ -69,7 +69,7 @@ void main() {
       expect(find.text('Hello World'), findsOneWidget);
       
       final text = tester.widget<Text>(find.byType(Text));
-      expect(text.style?.color, const Color(0xFF2563EB));
+      expect(text.style?.color, const Color(0xFF155DFC));
     });
 
     testWidgets('applies both padding and color correctly', (tester) async {
@@ -84,7 +84,7 @@ void main() {
       
       // Check color
       final text = tester.widget<Text>(find.byType(Text));
-      expect(text.style?.color, const Color(0xFFDC2626));
+      expect(text.style?.color, const Color(0xFFE7000B));
     });
 
     testWidgets('applies mixed padding combinations correctly', (tester) async {
@@ -124,7 +124,7 @@ void main() {
       
       // Check color
       final text = tester.widget<Text>(find.byType(Text));
-      expect(text.style?.color, const Color(0xFF16A34A));
+      expect(text.style?.color, const Color(0xFF00A63E));
     });
 
     // Note: Error handling test removed as it's complex to test assertion errors

@@ -165,7 +165,6 @@ String _generateClass(Map<String, dynamic> config) {
     '// To modify this file, edit the JSON configuration in tokens/ directory and run: dart tool/generate_tokens.dart',
   );
   buffer.writeln('//');
-  buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
   buffer.writeln();
 
   // Add imports (but skip Flutter Material imports since we're using String types)
@@ -395,17 +394,20 @@ String _getFieldName(String key) {
     return 'defaultValue';
   }
 
-  // Handle special cases
-  if (key == '2xl') return 'xl2';
-  if (key == '3xl') return 'xl3';
-  if (key == '4xl') return 'xl4';
-
-  // Handle numeric keys for spacing
+  // Handle purely numeric keys (e.g., "4" -> "s4")
   if (RegExp(r'^\d+$').hasMatch(key)) {
     return 's$key';
   }
 
-  // Convert to camelCase and handle numbers
+  // Handle keys that start with numbers (e.g., "2xl" -> "xl2", "3xs" -> "xs3")
+  final numberPrefixMatch = RegExp(r'^(\d+)([a-zA-Z]+)$').firstMatch(key);
+  if (numberPrefixMatch != null) {
+    final number = numberPrefixMatch.group(1)!;
+    final letters = numberPrefixMatch.group(2)!;
+    return '${letters.toLowerCase()}$number';
+  }
+
+  // Convert to camelCase and handle other patterns
   final parts = key.split(RegExp(r'[^a-zA-Z0-9]+'));
   if (parts.isEmpty) return 'value';
 
@@ -453,7 +455,6 @@ void _generateTokensExport(Directory outputDir, List<File> jsonFiles) {
     '// To modify this file, edit the JSON configuration in tokens/ directory and run: dart tailwind/generate_tokens.dart',
   );
   buffer.writeln('//');
-  buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
   buffer.writeln();
   
   // Add exports for each token file

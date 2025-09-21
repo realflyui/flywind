@@ -1,15 +1,9 @@
 {
     "app_name": "Flywind",
     "tokens": {
-        "colors": {
+        "color": {
             "type": "Color",
-            "values": {
-                "brand-primary": "Color(0xFF007AFF)",
-                "brand-secondary": "Color(0xFF34C759)",
-                "brand-accent": "Color(0xFFFF9500)"
-            },
-            "customValues": true,
-            "customFieldName": "customColors"
+            "values": {}
         },
         "breakpoint": {
             "type": "double",
@@ -21,15 +15,7 @@
         },
         "spacing": {
             "type": "double",
-            "values": {
-                "xs": "2",
-                "sm": "4",
-                "md": "8",
-                "lg": "16",
-                "xl": "32"
-            },
-            "customValues": true,
-            "customFieldName": "customSpacing"
+            "values": {}
         },
         "text": {
             "type": "double",
@@ -55,14 +41,9 @@
             "type": "double",
             "values": {}
         },
-        "border-radius": {
+        "radius": {
             "type": "double",
-            "values": {
-                "none": "0",
-                "full": "9999"
-            },
-            "customValues": true,
-            "customFieldName": "customRadius"
+            "values": {}
         },
         "shadow": {
             "type": "BoxShadow",

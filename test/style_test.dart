@@ -73,7 +73,7 @@ void main() {
       expect(result, isA<Text>());
       final text = result as Text;
       expect(text.data, 'Hello');
-      expect(text.style?.color, const Color(0xFF16A34A));
+      expect(text.style?.color, const Color(0xFF00A63E));
     });
 
     testWidgets('apply handles Container widget color correctly', (tester) async {
@@ -90,7 +90,7 @@ void main() {
 
       expect(result, isA<Container>());
       final container = result as Container;
-      expect(container.color, const Color(0xFF9333EA));
+      expect(container.color, const Color(0xFF9810FA));
     });
 
     testWidgets('apply handles unknown widget type by wrapping in Container', (tester) async {
@@ -107,7 +107,7 @@ void main() {
 
       expect(result, isA<Container>());
       final container = result as Container;
-      expect(container.color, const Color(0xFFEA580C));
+      expect(container.color, const Color(0xFFF54900));
       expect(container.child, equals(child));
     });
 
@@ -128,7 +128,7 @@ void main() {
       expect(padding.padding, const EdgeInsets.all(12.0)); // 3 * 4.0
       expect(padding.child, isA<Text>());
       final text = padding.child as Text;
-      expect(text.style?.color, const Color(0xFFDC2626));
+      expect(text.style?.color, const Color(0xFFE7000B));
     });
 
     testWidgets('apply handles complex padding combinations', (tester) async {

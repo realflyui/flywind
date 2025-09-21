@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'helpers/theme.dart';
-import 'widgets/text.dart';
-import 'widgets/container.dart';
+// import 'widgets/text.dart';
+// import 'widgets/container.dart';
 import 'parsers/color_parser.dart';
 
 void main() {
@@ -38,22 +38,7 @@ class HomePage extends StatelessWidget {
     final flywind = FlyTheme.of(context);
     final spacing = flywind.spacing;
     final colors = flywind.colors;
-    final radius = flywind.borderRadius;
-
-    // Example usage - you can now use these values with type safety!
-    print('Spacing 2 value: ${spacing.lg}'); // This will print "8" (default)
-    print(
-      'Spacing 2 value (bracket): ${spacing['md']}',
-    ); // This will also print "8"
-
-    // Standard colors using dot notation (type-safe!)
-    print('Leif: ${colors.blue100}'); // This will print the blue color
-    print('Gray800: ${colors.gray800}'); // This will print the gray color
-
-    // Bracket notation still works
-    print(
-      'Blue 600 color (bracket): ${colors['blue600']}',
-    ); // This will also print the blue color
+    final radius = flywind.radius;
 
     return Scaffold(
       body: SizedBox.expand(
@@ -62,40 +47,40 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Test the custom "blue200" color
-              FlyText('Custom "blue200" Color Test:').color('blue200').mb('12'),
-              // Mixed spacing examples
-              FlyText(
-                'Mixed spacing example',
-              ).px(spacing.lg).py(spacing.xs).color('teal600').mb('8'),
+              // // Test the custom "blue200" color
+              // FlyText('Custom "blue200" Color Test:').color('blue200').mb('12'),
+              // // Mixed spacing examples
+              // FlyText(
+              //   'Mixed spacing example',
+              // ).px(spacing.lg).py(spacing.xs).color('teal600').mb('8'),
 
-              // Test 100px horizontal padding
-              FlyText(
-                'Testing 100px horizontal padding',
-              ).px('100px').color('red600').mb('8'),
+              // // Test 100px horizontal padding
+              // FlyText(
+              //   'Testing 100px horizontal padding',
+              // ).px('100px').color('red600').mb('8'),
 
-              // Background color examples using string-based spacing
-              FlyContainer(
-                child: FlyText('Container with blue200 background').color('white'),
-              ).bg(colors.amber400).p(spacing.md).mb(spacing.md),
+              // // Background color examples using string-based spacing
+              // FlyContainer(
+              //   child: FlyText('Container with blue200 background').color('white'),
+              // ).bg(colors.amber400).p(spacing.md).mb(spacing.md),
 
-              // Custom border radius example using extension
-              FlyContainer(
-                    child: FlyText('Custom pill border radius').color('white'),
-                  )
-                  .bg('brandPrimary')
-                  .p(spacing.xl)
-                  .rounded(radius.md)
-                  .mb(spacing.xl),
+              // // Custom border radius example using extension
+              // FlyContainer(
+              //       child: FlyText('Custom pill border radius').color('white'),
+              //     )
+              //     .bg('brandPrimary')
+              //     .p(spacing.xl)
+              //     .rounded(radius.md)
+              //     .mb(spacing.xl),
 
               // Material button using Flywind theme
               Padding(
-                padding: EdgeInsets.only(bottom: double.parse(spacing.md)),
+                padding: EdgeInsets.only(bottom: double.parse(spacing.base)),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: FlyColorParser.parse(colors.blue400),
                     foregroundColor: Colors.white,
-                    padding: EdgeInsets.all(double.parse(spacing.md)),
+                    padding: EdgeInsets.all(double.parse(spacing.base)),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
                         double.parse(radius.lg),

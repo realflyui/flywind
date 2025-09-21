@@ -44,13 +44,13 @@ void main() {
 
     testWidgets('resolve returns correct individual corner border radius', (tester) async {
       final testWidget = createTestWidgetWithContext((context) {
-        const style = FlyStyle(roundedTl: 'md', roundedTr: 'lg', roundedBl: 'xl', roundedBr: '2xl');
+        const style = FlyStyle(roundedTl: 'md', roundedTr: 'lg', roundedBl: 'xl', roundedBr: 'xl2');
         final borderRadius = FlyRoundedUtils.resolve(context, style);
         expect(borderRadius, const BorderRadius.only(
           topLeft: Radius.circular(6.0),   // md
           topRight: Radius.circular(8.0),  // lg
           bottomLeft: Radius.circular(12.0), // xl
-          bottomRight: Radius.circular(16.0), // 2xl
+          bottomRight: Radius.circular(16.0), // xl2
         ));
         return const SizedBox();
       });
@@ -65,8 +65,8 @@ void main() {
         expect(borderRadius, const BorderRadius.only(
           topLeft: Radius.circular(8.0),   // roundedT overrides rounded
           topRight: Radius.circular(8.0),  // roundedT overrides rounded
-          bottomLeft: Radius.circular(2.0), // rounded value
-          bottomRight: Radius.circular(2.0), // rounded value
+          bottomLeft: Radius.circular(4.0), // rounded value (sm)
+          bottomRight: Radius.circular(4.0), // rounded value (sm)
         ));
         return const SizedBox();
       });

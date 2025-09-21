@@ -15,7 +15,7 @@ class FlyRoundedUtils {
       );
     }
     final config = flywind;
-    final borderRadius = config.borderRadius;
+    final borderRadius = config.radius;
 
     // Calculate border radius values
     double topLeft = 0;
