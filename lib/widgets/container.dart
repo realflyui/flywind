@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'style.dart';
-import 'padding.dart';
-import 'margin.dart';
-import 'color.dart';
-import 'rounded.dart';
+import '../helpers/style.dart';
+import '../helpers/padding.dart';
+import '../helpers/margin.dart';
+import '../helpers/color.dart';
+import '../helpers/rounded.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for containers
 class FlyContainer extends StatelessWidget with FlyPadding<FlyContainer>, FlyMargin<FlyContainer>, FlyColor<FlyContainer>, FlyRounded<FlyContainer> {

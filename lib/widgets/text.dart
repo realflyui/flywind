@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'style.dart';
-import 'padding.dart';
-import 'margin.dart';
-import 'color.dart';
-import 'rounded.dart';
+import '../helpers/style.dart';
+import '../helpers/padding.dart';
+import '../helpers/margin.dart';
+import '../helpers/color.dart';
+import '../helpers/rounded.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for text
 class FlyText extends StatelessWidget with FlyPadding<FlyText>, FlyMargin<FlyText>, FlyColor<FlyText>, FlyRounded<FlyText> {

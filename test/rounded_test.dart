@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/rounded.dart';
-import 'package:flywind/style.dart';
+import 'package:flywind/helpers/rounded.dart';
+import 'package:flywind/helpers/style.dart';
 import 'flight_school.dart';
 
 void main() {

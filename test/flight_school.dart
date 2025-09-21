@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flywind/theme.dart';
+import 'package:flywind/helpers/theme.dart';
 
 /// Helper function to create test widgets with FlyTheme
 Widget createTestWidget(Widget child) {

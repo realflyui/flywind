@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/unit_parser.dart';
+import 'package:flywind/parsers/unit_parser.dart';
 
 void main() {
   group('FlyUnitParser', () {

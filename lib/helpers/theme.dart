@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'tokens.dart';
-import 'color_parser.dart';
+import '../tokens/colors.dart';
+import '../tokens/spacing.dart';
+import '../tokens/border_radius.dart';
+import '../parsers/color_parser.dart';
 
 /// Simplified Flywind theme extension for Flutter's ThemeData
 /// Uses your existing token classes for full autocomplete support

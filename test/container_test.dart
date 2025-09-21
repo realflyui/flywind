@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/container.dart';
-import 'package:flywind/text.dart';
+import 'package:flywind/widgets/container.dart';
+import 'package:flywind/widgets/text.dart';
 import 'flight_school.dart';
 
 void main() {

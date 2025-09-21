@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'theme.dart';
-import 'text.dart';
-import 'container.dart';
+import 'helpers/theme.dart';
+import 'widgets/text.dart';
+import 'widgets/container.dart';
 import 'config.dart';
-import 'color_parser.dart';
+import 'parsers/color_parser.dart';
 
 void main() {
   runApp(const MainApp());

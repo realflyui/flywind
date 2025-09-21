@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'style.dart';
 import 'theme.dart';
-import 'color_parser.dart';
+import '../parsers/color_parser.dart';
 
 /// Utility class for handling Tailwind-like color logic
 class FlyColorUtils {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flywind/spacing.dart';
-import 'package:flywind/style.dart';
-import 'package:flywind/tokens.dart';
-import 'package:flywind/theme.dart';
+import 'package:flywind/helpers/spacing.dart';
+import 'package:flywind/helpers/style.dart';
+import 'package:flywind/tokens/spacing.dart';
+import 'package:flywind/helpers/theme.dart';
 import 'flight_school.dart';
 
 void main() {

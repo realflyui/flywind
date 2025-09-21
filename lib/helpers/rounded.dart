@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'tokens.dart';
+import '../tokens/border_radius.dart';
 import 'style.dart';
 import 'theme.dart';
 

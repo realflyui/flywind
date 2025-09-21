@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'style.dart';
-import 'unit_parser.dart';
+import '../parsers/unit_parser.dart';
 
 /// Common spacing utilities for padding and margin
 class FlySpacingUtils {

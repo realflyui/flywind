@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'tokens.dart';
-import 'theme.dart';
+import 'tokens/colors.dart';
+import 'tokens/spacing.dart';
+import 'tokens/border_radius.dart';
+import 'helpers/theme.dart';
 
 
 /// Single source of truth for all custom Flywind values
