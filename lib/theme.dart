@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'tokens.dart';
 
-/// Simplified Tailwind theme extension for Flutter's ThemeData
+/// Simplified Flywind theme extension for Flutter's ThemeData
 /// Uses your existing token classes for full autocomplete support
 class FlyTheme extends ThemeExtension<FlyTheme> {
   const FlyTheme({
@@ -14,7 +14,7 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
   final FlyColors colors;
   final FlyBorderRadius borderRadius;
 
-  /// Default Tailwind theme
+  /// Default Flywind theme
   static const FlyTheme defaultTheme = FlyTheme(
     spacing: FlySpacing.defaultSpacing,
     colors: FlyColors.defaultColors,
@@ -60,18 +60,18 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
   }
 }
 
-/// Extension on BuildContext for easy access to Tailwind theme
+/// Extension on BuildContext for easy access to Flywind theme
 /// Provides both dot notation and convenience methods
 extension FlyContext on BuildContext {
-  /// Get the Tailwind theme from the current context
-  FlyTheme get tw => Theme.of(this).extension<FlyTheme>()!;
+  /// Get the Flywind theme from the current context
+  FlyTheme get flywind => Theme.of(this).extension<FlyTheme>()!;
   
   /// Convenience method for spacing values
-  double spacing(int value) => tw.spacing[value] ?? 0.0;
+  double spacing(int value) => flywind.spacing[value] ?? 0.0;
   
   /// Convenience method for color values
-  Color color(String name) => tw.colors[name] ?? Colors.black;
+  Color color(String name) => flywind.colors[name] ?? Colors.black;
   
   /// Convenience method for border radius values
-  double radius(String name) => tw.borderRadius[name] ?? 0.0;
+  double radius(String name) => flywind.borderRadius[name] ?? 0.0;
 }

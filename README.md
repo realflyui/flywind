@@ -4,13 +4,15 @@ A Tailwind-like utility-first Flutter component library that brings the power an
 
 ## 🚀 Features
 
-- **Utility-First Approach**: Build UIs using utility classes instead of custom CSS
-- **Fluent API**: Method chaining for clean, readable code
-- **Design Tokens**: Centralized spacing, color, and border radius management
-- **Type-Safe**: Full TypeScript-like safety with Dart
-- **Comprehensive Testing**: 65+ tests ensuring reliability
-- **Tailwind CSS Compatible**: Matches Tailwind's API and naming conventions
-- **Border Radius System**: Complete rounded corner utilities matching Tailwind's `rounded-*` classes
+- **Utility-First Components**: `FlyText` and `FlyContainer` with Tailwind-like method chaining
+- **Theme Integration**: Seamless integration with Flutter's `ThemeData` extensions via `FlyTheme`
+- **Type-Safe Access**: Full autocomplete support with `context.flywind` extension
+- **Custom Configuration**: Easy custom colors and spacing via `FlyConfig` class
+- **Comprehensive Utilities**: Padding, margin, colors, and border radius with 70+ tests
+- **Error Handling**: Helpful debug messages for invalid tokens with graceful fallbacks
+- **Flexible API**: Both dot notation (`colors.blue600`) and bracket notation (`colors['blue600']`)
+- **Design Token System**: Centralized `FlySpacing`, `FlyColors`, and `FlyBorderRadius` classes
+- **Method Chaining**: Fluent API for clean, readable code composition
 
 ## 📦 Components
 
@@ -19,24 +21,11 @@ A text widget with Tailwind-like utilities for styling:
 
 ```dart
 FlyText('Hello World')
-  .p(3)           // padding: 12px
-  .px(4)          // horizontal padding: 16px
-  .py(2)          // vertical padding: 8px
-  .pl(1)          // left padding: 4px
-  .pr(2)          // right padding: 8px
-  .pt(3)          // top padding: 12px
-  .pb(4)          // bottom padding: 16px
+  .p(4)           // padding: 16px
+  .px(6)          // horizontal padding: 24px
   .m(2)           // margin: 8px
-  .mx(3)          // horizontal margin: 12px
-  .my(1)          // vertical margin: 4px
-  .ml(2)          // left margin: 8px
-  .mr(3)          // right margin: 12px
-  .mt(1)          // top margin: 4px
-  .mb(2)          // bottom margin: 8px
   .color('blue600') // text color
-  .rounded('lg')   // border radius: 8px all corners
-  .roundedT('xl')  // border radius: 12px top corners
-  .roundedTl('sm') // border radius: 2px top-left corner
+  .rounded('lg')   // border radius: 8px
 ```
 
 ### FlyContainer
@@ -48,12 +37,8 @@ FlyContainer(
 )
   .bg('red600')   // background color
   .p(4)           // padding: 16px
-  .px(6)          // horizontal padding: 24px
   .m(2)           // margin: 8px
-  .mx(3)          // horizontal margin: 12px
-  .my(1)          // vertical margin: 4px
-  .rounded('xl')  // border radius: 12px all corners
-  .roundedT('2xl') // border radius: 16px top corners
+  .rounded('xl')  // border radius: 12px
 ```
 
 ## 🎨 Design System
@@ -93,8 +78,9 @@ Matching Tailwind CSS border radius system:
 
 ## 🛠️ Usage
 
-### 1. Wrap your app with FlyConfig
+### 1. Setup your app with FlyTheme
 
+#### Option A: Use Default Theme
 ```dart
 void main() {
   runApp(const MyApp());
@@ -106,18 +92,45 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: FlyConfig(
-        spacing: defaultSpacing,
-        colors: defaultColors,
-        borderRadius: defaultBorderRadius,
-        child: const HomePage(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+        extensions: [
+          FlyTheme.defaultTheme, // Uses default colors and spacing
+        ],
       ),
+      home: const HomePage(),
     );
   }
 }
 ```
 
-### 2. Use utility components
+#### Option B: Use Custom Theme
+```dart
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+        extensions: [
+          FlyConfig.createTheme(), // Creates theme with custom colors/spacing
+        ],
+      ),
+      home: const HomePage(),
+    );
+  }
+}
+```
+
+### 2. Access theme values with context.flywind
 
 ```dart
 class HomePage extends StatelessWidget {
@@ -125,15 +138,30 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final flywind = context.flywind; // Access Flywind theme
+    final spacing = flywind.spacing;
+    final colors = flywind.colors;
+    final borderRadius = flywind.borderRadius;
+    
     return Scaffold(
       body: Column(
         children: [
-          // Text with padding, margin, color, and border radius
+          // Use utility components with method chaining
           FlyText('Welcome to Flywind')
             .p(4)
             .m(2)
             .color('blue600')
             .rounded('lg'),
+          
+          // Access theme values directly
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: colors.leif, // Custom color with autocomplete
+              padding: EdgeInsets.all(spacing.s4), // Type-safe spacing
+            ),
+            onPressed: () {},
+            child: Text('Custom Button'),
+          ),
           
           // Container with background, padding, margin, and border radius
           FlyContainer(
@@ -145,17 +173,6 @@ class HomePage extends StatelessWidget {
             .m(3)
             .mx(4)
             .rounded('xl'),
-          
-          // Complex combinations with all utilities
-          FlyText('Complex Styling')
-            .p(2)
-            .px(4)
-            .pl(6)
-            .m(1)
-            .my(2)
-            .color('green600')
-            .roundedT('2xl')
-            .roundedBl('md'),
         ],
       ),
     );
@@ -165,20 +182,17 @@ class HomePage extends StatelessWidget {
 
 ## 🧪 Testing
 
-This project includes a comprehensive test suite covering all functionality:
-
-- **Unit Tests**: Testing utility classes and logic (`FlyPadding`, `FlyMargin`, `FlyColor`, `FlyStyle`)
-- **Widget Tests**: Testing component rendering and behavior (`FlyText`, `FlyContainer`)
-- **Integration Tests**: Testing complex combinations of padding, margin, and colors
+**All Tests Passing** - 70+ comprehensive tests covering all components and utilities.
 
 ### Test Coverage
 
-- **Padding Tests**: 8 comprehensive tests covering all padding scenarios
-- **Margin Tests**: 9 comprehensive tests covering all margin scenarios  
-- **Color Tests**: 8 tests covering color resolution and application
-- **Rounded Tests**: 8 tests covering border radius resolution and application
-- **Style Tests**: 8 tests covering style combinations and application
-- **Widget Tests**: 24 tests covering component behavior and method chaining
+- **FlyPadding Utility**: Resolves uniform and directional padding, handles mixed combinations
+- **FlyMargin Utility**: Resolves uniform and directional margin, handles mixed combinations  
+- **FlyColor Utility**: Resolves colors from theme, applies to TextStyle and Container
+- **FlyRounded Utility**: Resolves uniform, directional, and individual corner border radius
+- **FlyStyle Class**: copyWith, hasPadding/Margin/BorderRadius properties, apply method
+- **FlyText Widget**: Renders, applies padding/color, handles method chaining
+- **FlyContainer Widget**: Renders, applies background/padding, handles method chaining
 
 ### Running Tests
 
@@ -186,49 +200,55 @@ This project includes a comprehensive test suite covering all functionality:
 # Run all tests
 flutter test
 
-# Run specific test files
-flutter test test/tw_padding_test.dart
-flutter test test/tw_margin_test.dart
-flutter test test/tw_color_test.dart
-flutter test test/tw_rounded_test.dart
-flutter test test/tw_style_test.dart
-flutter test test/tw_text_test.dart
-flutter test test/tw_container_test.dart
+# Run with coverage
+flutter test --coverage
 ```
-
-For detailed testing information, see [test/README.md](test/README.md).
 
 
 ## 🎯 Key Concepts
 
-### Design Tokens
-Centralized values for spacing, colors, and border radius that can be easily customized:
+### Custom Configuration
+Define your custom colors and spacing in `FlyConfig`:
 
 ```dart
-const Map<int, double> defaultSpacing = {
-  1: 4.0,
-  2: 8.0,
-  3: 12.0,
-  // ...
-};
+class FlyConfig {
+  static const Map<String, Color> customColors = {
+    'leif': Color(0xFF8B5CF6),     // Purple
+    'brand': Color(0xFF10B981),    // Green
+    'accent': Color(0xFFF59E0B),   // Orange
+  };
 
-const Map<String, Color> defaultColors = {
-  'blue600': Color(0xFF2563EB),
-  'red600': Color(0xFFDC2626),
-  // ...
-};
+  static const Map<String, double> customSpacing = {
+    'leif': 64.0,
+    'brand': 80.0,
+    'large': 96.0,
+  };
 
-const Map<String, double> defaultBorderRadius = {
-  'none': 0.0,
-  'sm': 2.0,
-  '': 4.0,        // default
-  'md': 6.0,
-  'lg': 8.0,
-  'xl': 12.0,
-  '2xl': 16.0,
-  '3xl': 24.0,
-  'full': 9999.0,
-};
+  static FlyTheme createTheme() {
+    return FlyTheme.withCustom(
+      customColors: customColors,
+      customSpacing: customSpacing,
+    );
+  }
+}
+```
+
+### Type-Safe Access
+Access theme values with full autocomplete support:
+
+```dart
+final flywind = context.flywind;
+final spacing = flywind.spacing;
+final colors = flywind.colors;
+
+// Type-safe dot notation
+spacing.s4        // 16.0
+colors.blue600    // Color(0xFF2563EB)
+colors.leif       // Custom color with autocomplete
+
+// Bracket notation still works
+spacing[4]        // 16.0
+colors['blue600'] // Color(0xFF2563EB)
 ```
 
 ### Fluent API
@@ -282,6 +302,25 @@ FlyContainer(
   .m(2)           // margin: 8px
   .bg('blue600')  // background color
   .rounded('lg')  // border radius: 8px
+```
+
+### Theme Integration
+Flywind integrates seamlessly with Flutter's theme system:
+
+```dart
+// Access theme values in any widget
+Widget build(BuildContext context) {
+  final flywind = context.flywind;
+  
+  return Container(
+    padding: EdgeInsets.all(flywind.spacing.s4),
+    decoration: BoxDecoration(
+      color: flywind.colors.leif,
+      borderRadius: BorderRadius.circular(flywind.borderRadius.lg),
+    ),
+    child: Text('Styled with theme'),
+  );
+}
 ```
 
 ## 🚀 Getting Started

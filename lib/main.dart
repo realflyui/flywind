@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Access Flywind theme via the new simplified system
-    final flywind = context.tw; // Using our new extension!
+    final flywind = context.flywind; // Using our new extension!
     final spacing = flywind.spacing;
     final colors = flywind.colors;
     final borderRadius = flywind.borderRadius;
