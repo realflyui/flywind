@@ -34,9 +34,6 @@
 // )
 // ```
 
-// Core configuration
-export 'config.dart';
-
 // Widgets
 export 'widgets/container.dart';
 export 'widgets/text.dart';
@@ -55,6 +52,6 @@ export 'parsers/color_parser.dart';
 export 'parsers/unit_parser.dart';
 
 // Tokens
-export 'tokens/border_radius.dart';
-export 'tokens/colors.dart';
+export 'tokens/radius.dart';
+export 'tokens/color.dart';
 export 'tokens/spacing.dart';

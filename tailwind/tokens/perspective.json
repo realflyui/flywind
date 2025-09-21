@@ -1,0 +1,16 @@
+{
+    "name": "FlyPerspectives",
+    "type": "double",
+    "description": "Perspective class with type-safe access to perspective values",
+    "imports": [],
+    "values": {
+        "dramatic": "100",
+        "near": "300",
+        "normal": "500",
+        "midrange": "800",
+        "distant": "1200"
+    },
+    "customValues": true,
+    "customFieldName": "customPerspectives",
+    "extension": true
+}

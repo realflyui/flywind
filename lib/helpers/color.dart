@@ -49,13 +49,13 @@ class FlyColorUtils {
   /// Gets color value from FlyColors class or parses color string
   static Color? _getColorValue(FlyTheme theme, String key) {
     // First try to get from theme colors
-    final themeColor = theme.colors[key];
-    if (themeColor != null) {
-      return themeColor;
+    final themeColorString = theme.colors[key];
+    if (themeColorString != null) {
+      return FlyColorParser.parse(themeColorString);
     }
 
     // If not found in theme, try to parse as color string
-    return FlyColorParser.parse(key, themeColors: theme.colors.customColors);
+    return FlyColorParser.parse(key);
   }
 
   /// Gets list of available color keys from the actual theme

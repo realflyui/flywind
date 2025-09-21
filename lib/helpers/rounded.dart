@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../tokens/border_radius.dart';
+import '../tokens/radius.dart';
 import 'style.dart';
 import 'theme.dart';
 
@@ -106,9 +106,12 @@ class FlyRoundedUtils {
     String direction,
   ) {
     // First try to look up as a key
-    final value = borderRadius.getValue(input);
-    if (value != null) {
-      return value;
+    final valueString = borderRadius[input];
+    if (valueString != null) {
+      final value = double.tryParse(valueString);
+      if (value != null) {
+        return value;
+      }
     }
 
     // If not found as key, try to parse as direct value

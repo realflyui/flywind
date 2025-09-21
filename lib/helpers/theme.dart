@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../tokens/colors.dart';
+import '../tokens/color.dart';
 import '../tokens/spacing.dart';
-import '../tokens/border_radius.dart';
+import '../tokens/radius.dart';
 import '../parsers/color_parser.dart';
 
 /// Simplified Flywind theme extension for Flutter's ThemeData
@@ -42,13 +42,9 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
     }
 
     return FlyTheme(
-      spacing: FlySpacing.defaultSpacing.copyWith(
-        customSpacing: customSpacing?.cast<int, String>() ?? {},
-      ),
-      colors: FlyColors.defaultColors.copyWith(customColors: parsedColors),
-      borderRadius: FlyBorderRadius.defaultBorderRadius.copyWith(
-        customBorderRadius: customBorderRadius ?? {},
-      ),
+      spacing: FlySpacing.defaultSpacing,
+      colors: FlyColors.defaultColors,
+      borderRadius: FlyBorderRadius.defaultBorderRadius,
     );
   }
 
@@ -100,12 +96,26 @@ class FlyTheme extends ThemeExtension<FlyTheme> {
 /// Provides both dot notation and convenience methods
 extension FlyContext on BuildContext {
   /// Convenience method for spacing values
-  String spacing(int value) => FlyTheme.of(this).spacing[value] ?? '0';
+  String spacing(String value) => FlyTheme.of(this).spacing[value] ?? '0';
 
   /// Convenience method for color values
-  Color color(String name) => FlyTheme.of(this).colors[name] ?? Colors.black;
+  Color color(String name) {
+    final colorString = FlyTheme.of(this).colors[name];
+    if (colorString != null) {
+      final color = FlyColorParser.parse(colorString);
+      if (color != null) {
+        return color;
+      }
+    }
+    return Colors.black;
+  }
 
   /// Convenience method for border radius values
-  double radius(String name) =>
-      FlyTheme.of(this).borderRadius.getValue(name) ?? 0.0;
+  double radius(String name) {
+    final valueString = FlyTheme.of(this).borderRadius[name];
+    if (valueString != null) {
+      return double.tryParse(valueString) ?? 0.0;
+    }
+    return 0.0;
+  }
 }

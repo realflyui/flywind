@@ -1,0 +1,12 @@
+{
+    "name": "FlySpacing",
+    "type": "double",
+    "description": "Spacing class with type-safe access to spacing values",
+    "imports": [],
+    "values": {
+        "base": "4"
+    },
+    "customValues": true,
+    "customFieldName": "customSpacing",
+    "extension": true
+}

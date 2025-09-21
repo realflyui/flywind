@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'helpers/theme.dart';
 import 'widgets/text.dart';
 import 'widgets/container.dart';
-import 'config.dart';
 import 'parsers/color_parser.dart';
 
 void main() {
@@ -22,7 +21,7 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
         extensions: [
           // FlyTheme.defaultTheme,
-          FlyConfig.createTheme(),
+          FlyTheme.defaultTheme,
         ],
       ),
       home: const HomePage(),
@@ -39,16 +38,16 @@ class HomePage extends StatelessWidget {
     final flywind = FlyTheme.of(context);
     final spacing = flywind.spacing;
     final colors = flywind.colors;
-    final borderRadius = flywind.borderRadius;
+    final radius = flywind.borderRadius;
 
     // Example usage - you can now use these values with type safety!
-    print('Spacing 2 value: ${spacing.s2}'); // This will print "8" (default)
+    print('Spacing 2 value: ${spacing.lg}'); // This will print "8" (default)
     print(
-      'Spacing 2 value (bracket): ${spacing[2]}',
+      'Spacing 2 value (bracket): ${spacing['md']}',
     ); // This will also print "8"
 
     // Standard colors using dot notation (type-safe!)
-    print('Leif: ${colors.leif}'); // This will print the blue color
+    print('Leif: ${colors.blue100}'); // This will print the blue color
     print('Gray800: ${colors.gray800}'); // This will print the gray color
 
     // Bracket notation still works
@@ -63,12 +62,12 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Test the custom "leif" color
-              FlyText('Custom "leif" Color Test:').color('leif').mb('12'),
+              // Test the custom "blue200" color
+              FlyText('Custom "blue200" Color Test:').color('blue200').mb('12'),
               // Mixed spacing examples
               FlyText(
                 'Mixed spacing example',
-              ).px(spacing.s3).py(spacing.s2).color('teal600').mb('8'),
+              ).px(spacing.lg).py(spacing.xs).color('teal600').mb('8'),
 
               // Test 100px horizontal padding
               FlyText(
@@ -77,29 +76,29 @@ class HomePage extends StatelessWidget {
 
               // Background color examples using string-based spacing
               FlyContainer(
-                child: FlyText('Container with leif background').color('white'),
-              ).bg(colors.leif).p(spacing.s3).mb(spacing.s3),
+                child: FlyText('Container with blue200 background').color('white'),
+              ).bg(colors.amber400).p(spacing.md).mb(spacing.md),
 
               // Custom border radius example using extension
               FlyContainer(
                     child: FlyText('Custom pill border radius').color('white'),
                   )
-                  .bg('brand')
-                  .p(spacing.s2)
-                  .rounded(borderRadius.pill)
-                  .mb(spacing.s2),
+                  .bg('brandPrimary')
+                  .p(spacing.xl)
+                  .rounded(radius.md)
+                  .mb(spacing.xl),
 
               // Material button using Flywind theme
               Padding(
-                padding: EdgeInsets.only(bottom: double.parse(spacing.s2)),
+                padding: EdgeInsets.only(bottom: double.parse(spacing.md)),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: FlyColorParser.parse(colors.leif),
+                    backgroundColor: FlyColorParser.parse(colors.blue400),
                     foregroundColor: Colors.white,
-                    padding: EdgeInsets.all(double.parse(spacing.s4)),
+                    padding: EdgeInsets.all(double.parse(spacing.md)),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
-                        double.parse(borderRadius.lg),
+                        double.parse(radius.lg),
                       ),
                     ),
                   ),

@@ -8,7 +8,7 @@ import 'dart:io';
 /// This script reads JSON configuration files and generates Dart classes
 /// for design tokens like colors, spacing, and border radius.
 void main(List<String> args) {
-  final tokensDir = Directory('tokens');
+  final tokensDir = Directory('tailwind/tokens');
   final outputDir = Directory('lib/tokens');
 
   // Ensure output directory exists
@@ -16,11 +16,26 @@ void main(List<String> args) {
     outputDir.createSync(recursive: true);
   }
 
-  // Find all JSON files in tokens directory
+  // Load master config file
+  final configFile = File('${tokensDir.path}/config.json');
+  Map<String, dynamic> masterConfig = {};
+  
+  if (configFile.existsSync()) {
+    try {
+      masterConfig = _loadConfig(configFile);
+      print('Loaded master config from: ${configFile.path}');
+    } catch (e) {
+      print('Warning: Could not load config.json: $e');
+    }
+  } else {
+    print('Warning: No config.json found, proceeding without config overrides');
+  }
+
+  // Find all JSON files in tokens directory (excluding config.json)
   final jsonFiles = tokensDir
       .listSync()
       .whereType<File>()
-      .where((file) => file.path.endsWith('.json'))
+      .where((file) => file.path.endsWith('.json') && !file.path.endsWith('config.json'))
       .toList();
 
   if (jsonFiles.isEmpty) {
@@ -36,8 +51,9 @@ void main(List<String> args) {
   // Generate classes for each token file
   for (final jsonFile in jsonFiles) {
     try {
-      final config = _loadConfig(jsonFile);
-      final generatedCode = _generateClass(config);
+      final tokenConfig = _loadConfig(jsonFile);
+      final mergedConfig = _mergeWithConfig(tokenConfig, masterConfig);
+      final generatedCode = _generateClass(mergedConfig);
 
       final outputFile = File(
         '${outputDir.path}/${_getOutputFileName(jsonFile)}',
@@ -50,6 +66,9 @@ void main(List<String> args) {
     }
   }
 
+  // Generate tokens.dart export file
+  _generateTokensExport(outputDir, jsonFiles);
+
   print('\nToken generation complete!');
 }
 
@@ -57,6 +76,61 @@ void main(List<String> args) {
 Map<String, dynamic> _loadConfig(File jsonFile) {
   final content = jsonFile.readAsStringSync();
   return jsonDecode(content) as Map<String, dynamic>;
+}
+
+/// Merge token configuration with master config overrides
+Map<String, dynamic> _mergeWithConfig(
+  Map<String, dynamic> tokenConfig,
+  Map<String, dynamic> masterConfig,
+) {
+  // Start with the token config as base
+  final merged = Map<String, dynamic>.from(tokenConfig);
+  
+  // Get the token name to look up in master config
+  final tokenName = tokenConfig['name'] as String?;
+  if (tokenName == null) return merged;
+  
+  // Extract the token type from the name (e.g., "FlyColors" -> "color")
+  final tokenType = _extractTokenType(tokenName);
+  
+  // Look up the token type in master config
+  final tokens = masterConfig['tokens'] as Map<String, dynamic>?;
+  if (tokens == null) return merged;
+  
+  final configOverride = tokens[tokenType] as Map<String, dynamic>?;
+  if (configOverride == null) return merged;
+  
+  // Apply overrides from config
+  for (final entry in configOverride.entries) {
+    final key = entry.key;
+    final value = entry.value;
+    
+    // Special handling for 'values' - merge them instead of replacing
+    if (key == 'values' && value is Map<String, dynamic>) {
+      final existingValues = merged['values'] as Map<String, dynamic>? ?? {};
+      merged['values'] = {...existingValues, ...value};
+    } else {
+      // For other properties, override if they exist in config
+      merged[key] = value;
+    }
+  }
+  
+  return merged;
+}
+
+/// Extract token type from class name (e.g., "FlyColors" -> "color")
+String _extractTokenType(String className) {
+  // Remove "Fly" prefix and convert to lowercase
+  final withoutFly = className.startsWith('Fly') 
+      ? className.substring(3) 
+      : className;
+  
+  // Convert PascalCase to kebab-case
+  final result = withoutFly
+      .replaceAllMapped(RegExp(r'([A-Z])'), (match) => '-${match.group(1)!.toLowerCase()}')
+      .replaceFirst(RegExp(r'^-'), '');
+  
+  return result;
 }
 
 /// Get output file name from input JSON file
@@ -68,7 +142,8 @@ String _getOutputFileName(File jsonFile) {
 /// Generate Dart class from configuration
 String _generateClass(Map<String, dynamic> config) {
   final className = config['name'] as String;
-  final type = config['type'] as String;
+  // Force all types to be String regardless of what's specified in the config
+  final type = 'String';
   final description = config['description'] as String? ?? '';
   final values = config['values'] as Map<String, dynamic>;
   final customValues = config['customValues'] as bool? ?? false;
@@ -93,11 +168,13 @@ String _generateClass(Map<String, dynamic> config) {
   buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
   buffer.writeln();
 
-  // Add imports
+  // Add imports (but skip Flutter Material imports since we're using String types)
   for (final import in imports) {
-    buffer.writeln("import '$import';");
+    if (!import.contains('package:flutter/material.dart')) {
+      buffer.writeln("import '$import';");
+    }
   }
-  if (imports.isNotEmpty) {
+  if (imports.any((import) => !import.contains('package:flutter/material.dart'))) {
     buffer.writeln();
   }
 
@@ -114,7 +191,6 @@ String _generateClass(Map<String, dynamic> config) {
   final fieldNames = <String>[];
   for (final entry in values.entries) {
     final key = entry.key;
-    final value = entry.value;
     final fieldName = _getFieldName(key);
     fieldNames.add(fieldName);
 
@@ -162,7 +238,7 @@ String _generateClass(Map<String, dynamic> config) {
     for (final entry in values.entries) {
       final key = entry.key;
       final fieldName = _getFieldName(key);
-      final mapKey = key.isEmpty ? "''" : "'$key'";
+      final mapKey = key.isEmpty ? "''" : "'${_getFieldName(key)}'";
       buffer.writeln('    $mapKey: $fieldName,');
     }
     if (customValues) {
@@ -322,6 +398,7 @@ String _getFieldName(String key) {
   // Handle special cases
   if (key == '2xl') return 'xl2';
   if (key == '3xl') return 'xl3';
+  if (key == '4xl') return 'xl4';
 
   // Handle numeric keys for spacing
   if (RegExp(r'^\d+$').hasMatch(key)) {
@@ -351,8 +428,43 @@ String _getIndexValue(String key, String indexType) {
 
 /// Format value based on type
 String _formatValue(dynamic value, String type) {
-  if (type == 'String') {
-    return "'$value'";
+  // Since we're forcing all types to be String, always format as string
+  // But for Color values, extract the hex value from Color(...) format
+  if (value.toString().startsWith('Color(0x') && value.toString().endsWith(')')) {
+    // Extract hex value from Color(0xFF5733) format
+    final colorString = value.toString();
+    final hexMatch = RegExp(r'Color\(0x([A-Fa-f0-9]+)\)').firstMatch(colorString);
+    if (hexMatch != null) {
+      final hexValue = hexMatch.group(1)!;
+      return "'#$hexValue'";
+    }
   }
-  return value.toString();
+  return "'$value'";
+}
+
+/// Generate tokens.dart export file
+void _generateTokensExport(Directory outputDir, List<File> jsonFiles) {
+  final buffer = StringBuffer();
+  
+  // Add warning header
+  buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
+  buffer.writeln('// This file was generated by FlyWind CLI');
+  buffer.writeln(
+    '// To modify this file, edit the JSON configuration in tokens/ directory and run: dart tailwind/generate_tokens.dart',
+  );
+  buffer.writeln('//');
+  buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+  buffer.writeln();
+  
+  // Add exports for each token file
+  for (final jsonFile in jsonFiles) {
+    final fileName = _getOutputFileName(jsonFile);
+    buffer.writeln("export '$fileName';");
+  }
+  
+  // Write the export file
+  final exportFile = File('${outputDir.path}/tokens.dart');
+  exportFile.writeAsStringSync(buffer.toString());
+  
+  print('Generated: ${exportFile.path}');
 }

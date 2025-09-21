@@ -194,7 +194,7 @@ class HomePage extends StatelessWidget {
           // Access theme values directly
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: colors.leif, // Custom color with autocomplete
+              backgroundColor: colors.blue200, // Custom color with autocomplete
               padding: EdgeInsets.all(spacing.s4), // Type-safe spacing
             ),
             onPressed: () {},
@@ -252,13 +252,13 @@ Define your custom colors and spacing in `FlyConfig`:
 ```dart
 class FlyConfig {
   static const Map<String, Color> customColors = {
-    'leif': Color(0xFF8B5CF6),     // Purple
+    'blue200': Color(0xFF8B5CF6),     // Purple
     'brand': Color(0xFF10B981),    // Green
     'accent': Color(0xFFF59E0B),   // Orange
   };
 
   static const Map<String, double> customSpacing = {
-    'leif': 64.0,
+    'blue200': 64.0,
     'brand': 80.0,
     'large': 96.0,
   };
@@ -283,7 +283,7 @@ final colors = flywind.colors;
 // Type-safe dot notation
 spacing.s4        // 16.0
 colors.blue600    // Color(0xFF2563EB)
-colors.leif       // Custom color with autocomplete
+colors.blue200       // Custom color with autocomplete
 
 // Bracket notation still works
 spacing[4]        // 16.0
@@ -354,7 +354,7 @@ Widget build(BuildContext context) {
   return Container(
     padding: EdgeInsets.all(flywind.spacing.s4),
     decoration: BoxDecoration(
-      color: flywind.colors.leif,
+      color: flywind.colors.blue200,
       borderRadius: BorderRadius.circular(flywind.borderRadius.lg),
     ),
     child: Text('Styled with theme'),

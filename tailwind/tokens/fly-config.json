@@ -1,0 +1,73 @@
+{
+    "app_name": "Flywind",
+    "tokens": {
+        "color": {
+            "type": "Color",
+            "values": {}
+        },
+        "breakpoint": {
+            "type": "double",
+            "values": {}
+        },
+        "container": {
+            "type": "double",
+            "values": {}
+        },
+        "spacing": {
+            "type": "double",
+            "values": {}
+        },
+        "text": {
+            "type": "double",
+            "values": {}
+        },
+        "text-shadow": {
+            "type": "Shadow",
+            "values": {}
+        },
+        "font": {
+            "type": "String",
+            "values": {}
+        },
+        "font-weight": {
+            "type": "FontWeight",
+            "values": {}
+        },
+        "tracking": {
+            "type": "double",
+            "values": {}
+        },
+        "leading": {
+            "type": "double",
+            "values": {}
+        },
+        "radius": {
+            "type": "double",
+            "values": {}
+        },
+        "shadow": {
+            "type": "BoxShadow",
+            "values": {}
+        },
+        "inset-shadow": {
+            "type": "BoxShadow",
+            "values": {}
+        },
+        "drop-shadow": {
+            "type": "BoxShadow",
+            "values": {}
+        },
+        "blur": {
+            "type": "double",
+            "values": {}
+        },
+        "perspective": {
+            "type": "double",
+            "values": {}
+        },
+        "aspect-video": {
+            "type": "double",
+            "values": {}
+        }
+    }
+}

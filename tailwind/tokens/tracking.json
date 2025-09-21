@@ -1,0 +1,17 @@
+{
+    "name": "FlyLetterSpacing",
+    "type": "double",
+    "description": "Letter spacing class with type-safe access to letter spacing values",
+    "imports": [],
+    "values": {
+        "tighter": "-1",
+        "tight": "0",
+        "normal": "0",
+        "wide": "0",
+        "wider": "1",
+        "widest": "2"
+    },
+    "customValues": true,
+    "customFieldName": "customLetterSpacing",
+    "extension": true
+}

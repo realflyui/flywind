@@ -1,0 +1,16 @@
+{
+    "name": "FlyInsetShadows",
+    "type": "BoxShadow",
+    "description": "Inset shadow class with type-safe access to inset shadow values",
+    "imports": [
+        "package:flutter/material.dart"
+    ],
+    "values": {
+        "2xs": "InsetShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4, offset: Offset(0, 2))",
+        "xs": "InsetShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4, offset: Offset(0, 2))",
+        "sm": "InsetShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4, offset: Offset(0, 2))"
+    },
+    "customValues": true,
+    "customFieldName": "customInsetShadows",
+    "extension": true
+}

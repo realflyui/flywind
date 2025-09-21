@@ -1,0 +1,92 @@
+{
+    "app_name": "Flywind",
+    "tokens": {
+        "colors": {
+            "type": "Color",
+            "values": {
+                "brand-primary": "Color(0xFF007AFF)",
+                "brand-secondary": "Color(0xFF34C759)",
+                "brand-accent": "Color(0xFFFF9500)"
+            },
+            "customValues": true,
+            "customFieldName": "customColors"
+        },
+        "breakpoint": {
+            "type": "double",
+            "values": {}
+        },
+        "container": {
+            "type": "double",
+            "values": {}
+        },
+        "spacing": {
+            "type": "double",
+            "values": {
+                "xs": "2",
+                "sm": "4",
+                "md": "8",
+                "lg": "16",
+                "xl": "32"
+            },
+            "customValues": true,
+            "customFieldName": "customSpacing"
+        },
+        "text": {
+            "type": "double",
+            "values": {}
+        },
+        "text-shadow": {
+            "type": "Shadow",
+            "values": {}
+        },
+        "font": {
+            "type": "String",
+            "values": {}
+        },
+        "font-weight": {
+            "type": "FontWeight",
+            "values": {}
+        },
+        "tracking": {
+            "type": "double",
+            "values": {}
+        },
+        "leading": {
+            "type": "double",
+            "values": {}
+        },
+        "border-radius": {
+            "type": "double",
+            "values": {
+                "none": "0",
+                "full": "9999"
+            },
+            "customValues": true,
+            "customFieldName": "customRadius"
+        },
+        "shadow": {
+            "type": "BoxShadow",
+            "values": {}
+        },
+        "inset-shadow": {
+            "type": "BoxShadow",
+            "values": {}
+        },
+        "drop-shadow": {
+            "type": "BoxShadow",
+            "values": {}
+        },
+        "blur": {
+            "type": "double",
+            "values": {}
+        },
+        "perspective": {
+            "type": "double",
+            "values": {}
+        },
+        "aspect-video": {
+            "type": "double",
+            "values": {}
+        }
+    }
+}

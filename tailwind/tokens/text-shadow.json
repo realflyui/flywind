@@ -1,0 +1,18 @@
+{
+    "name": "FlyTextShadows",
+    "type": "Shadow",
+    "description": "Text shadow class with type-safe access to text shadow values",
+    "imports": [
+        "package:flutter/material.dart"
+    ],
+    "values": {
+        "2xs": "Shadow(color: Color.fromRGBO(0, 0, 0, 0.15), offset: Offset(0.0, 1.0), blurRadius: 0.0)",
+        "xs": "Shadow(color: Color.fromRGBO(0, 0, 0, 0.2), offset: Offset(0.0, 1.0), blurRadius: 1.0)",
+        "sm": "[Shadow(color: Color.fromRGBO(0, 0, 0, 0.075), offset: Offset(0.0, 1.0), blurRadius: 0.0), Shadow(color: Color.fromRGBO(0, 0, 0, 0.075), offset: Offset(0.0, 1.0), blurRadius: 1.0), Shadow(color: Color.fromRGBO(0, 0, 0, 0.075), offset: Offset(0.0, 2.0), blurRadius: 2.0)]",
+        "md": "[Shadow(color: Color.fromRGBO(0, 0, 0, 0.1), offset: Offset(0.0, 1.0), blurRadius: 1.0), Shadow(color: Color.fromRGBO(0, 0, 0, 0.1), offset: Offset(0.0, 1.0), blurRadius: 2.0), Shadow(color: Color.fromRGBO(0, 0, 0, 0.1), offset: Offset(0.0, 2.0), blurRadius: 4.0)]",
+        "lg": "[Shadow(color: Color.fromRGBO(0, 0, 0, 0.1), offset: Offset(0.0, 1.0), blurRadius: 2.0), Shadow(color: Color.fromRGBO(0, 0, 0, 0.1), offset: Offset(0.0, 3.0), blurRadius: 2.0), Shadow(color: Color.fromRGBO(0, 0, 0, 0.1), offset: Offset(0.0, 4.0), blurRadius: 8.0)]"
+    },
+    "customValues": true,
+    "customFieldName": "customTextShadows",
+    "extension": true
+}

@@ -8,7 +8,7 @@ class FlyColorParser {
   /// - Hex colors: "#FF5733", "#ff5733", "FF5733", "ff5733"
   /// - RGB colors: "rgb(255, 87, 51)"
   /// - RGBA colors: "rgba(255, 87, 51, 0.8)"
-  /// - Theme colors: "leif", "brand", "primary" (custom theme colors)
+  /// - Theme colors: "blue200", "brand", "primary" (custom theme colors)
   /// - Color objects: Color(0xFF8B5CF6) (returns as-is)
   static Color? parse(dynamic value, {Map<String, Color>? themeColors}) {
     // If it's already a Color object, return it
