@@ -9,35 +9,14 @@ import '../tokens/spacing.dart';
 class CustomSpacing {
   const CustomSpacing._();
 
-  /// Custom spacing: xs
-  static const double xs = 2.0;
-  /// Custom spacing: sm
-  static const double sm = 4.0;
-  /// Custom spacing: md
-  static const double md = 8.0;
-  /// Custom spacing: lg
-  static const double lg = 16.0;
-  /// Custom spacing: xl
-  static const double xl = 32.0;
-  /// Custom spacing: 2xl
-  static const double xl2 = 48.0;
-  /// Custom spacing: section
-  static const double section = 24.0;
-  /// Custom spacing: container
-  static const double container = 12.0;
+  /// Custom spacing: test
+  static const double test = 99.0;
 
   /// Create default custom spacing as FlySpacingToken
   static FlySpacingToken defaultSpacing() {
     return FlySpacingToken.defaultSpacing().copyWith(
       extras: {
-        'xs': 2.0,
-        'sm': 4.0,
-        'md': 8.0,
-        'lg': 16.0,
-        'xl': 32.0,
-        '2xl': 48.0,
-        'section': 24.0,
-        'container': 12.0,
+        'test': 99.0,
       },
     );
   }
@@ -45,20 +24,6 @@ class CustomSpacing {
 
 /// Extension methods for FlySpacingToken to provide dot notation access
 extension FlySpacingTokenExtensions on FlySpacingToken {
-  /// Custom spacing: xs
-  double get xs => extras['xs'] ?? 2.0;
-  /// Custom spacing: sm
-  double get sm => extras['sm'] ?? 4.0;
-  /// Custom spacing: md
-  double get md => extras['md'] ?? 8.0;
-  /// Custom spacing: lg
-  double get lg => extras['lg'] ?? 16.0;
-  /// Custom spacing: xl
-  double get xl => extras['xl'] ?? 32.0;
-  /// Custom spacing: 2xl
-  double get xl2 => extras['2xl'] ?? 48.0;
-  /// Custom spacing: section
-  double get section => extras['section'] ?? 24.0;
-  /// Custom spacing: container
-  double get container => extras['container'] ?? 12.0;
+  /// Custom spacing: test
+  double get test => extras['test'] ?? 99.0;
 }

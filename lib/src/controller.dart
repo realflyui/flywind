@@ -58,6 +58,46 @@ class FlyThemeController extends ChangeNotifier {
     update((data) => data.copyWith(breakpoints: updater(data.breakpoints)));
   }
 
+  /// Update container token
+  void updateContainer(FlyContainerToken Function(FlyContainerToken current) updater) {
+    update((data) => data.copyWith(container: updater(data.container)));
+  }
+
+  /// Update text token
+  void updateText(FlyTextToken Function(FlyTextToken current) updater) {
+    update((data) => data.copyWith(text: updater(data.text)));
+  }
+
+  /// Update text line height token
+  void updateTextLineHeight(FlyTextLineHeightToken Function(FlyTextLineHeightToken current) updater) {
+    update((data) => data.copyWith(textLineHeight: updater(data.textLineHeight)));
+  }
+
+  /// Update font weight token
+  void updateFontWeight(FlyFontWeightToken Function(FlyFontWeightToken current) updater) {
+    update((data) => data.copyWith(fontWeight: updater(data.fontWeight)));
+  }
+
+  /// Update tracking token
+  void updateTracking(FlyTrackingToken Function(FlyTrackingToken current) updater) {
+    update((data) => data.copyWith(tracking: updater(data.tracking)));
+  }
+
+  /// Update blur token
+  void updateBlur(FlyBlurToken Function(FlyBlurToken current) updater) {
+    update((data) => data.copyWith(blur: updater(data.blur)));
+  }
+
+  /// Update perspective token
+  void updatePerspective(FlyPerspectiveToken Function(FlyPerspectiveToken current) updater) {
+    update((data) => data.copyWith(perspective: updater(data.perspective)));
+  }
+
+  /// Update leading token
+  void updateLeading(FlyLeadingToken Function(FlyLeadingToken current) updater) {
+    update((data) => data.copyWith(leading: updater(data.leading)));
+  }
+
   /// Put a spacing value
   void putSpacing(String key, num value) {
     if (key.isEmpty) {
@@ -97,6 +137,88 @@ class FlyThemeController extends ChangeNotifier {
       throw ArgumentError('Breakpoint value cannot be negative: $value');
     }
     updateBreakpoints((breakpoints) => breakpoints.put(key, value));
+  }
+
+  /// Put a container value
+  void putContainer(String key, double value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Container key cannot be empty');
+    }
+    if (value < 0) {
+      throw ArgumentError('Container value cannot be negative: $value');
+    }
+    updateContainer((container) => container.put(key, value));
+  }
+
+  /// Put a text value
+  void putText(String key, double value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Text key cannot be empty');
+    }
+    if (value < 0) {
+      throw ArgumentError('Text value cannot be negative: $value');
+    }
+    updateText((text) => text.put(key, value));
+  }
+
+  /// Put a text line height value
+  void putTextLineHeight(String key, double value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Text line height key cannot be empty');
+    }
+    if (value < 0) {
+      throw ArgumentError('Text line height value cannot be negative: $value');
+    }
+    updateTextLineHeight((textLineHeight) => textLineHeight.put(key, value));
+  }
+
+  /// Put a font weight value
+  void putFontWeight(String key, FontWeight value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Font weight key cannot be empty');
+    }
+    updateFontWeight((fontWeight) => fontWeight.put(key, value));
+  }
+
+  /// Put a tracking value
+  void putTracking(String key, double value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Tracking key cannot be empty');
+    }
+    updateTracking((tracking) => tracking.put(key, value));
+  }
+
+  /// Put a blur value
+  void putBlur(String key, double value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Blur key cannot be empty');
+    }
+    if (value < 0) {
+      throw ArgumentError('Blur value cannot be negative: $value');
+    }
+    updateBlur((blur) => blur.put(key, value));
+  }
+
+  /// Put a perspective value
+  void putPerspective(String key, double value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Perspective key cannot be empty');
+    }
+    if (value < 0) {
+      throw ArgumentError('Perspective value cannot be negative: $value');
+    }
+    updatePerspective((perspective) => perspective.put(key, value));
+  }
+
+  /// Put a leading value
+  void putLeading(String key, double value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Leading key cannot be empty');
+    }
+    if (value < 0) {
+      throw ArgumentError('Leading value cannot be negative: $value');
+    }
+    updateLeading((leading) => leading.put(key, value));
   }
 
 }

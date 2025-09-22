@@ -5,6 +5,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'converters/color_converter.dart';
 import 'converters/unit_converter.dart';
+import 'converters/font_converter.dart';
 
 /// Unified token generator for FlyWind design tokens
 /// Downloads Tailwind CSS theme and extracts specific properties
@@ -43,6 +44,62 @@ class TokenGenerator {
       'description': 'Color values from Tailwind CSS theme',
       'conversionType': 'color',
     },
+    'container': {
+      'prefix': 'container',
+      'className': 'FlyContainerToken',
+      'dartType': 'double',
+      'description': 'Container width values',
+      'conversionType': 'unit',
+    },
+    'text': {
+      'prefix': 'text',
+      'className': 'FlyTextToken',
+      'dartType': 'double',
+      'description': 'Text size values',
+      'conversionType': 'unit',
+    },
+    'text-line-height': {
+      'prefix': 'text-line-height',
+      'className': 'FlyTextLineHeightToken',
+      'dartType': 'double',
+      'description': 'Text line height values',
+      'conversionType': 'unit',
+    },
+    'font-weight': {
+      'prefix': 'font-weight',
+      'className': 'FlyFontWeightToken',
+      'dartType': 'FontWeight',
+      'description': 'Font weight values',
+      'conversionType': 'fontWeight',
+    },
+    'tracking': {
+      'prefix': 'tracking',
+      'className': 'FlyTrackingToken',
+      'dartType': 'double',
+      'description': 'Letter spacing values',
+      'conversionType': 'unit',
+    },
+    'blur': {
+      'prefix': 'blur',
+      'className': 'FlyBlurToken',
+      'dartType': 'double',
+      'description': 'Blur effect values',
+      'conversionType': 'unit',
+    },
+    'perspective': {
+      'prefix': 'perspective',
+      'className': 'FlyPerspectiveToken',
+      'dartType': 'double',
+      'description': 'Perspective transform values',
+      'conversionType': 'unit',
+    },
+    'leading': {
+      'prefix': 'leading',
+      'className': 'FlyLeadingToken',
+      'dartType': 'double',
+      'description': 'Line height values',
+      'conversionType': 'unit',
+    },
   };
 
   /// Extract tokens by property prefix
@@ -57,17 +114,34 @@ class TokenGenerator {
     } else if (propertyPrefix == 'color') {
       // Handle color tokens (--color-red-500: #ef4444;)
       regex = RegExp('--color-([^:]+):\\s*([^;]+);', multiLine: true, dotAll: true);
+    } else if (propertyPrefix == 'text-line-height') {
+      // Handle text-line-height tokens (--text-xs--line-height: calc(1 / 0.75);)
+      regex = RegExp('--text-([^:]+)--line-height:\\s*([^;]+);', multiLine: true, dotAll: true);
+    } else if (propertyPrefix == 'aspect-video') {
+      // Handle aspect-video token (--aspect-video: 16 / 9;)
+      regex = RegExp('--aspect-video:\\s*([^;]+);', multiLine: true, dotAll: true);
+    } else if (propertyPrefix == 'text') {
+      // Handle text tokens (--text-xs: 0.75rem;) but exclude line-height variables
+      regex = RegExp('--text-([^:]+):\\s*([^;]+);', multiLine: true, dotAll: true);
     } else {
       regex = RegExp('--$propertyPrefix-([^:]+):\\s*([^;]+);', multiLine: true, dotAll: true);
     }
     final matches = regex.allMatches(cssContent);
     
     for (final match in matches) {
+      // Skip line-height variables when extracting text tokens
+      if (propertyPrefix == 'text' && match.group(1)!.contains('--line-height')) {
+        continue;
+      }
       String tokenName;
       String tokenValue;
       
       if (propertyPrefix == 'spacing') {
         // For spacing, there's no token name, just use 'base' as the default
+        tokenName = 'base';
+        tokenValue = match.group(1)!.trim().replaceAll(RegExp(r'\s+'), ' ');
+      } else if (propertyPrefix == 'aspect-video') {
+        // For aspect-video, there's no token name, just use 'base' as the default
         tokenName = 'base';
         tokenValue = match.group(1)!.trim().replaceAll(RegExp(r'\s+'), ' ');
       } else {
@@ -94,6 +168,24 @@ class TokenGenerator {
       case 'unit':
       case 'spacing':
       case 'radius':
+      case 'tracking':
+      case 'blur':
+      case 'perspective':
+      case 'leading':
+        return UnitConverter.convertToDouble(value);
+      case 'aspectRatio':
+        // Handle aspect ratio expressions like "16 / 9"
+        if (value.contains('/')) {
+          final parts = value.split('/');
+          if (parts.length == 2) {
+            final numerator = double.parse(parts[0].trim());
+            final denominator = double.parse(parts[1].trim());
+            return (numerator / denominator).toString();
+          }
+        }
+        return UnitConverter.convertToDouble(value);
+      case 'text-line-height':
+        // Handle calc() expressions for line height using UnitConverter
         return UnitConverter.convertToDouble(value);
       case 'color':
         if (value.startsWith('oklch(')) {
@@ -104,6 +196,12 @@ class TokenGenerator {
           // For other color formats, wrap in quotes
           return '"$value"';
         }
+      case 'string':
+        // For string values like font families
+        return FontConverter.convertFontFamily(value);
+      case 'fontweight':
+        // Convert font weight values to FontWeight
+        return FontConverter.convertFontWeight(value);
       default:
         return '"$value"';
     }
@@ -177,7 +275,8 @@ class TokenGenerator {
         values: tokens,
       );
       
-      final outputFile = File('${outputDir}${tokenType}.dart');
+      final fileName = tokenType.replaceAll('-', '_');
+      final outputFile = File('${outputDir}${fileName}.dart');
       outputFile.writeAsStringSync(generatedCode);
       
       print('Generated: ${outputFile.path}');
@@ -214,7 +313,7 @@ class TokenGenerator {
     buffer.writeln();
     
     // Add imports
-    if (dartType == 'Color') {
+    if (dartType == 'Color' || dartType == 'FontWeight') {
       buffer.writeln("import 'package:flutter/material.dart';");
     }
     buffer.writeln("import '../src/theme.dart';");
@@ -341,8 +440,8 @@ class TokenGenerator {
     buffer.writeln('  }');
     buffer.writeln();
     
-    // Generate lerp method (for numeric types and Color)
-    if (dartType == 'double' || dartType == 'int' || dartType == 'Color') {
+    // Generate lerp method (for numeric types, Color, and FontWeight)
+    if (dartType == 'double' || dartType == 'int' || dartType == 'Color' || dartType == 'FontWeight') {
       buffer.writeln('  /// Linear interpolation between two tokens');
       buffer.writeln('  $className lerp($className other, double t) {');
       buffer.writeln('    final result = <String, $dartType>{};');
@@ -355,6 +454,17 @@ class TokenGenerator {
       if (dartType == 'Color') {
         buffer.writeln('      if (valueA != null && valueB != null) {');
         buffer.writeln('        result[key] = Color.lerp(valueA, valueB, t) ?? valueA;');
+        buffer.writeln('      } else if (valueA != null) {');
+        buffer.writeln('        result[key] = valueA;');
+        buffer.writeln('      } else if (valueB != null) {');
+        buffer.writeln('        result[key] = valueB;');
+        buffer.writeln('      }');
+      } else if (dartType == 'FontWeight') {
+        buffer.writeln('      if (valueA != null && valueB != null) {');
+        buffer.writeln('        final weightA = valueA.index;');
+        buffer.writeln('        final weightB = valueB.index;');
+        buffer.writeln('        final interpolatedIndex = (weightA + (weightB - weightA) * t).round();');
+        buffer.writeln('        result[key] = FontWeight.values[interpolatedIndex.clamp(0, FontWeight.values.length - 1)];');
         buffer.writeln('      } else if (valueA != null) {');
         buffer.writeln('        result[key] = valueA;');
         buffer.writeln('      } else if (valueB != null) {');
@@ -510,7 +620,8 @@ class TokenGenerator {
     
     // Add exports for each token file
     for (final tokenType in _tokenConfigs.keys) {
-      buffer.writeln("export '${tokenType}.dart';");
+      final fileName = tokenType.replaceAll('-', '_');
+      buffer.writeln("export '${fileName}.dart';");
     }
     
     // Write the export file
@@ -533,6 +644,16 @@ Future<void> main(List<String> args) async {
       print('  - spacing (margins and padding)');
       print('  - radius (border radius)');
       print('  - colors (color palette)');
+      print('  - font (font families)');
+      print('  - container (container widths)');
+      print('  - text (text sizes)');
+      print('  - text-line-height (line heights)');
+      print('  - font-weight (font weights)');
+      print('  - tracking (letter spacing)');
+      print('  - blur (blur effects)');
+      print('  - perspective (perspective transforms)');
+      print('  - aspect-video (aspect ratios)');
+      print('  - leading (line heights)');
       print('');
       print('Options:');
       print('  --url, -u    Custom Tailwind CSS theme URL');

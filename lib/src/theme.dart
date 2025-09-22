@@ -46,12 +46,28 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     required this.colors,
     required this.radius,
     required this.breakpoints,
+    required this.container,
+    required this.text,
+    required this.textLineHeight,
+    required this.fontWeight,
+    required this.tracking,
+    required this.blur,
+    required this.perspective,
+    required this.leading,
   });
 
   final FlySpacingToken spacing;
   final FlyColorToken colors;
   final FlyRadiusToken radius;
   final FlyBreakpointToken breakpoints;
+  final FlyContainerToken container;
+  final FlyTextToken text;
+  final FlyTextLineHeightToken textLineHeight;
+  final FlyFontWeightToken fontWeight;
+  final FlyTrackingToken tracking;
+  final FlyBlurToken blur;
+  final FlyPerspectiveToken perspective;
+  final FlyLeadingToken leading;
 
   /// Create a copy with updated values
   @override
@@ -60,12 +76,28 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     FlyColorToken? colors,
     FlyRadiusToken? radius,
     FlyBreakpointToken? breakpoints,
+    FlyContainerToken? container,
+    FlyTextToken? text,
+    FlyTextLineHeightToken? textLineHeight,
+    FlyFontWeightToken? fontWeight,
+    FlyTrackingToken? tracking,
+    FlyBlurToken? blur,
+    FlyPerspectiveToken? perspective,
+    FlyLeadingToken? leading,
   }) {
     return FlyThemeData(
       spacing: spacing ?? this.spacing,
       colors: colors ?? this.colors,
       radius: radius ?? this.radius,
       breakpoints: breakpoints ?? this.breakpoints,
+      container: container ?? this.container,
+      text: text ?? this.text,
+      textLineHeight: textLineHeight ?? this.textLineHeight,
+      fontWeight: fontWeight ?? this.fontWeight,
+      tracking: tracking ?? this.tracking,
+      blur: blur ?? this.blur,
+      perspective: perspective ?? this.perspective,
+      leading: leading ?? this.leading,
     );
   }
 
@@ -78,6 +110,14 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       colors: colors.merge(other.colors),
       radius: radius.merge(other.radius),
       breakpoints: breakpoints.merge(other.breakpoints),
+      container: container.merge(other.container),
+      text: text.merge(other.text),
+      textLineHeight: textLineHeight.merge(other.textLineHeight),
+      fontWeight: fontWeight.merge(other.fontWeight),
+      tracking: tracking.merge(other.tracking),
+      blur: blur.merge(other.blur),
+      perspective: perspective.merge(other.perspective),
+      leading: leading.merge(other.leading),
     );
   }
 
@@ -88,6 +128,14 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       colors: FlyColorToken.defaultColor(),
       radius: FlyRadiusToken.defaultRadius(),
       breakpoints: FlyBreakpointToken.defaultBreakpoint(),
+      container: FlyContainerToken.defaultContainer(),
+      text: FlyTextToken.defaultText(),
+      textLineHeight: FlyTextLineHeightToken.defaultTextLineHeight(),
+      fontWeight: FlyFontWeightToken.defaultFontWeight(),
+      tracking: FlyTrackingToken.defaultTracking(),
+      blur: FlyBlurToken.defaultBlur(),
+      perspective: FlyPerspectiveToken.defaultPerspective(),
+      leading: FlyLeadingToken.defaultLeading(),
     );
   }
 
@@ -101,6 +149,14 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       colors: colors.lerp(other.colors, t),
       radius: radius.lerp(other.radius, t),
       breakpoints: breakpoints.lerp(other.breakpoints, t),
+      container: container.lerp(other.container, t),
+      text: text.lerp(other.text, t),
+      textLineHeight: textLineHeight.lerp(other.textLineHeight, t),
+      fontWeight: fontWeight.lerp(other.fontWeight, t),
+      tracking: tracking.lerp(other.tracking, t),
+      blur: blur.lerp(other.blur, t),
+      perspective: perspective.lerp(other.perspective, t),
+      leading: leading.lerp(other.leading, t),
     );
   }
 
@@ -111,9 +167,20 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
         other.spacing == spacing &&
         other.colors == colors &&
         other.radius == radius &&
-        other.breakpoints == breakpoints;
+        other.breakpoints == breakpoints &&
+        other.container == container &&
+        other.text == text &&
+        other.textLineHeight == textLineHeight &&
+        other.fontWeight == fontWeight &&
+        other.tracking == tracking &&
+        other.blur == blur &&
+        other.perspective == perspective &&
+        other.leading == leading;
   }
 
   @override
-  int get hashCode => Object.hash(spacing, colors, radius, breakpoints);
+  int get hashCode => Object.hash(
+    spacing, colors, radius, breakpoints, container, text, 
+    textLineHeight, fontWeight, tracking, blur, perspective, leading
+  );
 }

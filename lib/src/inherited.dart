@@ -68,6 +68,46 @@ class FlyTheme extends InheritedNotifier<FlyThemeController> {
     _getController(context)?.updateBreakpoints(updater);
   }
 
+  /// Update container token
+  static void updateContainer(BuildContext context, FlyContainerToken Function(FlyContainerToken current) updater) {
+    _getController(context)?.updateContainer(updater);
+  }
+
+  /// Update text token
+  static void updateText(BuildContext context, FlyTextToken Function(FlyTextToken current) updater) {
+    _getController(context)?.updateText(updater);
+  }
+
+  /// Update text line height token
+  static void updateTextLineHeight(BuildContext context, FlyTextLineHeightToken Function(FlyTextLineHeightToken current) updater) {
+    _getController(context)?.updateTextLineHeight(updater);
+  }
+
+  /// Update font weight token
+  static void updateFontWeight(BuildContext context, FlyFontWeightToken Function(FlyFontWeightToken current) updater) {
+    _getController(context)?.updateFontWeight(updater);
+  }
+
+  /// Update tracking token
+  static void updateTracking(BuildContext context, FlyTrackingToken Function(FlyTrackingToken current) updater) {
+    _getController(context)?.updateTracking(updater);
+  }
+
+  /// Update blur token
+  static void updateBlur(BuildContext context, FlyBlurToken Function(FlyBlurToken current) updater) {
+    _getController(context)?.updateBlur(updater);
+  }
+
+  /// Update perspective token
+  static void updatePerspective(BuildContext context, FlyPerspectiveToken Function(FlyPerspectiveToken current) updater) {
+    _getController(context)?.updatePerspective(updater);
+  }
+
+  /// Update leading token
+  static void updateLeading(BuildContext context, FlyLeadingToken Function(FlyLeadingToken current) updater) {
+    _getController(context)?.updateLeading(updater);
+  }
+
   /// Put a spacing value
   static void putSpacing(BuildContext context, String key, num value) {
     _getController(context)?.putSpacing(key, value);
@@ -86,6 +126,46 @@ class FlyTheme extends InheritedNotifier<FlyThemeController> {
   /// Put a breakpoint value
   static void putBreakpoint(BuildContext context, String key, double value) {
     _getController(context)?.putBreakpoint(key, value);
+  }
+
+  /// Put a container value
+  static void putContainer(BuildContext context, String key, double value) {
+    _getController(context)?.putContainer(key, value);
+  }
+
+  /// Put a text value
+  static void putText(BuildContext context, String key, double value) {
+    _getController(context)?.putText(key, value);
+  }
+
+  /// Put a text line height value
+  static void putTextLineHeight(BuildContext context, String key, double value) {
+    _getController(context)?.putTextLineHeight(key, value);
+  }
+
+  /// Put a font weight value
+  static void putFontWeight(BuildContext context, String key, FontWeight value) {
+    _getController(context)?.putFontWeight(key, value);
+  }
+
+  /// Put a tracking value
+  static void putTracking(BuildContext context, String key, double value) {
+    _getController(context)?.putTracking(key, value);
+  }
+
+  /// Put a blur value
+  static void putBlur(BuildContext context, String key, double value) {
+    _getController(context)?.putBlur(key, value);
+  }
+
+  /// Put a perspective value
+  static void putPerspective(BuildContext context, String key, double value) {
+    _getController(context)?.putPerspective(key, value);
+  }
+
+  /// Put a leading value
+  static void putLeading(BuildContext context, String key, double value) {
+    _getController(context)?.putLeading(key, value);
   }
 
   /// Check if FlyTheme is available in the context

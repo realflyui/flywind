@@ -19,8 +19,16 @@ class _FlywindState extends State<Flywind> {
       themeData: FlyThemeData(
         spacing: CustomSpacing.defaultSpacing(),
         colors: CustomColors.defaultColors(),
-        radius: FlyRadiusToken.defaultRadius(),
-        breakpoints: FlyBreakpointToken.defaultBreakpoint(),
+        radius: CustomRadius.defaultRadius(),
+        breakpoints: CustomBreakpoint.defaultBreakpoint(),
+        container: CustomContainer.defaultContainer(),
+        text: CustomText.defaultText(),
+        textLineHeight: CustomTextLineHeight.defaultTextLineHeight(),
+        fontWeight: CustomFontWeight.defaultFontWeight(),
+        tracking: CustomTracking.defaultTracking(),
+        blur: CustomBlur.defaultBlur(),
+        perspective: CustomPerspective.defaultPerspective(),
+        leading: CustomLeading.defaultLeading(),
       ),
       darkThemeData: FlyThemeData(
         spacing: CustomSpacing.defaultSpacing(),
@@ -28,8 +36,16 @@ class _FlywindState extends State<Flywind> {
           .put('primary', const Color(0xFF10B981)) // Green for dark mode
           .put('surface', const Color(0xFF1F2937)) // Dark surface
           .put('background', const Color(0xFF111827)), // Dark background
-        radius: FlyRadiusToken.defaultRadius(),
-        breakpoints: FlyBreakpointToken.defaultBreakpoint(),
+        radius: CustomRadius.defaultRadius(),
+        breakpoints: CustomBreakpoint.defaultBreakpoint(),
+        container: CustomContainer.defaultContainer(),
+        text: CustomText.defaultText(),
+        textLineHeight: CustomTextLineHeight.defaultTextLineHeight(),
+        fontWeight: CustomFontWeight.defaultFontWeight(),
+        tracking: CustomTracking.defaultTracking(),
+        blur: CustomBlur.defaultBlur(),
+        perspective: CustomPerspective.defaultPerspective(),
+        leading: CustomLeading.defaultLeading(),
       ),
       appBuilder: (context) {
         return SimpleApp(
@@ -231,6 +247,61 @@ class _SimpleAppState extends State<SimpleApp> {
                         'sm spacing: ${flyTheme.spacing['sm'] ?? 4.0}',
                         style: TextStyle(
                           color: flyTheme.colors['text'] ?? Colors.black,
+                        ),
+                      ),
+                      SizedBox(height: flyTheme.spacing['sm'] ?? 4.0),
+                      Text(
+                        'Custom Test Values:',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: flyTheme.colors['text'] ?? Colors.black,
+                        ),
+                      ),
+                      Text(
+                        'Custom Color: ${flyTheme.colors['test'] ?? Colors.red}',
+                        style: TextStyle(
+                          color: flyTheme.colors['text'] ?? Colors.black,
+                        ),
+                      ),
+                      Text(
+                        'Custom Spacing: ${flyTheme.spacing['test'] ?? 99.0}',
+                        style: TextStyle(
+                          color: flyTheme.colors['text'] ?? Colors.black,
+                        ),
+                      ),
+                      Text(
+                        'Custom Radius: ${flyTheme.radius['test'] ?? 99.0}',
+                        style: TextStyle(
+                          color: flyTheme.colors['text'] ?? Colors.black,
+                        ),
+                      ),
+                      Text(
+                        'Custom Font Weight: ${flyTheme.fontWeight['test'] ?? FontWeight.w900}',
+                        style: TextStyle(
+                          color: flyTheme.colors['text'] ?? Colors.black,
+                        ),
+                      ),
+                      SizedBox(height: flyTheme.spacing['md'] ?? 8.0),
+                      
+                      // Visual demonstration of custom tokens
+                      Container(
+                        padding: EdgeInsets.all(flyTheme.spacing['test'] ?? 99.0),
+                        decoration: BoxDecoration(
+                          color: flyTheme.colors['test'] ?? Colors.red,
+                          borderRadius: BorderRadius.circular(flyTheme.radius['test'] ?? 99.0),
+                          border: Border.all(
+                            color: flyTheme.colors['border'] ?? Colors.grey[300]!,
+                            width: 2,
+                          ),
+                        ),
+                        child: Text(
+                          'Custom Token Demo',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: flyTheme.fontWeight['test'] ?? FontWeight.w900,
+                            fontSize: flyTheme.text['test'] ?? 99.0,
+                          ),
                         ),
                       ),
                       Text(

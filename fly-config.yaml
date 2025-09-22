@@ -5,37 +5,38 @@
 
 extend:
   colors:
-    brand-primary: '#FF6B35'
-    brand-secondary: '#004E89'
-    brand-accent: '#00D4AA'
-    semantic-success: '#10B981'
-    semantic-warning: '#F59E0B'
-    semantic-error: '#EF4444'
-    semantic-info: '#3B82F6'
-    primary: '#6366F1'
-    secondary: '#10B981'
-    accent: '#F59E0B'
-    text: '#1F2937'
-    text-secondary: '#6B7280'
-    border: '#E5E7EB'
-    surface: '#FFFFFF'
-    background: '#F9FAFB'
+    test: '#FF0000'
   
   spacing:
-    xs: '2'
-    sm: '4'
-    md: '8'
-    lg: '16'
-    xl: '32'
-    2xl: '48'
-    section: '24'
-    container: '12'
+    test: '99'
     
   radius:
-    xs: '2'
-    sm: '4'
-    md: '8'
-    lg: '12'
-    xl: '16'
-    full: '9999'
+    test: '99'
+    
+  breakpoint:
+    test: '999'
+    
+  container:
+    test: '999'
+    
+  text:
+    test: '99'
+    
+  text_line_height:
+    test: '99'
+    
+  font_weight:
+    test: '999'
+    
+  tracking:
+    test: '0.99'
+    
+  blur:
+    test: '99'
+    
+  perspective:
+    test: '999'
+    
+  leading:
+    test: '9.9'
     

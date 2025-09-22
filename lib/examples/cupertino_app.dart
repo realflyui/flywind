@@ -32,16 +32,32 @@ class _FlywindState extends State<Flywind> {
       themeData: FlyThemeData(
         spacing: CustomSpacing.defaultSpacing(),
         colors: CustomColors.defaultColors(),
-        radius: FlyRadiusToken.defaultRadius(),
-        breakpoints: FlyBreakpointToken.defaultBreakpoint(),
+        radius: CustomRadius.defaultRadius(),
+        breakpoints: CustomBreakpoint.defaultBreakpoint(),
+        container: CustomContainer.defaultContainer(),
+        text: CustomText.defaultText(),
+        textLineHeight: CustomTextLineHeight.defaultTextLineHeight(),
+        fontWeight: CustomFontWeight.defaultFontWeight(),
+        tracking: CustomTracking.defaultTracking(),
+        blur: CustomBlur.defaultBlur(),
+        perspective: CustomPerspective.defaultPerspective(),
+        leading: CustomLeading.defaultLeading(),
       ),
       darkThemeData: FlyThemeData(
         spacing: CustomSpacing.defaultSpacing(),
         colors: CustomColors.defaultColors()
           .put('primary', const Color(0xFF10B981)) // Green for dark mode
           .put('surface', const Color(0xFF1F2937)), // Dark surface
-        radius: FlyRadiusToken.defaultRadius(),
-        breakpoints: FlyBreakpointToken.defaultBreakpoint(),
+        radius: CustomRadius.defaultRadius(),
+        breakpoints: CustomBreakpoint.defaultBreakpoint(),
+        container: CustomContainer.defaultContainer(),
+        text: CustomText.defaultText(),
+        textLineHeight: CustomTextLineHeight.defaultTextLineHeight(),
+        fontWeight: CustomFontWeight.defaultFontWeight(),
+        tracking: CustomTracking.defaultTracking(),
+        blur: CustomBlur.defaultBlur(),
+        perspective: CustomPerspective.defaultPerspective(),
+        leading: CustomLeading.defaultLeading(),
       ),
       appBuilder: (context) {
         final flyTheme = FlyTheme.of(context);
@@ -83,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final flyTheme = FlyTheme.of(context);
-    
+
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: const Text('Fly App'),
