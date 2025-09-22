@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'tokens/tokens.dart';
+import 'flw/tokens/tokens.dart';
 
 void main() {
   runApp(const FlywindExampleApp());
