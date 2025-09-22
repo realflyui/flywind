@@ -1,134 +1,78 @@
 # FlyWind Configuration
-#
-# This file defines custom tokens that extend the default FlyWind tokens.
-# Code generation happens automatically when you run flutter pub get or flutter run.
-# You can also run 'flutter packages pub run build_runner build' to generate manually.
+# This file defines your design tokens for the FlyWind system
 
-# Output directory for generated files (relative to project root)
-output-dir: lib/tokens
-
-# Input directory for token configuration files (relative to project root)
-input-dir: fly
-
-# Whether to generate extensions for easier customization
-generate-extensions: true
-
-# Whether to include custom values support
-custom-values: true
-
-# Default imports to include in generated files
-default-imports:
-  - package:flutter/material.dart
-  - package:flywind/flywind.dart
-
-# Token configurations
 tokens:
   colors:
     name: FlyColors
     type: Color
     description: Color palette for the application
     values:
-      primary: Color(0xFF3B82F6)
-      secondary: Color(0xFF10B981)
-      accent: Color(0xFFF59E0B)
-      success: Color(0xFF10B981)
-      warning: Color(0xFFF59E0B)
-      error: Color(0xFFEF4444)
-      info: Color(0xFF3B82F6)
-      neutral: Color(0xFF6B7280)
-      white: Color(0xFFFFFFFF)
-      black: Color(0xFF000000)
+      primary: 0xFF3B82F6
+      secondary: 0xFF10B981
+      accent: 0xFFF59E0B
+      neutral: 0xFF6B7280
+      success: 0xFF10B981
+      warning: 0xFFF59E0B
+      error: 0xFFEF4444
+      info: 0xFF3B82F6
+      white: 0xFFFFFFFF
+      black: 0xFF000000
     custom-values: true
     extension: true
 
   spacing:
     name: FlySpacing
-    type: String
-    description: Spacing scale for consistent layout
+    type: double
+    description: Spacing values for margins and padding
     values:
-      "0": "0"
-      "1": "4"
-      "2": "8"
-      "3": "12"
-      "4": "16"
-      "5": "20"
-      "6": "24"
-      "8": "32"
-      "10": "40"
-      "12": "48"
-      "16": "64"
-      "20": "80"
-      "24": "96"
-      "32": "128"
+      "0": 0.0
+      "1": 4.0
+      "2": 8.0
+      "3": 12.0
+      "4": 16.0
+      "5": 20.0
+      "6": 24.0
+      "8": 32.0
+      "10": 40.0
+      "12": 48.0
+      "16": 64.0
+      "20": 80.0
+      "24": 96.0
+      "32": 128.0
     indexed-access: true
-    index-type: int
+    index-type: String
     custom-values: true
     extension: true
 
-  border-radius:
-    name: FlyBorderRadius
-    type: double
-    description: Border radius scale for rounded corners
+  radius:
+    name: FlyRadius
+    type: BorderRadius
+    description: Border radius values for rounded corners
     values:
-      none: 0
-      sm: 2
-      default: 4
-      md: 6
-      lg: 8
-      xl: 12
-      "2xl": 16
-      "3xl": 24
-      full: 9999
+      none: "BorderRadius.zero"
+      sm: "BorderRadius.circular(2.0)"
+      default: "BorderRadius.circular(4.0)"
+      md: "BorderRadius.circular(6.0)"
+      lg: "BorderRadius.circular(8.0)"
+      xl: "BorderRadius.circular(12.0)"
+      "2xl": "BorderRadius.circular(16.0)"
+      "3xl": "BorderRadius.circular(24.0)"
+      full: "BorderRadius.circular(9999.0)"
     custom-values: true
     extension: true
 
-  breakpoints:
-    name: FlyBreakpoints
-    type: double
-    description: Responsive breakpoints for different screen sizes
+  text:
+    name: FlyText
+    type: TextStyle
+    description: Text styles for typography
     values:
-      sm: 640
-      md: 768
-      lg: 1024
-      xl: 1280
-      "2xl": 1536
-    custom-values: true
-    extension: true
-
-  font-weights:
-    name: FlyFontWeight
-    type: FontWeight
-    description: Font weight scale for typography
-    values:
-      thin: FontWeight.w100
-      extralight: FontWeight.w200
-      light: FontWeight.w300
-      normal: FontWeight.w400
-      medium: FontWeight.w500
-      semibold: FontWeight.w600
-      bold: FontWeight.w700
-      extrabold: FontWeight.w800
-      black: FontWeight.w900
-    custom-values: true
-    extension: true
-
-  text-sizes:
-    name: FlyTextSize
-    type: double
-    description: Text size scale for typography
-    values:
-      xs: 12
-      sm: 14
-      base: 16
-      lg: 18
-      xl: 20
-      "2xl": 24
-      "3xl": 30
-      "4xl": 36
-      "5xl": 48
-      "6xl": 60
-      "7xl": 72
-      "8xl": 96
-      "9xl": 128
+      xs: "TextStyle(fontSize: 12.0, height: 1.5)"
+      sm: "TextStyle(fontSize: 14.0, height: 1.5)"
+      base: "TextStyle(fontSize: 16.0, height: 1.5)"
+      lg: "TextStyle(fontSize: 18.0, height: 1.5)"
+      xl: "TextStyle(fontSize: 20.0, height: 1.5)"
+      "2xl": "TextStyle(fontSize: 24.0, height: 1.5)"
+      "3xl": "TextStyle(fontSize: 30.0, height: 1.5)"
+      "4xl": "TextStyle(fontSize: 36.0, height: 1.5)"
     custom-values: true
     extension: true

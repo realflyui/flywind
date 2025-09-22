@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
@@ -8,16 +9,29 @@ import 'package:yaml/yaml.dart';
 class FlywindGenerator extends Generator {
   @override
   FutureOr<String?> generate(LibraryReader library, BuildStep buildStep) async {
-    // Read the flywind.yaml configuration file
-    final configAsset = AssetId(buildStep.inputId.package, 'flywind.yaml');
+    // Only generate for the main library file to avoid multiple generations
+    final libraryName = library.element.name;
+    log.info('Processing library: $libraryName');
 
-    // Check if the config file exists
-    if (!await buildStep.canRead(configAsset)) {
-      log.warning('flywind.yaml not found in project root');
-      return null;
+    // Read the flywind.yaml configuration file
+    // Try multiple possible locations for the config file
+    final possiblePaths = ['flywind.yaml', 'lib/flywind.yaml'];
+
+    String? configContent;
+    for (final path in possiblePaths) {
+      final file = File(path);
+      if (await file.exists()) {
+        configContent = await file.readAsString();
+        log.info('Found flywind.yaml at: $path');
+        break;
+      }
     }
 
-    final configContent = await buildStep.readAsString(configAsset);
+    // Check if the config file exists
+    if (configContent == null) {
+      log.warning('flywind.yaml not found in project root or lib/ directory');
+      return null;
+    }
 
     // Parse YAML configuration
     final config = loadYaml(configContent) as Map<dynamic, dynamic>;
@@ -285,12 +299,21 @@ class FlywindGenerator extends Generator {
       return 'defaultValue';
     }
 
+    // Handle reserved keywords
+    if (key == 'default') return 'defaultValue';
+
     // Handle special cases
     if (key == '2xl') return 'xl2';
     if (key == '3xl') return 'xl3';
+    if (key == '4xl') return 'xl4';
 
     // Handle numeric keys for spacing
     if (RegExp(r'^\d+$').hasMatch(key)) {
+      return 's$key';
+    }
+
+    // Handle keys starting with numbers
+    if (RegExp(r'^\d').hasMatch(key)) {
       return 's$key';
     }
 

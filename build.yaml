@@ -1,8 +1,14 @@
+builders:
+  flywind:
+    import: "package:flywind/builder.dart"
+    builder_factories: ["flywindBuilder"]
+    build_extensions: { ".dart": [".flywind.g.part"] }
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen:combining_builder"]
+
 targets:
   $default:
     builders:
-      flywind:flywindBuilder:
+      flywind:
         enabled: true
-        build_extensions: { ".dart": [".flywind.g.part"] }
-        build_to: cache
-        applies_builders: ["source_gen:combining_builder"]
