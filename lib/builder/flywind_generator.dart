@@ -4,10 +4,11 @@ import 'package:build/build.dart';
 import 'package:yaml/yaml.dart';
 
 /// FlyWind builder that generates token files from flywind.yaml configuration
+/// Uses source_gen utilities for better integration
 class FlywindBuilder implements Builder {
   @override
   Map<String, List<String>> get buildExtensions => {
-    'lib/flw/flywind.config.yaml': ['lib/flw/tokens/tokens.dart'],
+    'lib/flw/flywind.yaml': ['lib/flw/tokens/tokens.dart'],
   };
 
   @override
@@ -16,12 +17,8 @@ class FlywindBuilder implements Builder {
     final inputId = buildStep.inputId;
     log.info('Processing input: ${inputId.path}');
 
-    print('DEBUG: inputId.path: ${inputId.path}');
-
-    if (!inputId.path.endsWith('lib/flw/flywind.config.yaml')) {
-      log.warning(
-        'Expected lib/flw/flywind.config.yaml input, got: ${inputId.path}',
-      );
+    if (!inputId.path.endsWith('lib/flw/flywind.yaml')) {
+      log.warning('Expected lib/flw/flywind.yaml input, got: ${inputId.path}');
       return;
     }
 
@@ -34,8 +31,13 @@ class FlywindBuilder implements Builder {
     // Generate the tokens file
     final tokensContent = _generateTokensFile(config);
 
-    // Write the tokens file to lib/tokens/tokens.dart
-    final tokensAsset = AssetId(inputId.package, 'lib/flw/tokens/tokens.dart');
+    // Write the tokens file to the correct relative path
+    // The output should be relative to the input file location
+    final outputPath = inputId.path.replaceAll(
+      'flywind.yaml',
+      'tokens/tokens.dart',
+    );
+    final tokensAsset = AssetId(inputId.package, outputPath);
     await buildStep.writeAsString(tokensAsset, tokensContent);
 
     log.info('Generated tokens file at lib/flw/tokens/tokens.dart');

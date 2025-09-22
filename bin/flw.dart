@@ -48,8 +48,15 @@ Future<void> _initCommand(List<String> args) async {
     exit(1);
   }
 
+  // Check if lib/flw directory exists
+  if (!Directory('lib/flw').existsSync()) {
+    // Create lib/flw directory
+    Directory('lib/flw').createSync(recursive: true);
+    print('   ✅ Created lib/flw directory');
+  }
+
   // Check if flywind is already initialized
-  if (File('flywind.yaml').existsSync()) {
+  if (File('lib/flw/flywind.yaml').existsSync()) {
     print('⚠️  FlyWind is already initialized in this project');
     print('   The flywind.yaml file already exists');
 
@@ -64,7 +71,7 @@ Future<void> _initCommand(List<String> args) async {
   // Create flywind.yaml configuration file
   try {
     final configContent = _getFlywindYamlTemplate();
-    final outputFile = File('flywind.yaml');
+    final outputFile = File('lib/flw/flywind.yaml');
     outputFile.writeAsStringSync(configContent);
     print('   ✅ Created flywind.yaml');
   } catch (e) {
@@ -91,7 +98,7 @@ Future<void> _generateCommand(List<String> args) async {
   print('🔧 Generating FlyWind design tokens...');
 
   // Check if flywind.yaml exists
-  if (!File('flywind.yaml').existsSync()) {
+  if (!File('lib/flw/flywind.yaml').existsSync()) {
     print('❌ Error: FlyWind not initialized in this project');
     print('   Run "flw init" first to set up FlyWind');
     exit(1);
@@ -161,6 +168,12 @@ For more information, visit: https://github.com/realflyui/flywind
 
 /// Get flywind.yaml template content
 String _getFlywindYamlTemplate() {
+  final file = File('flywind.yaml');
+  if (file.existsSync()) {
+    return file.readAsStringSync();
+  }
+
+  // Fallback template if file doesn't exist
   return '''# FlyWind Configuration
 # This file defines your design tokens for the FlyWind system
 
@@ -225,7 +238,7 @@ tokens:
     extension: true
 
   text:
-    name: FlyText
+    name: FlyTextSize
     type: TextStyle
     description: Text styles for typography
     values:

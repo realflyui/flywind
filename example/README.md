@@ -4,6 +4,26 @@ This directory contains an example Flutter app that demonstrates how to use the 
 
 ## Running the Example
 
+### Quick Setup (Recommended)
+
+1. Navigate to this directory:
+   ```bash
+   cd example
+   ```
+
+2. Run the setup script:
+   ```bash
+   ./setup.sh
+   ```
+   This will automatically install dependencies and generate tokens.
+
+3. Run the app:
+   ```bash
+   flutter run
+   ```
+
+### Manual Setup
+
 1. Navigate to this directory:
    ```bash
    cd example
@@ -14,10 +34,23 @@ This directory contains an example Flutter app that demonstrates how to use the 
    flutter pub get
    ```
 
-3. Run the app:
+3. Generate tokens:
+   ```bash
+   dart run build_runner build --delete-conflicting-outputs
+   ```
+
+4. Run the app:
    ```bash
    flutter run
    ```
+
+### Using Make (Alternative)
+
+```bash
+make setup    # Set up project and generate tokens
+make generate # Generate tokens only
+make clean    # Clean generated files
+```
 
 ## What's Included
 
