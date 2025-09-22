@@ -24,4 +24,4 @@ flutter:
 
   # Enable automatic code generation
   assets:
-    - lib/flw/flywind.config.yaml
+    - lib/flw/flywind.yaml
