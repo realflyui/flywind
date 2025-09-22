@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'example.cupertino.dart' as cupertino;
 import 'example.flywind.dart' as flywind;
+import 'example.material.dart' as material;
 
 void main() {
   runApp(MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _selectedExample = 'flywind';
+  String _selectedExample = 'material';
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,8 @@ class _MyAppState extends State<MyApp> {
         return const flywind.FlywindExample();
       case 'cupertino':
         return const cupertino.FlywindExample();
+      case 'material':
+        return const material.FlywindExample();
       default:
         return const flywind.FlywindExample();
     }
