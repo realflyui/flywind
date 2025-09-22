@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'style.dart';
+import 'value.dart';
+import '../core/theme.dart';
 
 /// Utility class for handling Tailwind-like color logic
 class FlyColorUtils {
   /// Resolves color from FlyStyle and FlyThemeData into Color
   static Color? resolve(BuildContext context, FlyStyle style) {
-    // With typed values, we can return the color directly
-    return style.color;
+    if (style.color == null) return null;
+    
+    try {
+      final colors = FlyTheme.of(context).colors;
+      return FlyValue.resolveColor(style.color, context, colors);
+    } catch (e) {
+      throw ArgumentError('Failed to resolve color "${style.color}": $e');
+    }
   }
 
   /// Applies color to a TextStyle
@@ -37,8 +45,13 @@ mixin FlyColor<T> {
 
   T Function(FlyStyle newStyle) get copyWith;
 
-  /// Set text color using Color object
-  T color(Color color) {
-    return copyWith(style.copyWith(color: color));
+  /// Set text color - accepts Color object or String (token name/hex)
+  T color(dynamic value) {
+    return copyWith(style.copyWith(color: value));
+  }
+  
+  /// Set background color - accepts Color object or String (token name/hex)
+  T bg(dynamic value) {
+    return copyWith(style.copyWith(color: value));
   }
 }

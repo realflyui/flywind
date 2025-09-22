@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flywind/flywind.dart';
-import 'flywind/config/config.dart';
 
 class FlywindExample extends StatefulWidget {
   const FlywindExample({super.key});
@@ -72,20 +71,34 @@ class _FlywindAppState extends State<FlywindApp> {
         color: colors.white,
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(flyTheme.spacing['lg'] ?? 16.0),
+            padding: const EdgeInsets.all(24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FlyText(
-                  'Theme Mode: ${_getThemeModeText(widget.themeMode)}',
-                ).m(spacing.base).color(colors.blue600),
+                // Simple FlyText with mixed value types
+                FlyText('Flywind Examples')
+                  .color(colors.blue500)      // Direct token access: colors.blue500
+                  .m(spacing.s3),             // Direct token access: spacing.s3
 
-                // Container with text
+                const SizedBox(height: 24),
+
+                // FlyContainer with FlyText - showcasing all value types
                 FlyContainer(
-                  child: FlyText('Text In Box').color(colors.white),
-                ).p(20).m(20).bg(colors.gray600).rounded(8),
+                  child: FlyText('Mixed Value Types')
+                    .color(Colors.white)      // Color object
+                    .p('12px'),               // CSS unit
+                )
+                  .bg('#FF6B35')             // Hex color
+                  .p(20)                     // int
+                  .px('1.5rem')              // CSS unit (rem)
+                  .py(8)                     // int
+                  .rounded('md')             // Token name
+                  .roundedTl('lg')           // Token name
+                  .m(spacing['s3'] ?? 16),   // Bracket access: spacing['s3']
 
-                // Color toggle button
+                const SizedBox(height: 24),
+
+                // Interactive button with theme switching
                 GestureDetector(
                   onTap: () {
                     setState(() {
@@ -116,9 +129,8 @@ class _FlywindAppState extends State<FlywindApp> {
                     child: Text(
                       _isGreen ? 'Change to Indigo' : 'Change to Green',
                       style: const TextStyle(
-                        color: Colors.white, // TODO: use color token
-                        fontWeight:
-                            FontWeight.w600, // TODO: use font weight token
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),

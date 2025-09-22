@@ -1,64 +1,31 @@
 import 'package:flutter/material.dart';
 import 'style.dart';
+import 'value.dart';
+import '../core/theme.dart';
+import '../tokens/radius.dart';
 
 /// Utility class for handling Tailwind-like rounded logic
 class FlyRoundedUtils {
   /// Resolves rounded values from FlyStyle and FlyThemeData into BorderRadius
   static BorderRadius resolve(BuildContext context, FlyStyle style) {
-    // Calculate border radius values
-    double topLeft = 0;
-    double topRight = 0;
-    double bottomLeft = 0;
-    double bottomRight = 0;
-
-    // Apply uniform border radius
-    final uniformValue = style.rounded;
-    if (uniformValue != null) {
-      topLeft = topRight = bottomLeft = bottomRight = uniformValue;
+    try {
+      final radius = FlyTheme.of(context).radius;
+      
+      return BorderRadius.only(
+        topLeft: Radius.circular(_resolveValue(style.roundedTl ?? style.roundedT ?? style.roundedL ?? style.rounded, context, radius)),
+        topRight: Radius.circular(_resolveValue(style.roundedTr ?? style.roundedT ?? style.roundedR ?? style.rounded, context, radius)),
+        bottomLeft: Radius.circular(_resolveValue(style.roundedBl ?? style.roundedB ?? style.roundedL ?? style.rounded, context, radius)),
+        bottomRight: Radius.circular(_resolveValue(style.roundedBr ?? style.roundedB ?? style.roundedR ?? style.rounded, context, radius)),
+      );
+    } catch (e) {
+      throw ArgumentError('Failed to resolve border radius: $e');
     }
-
-    // Apply directional border radius (these override uniform border radius)
-    final topValue = style.roundedT;
-    if (topValue != null) {
-      topLeft = topRight = topValue;
-    }
-    final rightValue = style.roundedR;
-    if (rightValue != null) {
-      topRight = bottomRight = rightValue;
-    }
-    final bottomValue = style.roundedB;
-    if (bottomValue != null) {
-      bottomLeft = bottomRight = bottomValue;
-    }
-    final leftValue = style.roundedL;
-    if (leftValue != null) {
-      topLeft = bottomLeft = leftValue;
-    }
-
-    // Apply individual corner border radius (these override directional border radius)
-    final topLeftValue = style.roundedTl;
-    if (topLeftValue != null) {
-      topLeft = topLeftValue;
-    }
-    final topRightValue = style.roundedTr;
-    if (topRightValue != null) {
-      topRight = topRightValue;
-    }
-    final bottomLeftValue = style.roundedBl;
-    if (bottomLeftValue != null) {
-      bottomLeft = bottomLeftValue;
-    }
-    final bottomRightValue = style.roundedBr;
-    if (bottomRightValue != null) {
-      bottomRight = bottomRightValue;
-    }
-
-    return BorderRadius.only(
-      topLeft: Radius.circular(topLeft),
-      topRight: Radius.circular(topRight),
-      bottomLeft: Radius.circular(bottomLeft),
-      bottomRight: Radius.circular(bottomRight),
-    );
+  }
+  
+  /// Resolves a dynamic value to double using the numeric value resolver
+  static double _resolveValue(dynamic value, BuildContext context, FlyRadiusToken tokens) {
+    if (value == null) return 0;
+    return FlyValue.resolveDouble(value, context, tokens);
   }
 
   /// Applies rounded styling to a widget using the resolved BorderRadius
@@ -82,48 +49,48 @@ mixin FlyRounded<T> {
 
   T Function(FlyStyle newStyle) get copyWith;
 
-  /// Set uniform rounded styling using double values
-  T rounded(double value) {
+  /// Set uniform rounded styling - accepts int, double, or String (token name/unit)
+  T rounded(dynamic value) {
     return copyWith(style.copyWith(rounded: value));
   }
 
-  /// Set top rounded styling (top-left + top-right) using double values
-  T roundedT(double value) {
+  /// Set top rounded styling (top-left + top-right) - accepts int, double, or String (token name/unit)
+  T roundedT(dynamic value) {
     return copyWith(style.copyWith(roundedT: value));
   }
 
-  /// Set right rounded styling (top-right + bottom-right) using double values
-  T roundedR(double value) {
+  /// Set right rounded styling (top-right + bottom-right) - accepts int, double, or String (token name/unit)
+  T roundedR(dynamic value) {
     return copyWith(style.copyWith(roundedR: value));
   }
 
-  /// Set bottom rounded styling (bottom-left + bottom-right) using double values
-  T roundedB(double value) {
+  /// Set bottom rounded styling (bottom-left + bottom-right) - accepts int, double, or String (token name/unit)
+  T roundedB(dynamic value) {
     return copyWith(style.copyWith(roundedB: value));
   }
 
-  /// Set left rounded styling (top-left + bottom-left) using double values
-  T roundedL(double value) {
+  /// Set left rounded styling (top-left + bottom-left) - accepts int, double, or String (token name/unit)
+  T roundedL(dynamic value) {
     return copyWith(style.copyWith(roundedL: value));
   }
 
-  /// Set top-left rounded styling using double values
-  T roundedTl(double value) {
+  /// Set top-left rounded styling - accepts int, double, or String (token name/unit)
+  T roundedTl(dynamic value) {
     return copyWith(style.copyWith(roundedTl: value));
   }
 
-  /// Set top-right rounded styling using double values
-  T roundedTr(double value) {
+  /// Set top-right rounded styling - accepts int, double, or String (token name/unit)
+  T roundedTr(dynamic value) {
     return copyWith(style.copyWith(roundedTr: value));
   }
 
-  /// Set bottom-left rounded styling using double values
-  T roundedBl(double value) {
+  /// Set bottom-left rounded styling - accepts int, double, or String (token name/unit)
+  T roundedBl(dynamic value) {
     return copyWith(style.copyWith(roundedBl: value));
   }
 
-  /// Set bottom-right rounded styling using double values
-  T roundedBr(double value) {
+  /// Set bottom-right rounded styling - accepts int, double, or String (token name/unit)
+  T roundedBr(dynamic value) {
     return copyWith(style.copyWith(roundedBr: value));
   }
 

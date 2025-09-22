@@ -28,14 +28,6 @@ class FlyContainer extends StatelessWidget
   FlyContainer Function(FlyStyle newStyle) get copyWith =>
       (newStyle) => FlyContainer(style: newStyle, child: child);
 
-  /// Set background color using Color object
-  FlyContainer bg(Color color) {
-    return FlyContainer(
-      style: _style.copyWith(color: color),
-      child: child,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     // Create the base Container widget

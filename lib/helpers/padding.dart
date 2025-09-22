@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
 import 'style.dart';
-import 'spacing.dart';
+import 'value.dart';
+import '../core/theme.dart';
+import '../tokens/spacing.dart';
 
 /// Utility class for handling Tailwind-like padding logic
 class FlyPaddingUtils {
   /// Resolves padding from FlyStyle and FlyTheme into EdgeInsets
   static EdgeInsets resolve(BuildContext context, FlyStyle style) {
-    return FlySpacingUtils.resolve(
-      context,
-      style,
-      getUniform: (s) => s.p,
-      getX: (s) => s.px,
-      getY: (s) => s.py,
-      getLeft: (s) => s.pl,
-      getRight: (s) => s.pr,
-      getTop: (s) => s.pt,
-      getBottom: (s) => s.pb,
-    );
+    try {
+      final spacing = FlyTheme.of(context).spacing;
+      
+      return EdgeInsets.only(
+        left: _resolveValue(style.pl ?? style.px ?? style.p, context, spacing),
+        right: _resolveValue(style.pr ?? style.px ?? style.p, context, spacing),
+        top: _resolveValue(style.pt ?? style.py ?? style.p, context, spacing),
+        bottom: _resolveValue(style.pb ?? style.py ?? style.p, context, spacing),
+      );
+    } catch (e) {
+      throw ArgumentError('Failed to resolve padding: $e');
+    }
+  }
+  
+  /// Resolves a dynamic value to double using the numeric value resolver
+  static double _resolveValue(dynamic value, BuildContext context, FlySpacingToken tokens) {
+    if (value == null) return 0;
+    return FlyValue.resolveDouble(value, context, tokens);
   }
 
   /// Applies padding to a widget using the resolved EdgeInsets
@@ -39,38 +48,38 @@ mixin FlyPadding<T> {
 
   T Function(FlyStyle newStyle) get copyWith;
 
-  /// Set uniform padding using double values
-  T p(double value) {
+  /// Set uniform padding - accepts int, double, or String (token name/unit)
+  T p(dynamic value) {
     return copyWith(style.copyWith(p: value));
   }
 
-  /// Set horizontal padding (left + right) using double values
-  T px(double value) {
+  /// Set horizontal padding (left + right) - accepts int, double, or String (token name/unit)
+  T px(dynamic value) {
     return copyWith(style.copyWith(px: value));
   }
 
-  /// Set vertical padding (top + bottom) using double values
-  T py(double value) {
+  /// Set vertical padding (top + bottom) - accepts int, double, or String (token name/unit)
+  T py(dynamic value) {
     return copyWith(style.copyWith(py: value));
   }
 
-  /// Set top padding using double values
-  T pt(double value) {
+  /// Set top padding - accepts int, double, or String (token name/unit)
+  T pt(dynamic value) {
     return copyWith(style.copyWith(pt: value));
   }
 
-  /// Set right padding using double values
-  T pr(double value) {
+  /// Set right padding - accepts int, double, or String (token name/unit)
+  T pr(dynamic value) {
     return copyWith(style.copyWith(pr: value));
   }
 
-  /// Set bottom padding using double values
-  T pb(double value) {
+  /// Set bottom padding - accepts int, double, or String (token name/unit)
+  T pb(dynamic value) {
     return copyWith(style.copyWith(pb: value));
   }
 
-  /// Set left padding using double values
-  T pl(double value) {
+  /// Set left padding - accepts int, double, or String (token name/unit)
+  T pl(dynamic value) {
     return copyWith(style.copyWith(pl: value));
   }
 

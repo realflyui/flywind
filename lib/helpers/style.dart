@@ -33,57 +33,57 @@ class FlyStyle {
     this.roundedBr,
   });
 
-  final double? p; // Uniform padding (all sides)
-  final double? px; // Horizontal padding (left + right)
-  final double? py; // Vertical padding (top + bottom)
-  final double? pl; // Left padding
-  final double? pr; // Right padding
-  final double? pb; // Bottom padding
-  final double? pt; // Top padding
-  final double? m; // Uniform margin (all sides)
-  final double? mx; // Horizontal margin (left + right)
-  final double? my; // Vertical margin (top + bottom)
-  final double? ml; // Left margin
-  final double? mr; // Right margin
-  final double? mb; // Bottom margin
-  final double? mt; // Top margin
-  final Color? color;
-  final double? rounded; // Uniform border radius (all corners)
-  final double? roundedT; // Top border radius (top-left + top-right)
-  final double? roundedR; // Right border radius (top-right + bottom-right)
-  final double? roundedB; // Bottom border radius (bottom-left + bottom-right)
-  final double? roundedL; // Left border radius (top-left + bottom-left)
-  final double? roundedTl; // Top-left border radius
-  final double? roundedTr; // Top-right border radius
-  final double? roundedBl; // Bottom-left border radius
-  final double? roundedBr; // Bottom-right border radius
+  final dynamic p; // Uniform padding (all sides) - can be int, double, String
+  final dynamic px; // Horizontal padding (left + right) - can be int, double, String
+  final dynamic py; // Vertical padding (top + bottom) - can be int, double, String
+  final dynamic pl; // Left padding - can be int, double, String
+  final dynamic pr; // Right padding - can be int, double, String
+  final dynamic pb; // Bottom padding - can be int, double, String
+  final dynamic pt; // Top padding - can be int, double, String
+  final dynamic m; // Uniform margin (all sides) - can be int, double, String
+  final dynamic mx; // Horizontal margin (left + right) - can be int, double, String
+  final dynamic my; // Vertical margin (top + bottom) - can be int, double, String
+  final dynamic ml; // Left margin - can be int, double, String
+  final dynamic mr; // Right margin - can be int, double, String
+  final dynamic mb; // Bottom margin - can be int, double, String
+  final dynamic mt; // Top margin - can be int, double, String
+  final dynamic color; // Color - can be Color, String
+  final dynamic rounded; // Uniform border radius (all corners) - can be int, double, String
+  final dynamic roundedT; // Top border radius (top-left + top-right) - can be int, double, String
+  final dynamic roundedR; // Right border radius (top-right + bottom-right) - can be int, double, String
+  final dynamic roundedB; // Bottom border radius (bottom-left + bottom-right) - can be int, double, String
+  final dynamic roundedL; // Left border radius (top-left + bottom-left) - can be int, double, String
+  final dynamic roundedTl; // Top-left border radius - can be int, double, String
+  final dynamic roundedTr; // Top-right border radius - can be int, double, String
+  final dynamic roundedBl; // Bottom-left border radius - can be int, double, String
+  final dynamic roundedBr; // Bottom-right border radius - can be int, double, String
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
-    double? p,
-    double? px,
-    double? py,
-    double? pl,
-    double? pr,
-    double? pb,
-    double? pt,
-    double? m,
-    double? mx,
-    double? my,
-    double? ml,
-    double? mr,
-    double? mb,
-    double? mt,
-    Color? color,
-    double? rounded,
-    double? roundedT,
-    double? roundedR,
-    double? roundedB,
-    double? roundedL,
-    double? roundedTl,
-    double? roundedTr,
-    double? roundedBl,
-    double? roundedBr,
+    dynamic p,
+    dynamic px,
+    dynamic py,
+    dynamic pl,
+    dynamic pr,
+    dynamic pb,
+    dynamic pt,
+    dynamic m,
+    dynamic mx,
+    dynamic my,
+    dynamic ml,
+    dynamic mr,
+    dynamic mb,
+    dynamic mt,
+    dynamic color,
+    dynamic rounded,
+    dynamic roundedT,
+    dynamic roundedR,
+    dynamic roundedB,
+    dynamic roundedL,
+    dynamic roundedTl,
+    dynamic roundedTr,
+    dynamic roundedBl,
+    dynamic roundedBr,
   }) {
     return FlyStyle(
       p: p ?? this.p,

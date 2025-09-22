@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _selectedExample = 'material';
+  final String _selectedExample = 'flywind';
 
   @override
   Widget build(BuildContext context) {
