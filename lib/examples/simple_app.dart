@@ -16,7 +16,7 @@ class _FlywindState extends State<Flywind> {
   Widget build(BuildContext context) {
     return FlyApp(
       themeMode: _themeMode,
-      themeData: FlyThemeData(
+      themeData: FlyThemeData.withDefaults(
         spacing: CustomSpacing.defaultSpacing(),
         colors: CustomColors.defaultColors(),
         radius: CustomRadius.defaultRadius(),
@@ -30,7 +30,7 @@ class _FlywindState extends State<Flywind> {
         perspective: CustomPerspective.defaultPerspective(),
         leading: CustomLeading.defaultLeading(),
       ),
-      darkThemeData: FlyThemeData(
+      darkThemeData: FlyThemeData.withDefaults(
         spacing: CustomSpacing.defaultSpacing(),
         colors: CustomColors.defaultColors()
           .put('primary', const Color(0xFF10B981)) // Green for dark mode

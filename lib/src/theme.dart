@@ -56,6 +56,37 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     required this.leading,
   });
 
+  /// Factory constructor with optional parameters and defaults
+  factory FlyThemeData.withDefaults({
+    FlySpacingToken? spacing,
+    FlyColorToken? colors,
+    FlyRadiusToken? radius,
+    FlyBreakpointToken? breakpoints,
+    FlyContainerToken? container,
+    FlyTextToken? text,
+    FlyTextLineHeightToken? textLineHeight,
+    FlyFontWeightToken? fontWeight,
+    FlyTrackingToken? tracking,
+    FlyBlurToken? blur,
+    FlyPerspectiveToken? perspective,
+    FlyLeadingToken? leading,
+  }) {
+    return FlyThemeData(
+      spacing: spacing ?? FlySpacingToken.defaultSpacing(),
+      colors: colors ?? FlyColorToken.defaultColor(),
+      radius: radius ?? FlyRadiusToken.defaultRadius(),
+      breakpoints: breakpoints ?? FlyBreakpointToken.defaultBreakpoint(),
+      container: container ?? FlyContainerToken.defaultContainer(),
+      text: text ?? FlyTextToken.defaultText(),
+      textLineHeight: textLineHeight ?? FlyTextLineHeightToken.defaultTextLineHeight(),
+      fontWeight: fontWeight ?? FlyFontWeightToken.defaultFontWeight(),
+      tracking: tracking ?? FlyTrackingToken.defaultTracking(),
+      blur: blur ?? FlyBlurToken.defaultBlur(),
+      perspective: perspective ?? FlyPerspectiveToken.defaultPerspective(),
+      leading: leading ?? FlyLeadingToken.defaultLeading(),
+    );
+  }
+
   final FlySpacingToken spacing;
   final FlyColorToken colors;
   final FlyRadiusToken radius;
