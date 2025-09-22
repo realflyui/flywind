@@ -379,13 +379,33 @@ fly init
 fly generate
 ```
 
+### Project Structure
+This repository contains:
+- **Library code**: The main Flywind package in the root directory
+- **Example app**: A complete Flutter app demonstrating Flywind usage in the `example/` directory
+
+### Running the Example
+You can run the example app to see Flywind in action:
+
+```bash
+# Option 1: Use the provided script
+./run_example.sh
+
+# Option 2: Manual steps
+cd example
+flutter pub get
+flutter run
+```
+
 ### Development Setup
 1. **Clone the repository**
 2. **Run the example app**:
    ```bash
+   cd example
+   flutter pub get
    flutter run
    ```
-3. **Explore the code** in `lib/main.dart`
+3. **Explore the code** in `example/main.dart`
 4. **Run the tests**:
    ```bash
    flutter test

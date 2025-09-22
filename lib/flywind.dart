@@ -6,9 +6,6 @@
 // Core theme system
 export 'core/core.dart';
 
-// Base token classes
-export 'tokens/tokens.dart';
-
 // Helpers
 export 'helpers/helpers.dart';
 
