@@ -1,0 +1,7 @@
+targets:
+  $default:
+    builders:
+      flywind:flywindBuilder:
+        enabled: true
+        generate_for:
+          - flywind.yaml

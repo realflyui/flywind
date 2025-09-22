@@ -4,8 +4,9 @@ description: |
 
   Quick start:
   1. flutter pub add flywind
-  2. dart pub global activate flywind
-  3. fly init
+  2. Enable generate flag in pubspec.yaml flutter section
+  3. Create flywind.yaml configuration file
+  4. Run flutter pub get or flutter run for automatic code generation
 version: 0.1.0
 homepage: https://github.com/realflyui/flywind
 repository: https://github.com/realflyui/flywind
@@ -27,9 +28,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  build_runner: ^2.4.7
+  build: ^2.4.1
+  yaml: ^3.1.2
 
 flutter:
   uses-material-design: true
+  generate: true
 
 # Additional metadata for pub.dev
 topics:

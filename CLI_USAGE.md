@@ -1,10 +1,25 @@
-# FlyWind CLI Usage
+# FlyWind Setup Guide
 
-The FlyWind CLI provides easy-to-use commands for managing design tokens in your Flutter projects.
+FlyWind provides automatic code generation for design tokens in your Flutter projects, similar to `flutter_localizations`.
 
 ## Installation
 
-### Quick Setup (Recommended)
+### Flutter-Style Setup (Recommended)
+```bash
+# 1. Add to your Flutter project
+flutter pub add flywind
+
+# 2. Enable generate flag in pubspec.yaml flutter section
+# (This is already configured in the package)
+
+# 3. Create flywind.yaml configuration file in your project root
+# (Copy from the example below)
+
+# 4. Run flutter pub get or flutter run for automatic code generation
+flutter pub get
+```
+
+### Legacy CLI Setup (Alternative)
 ```bash
 # 1. Add to your Flutter project
 flutter pub add flywind
@@ -71,7 +86,76 @@ Show help information and available commands.
 fly help
 ```
 
-## Workflow
+## Flutter-Style Workflow
+
+### 1. Add FlyWind to your project
+```bash
+cd your_flutter_project
+flutter pub add flywind
+```
+
+### 2. Create flywind.yaml configuration file
+Create a `flywind.yaml` file in your project root:
+
+```yaml
+# FlyWind Configuration
+output-dir: lib/tokens
+
+tokens:
+  colors:
+    name: FlyColors
+    type: Color
+    description: Color palette for the application
+    values:
+      primary: Color(0xFF3B82F6)
+      secondary: Color(0xFF10B981)
+      accent: Color(0xFFF59E0B)
+    custom-values: true
+    extension: true
+
+  spacing:
+    name: FlySpacing
+    type: String
+    description: Spacing scale for consistent layout
+    values:
+      "0": "0"
+      "1": "4"
+      "2": "8"
+      "4": "16"
+      "8": "32"
+    indexed-access: true
+    index-type: int
+    custom-values: true
+    extension: true
+```
+
+### 3. Run flutter pub get
+```bash
+flutter pub get
+```
+
+Code generation happens automatically! You'll find generated files in `lib/tokens/flywind_tokens.dart`.
+
+### 4. Use in Your App
+```dart
+import 'package:your_app/tokens/flywind_tokens.dart';
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final colors = FlywindTokens.colors;
+    final spacing = FlywindTokens.spacing;
+    
+    return Container(
+      color: colors['primary'],
+      padding: EdgeInsets.all(double.parse(spacing[4]!)),
+      child: Text('Hello FlyWind!'),
+    );
+  }
+}
+```
+
+## Legacy CLI Workflow
 
 ### 1. Add FlyWind to your project
 ```bash
@@ -132,6 +216,20 @@ class MyWidget extends StatelessWidget {
 
 ## Project Structure
 
+### Flutter-Style Setup
+After setting up FlyWind with the Flutter-style approach, your project will have:
+
+```
+your_flutter_project/
+├── flywind.yaml                 # FlyWind configuration file
+├── build.yaml                   # Build runner configuration
+├── lib/
+│   └── tokens/                  # Generated classes (automatic)
+│       └── flywind_tokens.dart  # All tokens in one file
+└── pubspec.yaml                 # With generate: true in flutter section
+```
+
+### Legacy CLI Setup
 After running `fly init`, your project will have:
 
 ```
@@ -150,8 +248,22 @@ your_flutter_project/
 └── pubspec.yaml
 ```
 
-## Standalone Generation
+## Manual Code Generation
 
+### Flutter-Style Setup
+You can manually trigger code generation:
+
+```bash
+flutter packages pub run build_runner build
+```
+
+Or for continuous generation during development:
+
+```bash
+flutter packages pub run build_runner watch
+```
+
+### Legacy CLI Setup
 You can also run the generator directly without the CLI:
 
 ```bash
@@ -165,19 +277,50 @@ This is useful for:
 
 ## Customization
 
-### Adding New Token Types
+### Flutter-Style Setup
 
+#### Adding New Token Types
+1. Add a new token section to your `flywind.yaml` file
+2. Follow the YAML configuration format
+3. Run `flutter pub get` or `flutter packages pub run build_runner build`
+
+#### Modifying Existing Tokens
+1. Edit the `flywind.yaml` file
+2. Run `flutter pub get` or `flutter packages pub run build_runner build`
+3. The Dart classes will be updated automatically
+
+#### YAML Configuration Format
+```yaml
+# FlyWind Configuration
+output-dir: lib/tokens
+
+tokens:
+  your-token-name:
+    name: YourTokenClass
+    type: String|Color|double|FontWeight
+    description: Description of your token
+    values:
+      key1: value1
+      key2: value2
+    custom-values: true|false
+    extension: true|false
+    indexed-access: true|false  # For numeric keys
+    index-type: int|String      # Type for indexed access
+```
+
+### Legacy CLI Setup
+
+#### Adding New Token Types
 1. Create a new JSON file in `fly/` directory
 2. Follow the JSON configuration format
 3. Run `fly generate`
 
-### Modifying Existing Tokens
-
+#### Modifying Existing Tokens
 1. Edit the JSON files in `fly/` directory
 2. Run `fly generate`
 3. The Dart classes will be updated automatically
 
-### JSON Configuration Format
+#### JSON Configuration Format
 
 ```json
 {
