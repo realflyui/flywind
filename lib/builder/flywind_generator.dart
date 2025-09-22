@@ -8,7 +8,7 @@ import 'package:yaml/yaml.dart';
 class FlywindBuilder implements Builder {
   @override
   Map<String, List<String>> get buildExtensions => {
-    'lib/flw/flywind.yaml': ['lib/flw/tokens/tokens.dart'],
+    'lib/fly/flywind.yaml': ['lib/fly/tokens/tokens.dart'],
   };
 
   @override
@@ -17,8 +17,8 @@ class FlywindBuilder implements Builder {
     final inputId = buildStep.inputId;
     log.info('Processing input: ${inputId.path}');
 
-    if (!inputId.path.endsWith('lib/flw/flywind.yaml')) {
-      log.warning('Expected lib/flw/flywind.yaml input, got: ${inputId.path}');
+    if (!inputId.path.endsWith('lib/fly/flywind.yaml')) {
+      log.warning('Expected lib/fly/flywind.yaml input, got: ${inputId.path}');
       return;
     }
 
@@ -40,7 +40,7 @@ class FlywindBuilder implements Builder {
     final tokensAsset = AssetId(inputId.package, outputPath);
     await buildStep.writeAsString(tokensAsset, tokensContent);
 
-    log.info('Generated tokens file at lib/flw/tokens/tokens.dart');
+    log.info('Generated tokens file at lib/fly/tokens/tokens.dart');
   }
 
   /// Generate the main tokens file from configuration

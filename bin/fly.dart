@@ -48,15 +48,15 @@ Future<void> _initCommand(List<String> args) async {
     exit(1);
   }
 
-  // Check if lib/flw directory exists
-  if (!Directory('lib/flw').existsSync()) {
-    // Create lib/flw directory
-    Directory('lib/flw').createSync(recursive: true);
-    print('   ✅ Created lib/flw directory');
+  // Check if lib/fly directory exists
+  if (!Directory('lib/fly').existsSync()) {
+    // Create lib/fly directory
+    Directory('lib/fly').createSync(recursive: true);
+    print('   ✅ Created lib/fly directory');
   }
 
   // Check if flywind is already initialized
-  if (File('lib/flw/flywind.yaml').existsSync()) {
+  if (File('lib/fly/flywind.yaml').existsSync()) {
     print('⚠️  FlyWind is already initialized in this project');
     print('   The flywind.yaml file already exists');
 
@@ -71,7 +71,7 @@ Future<void> _initCommand(List<String> args) async {
   // Create flywind.yaml configuration file
   try {
     final configContent = _getFlywindYamlTemplate();
-    final outputFile = File('lib/flw/flywind.yaml');
+    final outputFile = File('lib/fly/flywind.yaml');
     outputFile.writeAsStringSync(configContent);
     print('   ✅ Created flywind.yaml');
   } catch (e) {
@@ -98,7 +98,7 @@ Future<void> _generateCommand(List<String> args) async {
   print('🔧 Generating FlyWind design tokens...');
 
   // Check if flywind.yaml exists
-  if (!File('lib/flw/flywind.yaml').existsSync()) {
+  if (!File('lib/fly/flywind.yaml').existsSync()) {
     print('❌ Error: FlyWind not initialized in this project');
     print('   Run "flw init" first to set up FlyWind');
     exit(1);
@@ -175,82 +175,45 @@ String _getFlywindYamlTemplate() {
 
   // Fallback template if file doesn't exist
   return '''# FlyWind Configuration
-# This file defines your design tokens for the FlyWind system
+#
+# This file defines custom tokens that extend the default FlyWind tokens.
+# Run 'dart generate/generate_custom.dart' to generate custom token classes.
 
-tokens:
+extend:
   colors:
-    name: FlyColors
-    type: Color
-    description: Color palette for the application
-    values:
-      primary: 0xFF3B82F6
-      secondary: 0xFF10B981
-      accent: 0xFFF59E0B
-      neutral: 0xFF6B7280
-      success: 0xFF10B981
-      warning: 0xFFF59E0B
-      error: 0xFFEF4444
-      info: 0xFF3B82F6
-      white: 0xFFFFFFFF
-      black: 0xFF000000
-    custom-values: true
-    extension: true
+    test: "#FF0000"
 
   spacing:
-    name: FlySpacing
-    type: double
-    description: Spacing values for margins and padding
-    values:
-      "0": 0.0
-      "1": 4.0
-      "2": 8.0
-      "3": 12.0
-      "4": 16.0
-      "5": 20.0
-      "6": 24.0
-      "8": 32.0
-      "10": 40.0
-      "12": 48.0
-      "16": 64.0
-      "20": 80.0
-      "24": 96.0
-      "32": 128.0
-    indexed-access: true
-    index-type: String
-    custom-values: true
-    extension: true
+    test: "99"
 
   radius:
-    name: FlyRadius
-    type: BorderRadius
-    description: Border radius values for rounded corners
-    values:
-      none: "BorderRadius.zero"
-      sm: "BorderRadius.circular(2.0)"
-      default: "BorderRadius.circular(4.0)"
-      md: "BorderRadius.circular(6.0)"
-      lg: "BorderRadius.circular(8.0)"
-      xl: "BorderRadius.circular(12.0)"
-      "2xl": "BorderRadius.circular(16.0)"
-      "3xl": "BorderRadius.circular(24.0)"
-      full: "BorderRadius.circular(9999.0)"
-    custom-values: true
-    extension: true
+    test: "99"
+
+  breakpoint:
+    test: "999"
+
+  container:
+    test: "999"
 
   text:
-    name: FlyTextSize
-    type: TextStyle
-    description: Text styles for typography
-    values:
-      xs: "TextStyle(fontSize: 12.0, height: 1.5)"
-      sm: "TextStyle(fontSize: 14.0, height: 1.5)"
-      base: "TextStyle(fontSize: 16.0, height: 1.5)"
-      lg: "TextStyle(fontSize: 18.0, height: 1.5)"
-      xl: "TextStyle(fontSize: 20.0, height: 1.5)"
-      "2xl": "TextStyle(fontSize: 24.0, height: 1.5)"
-      "3xl": "TextStyle(fontSize: 30.0, height: 1.5)"
-      "4xl": "TextStyle(fontSize: 36.0, height: 1.5)"
-    custom-values: true
-    extension: true
+    test: "99"
+
+  text_line_height:
+    test: "99"
+
+  font_weight:
+    test: "999"
+
+  tracking:
+    test: "0.99"
+
+  blur:
+    test: "99"
+
+  perspective:
+    test: "999"
+
+  leading:
+    test: "9.9"
 ''';
 }

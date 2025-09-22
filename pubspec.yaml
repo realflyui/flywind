@@ -14,7 +14,7 @@ issue_tracker: https://github.com/realflyui/flywind/issues
 documentation: https://github.com/realflyui/flywind#readme
 
 executables:
-  flw: bin/flw
+  fly: bin/fly
 
 environment:
   sdk: ^3.9.2
