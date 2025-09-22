@@ -1,5 +1,5 @@
 /// Flywind - A cross-framework theming library for Flutter
-/// 
+///
 /// Supports both Material and Cupertino with custom token generation
 /// and runtime theme updates.
 
@@ -15,4 +15,5 @@ export 'helpers/helpers.dart';
 // Widgets
 export 'widgets/widgets.dart';
 
-
+// Builder for source_gen
+export 'builder.dart';

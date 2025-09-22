@@ -3,5 +3,6 @@ targets:
     builders:
       flywind:flywindBuilder:
         enabled: true
-        generate_for:
-          - flywind.yaml
+        build_extensions: { ".dart": [".flywind.g.part"] }
+        build_to: cache
+        applies_builders: ["source_gen:combining_builder"]

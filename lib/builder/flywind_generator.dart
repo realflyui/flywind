@@ -1,24 +1,20 @@
 import 'dart:async';
 
 import 'package:build/build.dart';
+import 'package:source_gen/source_gen.dart';
 import 'package:yaml/yaml.dart';
 
-/// FlyWind code generator builder
-class FlywindBuilder implements Builder {
+/// FlyWind code generator that reads from flywind.yaml configuration
+class FlywindGenerator extends Generator {
   @override
-  Map<String, List<String>> get buildExtensions => {
-    'flywind.yaml': ['lib/tokens/flywind_tokens.dart'],
-  };
-
-  @override
-  Future<void> build(BuildStep buildStep) async {
+  FutureOr<String?> generate(LibraryReader library, BuildStep buildStep) async {
     // Read the flywind.yaml configuration file
     final configAsset = AssetId(buildStep.inputId.package, 'flywind.yaml');
 
     // Check if the config file exists
     if (!await buildStep.canRead(configAsset)) {
       log.warning('flywind.yaml not found in project root');
-      return;
+      return null;
     }
 
     final configContent = await buildStep.readAsString(configAsset);
@@ -27,16 +23,7 @@ class FlywindBuilder implements Builder {
     final config = loadYaml(configContent) as Map<dynamic, dynamic>;
 
     // Generate the tokens file
-    final generatedCode = _generateTokensFile(config);
-
-    // Write the generated file
-    final outputId = AssetId(
-      buildStep.inputId.package,
-      'lib/tokens/flywind_tokens.dart',
-    );
-
-    await buildStep.writeAsString(outputId, generatedCode);
-    log.info('Generated flywind_tokens.dart');
+    return _generateTokensFile(config);
   }
 
   /// Generate the main tokens file from configuration
