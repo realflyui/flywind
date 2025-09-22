@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../tokens/spacing_base.dart';
-import '../tokens/colors_base.dart';
+import '../tokens/tokens.dart';
 
 /// Base interface for all Fly tokens
 /// 
@@ -45,20 +44,28 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
   const FlyThemeData({
     required this.spacing,
     required this.colors,
+    required this.radius,
+    required this.breakpoints,
   });
 
-  final FlySpacingBase spacing;
-  final FlyColorsBase colors;
+  final FlySpacingToken spacing;
+  final FlyColorToken colors;
+  final FlyRadiusToken radius;
+  final FlyBreakpointToken breakpoints;
 
   /// Create a copy with updated values
   @override
   FlyThemeData copyWith({
-    FlySpacingBase? spacing,
-    FlyColorsBase? colors,
+    FlySpacingToken? spacing,
+    FlyColorToken? colors,
+    FlyRadiusToken? radius,
+    FlyBreakpointToken? breakpoints,
   }) {
     return FlyThemeData(
       spacing: spacing ?? this.spacing,
       colors: colors ?? this.colors,
+      radius: radius ?? this.radius,
+      breakpoints: breakpoints ?? this.breakpoints,
     );
   }
 
@@ -69,14 +76,18 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     return FlyThemeData(
       spacing: spacing.merge(other.spacing),
       colors: colors.merge(other.colors),
+      radius: radius.merge(other.radius),
+      breakpoints: breakpoints.merge(other.breakpoints),
     );
   }
 
   /// Create default theme data
   static FlyThemeData fallback() {
     return FlyThemeData(
-      spacing: FlySpacingBase.defaultSpacing(),
-      colors: FlyColorsBase.defaultColors(),
+      spacing: FlySpacingToken.defaultSpacing(),
+      colors: FlyColorToken.defaultColor(),
+      radius: FlyRadiusToken.defaultRadius(),
+      breakpoints: FlyBreakpointToken.defaultBreakpoint(),
     );
   }
 
@@ -88,6 +99,8 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     return FlyThemeData(
       spacing: spacing.lerp(other.spacing, t),
       colors: colors.lerp(other.colors, t),
+      radius: radius.lerp(other.radius, t),
+      breakpoints: breakpoints.lerp(other.breakpoints, t),
     );
   }
 
@@ -96,9 +109,11 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     if (identical(this, other)) return true;
     return other is FlyThemeData &&
         other.spacing == spacing &&
-        other.colors == colors;
+        other.colors == colors &&
+        other.radius == radius &&
+        other.breakpoints == breakpoints;
   }
 
   @override
-  int get hashCode => Object.hash(spacing, colors);
+  int get hashCode => Object.hash(spacing, colors, radius, breakpoints);
 }

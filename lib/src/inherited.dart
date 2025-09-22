@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'controller.dart';
 import 'theme.dart';
-import '../tokens/spacing_base.dart';
-import '../tokens/colors_base.dart';
+import '../tokens/tokens.dart';
 
 /// InheritedNotifier widget that provides Fly theme data to the widget tree
 class FlyTheme extends InheritedNotifier<FlyThemeController> {
@@ -50,13 +49,23 @@ class FlyTheme extends InheritedNotifier<FlyThemeController> {
   }
 
   /// Update spacing token
-  static void updateSpacing(BuildContext context, FlySpacingBase Function(FlySpacingBase current) updater) {
+  static void updateSpacing(BuildContext context, FlySpacingToken Function(FlySpacingToken current) updater) {
     _getController(context)?.updateSpacing(updater);
   }
 
   /// Update colors token
-  static void updateColors(BuildContext context, FlyColorsBase Function(FlyColorsBase current) updater) {
+  static void updateColors(BuildContext context, FlyColorToken Function(FlyColorToken current) updater) {
     _getController(context)?.updateColors(updater);
+  }
+
+  /// Update radius token
+  static void updateRadius(BuildContext context, FlyRadiusToken Function(FlyRadiusToken current) updater) {
+    _getController(context)?.updateRadius(updater);
+  }
+
+  /// Update breakpoints token
+  static void updateBreakpoints(BuildContext context, FlyBreakpointToken Function(FlyBreakpointToken current) updater) {
+    _getController(context)?.updateBreakpoints(updater);
   }
 
   /// Put a spacing value
@@ -67,6 +76,16 @@ class FlyTheme extends InheritedNotifier<FlyThemeController> {
   /// Put a color value
   static void putColor(BuildContext context, String key, Color value) {
     _getController(context)?.putColor(key, value);
+  }
+
+  /// Put a radius value
+  static void putRadius(BuildContext context, String key, double value) {
+    _getController(context)?.putRadius(key, value);
+  }
+
+  /// Put a breakpoint value
+  static void putBreakpoint(BuildContext context, String key, double value) {
+    _getController(context)?.putBreakpoint(key, value);
   }
 
   /// Check if FlyTheme is available in the context

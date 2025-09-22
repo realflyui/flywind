@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'theme.dart';
-import '../tokens/spacing_base.dart';
-import '../tokens/colors_base.dart';
+import '../tokens/tokens.dart';
 
 /// Controller for managing Fly theme data with runtime updates
 class FlyThemeController extends ChangeNotifier {
@@ -40,13 +39,23 @@ class FlyThemeController extends ChangeNotifier {
   }
 
   /// Update spacing token
-  void updateSpacing(FlySpacingBase Function(FlySpacingBase current) updater) {
+  void updateSpacing(FlySpacingToken Function(FlySpacingToken current) updater) {
     update((data) => data.copyWith(spacing: updater(data.spacing)));
   }
 
   /// Update colors token
-  void updateColors(FlyColorsBase Function(FlyColorsBase current) updater) {
+  void updateColors(FlyColorToken Function(FlyColorToken current) updater) {
     update((data) => data.copyWith(colors: updater(data.colors)));
+  }
+
+  /// Update radius token
+  void updateRadius(FlyRadiusToken Function(FlyRadiusToken current) updater) {
+    update((data) => data.copyWith(radius: updater(data.radius)));
+  }
+
+  /// Update breakpoints token
+  void updateBreakpoints(FlyBreakpointToken Function(FlyBreakpointToken current) updater) {
+    update((data) => data.copyWith(breakpoints: updater(data.breakpoints)));
   }
 
   /// Put a spacing value
@@ -66,6 +75,28 @@ class FlyThemeController extends ChangeNotifier {
       throw ArgumentError('Color key cannot be empty');
     }
     updateColors((colors) => colors.put(key, value));
+  }
+
+  /// Put a radius value
+  void putRadius(String key, double value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Radius key cannot be empty');
+    }
+    if (value < 0) {
+      throw ArgumentError('Radius value cannot be negative: $value');
+    }
+    updateRadius((radius) => radius.put(key, value));
+  }
+
+  /// Put a breakpoint value
+  void putBreakpoint(String key, double value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Breakpoint key cannot be empty');
+    }
+    if (value < 0) {
+      throw ArgumentError('Breakpoint value cannot be negative: $value');
+    }
+    updateBreakpoints((breakpoints) => breakpoints.put(key, value));
   }
 
 }

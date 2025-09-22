@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import '../fly.dart';
+import '../flywind.dart';
+import '../custom_tokens/custom_tokens.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class Flywind extends StatefulWidget {
+  const Flywind({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<Flywind> createState() => _FlywindState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _FlywindState extends State<Flywind> {
   ThemeMode _themeMode = ThemeMode.system;
 
   @override
@@ -20,16 +17,19 @@ class _MyAppState extends State<MyApp> {
     return FlyApp(
       themeMode: _themeMode,
       themeData: FlyThemeData(
-        spacing: const CustomSpacing(),
-        colors: const BrandAColors(),
+        spacing: CustomSpacing.defaultSpacing(),
+        colors: CustomColors.defaultColors(),
+        radius: FlyRadiusToken.defaultRadius(),
+        breakpoints: FlyBreakpointToken.defaultBreakpoint(),
       ),
       darkThemeData: FlyThemeData(
-        spacing: const CustomSpacing(),
-        colors: const BrandAColors().copyWith(
-          primary: const Color(0xFF10B981), // Green for dark mode
-          surface: const Color(0xFF1F2937), // Dark surface
-          background: const Color(0xFF111827), // Dark background
-        ),
+        spacing: CustomSpacing.defaultSpacing(),
+        colors: CustomColors.defaultColors()
+          .put('primary', const Color(0xFF10B981)) // Green for dark mode
+          .put('surface', const Color(0xFF1F2937)) // Dark surface
+          .put('background', const Color(0xFF111827)), // Dark background
+        radius: FlyRadiusToken.defaultRadius(),
+        breakpoints: FlyBreakpointToken.defaultBreakpoint(),
       ),
       appBuilder: (context) {
         return SimpleApp(
@@ -67,18 +67,18 @@ class _SimpleAppState extends State<SimpleApp> {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Container(
-        color: flyTheme.colors.background,
+        color: flyTheme.colors['background'] ?? Colors.white,
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(flyTheme.spacing.lg),
+            padding: EdgeInsets.all(flyTheme.spacing['lg'] ?? 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Header
                 Container(
-                  padding: EdgeInsets.all(flyTheme.spacing.md),
+                  padding: EdgeInsets.all(flyTheme.spacing['md'] ?? 8.0),
                   decoration: BoxDecoration(
-                    color: flyTheme.colors.primary,
+                    color: flyTheme.colors['primary'] ?? Colors.blue,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
@@ -91,7 +91,7 @@ class _SimpleAppState extends State<SimpleApp> {
                   ),
                 ),
                 
-                SizedBox(height: flyTheme.spacing.lg),
+                SizedBox(height: flyTheme.spacing['lg'] ?? 16.0),
                 
                 // Description
                 Text(
@@ -102,7 +102,7 @@ class _SimpleAppState extends State<SimpleApp> {
                   ),
                 ),
                 
-                SizedBox(height: flyTheme.spacing.lg),
+                SizedBox(height: flyTheme.spacing['lg'] ?? 16.0),
                 
                 // Theme mode toggle buttons
                 Text(
@@ -113,18 +113,18 @@ class _SimpleAppState extends State<SimpleApp> {
                     color: flyTheme.colors['text'] ?? Colors.black,
                   ),
                 ),
-                SizedBox(height: flyTheme.spacing.sm),
+                SizedBox(height: flyTheme.spacing['sm'] ?? 4.0),
                 Row(
                   children: [
                     _buildThemeModeButton('Light', ThemeMode.light, flyTheme),
-                    SizedBox(width: flyTheme.spacing.sm),
+                    SizedBox(width: flyTheme.spacing['sm'] ?? 4.0),
                     _buildThemeModeButton('Dark', ThemeMode.dark, flyTheme),
-                    SizedBox(width: flyTheme.spacing.sm),
+                    SizedBox(width: flyTheme.spacing['sm'] ?? 4.0),
                     _buildThemeModeButton('System', ThemeMode.system, flyTheme),
                   ],
                 ),
                 
-                SizedBox(height: (flyTheme.spacing['xl'] ?? flyTheme.spacing.lg).toDouble()),
+                SizedBox(height: (flyTheme.spacing['xl'] ?? flyTheme.spacing['lg'] ?? 16.0).toDouble()),
                 
                 // Color toggle button
                 GestureDetector(
@@ -138,8 +138,8 @@ class _SimpleAppState extends State<SimpleApp> {
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: flyTheme.spacing.lg,
-                      vertical: flyTheme.spacing.md,
+                      horizontal: flyTheme.spacing['lg'] ?? 16.0,
+                      vertical: flyTheme.spacing['md'] ?? 8.0,
                     ),
                     decoration: BoxDecoration(
                       color: _isGreen ? Colors.green : const Color(0xFF6366F1),
@@ -162,21 +162,21 @@ class _SimpleAppState extends State<SimpleApp> {
                   ),
                 ),
                 
-                SizedBox(height: flyTheme.spacing.lg),
+                SizedBox(height: flyTheme.spacing['lg'] ?? 16.0),
                 
                 // Spacing increment button
                 GestureDetector(
                   onTap: () {
-                    final currentSm = flyTheme.spacing.sm;
+                    final currentSm = flyTheme.spacing['sm'] ?? 4.0;
                     FlyTheme.putSpacing(context, 'sm', currentSm + 1);
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: flyTheme.spacing.lg,
-                      vertical: flyTheme.spacing.md,
+                      horizontal: flyTheme.spacing['lg'] ?? 16.0,
+                      vertical: flyTheme.spacing['md'] ?? 8.0,
                     ),
                     decoration: BoxDecoration(
-                      color: flyTheme.colors.secondary,
+                      color: flyTheme.colors['secondary'] ?? Colors.grey,
                       borderRadius: BorderRadius.circular(8),
                       boxShadow: [
                         BoxShadow(
@@ -196,13 +196,13 @@ class _SimpleAppState extends State<SimpleApp> {
                   ),
                 ),
                 
-                SizedBox(height: (flyTheme.spacing['xl'] ?? flyTheme.spacing.lg).toDouble()),
+                SizedBox(height: (flyTheme.spacing['xl'] ?? flyTheme.spacing['lg'] ?? 16.0).toDouble()),
                 
                 // Current values display
                 Container(
-                  padding: EdgeInsets.all(flyTheme.spacing.md),
+                  padding: EdgeInsets.all(flyTheme.spacing['md'] ?? 8.0),
                   decoration: BoxDecoration(
-                    color: flyTheme.colors.surface,
+                    color: flyTheme.colors['surface'] ?? Colors.white,
                     border: Border.all(
                       color: flyTheme.colors['border'] ?? Colors.grey[300]!,
                       width: 1,
@@ -220,27 +220,27 @@ class _SimpleAppState extends State<SimpleApp> {
                           color: flyTheme.colors['text'] ?? Colors.black,
                         ),
                       ),
-                      SizedBox(height: flyTheme.spacing.sm),
+                      SizedBox(height: flyTheme.spacing['sm'] ?? 4.0),
                       Text(
-                        'Primary Color: ${flyTheme.colors.primary}',
+                        'Primary Color: ${flyTheme.colors['primary'] ?? Colors.blue}',
                         style: TextStyle(
                           color: flyTheme.colors['text'] ?? Colors.black,
                         ),
                       ),
                       Text(
-                        'sm spacing: ${flyTheme.spacing.sm}',
+                        'sm spacing: ${flyTheme.spacing['sm'] ?? 4.0}',
                         style: TextStyle(
                           color: flyTheme.colors['text'] ?? Colors.black,
                         ),
                       ),
                       Text(
-                        'md spacing: ${flyTheme.spacing.md}',
+                        'md spacing: ${flyTheme.spacing['md'] ?? 8.0}',
                         style: TextStyle(
                           color: flyTheme.colors['text'] ?? Colors.black,
                         ),
                       ),
                       Text(
-                        'lg spacing: ${flyTheme.spacing.lg}',
+                        'lg spacing: ${flyTheme.spacing['lg'] ?? 16.0}',
                         style: TextStyle(
                           color: flyTheme.colors['text'] ?? Colors.black,
                         ),
@@ -274,11 +274,11 @@ class _SimpleAppState extends State<SimpleApp> {
       onTap: () => widget.onThemeModeChanged(mode),
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: flyTheme.spacing.md,
-          vertical: flyTheme.spacing.sm,
+          horizontal: flyTheme.spacing['md'] ?? 8.0,
+          vertical: flyTheme.spacing['sm'] ?? 4.0,
         ),
         decoration: BoxDecoration(
-          color: flyTheme.colors.secondary,
+          color: flyTheme.colors['secondary'] ?? Colors.grey,
           borderRadius: BorderRadius.circular(6),
           border: Border.all(
             color: flyTheme.colors['border'] ?? Colors.grey[300]!,

@@ -1,19 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../fly.dart';
+import '../flywind.dart';
+import '../custom_tokens/custom_tokens.dart';
 
-void main() {
-  runApp(const MyApp());
-}
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class Flywind extends StatefulWidget {
+  const Flywind({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<Flywind> createState() => _FlywindState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _FlywindState extends State<Flywind> {
   ThemeMode _themeMode = ThemeMode.system;
 
   Brightness _getCurrentBrightness() {
@@ -32,15 +30,18 @@ class _MyAppState extends State<MyApp> {
     return FlyApp(
       themeMode: _themeMode,
       themeData: FlyThemeData(
-        spacing: const CustomSpacing(),
-        colors: const BrandAColors(),
+        spacing: CustomSpacing.defaultSpacing(),
+        colors: CustomColors.defaultColors(),
+        radius: FlyRadiusToken.defaultRadius(),
+        breakpoints: FlyBreakpointToken.defaultBreakpoint(),
       ),
       darkThemeData: FlyThemeData(
-        spacing: const CustomSpacing(),
-        colors: const BrandAColors().copyWith(
-          primary: const Color(0xFF10B981), // Green for dark mode
-          surface: const Color(0xFF1F2937), // Dark surface
-        ),
+        spacing: CustomSpacing.defaultSpacing(),
+        colors: CustomColors.defaultColors()
+          .put('primary', const Color(0xFF10B981)) // Green for dark mode
+          .put('surface', const Color(0xFF1F2937)), // Dark surface
+        radius: FlyRadiusToken.defaultRadius(),
+        breakpoints: FlyBreakpointToken.defaultBreakpoint(),
       ),
       appBuilder: (context) {
         final flyTheme = FlyTheme.of(context);
@@ -48,7 +49,7 @@ class _MyAppState extends State<MyApp> {
         return CupertinoApp(
           title: 'Fly App',
           theme: CupertinoThemeData(
-            primaryColor: flyTheme.colors.primary,
+            primaryColor: flyTheme.colors['primary'] ?? Colors.blue,
             brightness: _getCurrentBrightness(),
           ),
           home: MyHomePage(
@@ -86,11 +87,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: const Text('Fly App'),
-        backgroundColor: flyTheme.colors.primary,
+        backgroundColor: flyTheme.colors['primary'] ?? Colors.blue,
       ),
       child: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(flyTheme.spacing.md),
+          padding: EdgeInsets.all(flyTheme.spacing['md'] ?? 8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -102,14 +103,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: flyTheme.colors['text'] ?? CupertinoColors.black,
                 ),
               ),
-              SizedBox(height: flyTheme.spacing.md),
+              SizedBox(height: flyTheme.spacing['md'] ?? 8.0),
               Text(
                 'Your Fly theming library is ready to use.',
                 style: TextStyle(
                   color: flyTheme.colors['textSecondary'] ?? CupertinoColors.systemGrey,
                 ),
               ),
-              SizedBox(height: flyTheme.spacing.lg),
+              SizedBox(height: flyTheme.spacing['lg'] ?? 16.0),
               
               // Theme mode toggle
               Row(
@@ -118,12 +119,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () => widget.onThemeModeChanged(ThemeMode.light),
                     child: const Text('Light'),
                   ),
-                  SizedBox(width: flyTheme.spacing.sm),
+                  SizedBox(width: flyTheme.spacing['sm'] ?? 4.0),
                   CupertinoButton.filled(
                     onPressed: () => widget.onThemeModeChanged(ThemeMode.dark),
                     child: const Text('Dark'),
                   ),
-                  SizedBox(width: flyTheme.spacing.sm),
+                  SizedBox(width: flyTheme.spacing['sm'] ?? 4.0),
                   CupertinoButton.filled(
                     onPressed: () => widget.onThemeModeChanged(ThemeMode.system),
                     child: const Text('System'),
@@ -131,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               
-              SizedBox(height: flyTheme.spacing.lg),
+              SizedBox(height: flyTheme.spacing['lg'] ?? 16.0),
               
               // Toggle primary color button
               Container(
@@ -155,13 +156,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               
-              SizedBox(height: flyTheme.spacing.lg),
+              SizedBox(height: flyTheme.spacing['lg'] ?? 16.0),
               
               // Current spacing values display
               Container(
-                padding: EdgeInsets.all(flyTheme.spacing.sm),
+                padding: EdgeInsets.all(flyTheme.spacing['sm'] ?? 4.0),
                 decoration: BoxDecoration(
-                  color: flyTheme.colors.surface,
+                  color: flyTheme.colors['surface'] ?? Colors.white,
                   border: Border.all(color: flyTheme.colors['border'] ?? CupertinoColors.systemGrey),
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -175,20 +176,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: flyTheme.colors['text'] ?? CupertinoColors.black,
                       ),
                     ),
-                    SizedBox(height: flyTheme.spacing.sm),
-                    Text('sm spacing: ${flyTheme.spacing.sm}'),
-                    Text('md spacing: ${flyTheme.spacing.md}'),
-                    Text('lg spacing: ${flyTheme.spacing.lg}'),
+                    SizedBox(height: flyTheme.spacing['sm'] ?? 4.0),
+                    Text('sm spacing: ${flyTheme.spacing['sm'] ?? 4.0}'),
+                    Text('md spacing: ${flyTheme.spacing['md'] ?? 8.0}'),
+                    Text('lg spacing: ${flyTheme.spacing['lg'] ?? 16.0}'),
                   ],
                 ),
               ),
               
-              SizedBox(height: flyTheme.spacing.md),
+              SizedBox(height: flyTheme.spacing['md'] ?? 8.0),
               
               // Update spacing button
               CupertinoButton.filled(
                 onPressed: () {
-                  final currentSm = flyTheme.spacing.sm;
+                  final currentSm = flyTheme.spacing['sm'] ?? 4.0;
                   FlyTheme.putSpacing(context, 'sm', currentSm + 1);
                 },
                 child: const Text('Increment sm by 1'),
