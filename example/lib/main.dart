@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flywind/flywind.dart';
+import 'tokens/tokens.dart';
 
 void main() {
   runApp(const FlywindExampleApp());
@@ -70,34 +70,46 @@ class ExampleSection extends StatelessWidget {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 12),
-        // Example containers with different Flywind styles
+        // Example containers with FlyWind design tokens
         Container(
           width: double.infinity,
-          padding: const EdgeInsets.all(16),
-          margin: const EdgeInsets.only(bottom: 8),
+          padding: EdgeInsets.all(FlywindTokens.spacing.s4),
+          margin: EdgeInsets.only(bottom: FlywindTokens.spacing.s2),
           decoration: BoxDecoration(
-            color: Colors.blue.shade50,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: Colors.blue.shade200),
+            color: FlywindTokens.colors.primary.withValues(alpha: 0.1),
+            borderRadius: FlywindTokens.radius.lg,
+            border: Border.all(
+              color: FlywindTokens.colors.primary.withValues(alpha: 0.3),
+            ),
           ),
-          child: const Text('Basic container with padding and border'),
+          child: Text(
+            'Container using FlyWind tokens',
+            style: FlywindTokens.text.base.copyWith(
+              color: FlywindTokens.colors.primary,
+            ),
+          ),
         ),
         Container(
           width: double.infinity,
-          padding: const EdgeInsets.all(16),
-          margin: const EdgeInsets.only(bottom: 8),
+          padding: EdgeInsets.all(FlywindTokens.spacing.s4),
+          margin: EdgeInsets.only(bottom: FlywindTokens.spacing.s2),
           decoration: BoxDecoration(
-            color: Colors.green.shade50,
-            borderRadius: BorderRadius.circular(12),
+            color: FlywindTokens.colors.success.withValues(alpha: 0.1),
+            borderRadius: FlywindTokens.radius.xl,
             boxShadow: [
               BoxShadow(
-                color: Colors.green.shade200,
+                color: FlywindTokens.colors.success.withValues(alpha: 0.2),
                 blurRadius: 4,
-                offset: Offset(0, 2),
+                offset: const Offset(0, 2),
               ),
             ],
           ),
-          child: const Text('Container with shadow and rounded corners'),
+          child: Text(
+            'Container with FlyWind spacing and colors',
+            style: FlywindTokens.text.lg.copyWith(
+              color: FlywindTokens.colors.success,
+            ),
+          ),
         ),
         const SizedBox(height: 24),
         const Text(
@@ -105,21 +117,34 @@ class ExampleSection extends StatelessWidget {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 12),
-        const Text(
+        Text(
           'Large Heading Text',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: FlywindTokens.text.xl2.copyWith(
+            fontWeight: FontWeight.bold,
+            color: FlywindTokens.colors.primary,
+          ),
         ),
-        const SizedBox(height: 8),
-        const Text(
+        SizedBox(height: FlywindTokens.spacing.s2),
+        Text(
           'Medium body text with normal weight',
-          style: TextStyle(fontSize: 16),
+          style: FlywindTokens.text.base.copyWith(
+            color: FlywindTokens.colors.neutral,
+          ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: FlywindTokens.spacing.s2),
         Text(
           'Small caption text',
-          style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+          style: FlywindTokens.text.sm.copyWith(
+            color: FlywindTokens.colors.neutral.withValues(alpha: 0.7),
+          ),
         ),
-        FlyText("hello").p(16),
+        SizedBox(height: FlywindTokens.spacing.s4),
+        Text(
+          'FlyWind utility example',
+          style: FlywindTokens.text.lg.copyWith(
+            color: FlywindTokens.colors.accent,
+          ),
+        ),
       ],
     );
   }

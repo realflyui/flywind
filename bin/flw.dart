@@ -5,9 +5,9 @@ import 'dart:io';
 /// FlyWind CLI - Design token management for Flutter projects
 ///
 /// Usage:
-///   fly init     - Initialize FlyWind in your project
-///   fly generate - Generate Dart classes from flywind.yaml
-///   fly help     - Show help information
+///   flw init     - Initialize FlyWind in your project
+///   flw generate - Generate Dart classes from flywind.yaml
+///   flw help     - Show help information
 void main(List<String> args) async {
   if (args.isEmpty) {
     _showHelp();
@@ -80,7 +80,7 @@ Future<void> _initCommand(List<String> args) async {
   print(
     '  2. Run: flutter pub get (or flutter run) for automatic code generation',
   );
-  print('  3. Or run: fly generate to generate manually');
+  print('  3. Or run: flw generate to generate manually');
   print('  4. Import and use the generated classes in your Flutter app');
   print('');
   print('📖 See flywind.yaml for configuration options');
@@ -93,7 +93,7 @@ Future<void> _generateCommand(List<String> args) async {
   // Check if flywind.yaml exists
   if (!File('flywind.yaml').existsSync()) {
     print('❌ Error: FlyWind not initialized in this project');
-    print('   Run "fly init" first to set up FlyWind');
+    print('   Run "flw init" first to set up FlyWind');
     exit(1);
   }
 
@@ -143,7 +143,7 @@ void _showHelp() {
 🎨 FlyWind CLI - Design token management for Flutter
 
 USAGE:
-    fly <command> [options]
+    flw <command> [options]
 
 COMMANDS:
     init        Initialize FlyWind in your project
@@ -151,9 +151,9 @@ COMMANDS:
     help        Show this help message
 
 EXAMPLES:
-    fly init                    # Initialize FlyWind
-    fly generate                # Generate token classes
-    fly gen                     # Short form of generate
+    flw init                    # Initialize FlyWind
+    flw generate                # Generate token classes
+    flw gen                     # Short form of generate
 
 For more information, visit: https://github.com/realflyui/flywind
 ''');

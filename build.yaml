@@ -2,10 +2,10 @@ builders:
   flywind:
     import: "package:flywind/builder.dart"
     builder_factories: ["flywindBuilder"]
-    build_extensions: { ".dart": [".flywind.g.part"] }
+    build_extensions: { "flywind.yaml": ["lib/tokens/tokens.dart"] }
     auto_apply: dependents
-    build_to: cache
-    applies_builders: ["source_gen:combining_builder"]
+    build_to: source
+    applies_builders: []
 
 targets:
   $default:
