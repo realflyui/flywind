@@ -154,7 +154,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_colors.dart');
+    final outputFile = File('lib/config/colors.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -234,7 +234,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_spacing.dart');
+    final outputFile = File('lib/config/spacing.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -314,7 +314,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_radius.dart');
+    final outputFile = File('lib/config/radius.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -395,7 +395,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_breakpoint.dart');
+    final outputFile = File('lib/config/breakpoint.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -475,7 +475,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_container.dart');
+    final outputFile = File('lib/config/container.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -555,7 +555,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_text.dart');
+    final outputFile = File('lib/config/text.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -635,7 +635,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_text_line_height.dart');
+    final outputFile = File('lib/config/text_line_height.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -716,7 +716,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_font_weight.dart');
+    final outputFile = File('lib/config/font_weight.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -796,7 +796,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_tracking.dart');
+    final outputFile = File('lib/config/tracking.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -876,7 +876,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_blur.dart');
+    final outputFile = File('lib/config/blur.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -956,7 +956,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_perspective.dart');
+    final outputFile = File('lib/config/perspective.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -1036,7 +1036,7 @@ class CustomTokenGenerator {
     buffer.writeln('}');
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_leading.dart');
+    final outputFile = File('lib/config/leading.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -1057,44 +1057,44 @@ class CustomTokenGenerator {
     
     // Add exports
     if (config['extend']?['colors'] != null) {
-      buffer.writeln("export 'custom_colors.dart';");
+      buffer.writeln("export 'colors.dart';");
     }
     if (config['extend']?['spacing'] != null) {
-      buffer.writeln("export 'custom_spacing.dart';");
+      buffer.writeln("export 'spacing.dart';");
     }
     if (config['extend']?['radius'] != null) {
-      buffer.writeln("export 'custom_radius.dart';");
+      buffer.writeln("export 'radius.dart';");
     }
     if (config['extend']?['breakpoint'] != null) {
-      buffer.writeln("export 'custom_breakpoint.dart';");
+      buffer.writeln("export 'breakpoint.dart';");
     }
     if (config['extend']?['container'] != null) {
-      buffer.writeln("export 'custom_container.dart';");
+      buffer.writeln("export 'container.dart';");
     }
     if (config['extend']?['text'] != null) {
-      buffer.writeln("export 'custom_text.dart';");
+      buffer.writeln("export 'text.dart';");
     }
     if (config['extend']?['text_line_height'] != null) {
-      buffer.writeln("export 'custom_text_line_height.dart';");
+      buffer.writeln("export 'text_line_height.dart';");
     }
     if (config['extend']?['font_weight'] != null) {
-      buffer.writeln("export 'custom_font_weight.dart';");
+      buffer.writeln("export 'font_weight.dart';");
     }
     if (config['extend']?['tracking'] != null) {
-      buffer.writeln("export 'custom_tracking.dart';");
+      buffer.writeln("export 'tracking.dart';");
     }
     if (config['extend']?['blur'] != null) {
-      buffer.writeln("export 'custom_blur.dart';");
+      buffer.writeln("export 'blur.dart';");
     }
     if (config['extend']?['perspective'] != null) {
-      buffer.writeln("export 'custom_perspective.dart';");
+      buffer.writeln("export 'perspective.dart';");
     }
     if (config['extend']?['leading'] != null) {
-      buffer.writeln("export 'custom_leading.dart';");
+      buffer.writeln("export 'leading.dart';");
     }
     
     // Write the file
-    final outputFile = File('lib/custom_tokens/custom_tokens.dart');
+    final outputFile = File('lib/config/config.dart');
     await outputFile.parent.create(recursive: true);
     await outputFile.writeAsString(buffer.toString());
     
@@ -1237,7 +1237,20 @@ Future<void> main(List<String> args) async {
     print('  - CustomLeading class with static properties');
     print('  - Extension methods for all FlyToken types');
     print('');
-    print('Generated files will be placed in lib/custom_tokens/');
+    print('Generated files will be placed in lib/config/');
+    print('  - colors.dart (instead of custom_colors.dart)');
+    print('  - spacing.dart (instead of custom_spacing.dart)');
+    print('  - radius.dart (instead of custom_radius.dart)');
+    print('  - breakpoint.dart (instead of custom_breakpoint.dart)');
+    print('  - container.dart (instead of custom_container.dart)');
+    print('  - text.dart (instead of custom_text.dart)');
+    print('  - text_line_height.dart (instead of custom_text_line_height.dart)');
+    print('  - font_weight.dart (instead of custom_font_weight.dart)');
+    print('  - tracking.dart (instead of custom_tracking.dart)');
+    print('  - blur.dart (instead of custom_blur.dart)');
+    print('  - perspective.dart (instead of custom_perspective.dart)');
+    print('  - leading.dart (instead of custom_leading.dart)');
+    print('  - config.dart (instead of custom_tokens.dart)');
     return;
   }
   

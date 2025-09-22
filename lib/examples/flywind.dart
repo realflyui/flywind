@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import '../flywind.dart';
 
-class Flywind extends StatefulWidget {
-  const Flywind({super.key});
+class FlywindExample extends StatefulWidget {
+  const FlywindExample({super.key});
 
   @override
-  State<Flywind> createState() => _FlywindState();
+  State<FlywindExample> createState() => _FlywindExampleState();
 }
 
-class _FlywindState extends State<Flywind> {
+class _FlywindExampleState extends State<FlywindExample> {
   ThemeMode _themeMode = ThemeMode.system;
 
   @override
   Widget build(BuildContext context) {
-    return FlyApp(
+    return Flywind(
       themeMode: _themeMode,
       themeData: FlyThemeData.withDefaults(),
       appBuilder: (context) {

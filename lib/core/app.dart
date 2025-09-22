@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'data.dart';
+import 'notifier.dart';
 import 'theme.dart';
 
 /// Main app widget that provides Fly theming
-class FlyApp extends StatelessWidget {
-  const FlyApp({
+class Flywind extends StatelessWidget {
+  const Flywind({
     super.key,
     this.themeMode = ThemeMode.system,
     this.themeData,
@@ -47,7 +47,7 @@ class _FlyProvider extends StatefulWidget {
 }
 
 class _FlyProviderState extends State<_FlyProvider> with WidgetsBindingObserver {
-  late FlyData _notifier;
+  late FlyNotifier _notifier;
   Brightness? _lastBrightness;
 
   @override
@@ -109,14 +109,14 @@ class _FlyProviderState extends State<_FlyProvider> with WidgetsBindingObserver 
     }
   }
 
-  FlyData _createController() {
+  FlyNotifier _createController() {
     final brightness = _getCurrentBrightness();
     _lastBrightness = brightness;
     final initialData = brightness == Brightness.dark 
         ? widget.darkTheme 
         : widget.lightTheme;
     
-    return FlyData(initialData: initialData);
+    return FlyNotifier(initialData: initialData);
   }
 
   @override

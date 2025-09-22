@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../tokens/tokens.dart';
 
 /// Controller for managing Fly theme data with runtime updates
-class FlyData extends ChangeNotifier {
-  FlyData({FlyThemeData? initialData}) 
+class FlyNotifier extends ChangeNotifier {
+  FlyNotifier({FlyThemeData? initialData}) 
       : _data = initialData ?? FlyThemeData.fallback();
 
   FlyThemeData _data;

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import '../flywind.dart';
-import '../custom_tokens/custom_tokens.dart';
+import '../config/config.dart';
 
-class Flywind extends StatefulWidget {
-  const Flywind({super.key});
+class FlywindExample extends StatefulWidget {
+  const FlywindExample({super.key});
 
   @override
-  State<Flywind> createState() => _FlywindState();
+  State<FlywindExample> createState() => _FlywindExampleState();
 }
 
-class _FlywindState extends State<Flywind> {
+class _FlywindExampleState extends State<FlywindExample> {
   ThemeMode _themeMode = ThemeMode.system;
 
   @override
   Widget build(BuildContext context) {
-    return FlyApp(
+    return Flywind(
       themeMode: _themeMode,
       themeData: FlyThemeData.withDefaults(
         spacing: CustomSpacing.defaultSpacing(),
@@ -66,7 +66,7 @@ class _FlywindState extends State<Flywind> {
               brightness: Brightness.dark,
             ),
           ),
-          home: MyHomePage(
+          home: FlywindApp(
             onThemeModeChanged: (mode) {
               setState(() {
                 _themeMode = mode;
@@ -79,8 +79,8 @@ class _FlywindState extends State<Flywind> {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
+class FlywindApp extends StatefulWidget {
+  const FlywindApp({
     super.key,
     required this.onThemeModeChanged,
   });
@@ -88,10 +88,10 @@ class MyHomePage extends StatefulWidget {
   final void Function(ThemeMode) onThemeModeChanged;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<FlywindApp> createState() => _FlywindAppState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _FlywindAppState extends State<FlywindApp> {
   bool _isGreen = false;
 
   @override

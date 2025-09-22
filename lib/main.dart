@@ -6,5 +6,5 @@ import 'examples/flywind.dart';       // Flywind app example
 // import 'examples/cupertino.dart';      // Cupertino (iOS-style) example
 
 void main() {
-  runApp(const Flywind());
+  runApp(const FlywindExample());
 }

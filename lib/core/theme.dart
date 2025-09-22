@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'data.dart';
+import 'notifier.dart';
 import '../tokens/tokens.dart';
 
 /// InheritedNotifier widget that provides Fly theme data to the widget tree
-class FlyTheme extends InheritedNotifier<FlyData> {
+class FlyTheme extends InheritedNotifier<FlyNotifier> {
   const FlyTheme({
     super.key,
-    required FlyData notifier,
+    required FlyNotifier notifier,
     required super.child,
   }) : super(notifier: notifier);
 
@@ -38,7 +38,7 @@ class FlyTheme extends InheritedNotifier<FlyData> {
   /// FlyTheme.data(context)?.putSpacing('large', 32.0);
   /// FlyTheme.data(context)?.updateColors((colors) => colors.put('primary', Colors.blue));
   /// ```
-  static FlyData? data(BuildContext context) {
+  static FlyNotifier? data(BuildContext context) {
     return _getNotifier(context);
   }
 
@@ -173,7 +173,7 @@ class FlyTheme extends InheritedNotifier<FlyData> {
   }
 
   /// Helper method to get the data from context
-  static FlyData? _getNotifier(BuildContext context) {
+  static FlyNotifier? _getNotifier(BuildContext context) {
     final data = context.dependOnInheritedWidgetOfExactType<FlyTheme>();
     return data?.notifier;
   }

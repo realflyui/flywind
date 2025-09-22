@@ -1,4 +1,4 @@
 export 'app.dart';
-export 'data.dart';
+export 'notifier.dart';
 export 'theme.dart';
 export 'token.dart';
