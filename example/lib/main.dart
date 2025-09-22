@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flywind/flywind.dart';
 import 'fly/config/config.dart';
 
+void main() {
+  runApp(const FlywindExample());
+}
+
 class FlywindExample extends StatefulWidget {
   const FlywindExample({super.key});
 
