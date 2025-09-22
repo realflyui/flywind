@@ -39,38 +39,38 @@ mixin FlyMargin<T> {
 
   T Function(FlyStyle newStyle) get copyWith;
 
-  /// Set uniform margin using string values (e.g., "10", "100px", "1rem")
-  T m(String value) {
+  /// Set uniform margin using double values
+  T m(double value) {
     return copyWith(style.copyWith(m: value));
   }
 
-  /// Set horizontal margin (left + right) using string values
-  T mx(String value) {
+  /// Set horizontal margin (left + right) using double values
+  T mx(double value) {
     return copyWith(style.copyWith(mx: value));
   }
 
-  /// Set vertical margin (top + bottom) using string values
-  T my(String value) {
+  /// Set vertical margin (top + bottom) using double values
+  T my(double value) {
     return copyWith(style.copyWith(my: value));
   }
 
-  /// Set top margin using string values
-  T mt(String value) {
+  /// Set top margin using double values
+  T mt(double value) {
     return copyWith(style.copyWith(mt: value));
   }
 
-  /// Set right margin using string values
-  T mr(String value) {
+  /// Set right margin using double values
+  T mr(double value) {
     return copyWith(style.copyWith(mr: value));
   }
 
-  /// Set bottom margin using string values
-  T mb(String value) {
+  /// Set bottom margin using double values
+  T mb(double value) {
     return copyWith(style.copyWith(mb: value));
   }
 
-  /// Set left margin using string values
-  T ml(String value) {
+  /// Set left margin using double values
+  T ml(double value) {
     return copyWith(style.copyWith(ml: value));
   }
 

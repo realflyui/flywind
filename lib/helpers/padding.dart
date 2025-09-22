@@ -39,38 +39,38 @@ mixin FlyPadding<T> {
 
   T Function(FlyStyle newStyle) get copyWith;
 
-  /// Set uniform padding using string values (e.g., "10", "100px", "1rem")
-  T p(String value) {
+  /// Set uniform padding using double values
+  T p(double value) {
     return copyWith(style.copyWith(p: value));
   }
 
-  /// Set horizontal padding (left + right) using string values
-  T px(String value) {
+  /// Set horizontal padding (left + right) using double values
+  T px(double value) {
     return copyWith(style.copyWith(px: value));
   }
 
-  /// Set vertical padding (top + bottom) using string values
-  T py(String value) {
+  /// Set vertical padding (top + bottom) using double values
+  T py(double value) {
     return copyWith(style.copyWith(py: value));
   }
 
-  /// Set top padding using string values
-  T pt(String value) {
+  /// Set top padding using double values
+  T pt(double value) {
     return copyWith(style.copyWith(pt: value));
   }
 
-  /// Set right padding using string values
-  T pr(String value) {
+  /// Set right padding using double values
+  T pr(double value) {
     return copyWith(style.copyWith(pr: value));
   }
 
-  /// Set bottom padding using string values
-  T pb(String value) {
+  /// Set bottom padding using double values
+  T pb(double value) {
     return copyWith(style.copyWith(pb: value));
   }
 
-  /// Set left padding using string values
-  T pl(String value) {
+  /// Set left padding using double values
+  T pl(double value) {
     return copyWith(style.copyWith(pl: value));
   }
 

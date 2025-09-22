@@ -29,4 +29,3 @@ export 'padding.dart';
 export 'rounded.dart';
 export 'spacing.dart';
 export 'style.dart';
-export 'theme.dart';

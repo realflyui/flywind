@@ -33,57 +33,57 @@ class FlyStyle {
     this.roundedBr,
   });
 
-  final String? p; // Uniform padding (all sides)
-  final String? px; // Horizontal padding (left + right)
-  final String? py; // Vertical padding (top + bottom)
-  final String? pl; // Left padding
-  final String? pr; // Right padding
-  final String? pb; // Bottom padding
-  final String? pt; // Top padding
-  final String? m; // Uniform margin (all sides)
-  final String? mx; // Horizontal margin (left + right)
-  final String? my; // Vertical margin (top + bottom)
-  final String? ml; // Left margin
-  final String? mr; // Right margin
-  final String? mb; // Bottom margin
-  final String? mt; // Top margin
-  final String? color;
-  final String? rounded; // Uniform border radius (all corners)
-  final String? roundedT; // Top border radius (top-left + top-right)
-  final String? roundedR; // Right border radius (top-right + bottom-right)
-  final String? roundedB; // Bottom border radius (bottom-left + bottom-right)
-  final String? roundedL; // Left border radius (top-left + bottom-left)
-  final String? roundedTl; // Top-left border radius
-  final String? roundedTr; // Top-right border radius
-  final String? roundedBl; // Bottom-left border radius
-  final String? roundedBr; // Bottom-right border radius
+  final double? p; // Uniform padding (all sides)
+  final double? px; // Horizontal padding (left + right)
+  final double? py; // Vertical padding (top + bottom)
+  final double? pl; // Left padding
+  final double? pr; // Right padding
+  final double? pb; // Bottom padding
+  final double? pt; // Top padding
+  final double? m; // Uniform margin (all sides)
+  final double? mx; // Horizontal margin (left + right)
+  final double? my; // Vertical margin (top + bottom)
+  final double? ml; // Left margin
+  final double? mr; // Right margin
+  final double? mb; // Bottom margin
+  final double? mt; // Top margin
+  final Color? color;
+  final double? rounded; // Uniform border radius (all corners)
+  final double? roundedT; // Top border radius (top-left + top-right)
+  final double? roundedR; // Right border radius (top-right + bottom-right)
+  final double? roundedB; // Bottom border radius (bottom-left + bottom-right)
+  final double? roundedL; // Left border radius (top-left + bottom-left)
+  final double? roundedTl; // Top-left border radius
+  final double? roundedTr; // Top-right border radius
+  final double? roundedBl; // Bottom-left border radius
+  final double? roundedBr; // Bottom-right border radius
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
-    String? p,
-    String? px,
-    String? py,
-    String? pl,
-    String? pr,
-    String? pb,
-    String? pt,
-    String? m,
-    String? mx,
-    String? my,
-    String? ml,
-    String? mr,
-    String? mb,
-    String? mt,
-    String? color,
-    String? rounded,
-    String? roundedT,
-    String? roundedR,
-    String? roundedB,
-    String? roundedL,
-    String? roundedTl,
-    String? roundedTr,
-    String? roundedBl,
-    String? roundedBr,
+    double? p,
+    double? px,
+    double? py,
+    double? pl,
+    double? pr,
+    double? pb,
+    double? pt,
+    double? m,
+    double? mx,
+    double? my,
+    double? ml,
+    double? mr,
+    double? mb,
+    double? mt,
+    Color? color,
+    double? rounded,
+    double? roundedT,
+    double? roundedR,
+    double? roundedB,
+    double? roundedL,
+    double? roundedTl,
+    double? roundedTr,
+    double? roundedBl,
+    double? roundedBr,
   }) {
     return FlyStyle(
       p: p ?? this.p,

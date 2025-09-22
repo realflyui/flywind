@@ -158,7 +158,60 @@ class TokenGenerator {
       }
     }
     
+    // For spacing, always include default values
+    if (propertyPrefix == 'spacing') {
+      final defaultSpacing = _getDefaultSpacingValues();
+      // Merge default values, but don't override existing ones from theme
+      for (final entry in defaultSpacing.entries) {
+        if (!tokens.containsKey(entry.key)) {
+          tokens[entry.key] = entry.value;
+        }
+      }
+    }
+    
     return tokens;
+  }
+
+  /// Get default spacing values when theme doesn't provide them
+  Map<String, String> _getDefaultSpacingValues() {
+    return {
+      'px': '1.0',
+      's0': '0.0',
+      's0_5': '2.0', // 0.125rem = 2px
+      's1': '4.0',   // 0.25rem = 4px
+      's1_5': '6.0', // 0.375rem = 6px
+      's2': '8.0',   // 0.5rem = 8px
+      's2_5': '10.0', // 0.625rem = 10px
+      's3': '12.0',  // 0.75rem = 12px
+      's3_5': '14.0', // 0.875rem = 14px
+      's4': '16.0',  // 1rem = 16px
+      's5': '20.0',  // 1.25rem = 20px
+      's6': '24.0',  // 1.5rem = 24px
+      's7': '28.0',  // 1.75rem = 28px
+      's8': '32.0',  // 2rem = 32px
+      's9': '36.0',  // 2.25rem = 36px
+      's10': '40.0', // 2.5rem = 40px
+      's11': '44.0', // 2.75rem = 44px
+      's12': '48.0', // 3rem = 48px
+      's14': '56.0', // 3.5rem = 56px
+      's16': '64.0', // 4rem = 64px
+      's20': '80.0', // 5rem = 80px
+      's24': '96.0', // 6rem = 96px
+      's28': '112.0', // 7rem = 112px
+      's32': '128.0', // 8rem = 128px
+      's36': '144.0', // 9rem = 144px
+      's40': '160.0', // 10rem = 160px
+      's44': '176.0', // 11rem = 176px
+      's48': '192.0', // 12rem = 192px
+      's52': '208.0', // 13rem = 208px
+      's56': '224.0', // 14rem = 224px
+      's60': '240.0', // 15rem = 240px
+      's64': '256.0', // 16rem = 256px
+      's72': '288.0', // 18rem = 288px
+      's80': '320.0', // 20rem = 320px
+      's96': '384.0', // 24rem = 384px
+      'base': '16.0', // Base spacing unit (1rem = 16px)
+    };
   }
 
   /// Convert CSS value to Flutter format based on type

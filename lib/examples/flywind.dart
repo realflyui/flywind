@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../flywind.dart';
-import '../custom_tokens/custom_tokens.dart';
 
 class Flywind extends StatefulWidget {
   const Flywind({super.key});
@@ -17,12 +16,6 @@ class _FlywindState extends State<Flywind> {
     return FlyApp(
       themeMode: _themeMode,
       themeData: FlyThemeData.withDefaults(),
-      darkThemeData: FlyThemeData.withDefaults(
-        colors: CustomColors.defaultColors()
-          .put('primary', const Color(0xFF10B981)) // Green for dark mode
-          .put('surface', const Color(0xFF1F2937)) // Dark surface
-          .put('background', const Color(0xFF111827)), // Dark background
-      ),
       appBuilder: (context) {
         return FlywindApp(
           themeMode: _themeMode,
@@ -69,35 +62,28 @@ class _FlywindAppState extends State<FlywindApp> {
   @override
   Widget build(BuildContext context) {
     final flyTheme = FlyTheme.of(context);
+    final colors = flyTheme.colors;
+    final spacing = flyTheme.spacing;
     
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Container(
-        color: flyTheme.colors.gray100,
+        color: colors.white,
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(flyTheme.spacing['lg'] ?? 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Description
-                Text(
-                  'Hello World',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: flyTheme.colors['textSecondary'] ?? Colors.grey[600],
-                  ),
-                ),
-                SizedBox(height: flyTheme.spacing['sm'] ?? 8.0),
-                // Theme mode display
-                Text(
-                  'Theme Mode: ${_getThemeModeText(widget.themeMode)}',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: flyTheme.colors['textSecondary'] ?? Colors.grey[600],
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+
+                FlyText('Theme Mode: ${_getThemeModeText(widget.themeMode)}')
+                  .m(spacing.base).color(colors.blue600),
+
+                  // Container with text
+                  FlyContainer(
+                    child: FlyText('Text In Box').color(colors.white),
+                  ).p(20).m(20).bg(colors.gray600).rounded(8),
+
                 // Color toggle button
                 GestureDetector(
                   onTap: () {
@@ -105,20 +91,20 @@ class _FlywindAppState extends State<FlywindApp> {
                       _isGreen = !_isGreen;
                     });
                     
-                    final newColor = _isGreen ? Colors.green : const Color(0xFF6366F1);
+                    final newColor = _isGreen ? colors.green600 : colors.indigo600;
                     FlyTheme.putColor(context, 'primary', newColor);
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: flyTheme.spacing['lg'] ?? 16.0,
-                      vertical: flyTheme.spacing['md'] ?? 8.0,
+                      horizontal: flyTheme.spacing.s4,
+                      vertical: flyTheme.spacing.s4
                     ),
                     decoration: BoxDecoration(
-                      color: _isGreen ? Colors.green : const Color(0xFF6366F1),
+                      color: _isGreen ? colors.green600 : colors.indigo600,
                       borderRadius: BorderRadius.circular(8),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.1),
+                          color: colors.black.withValues(alpha: 0.1),
                           blurRadius: 4,
                           offset: const Offset(0, 2),
                         ),
@@ -127,8 +113,8 @@ class _FlywindAppState extends State<FlywindApp> {
                     child: Text(
                       _isGreen ? 'Change to Indigo' : 'Change to Green',
                       style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+                        color: Colors.white, // TODO: use color token
+                        fontWeight: FontWeight.w600, // TODO: use font weight token
                       ),
                     ),
                   ),

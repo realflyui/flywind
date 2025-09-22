@@ -28,19 +28,10 @@ class FlyContainer extends StatelessWidget
   FlyContainer Function(FlyStyle newStyle) get copyWith =>
       (newStyle) => FlyContainer(style: newStyle, child: child);
 
-  /// Set background color using named token or direct Color object
-  FlyContainer bg(dynamic colorValue) {
-    // Convert to string for storage - let FlyColorParser handle the conversion
-    String? colorKey;
-    if (colorValue is String) {
-      colorKey = colorValue;
-    } else if (colorValue is Color) {
-      // Convert Color to hex string for storage
-      colorKey = '#${colorValue.toARGB32().toRadixString(16).padLeft(8, '0')}';
-    }
-
+  /// Set background color using Color object
+  FlyContainer bg(Color color) {
     return FlyContainer(
-      style: _style.copyWith(color: colorKey),
+      style: _style.copyWith(color: color),
       child: child,
     );
   }
