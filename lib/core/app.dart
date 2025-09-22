@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'controller.dart';
-import 'token.dart';
+import 'data.dart';
 import 'theme.dart';
 
 /// Main app widget that provides Fly theming
@@ -20,7 +19,7 @@ class FlyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _FlyThemeProvider(
+    return _FlyProvider(
       themeMode: themeMode,
       lightTheme: themeData ?? FlyThemeData.fallback(),
       darkTheme: darkThemeData ?? themeData ?? FlyThemeData.fallback(),
@@ -30,8 +29,8 @@ class FlyApp extends StatelessWidget {
 }
 
 /// Internal theme provider that handles light/dark mode switching
-class _FlyThemeProvider extends StatefulWidget {
-  const _FlyThemeProvider({
+class _FlyProvider extends StatefulWidget {
+  const _FlyProvider({
     required this.themeMode,
     required this.lightTheme,
     required this.darkTheme,
@@ -44,24 +43,24 @@ class _FlyThemeProvider extends StatefulWidget {
   final Widget Function(BuildContext context) child;
 
   @override
-  State<_FlyThemeProvider> createState() => _FlyThemeProviderState();
+  State<_FlyProvider> createState() => _FlyProviderState();
 }
 
-class _FlyThemeProviderState extends State<_FlyThemeProvider> with WidgetsBindingObserver {
-  late FlyThemeController _controller;
+class _FlyProviderState extends State<_FlyProvider> with WidgetsBindingObserver {
+  late FlyData _notifier;
   Brightness? _lastBrightness;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _controller = _createController();
+    _notifier = _createController();
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    _controller.dispose();
+    _notifier.dispose();
     super.dispose();
   }
 
@@ -72,7 +71,7 @@ class _FlyThemeProviderState extends State<_FlyThemeProvider> with WidgetsBindin
   }
 
   @override
-  void didUpdateWidget(_FlyThemeProvider oldWidget) {
+  void didUpdateWidget(_FlyProvider oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.themeMode != widget.themeMode ||
         oldWidget.lightTheme != widget.lightTheme ||
@@ -95,7 +94,7 @@ class _FlyThemeProviderState extends State<_FlyThemeProvider> with WidgetsBindin
         return true;
       }());
       
-      _controller.set(themeData);
+      _notifier.set(themeData);
     }
   }
 
@@ -110,20 +109,20 @@ class _FlyThemeProviderState extends State<_FlyThemeProvider> with WidgetsBindin
     }
   }
 
-  FlyThemeController _createController() {
+  FlyData _createController() {
     final brightness = _getCurrentBrightness();
     _lastBrightness = brightness;
     final initialData = brightness == Brightness.dark 
         ? widget.darkTheme 
         : widget.lightTheme;
     
-    return FlyThemeController(initialData: initialData);
+    return FlyData(initialData: initialData);
   }
 
   @override
   Widget build(BuildContext context) {
     return FlyTheme(
-      controller: _controller,
+      notifier: _notifier,
       child: widget.child(context),
     );
   }
