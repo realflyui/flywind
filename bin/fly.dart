@@ -49,14 +49,14 @@ Future<void> _initCommand(List<String> args) async {
   }
 
   // Check if lib/fly directory exists
-  if (!Directory('lib/fly').existsSync()) {
+  if (!Directory('lib/flywind').existsSync()) {
     // Create lib/fly directory
-    Directory('lib/fly').createSync(recursive: true);
-    print('   ✅ Created lib/fly directory');
+    Directory('lib/flywind').createSync(recursive: true);
+    print('   ✅ Created lib/flywind directory');
   }
 
   // Check if flywind is already initialized
-  if (File('lib/fly/flywind.yaml').existsSync()) {
+  if (File('lib/flywind/flywind.yaml').existsSync()) {
     print('⚠️  FlyWind is already initialized in this project');
     print('   The flywind.yaml file already exists');
 
@@ -71,7 +71,7 @@ Future<void> _initCommand(List<String> args) async {
   // Create flywind.yaml configuration file
   try {
     final configContent = _getFlywindYamlTemplate();
-    final outputFile = File('lib/fly/flywind.yaml');
+    final outputFile = File('lib/flywind/flywind.yaml');
     outputFile.writeAsStringSync(configContent);
     print('   ✅ Created flywind.yaml');
   } catch (e) {
@@ -98,7 +98,7 @@ Future<void> _generateCommand(List<String> args) async {
   print('🔧 Generating FlyWind design tokens...');
 
   // Check if flywind.yaml exists
-  if (!File('lib/fly/flywind.yaml').existsSync()) {
+  if (!File('lib/flywind/flywind.yaml').existsSync()) {
     print('❌ Error: FlyWind not initialized in this project');
     print('   Run "flw init" first to set up FlyWind');
     exit(1);

@@ -8,26 +8,26 @@ import 'converters/color_converter.dart';
 class CustomTokenBuilder implements Builder {
   @override
   Map<String, List<String>> get buildExtensions => {
-    'lib/fly/flywind.yaml': [
-      'lib/fly/config/config.dart',
-      'lib/fly/config/colors.dart',
-      'lib/fly/config/spacing.dart',
-      'lib/fly/config/radius.dart',
-      'lib/fly/config/breakpoint.dart',
-      'lib/fly/config/container.dart',
-      'lib/fly/config/text.dart',
-      'lib/fly/config/text_line_height.dart',
-      'lib/fly/config/font_weight.dart',
-      'lib/fly/config/tracking.dart',
-      'lib/fly/config/blur.dart',
-      'lib/fly/config/perspective.dart',
-      'lib/fly/config/leading.dart',
+    'lib/flywind/flywind.yaml': [
+      'lib/flywind/config/config.dart',
+      'lib/flywind/config/colors.dart',
+      'lib/flywind/config/spacing.dart',
+      'lib/flywind/config/radius.dart',
+      'lib/flywind/config/breakpoint.dart',
+      'lib/flywind/config/container.dart',
+      'lib/flywind/config/text.dart',
+      'lib/flywind/config/text_line_height.dart',
+      'lib/flywind/config/font_weight.dart',
+      'lib/flywind/config/tracking.dart',
+      'lib/flywind/config/blur.dart',
+      'lib/flywind/config/perspective.dart',
+      'lib/flywind/config/leading.dart',
     ],
   };
 
   @override
   Future<void> build(BuildStep buildStep) async {
-    // Get the input asset (lib/fly/flywind.yaml)
+    // Get the input asset (lib/flywind/flywind.yaml)
     final inputId = buildStep.inputId;
     log.info('Processing custom token config: ${inputId.path}');
 
@@ -184,7 +184,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/colors.dart',
+      'lib/flywind/config/colors.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -278,7 +278,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/spacing.dart',
+      'lib/flywind/config/spacing.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -372,7 +372,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/radius.dart',
+      'lib/flywind/config/radius.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -474,7 +474,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/breakpoint.dart',
+      'lib/flywind/config/breakpoint.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -572,7 +572,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/container.dart',
+      'lib/flywind/config/container.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -666,7 +666,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/text.dart',
+      'lib/flywind/config/text.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -768,7 +768,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/text_line_height.dart',
+      'lib/flywind/config/text_line_height.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -871,7 +871,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/font_weight.dart',
+      'lib/flywind/config/font_weight.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -967,7 +967,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/tracking.dart',
+      'lib/flywind/config/tracking.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -1061,7 +1061,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/blur.dart',
+      'lib/flywind/config/blur.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -1163,7 +1163,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/perspective.dart',
+      'lib/flywind/config/perspective.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -1257,7 +1257,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/leading.dart',
+      'lib/flywind/config/leading.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 
@@ -1323,7 +1323,7 @@ class CustomTokenBuilder implements Builder {
     // Write the file using BuildStep
     final outputAsset = AssetId(
       buildStep.inputId.package,
-      'lib/fly/config/config.dart',
+      'lib/flywind/config/config.dart',
     );
     await buildStep.writeAsString(outputAsset, buffer.toString());
 

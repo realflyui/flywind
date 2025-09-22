@@ -11,13 +11,19 @@ This directory contains an example Flutter app that demonstrates how to use the 
    cd example
    ```
 
-2. Run the setup script:
+2. Initialize Flywind configuration:
    ```bash
-   ./setup.sh
+   dart run flywind:fly init
    ```
-   This will automatically install dependencies and generate tokens.
+   This will copy the YAML configuration and create the necessary folder structure.
 
-3. Run the app:
+3. Generate the config folder:
+   ```bash
+   dart run flywind:fly generate
+   ```
+   This will generate the configuration files and tokens.
+
+4. Run the app:
    ```bash
    flutter run
    ```
@@ -34,23 +40,20 @@ This directory contains an example Flutter app that demonstrates how to use the 
    flutter pub get
    ```
 
-3. Generate tokens:
+3. Initialize Flywind:
    ```bash
-   dart run build_runner build --delete-conflicting-outputs
+   dart run flywind:fly init
    ```
 
-4. Run the app:
+4. Generate configuration:
    ```bash
-   flutter run
+   dart run flywind:fly generate
    ```
 
-### Using Make (Alternative)
-
-```bash
-make setup    # Set up project and generate tokens
-make generate # Generate tokens only
-make clean    # Clean generated files
-```
+5. Run the app:
+   ```bash
+   flutter run -d macos
+   ```
 
 ## What's Included
 
@@ -62,6 +65,5 @@ make clean    # Clean generated files
 
 The example app uses the Flywind configuration files:
 - `flywind.yaml` - Main configuration
-- `fly-config.yaml` - Additional configuration
 
 You can modify these files to see how different configurations affect the generated code.

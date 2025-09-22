@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flywind/flywind.dart';
-import 'fly/config/config.dart';
+import 'flywind/config/config.dart';
 
 class FlywindExample extends StatefulWidget {
   const FlywindExample({super.key});

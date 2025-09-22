@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flywind/flywind.dart';
+import 'flywind/config/config.dart';
 
 class FlywindExample extends StatefulWidget {
   const FlywindExample({super.key});
