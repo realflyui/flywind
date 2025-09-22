@@ -1,13 +1,4 @@
 builders:
-  # flywind_yaml:
-  #   import: "package:flywind/builder.dart"
-  #   builder_factories: ["flywindYamlBuilder"]
-  #   build_extensions: { "lib/fly/flywind.yaml": ["lib/fly/tokens/tokens.dart"] }
-  #   auto_apply: dependents
-  #   build_to: source
-  #   applies_builders: []
-  #   required_inputs: ["lib/fly/flywind.yaml"]
-
   custom_tokens:
     import: "package:flywind/builder/custom_token_builder.dart"
     builder_factories: ["customTokenBuilder"]

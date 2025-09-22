@@ -115,7 +115,7 @@ class _FlywindAppState extends State<FlywindApp> {
                   color: flyTheme.colors['text'] ?? CupertinoColors.black,
                 ),
               ),
-              SizedBox(height: flyTheme.spacing['md'] ?? 8.0),
+              SizedBox(height: flyTheme.spacing.test),
               Text(
                 'Your Fly theming library is ready to use.',
                 style: TextStyle(
