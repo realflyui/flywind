@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'theme.dart';
+import 'token.dart';
 import '../tokens/tokens.dart';
 
 /// Controller for managing Fly theme data with runtime updates

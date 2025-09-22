@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'controller.dart';
+import 'token.dart';
 import 'theme.dart';
-import 'inherited.dart';
 
 /// Main app widget that provides Fly theming
 class FlyApp extends StatelessWidget {

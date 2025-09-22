@@ -3,7 +3,7 @@
 // To regenerate, run: dart generate/generate.dart
 //
 
-import '../src/theme.dart';
+import '../core/token.dart';
 
 /// Container width values
 class FlyContainerToken implements FlyToken<double> {

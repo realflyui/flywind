@@ -4,7 +4,7 @@
 //
 
 import 'package:flutter/material.dart';
-import '../src/theme.dart';
+import '../core/token.dart';
 
 /// Font weight values
 class FlyFontWeightToken implements FlyToken<FontWeight> {

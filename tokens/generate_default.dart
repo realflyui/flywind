@@ -316,7 +316,7 @@ class TokenGenerator {
     if (dartType == 'Color' || dartType == 'FontWeight') {
       buffer.writeln("import 'package:flutter/material.dart';");
     }
-    buffer.writeln("import '../src/theme.dart';");
+    buffer.writeln("import '../core/token.dart';");
     buffer.writeln();
     
     // Add class documentation

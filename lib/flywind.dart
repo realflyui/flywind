@@ -4,10 +4,10 @@
 /// and runtime theme updates.
 
 // Core theme system
-export 'src/controller.dart';
-export 'src/inherited.dart';
-export 'src/theme.dart';
-export 'src/app.dart';
+export 'core/controller.dart';
+export 'core/theme.dart';
+export 'core/token.dart';
+export 'core/app.dart';
 
 // Base token classes
 export 'tokens/tokens.dart';

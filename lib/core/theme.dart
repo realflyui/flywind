@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'controller.dart';
-import 'theme.dart';
+import 'token.dart';
 import '../tokens/tokens.dart';
 
 /// InheritedNotifier widget that provides Fly theme data to the widget tree

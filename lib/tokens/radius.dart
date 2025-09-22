@@ -3,7 +3,7 @@
 // To regenerate, run: dart generate/generate.dart
 //
 
-import '../src/theme.dart';
+import '../core/token.dart';
 
 /// Border radius values for rounded corners
 class FlyRadiusToken implements FlyToken<double> {

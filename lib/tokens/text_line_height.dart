@@ -3,7 +3,7 @@
 // To regenerate, run: dart generate/generate.dart
 //
 
-import '../src/theme.dart';
+import '../core/token.dart';
 
 /// Text line height values
 class FlyTextLineHeightToken implements FlyToken<double> {

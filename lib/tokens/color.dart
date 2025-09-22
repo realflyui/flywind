@@ -4,7 +4,7 @@
 //
 
 import 'package:flutter/material.dart';
-import '../src/theme.dart';
+import '../core/token.dart';
 
 /// Color values from Tailwind CSS theme
 class FlyColorToken implements FlyToken<Color> {

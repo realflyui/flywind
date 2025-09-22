@@ -3,7 +3,7 @@
 // To regenerate, run: dart generate/generate.dart
 //
 
-import '../src/theme.dart';
+import '../core/token.dart';
 
 /// Spacing values for margins and padding
 class FlySpacingToken implements FlyToken<double> {

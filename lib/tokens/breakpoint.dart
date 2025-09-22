@@ -3,7 +3,7 @@
 // To regenerate, run: dart generate/generate.dart
 //
 
-import '../src/theme.dart';
+import '../core/token.dart';
 
 /// Breakpoint values for responsive design
 class FlyBreakpointToken implements FlyToken<double> {
