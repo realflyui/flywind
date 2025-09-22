@@ -1,15 +1,42 @@
 builders:
-  flywind_yaml:
-    import: "package:flywind/builder.dart"
-    builder_factories: ["flywindYamlBuilder"]
-    build_extensions: { "lib/fly/flywind.yaml": ["lib/fly/tokens/tokens.dart"] }
+  # flywind_yaml:
+  #   import: "package:flywind/builder.dart"
+  #   builder_factories: ["flywindYamlBuilder"]
+  #   build_extensions: { "lib/fly/flywind.yaml": ["lib/fly/tokens/tokens.dart"] }
+  #   auto_apply: dependents
+  #   build_to: source
+  #   applies_builders: []
+  #   required_inputs: ["lib/fly/flywind.yaml"]
+
+  custom_tokens:
+    import: "package:flywind/builder/custom_token_builder.dart"
+    builder_factories: ["customTokenBuilder"]
+    build_extensions:
+      {
+        "lib/fly/flywind.yaml":
+          [
+            "lib/fly/config/config.dart",
+            "lib/fly/config/colors.dart",
+            "lib/fly/config/spacing.dart",
+            "lib/fly/config/radius.dart",
+            "lib/fly/config/breakpoint.dart",
+            "lib/fly/config/container.dart",
+            "lib/fly/config/text.dart",
+            "lib/fly/config/text_line_height.dart",
+            "lib/fly/config/font_weight.dart",
+            "lib/fly/config/tracking.dart",
+            "lib/fly/config/blur.dart",
+            "lib/fly/config/perspective.dart",
+            "lib/fly/config/leading.dart",
+          ],
+      }
     auto_apply: dependents
     build_to: source
     applies_builders: []
-    required_inputs: ["lib/fly/flywind.yaml"]
+    required_inputs: ["/lib/fly/flywind.yaml"]
 
 targets:
   $default:
     builders:
-      flywind:flywind_yaml:
+      flywind:custom_tokens:
         enabled: true

@@ -1,124 +1,149 @@
-#!/usr/bin/env dart
+import 'dart:async';
 
-import 'dart:io';
+import 'package:build/build.dart';
+import 'package:yaml/yaml.dart';
 import 'converters/color_converter.dart';
 
-/// Comprehensive custom token generator that creates both custom classes and extensions
-class CustomTokenGenerator {
-  final Map<String, dynamic> config;
-  
-  CustomTokenGenerator(this.config);
+/// Custom token builder that generates custom token classes and extensions from fly-config.yaml
+class CustomTokenBuilder implements Builder {
+  @override
+  Map<String, List<String>> get buildExtensions => {
+    'lib/fly/flywind.yaml': [
+      'lib/fly/config/config.dart',
+      'lib/fly/config/colors.dart',
+      'lib/fly/config/spacing.dart',
+      'lib/fly/config/radius.dart',
+      'lib/fly/config/breakpoint.dart',
+      'lib/fly/config/container.dart',
+      'lib/fly/config/text.dart',
+      'lib/fly/config/text_line_height.dart',
+      'lib/fly/config/font_weight.dart',
+      'lib/fly/config/tracking.dart',
+      'lib/fly/config/blur.dart',
+      'lib/fly/config/perspective.dart',
+      'lib/fly/config/leading.dart',
+    ],
+  };
 
-  /// Generate all custom token classes and extensions
-  static Future<void> generateAll() async {
-    final configFile = File('fly-config.yaml');
-    
-    if (!configFile.existsSync()) {
-      print('Error: fly-config.yaml not found');
-      print('Please create a fly-config.yaml file with your custom tokens');
-      exit(1);
+  @override
+  Future<void> build(BuildStep buildStep) async {
+    // Get the input asset (lib/fly/flywind.yaml)
+    final inputId = buildStep.inputId;
+    log.info('Processing custom token config: ${inputId.path}');
+
+    if (!inputId.path.endsWith('flywind.yaml')) {
+      log.warning('Expected flywind.yaml input, got: ${inputId.path}');
+      return;
     }
-    
-    final configContent = await configFile.readAsString();
-    final config = _parseYaml(configContent);
-    
-    final generator = CustomTokenGenerator(config);
-    
-    print('Generating custom FlyWind design tokens...\n');
-    
+
+    final configContent = await buildStep.readAsString(inputId);
+    log.info('Found flywind.yaml, generating custom tokens...');
+
+    // Parse YAML configuration
+    final config = loadYaml(configContent) as Map<dynamic, dynamic>;
+
     // Generate custom token classes
     if (config['extend']?['colors'] != null) {
-      await generator._generateCustomColors();
+      await _generateCustomColors(buildStep, config);
     }
-    
+
     if (config['extend']?['spacing'] != null) {
-      await generator._generateCustomSpacing();
+      await _generateCustomSpacing(buildStep, config);
     }
-    
+
     if (config['extend']?['radius'] != null) {
-      await generator._generateCustomRadius();
+      await _generateCustomRadius(buildStep, config);
     }
-    
+
     if (config['extend']?['breakpoint'] != null) {
-      await generator._generateCustomBreakpoint();
+      await _generateCustomBreakpoint(buildStep, config);
     }
-    
+
     if (config['extend']?['container'] != null) {
-      await generator._generateCustomContainer();
+      await _generateCustomContainer(buildStep, config);
     }
-    
+
     if (config['extend']?['text'] != null) {
-      await generator._generateCustomText();
+      await _generateCustomText(buildStep, config);
     }
-    
+
     if (config['extend']?['text_line_height'] != null) {
-      await generator._generateCustomTextLineHeight();
+      await _generateCustomTextLineHeight(buildStep, config);
     }
-    
+
     if (config['extend']?['font_weight'] != null) {
-      await generator._generateCustomFontWeight();
+      await _generateCustomFontWeight(buildStep, config);
     }
-    
+
     if (config['extend']?['tracking'] != null) {
-      await generator._generateCustomTracking();
+      await _generateCustomTracking(buildStep, config);
     }
-    
+
     if (config['extend']?['blur'] != null) {
-      await generator._generateCustomBlur();
+      await _generateCustomBlur(buildStep, config);
     }
-    
+
     if (config['extend']?['perspective'] != null) {
-      await generator._generateCustomPerspective();
+      await _generateCustomPerspective(buildStep, config);
     }
-    
+
     if (config['extend']?['leading'] != null) {
-      await generator._generateCustomLeading();
+      await _generateCustomLeading(buildStep, config);
     }
-    
+
     // Generate the main custom tokens file
-    await generator._generateCustomTokensFile();
-    
-    print('Custom token generation completed!');
+    await _generateCustomTokensFile(buildStep, config);
+
+    log.info('Custom token generation completed!');
   }
 
   /// Generate custom colors class
-  Future<void> _generateCustomColors() async {
-    final colors = config['extend']['colors'] as Map<String, dynamic>;
+  Future<void> _generateCustomColors(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final colors = Map<String, dynamic>.from(config['extend']['colors']);
     if (colors.isEmpty) return;
-    
-    print('Generating custom colors...');
-    
+
+    log.info('Generating custom colors...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
     buffer.writeln("import 'package:flutter/material.dart';");
-    buffer.writeln("import '../tokens/color.dart';");
+    buffer.writeln("import 'package:flywind/tokens/color.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom colors that provide dot notation access to custom color values');
+    buffer.writeln(
+      '/// Custom colors that provide dot notation access to custom color values',
+    );
     buffer.writeln('class CustomColors {');
     buffer.writeln('  const CustomColors._();');
     buffer.writeln();
-    
+
     // Generate custom color properties
     for (final entry in colors.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterColor = _convertColorValue(value);
-      
+
       buffer.writeln('  /// Custom color: $key');
       buffer.writeln('  static const Color $fieldName = $flutterColor;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlyColorToken with custom extras
     buffer.writeln('  /// Create default custom colors as FlyColorToken');
     buffer.writeln('  static FlyColorToken defaultColors() {');
@@ -135,69 +160,84 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlyColorToken to provide dot notation access');
+    buffer.writeln(
+      '/// Extension methods for FlyColorToken to provide dot notation access',
+    );
     buffer.writeln('extension FlyColorTokenExtensions on FlyColorToken {');
-    
+
     for (final entry in colors.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterColor = _convertColorValue(value);
-      
+
       buffer.writeln('  /// Custom color: $key');
-      buffer.writeln('  Color get $fieldName => extras[\'$key\'] ?? $flutterColor;');
+      buffer.writeln(
+        '  Color get $fieldName => extras[\'$key\'] ?? $flutterColor;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/colors.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom colors: ${colors.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/colors.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom colors: ${colors.keys.join(', ')}');
   }
 
   /// Generate custom spacing class
-  Future<void> _generateCustomSpacing() async {
-    final spacing = config['extend']['spacing'] as Map<String, dynamic>;
+  Future<void> _generateCustomSpacing(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final spacing = Map<String, dynamic>.from(config['extend']['spacing']);
     if (spacing.isEmpty) return;
-    
-    print('Generating custom spacing...');
-    
+
+    log.info('Generating custom spacing...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
-    buffer.writeln("import '../tokens/spacing.dart';");
+    buffer.writeln("import 'package:flywind/tokens/spacing.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom spacing that provide dot notation access to custom spacing values');
+    buffer.writeln(
+      '/// Custom spacing that provide dot notation access to custom spacing values',
+    );
     buffer.writeln('class CustomSpacing {');
     buffer.writeln('  const CustomSpacing._();');
     buffer.writeln();
-    
+
     // Generate custom spacing properties
     for (final entry in spacing.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertSpacingValue(value);
-      
+
       buffer.writeln('  /// Custom spacing: $key');
       buffer.writeln('  static const double $fieldName = $flutterValue;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlySpacingToken with custom extras
     buffer.writeln('  /// Create default custom spacing as FlySpacingToken');
     buffer.writeln('  static FlySpacingToken defaultSpacing() {');
@@ -214,69 +254,84 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlySpacingToken to provide dot notation access');
+    buffer.writeln(
+      '/// Extension methods for FlySpacingToken to provide dot notation access',
+    );
     buffer.writeln('extension FlySpacingTokenExtensions on FlySpacingToken {');
-    
+
     for (final entry in spacing.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertSpacingValue(value);
-      
+
       buffer.writeln('  /// Custom spacing: $key');
-      buffer.writeln('  double get $fieldName => extras[\'$key\'] ?? $flutterValue;');
+      buffer.writeln(
+        '  double get $fieldName => extras[\'$key\'] ?? $flutterValue;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/spacing.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom spacing: ${spacing.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/spacing.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom spacing: ${spacing.keys.join(', ')}');
   }
 
   /// Generate custom radius class
-  Future<void> _generateCustomRadius() async {
-    final radius = config['extend']['radius'] as Map<String, dynamic>;
+  Future<void> _generateCustomRadius(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final radius = Map<String, dynamic>.from(config['extend']['radius']);
     if (radius.isEmpty) return;
-    
-    print('Generating custom radius...');
-    
+
+    log.info('Generating custom radius...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
-    buffer.writeln("import '../tokens/radius.dart';");
+    buffer.writeln("import 'package:flywind/tokens/radius.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom radius that provide dot notation access to custom radius values');
+    buffer.writeln(
+      '/// Custom radius that provide dot notation access to custom radius values',
+    );
     buffer.writeln('class CustomRadius {');
     buffer.writeln('  const CustomRadius._();');
     buffer.writeln();
-    
+
     // Generate custom radius properties
     for (final entry in radius.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertRadiusValue(value);
-      
+
       buffer.writeln('  /// Custom radius: $key');
       buffer.writeln('  static const double $fieldName = $flutterValue;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlyRadiusToken with custom extras
     buffer.writeln('  /// Create default custom radius as FlyRadiusToken');
     buffer.writeln('  static FlyRadiusToken defaultRadius() {');
@@ -293,74 +348,94 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlyRadiusToken to provide dot notation access');
+    buffer.writeln(
+      '/// Extension methods for FlyRadiusToken to provide dot notation access',
+    );
     buffer.writeln('extension FlyRadiusTokenExtensions on FlyRadiusToken {');
-    
+
     for (final entry in radius.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertRadiusValue(value);
-      
+
       buffer.writeln('  /// Custom radius: $key');
-      buffer.writeln('  double get $fieldName => extras[\'$key\'] ?? $flutterValue;');
+      buffer.writeln(
+        '  double get $fieldName => extras[\'$key\'] ?? $flutterValue;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/radius.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom radius: ${radius.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/radius.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom radius: ${radius.keys.join(', ')}');
   }
 
-
   /// Generate custom breakpoint class
-  Future<void> _generateCustomBreakpoint() async {
-    final breakpoint = config['extend']['breakpoint'] as Map<String, dynamic>;
+  Future<void> _generateCustomBreakpoint(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final breakpoint = Map<String, dynamic>.from(
+      config['extend']['breakpoint'],
+    );
     if (breakpoint.isEmpty) return;
-    
-    print('Generating custom breakpoint...');
-    
+
+    log.info('Generating custom breakpoint...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
-    buffer.writeln("import '../tokens/breakpoint.dart';");
+    buffer.writeln("import 'package:flywind/tokens/breakpoint.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom breakpoint that provide dot notation access to custom breakpoint values');
+    buffer.writeln(
+      '/// Custom breakpoint that provide dot notation access to custom breakpoint values',
+    );
     buffer.writeln('class CustomBreakpoint {');
     buffer.writeln('  const CustomBreakpoint._();');
     buffer.writeln();
-    
+
     // Generate custom breakpoint properties
     for (final entry in breakpoint.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom breakpoint: $key');
       buffer.writeln('  static const double $fieldName = $flutterValue;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlyBreakpointToken with custom extras
-    buffer.writeln('  /// Create default custom breakpoint as FlyBreakpointToken');
+    buffer.writeln(
+      '  /// Create default custom breakpoint as FlyBreakpointToken',
+    );
     buffer.writeln('  static FlyBreakpointToken defaultBreakpoint() {');
-    buffer.writeln('    return FlyBreakpointToken.defaultBreakpoint().copyWith(');
+    buffer.writeln(
+      '    return FlyBreakpointToken.defaultBreakpoint().copyWith(',
+    );
     buffer.writeln('      extras: {');
     for (final entry in breakpoint.entries) {
       final key = entry.key;
@@ -373,71 +448,90 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlyBreakpointToken to provide dot notation access');
-    buffer.writeln('extension FlyBreakpointTokenExtensions on FlyBreakpointToken {');
-    
+    buffer.writeln(
+      '/// Extension methods for FlyBreakpointToken to provide dot notation access',
+    );
+    buffer.writeln(
+      'extension FlyBreakpointTokenExtensions on FlyBreakpointToken {',
+    );
+
     for (final entry in breakpoint.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom breakpoint: $key');
-      buffer.writeln('  double get $fieldName => extras[\'$key\'] ?? $flutterValue;');
+      buffer.writeln(
+        '  double get $fieldName => extras[\'$key\'] ?? $flutterValue;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/breakpoint.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom breakpoint: ${breakpoint.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/breakpoint.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom breakpoint: ${breakpoint.keys.join(', ')}');
   }
 
   /// Generate custom container class
-  Future<void> _generateCustomContainer() async {
-    final container = config['extend']['container'] as Map<String, dynamic>;
+  Future<void> _generateCustomContainer(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final container = Map<String, dynamic>.from(config['extend']['container']);
     if (container.isEmpty) return;
-    
-    print('Generating custom container...');
-    
+
+    log.info('Generating custom container...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
-    buffer.writeln("import '../tokens/container.dart';");
+    buffer.writeln("import 'package:flywind/tokens/container.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom container that provide dot notation access to custom container values');
+    buffer.writeln(
+      '/// Custom container that provide dot notation access to custom container values',
+    );
     buffer.writeln('class CustomContainer {');
     buffer.writeln('  const CustomContainer._();');
     buffer.writeln();
-    
+
     // Generate custom container properties
     for (final entry in container.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom container: $key');
       buffer.writeln('  static const double $fieldName = $flutterValue;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlyContainerToken with custom extras
-    buffer.writeln('  /// Create default custom container as FlyContainerToken');
+    buffer.writeln(
+      '  /// Create default custom container as FlyContainerToken',
+    );
     buffer.writeln('  static FlyContainerToken defaultContainer() {');
     buffer.writeln('    return FlyContainerToken.defaultContainer().copyWith(');
     buffer.writeln('      extras: {');
@@ -452,69 +546,86 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlyContainerToken to provide dot notation access');
-    buffer.writeln('extension FlyContainerTokenExtensions on FlyContainerToken {');
-    
+    buffer.writeln(
+      '/// Extension methods for FlyContainerToken to provide dot notation access',
+    );
+    buffer.writeln(
+      'extension FlyContainerTokenExtensions on FlyContainerToken {',
+    );
+
     for (final entry in container.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom container: $key');
-      buffer.writeln('  double get $fieldName => extras[\'$key\'] ?? $flutterValue;');
+      buffer.writeln(
+        '  double get $fieldName => extras[\'$key\'] ?? $flutterValue;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/container.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom container: ${container.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/container.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom container: ${container.keys.join(', ')}');
   }
 
   /// Generate custom text class
-  Future<void> _generateCustomText() async {
-    final text = config['extend']['text'] as Map<String, dynamic>;
+  Future<void> _generateCustomText(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final text = Map<String, dynamic>.from(config['extend']['text']);
     if (text.isEmpty) return;
-    
-    print('Generating custom text...');
-    
+
+    log.info('Generating custom text...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
-    buffer.writeln("import '../tokens/text.dart';");
+    buffer.writeln("import 'package:flywind/tokens/text.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom text that provide dot notation access to custom text values');
+    buffer.writeln(
+      '/// Custom text that provide dot notation access to custom text values',
+    );
     buffer.writeln('class CustomText {');
     buffer.writeln('  const CustomText._();');
     buffer.writeln();
-    
+
     // Generate custom text properties
     for (final entry in text.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom text: $key');
       buffer.writeln('  static const double $fieldName = $flutterValue;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlyTextToken with custom extras
     buffer.writeln('  /// Create default custom text as FlyTextToken');
     buffer.writeln('  static FlyTextToken defaultText() {');
@@ -531,73 +642,94 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlyTextToken to provide dot notation access');
+    buffer.writeln(
+      '/// Extension methods for FlyTextToken to provide dot notation access',
+    );
     buffer.writeln('extension FlyTextTokenExtensions on FlyTextToken {');
-    
+
     for (final entry in text.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom text: $key');
-      buffer.writeln('  double get $fieldName => extras[\'$key\'] ?? $flutterValue;');
+      buffer.writeln(
+        '  double get $fieldName => extras[\'$key\'] ?? $flutterValue;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/text.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom text: ${text.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/text.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom text: ${text.keys.join(', ')}');
   }
 
   /// Generate custom text line height class
-  Future<void> _generateCustomTextLineHeight() async {
-    final textLineHeight = config['extend']['text_line_height'] as Map<String, dynamic>;
+  Future<void> _generateCustomTextLineHeight(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final textLineHeight = Map<String, dynamic>.from(
+      config['extend']['text_line_height'],
+    );
     if (textLineHeight.isEmpty) return;
-    
-    print('Generating custom text line height...');
-    
+
+    log.info('Generating custom text line height...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
-    buffer.writeln("import '../tokens/text_line_height.dart';");
+    buffer.writeln("import 'package:flywind/tokens/text_line_height.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom text line height that provide dot notation access to custom text line height values');
+    buffer.writeln(
+      '/// Custom text line height that provide dot notation access to custom text line height values',
+    );
     buffer.writeln('class CustomTextLineHeight {');
     buffer.writeln('  const CustomTextLineHeight._();');
     buffer.writeln();
-    
+
     // Generate custom text line height properties
     for (final entry in textLineHeight.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom text line height: $key');
       buffer.writeln('  static const double $fieldName = $flutterValue;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlyTextLineHeightToken with custom extras
-    buffer.writeln('  /// Create default custom text line height as FlyTextLineHeightToken');
+    buffer.writeln(
+      '  /// Create default custom text line height as FlyTextLineHeightToken',
+    );
     buffer.writeln('  static FlyTextLineHeightToken defaultTextLineHeight() {');
-    buffer.writeln('    return FlyTextLineHeightToken.defaultTextLineHeight().copyWith(');
+    buffer.writeln(
+      '    return FlyTextLineHeightToken.defaultTextLineHeight().copyWith(',
+    );
     buffer.writeln('      extras: {');
     for (final entry in textLineHeight.entries) {
       final key = entry.key;
@@ -610,74 +742,97 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlyTextLineHeightToken to provide dot notation access');
-    buffer.writeln('extension FlyTextLineHeightTokenExtensions on FlyTextLineHeightToken {');
-    
+    buffer.writeln(
+      '/// Extension methods for FlyTextLineHeightToken to provide dot notation access',
+    );
+    buffer.writeln(
+      'extension FlyTextLineHeightTokenExtensions on FlyTextLineHeightToken {',
+    );
+
     for (final entry in textLineHeight.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom text line height: $key');
-      buffer.writeln('  double get $fieldName => extras[\'$key\'] ?? $flutterValue;');
+      buffer.writeln(
+        '  double get $fieldName => extras[\'$key\'] ?? $flutterValue;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/text_line_height.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom text line height: ${textLineHeight.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/text_line_height.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom text line height: ${textLineHeight.keys.join(', ')}');
   }
 
   /// Generate custom font weight class
-  Future<void> _generateCustomFontWeight() async {
-    final fontWeight = config['extend']['font_weight'] as Map<String, dynamic>;
+  Future<void> _generateCustomFontWeight(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final fontWeight = Map<String, dynamic>.from(
+      config['extend']['font_weight'],
+    );
     if (fontWeight.isEmpty) return;
-    
-    print('Generating custom font weight...');
-    
+
+    log.info('Generating custom font weight...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
     buffer.writeln("import 'package:flutter/material.dart';");
-    buffer.writeln("import '../tokens/font_weight.dart';");
+    buffer.writeln("import 'package:flywind/tokens/font_weight.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom font weight that provide dot notation access to custom font weight values');
+    buffer.writeln(
+      '/// Custom font weight that provide dot notation access to custom font weight values',
+    );
     buffer.writeln('class CustomFontWeight {');
     buffer.writeln('  const CustomFontWeight._();');
     buffer.writeln();
-    
+
     // Generate custom font weight properties
     for (final entry in fontWeight.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertFontWeightValue(value);
-      
+
       buffer.writeln('  /// Custom font weight: $key');
       buffer.writeln('  static const FontWeight $fieldName = $flutterValue;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlyFontWeightToken with custom extras
-    buffer.writeln('  /// Create default custom font weight as FlyFontWeightToken');
+    buffer.writeln(
+      '  /// Create default custom font weight as FlyFontWeightToken',
+    );
     buffer.writeln('  static FlyFontWeightToken defaultFontWeight() {');
-    buffer.writeln('    return FlyFontWeightToken.defaultFontWeight().copyWith(');
+    buffer.writeln(
+      '    return FlyFontWeightToken.defaultFontWeight().copyWith(',
+    );
     buffer.writeln('      extras: {');
     for (final entry in fontWeight.entries) {
       final key = entry.key;
@@ -690,69 +845,86 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlyFontWeightToken to provide dot notation access');
-    buffer.writeln('extension FlyFontWeightTokenExtensions on FlyFontWeightToken {');
-    
+    buffer.writeln(
+      '/// Extension methods for FlyFontWeightToken to provide dot notation access',
+    );
+    buffer.writeln(
+      'extension FlyFontWeightTokenExtensions on FlyFontWeightToken {',
+    );
+
     for (final entry in fontWeight.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertFontWeightValue(value);
-      
+
       buffer.writeln('  /// Custom font weight: $key');
-      buffer.writeln('  FontWeight get $fieldName => extras[\'$key\'] ?? $flutterValue;');
+      buffer.writeln(
+        '  FontWeight get $fieldName => extras[\'$key\'] ?? $flutterValue;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/font_weight.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom font weight: ${fontWeight.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/font_weight.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom font weight: ${fontWeight.keys.join(', ')}');
   }
 
   /// Generate custom tracking class
-  Future<void> _generateCustomTracking() async {
-    final tracking = config['extend']['tracking'] as Map<String, dynamic>;
+  Future<void> _generateCustomTracking(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final tracking = Map<String, dynamic>.from(config['extend']['tracking']);
     if (tracking.isEmpty) return;
-    
-    print('Generating custom tracking...');
-    
+
+    log.info('Generating custom tracking...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
-    buffer.writeln("import '../tokens/tracking.dart';");
+    buffer.writeln("import 'package:flywind/tokens/tracking.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom tracking that provide dot notation access to custom tracking values');
+    buffer.writeln(
+      '/// Custom tracking that provide dot notation access to custom tracking values',
+    );
     buffer.writeln('class CustomTracking {');
     buffer.writeln('  const CustomTracking._();');
     buffer.writeln();
-    
+
     // Generate custom tracking properties
     for (final entry in tracking.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom tracking: $key');
       buffer.writeln('  static const double $fieldName = $flutterValue;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlyTrackingToken with custom extras
     buffer.writeln('  /// Create default custom tracking as FlyTrackingToken');
     buffer.writeln('  static FlyTrackingToken defaultTracking() {');
@@ -769,69 +941,86 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlyTrackingToken to provide dot notation access');
-    buffer.writeln('extension FlyTrackingTokenExtensions on FlyTrackingToken {');
-    
+    buffer.writeln(
+      '/// Extension methods for FlyTrackingToken to provide dot notation access',
+    );
+    buffer.writeln(
+      'extension FlyTrackingTokenExtensions on FlyTrackingToken {',
+    );
+
     for (final entry in tracking.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom tracking: $key');
-      buffer.writeln('  double get $fieldName => extras[\'$key\'] ?? $flutterValue;');
+      buffer.writeln(
+        '  double get $fieldName => extras[\'$key\'] ?? $flutterValue;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/tracking.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom tracking: ${tracking.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/tracking.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom tracking: ${tracking.keys.join(', ')}');
   }
 
   /// Generate custom blur class
-  Future<void> _generateCustomBlur() async {
-    final blur = config['extend']['blur'] as Map<String, dynamic>;
+  Future<void> _generateCustomBlur(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final blur = Map<String, dynamic>.from(config['extend']['blur']);
     if (blur.isEmpty) return;
-    
-    print('Generating custom blur...');
-    
+
+    log.info('Generating custom blur...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
-    buffer.writeln("import '../tokens/blur.dart';");
+    buffer.writeln("import 'package:flywind/tokens/blur.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom blur that provide dot notation access to custom blur values');
+    buffer.writeln(
+      '/// Custom blur that provide dot notation access to custom blur values',
+    );
     buffer.writeln('class CustomBlur {');
     buffer.writeln('  const CustomBlur._();');
     buffer.writeln();
-    
+
     // Generate custom blur properties
     for (final entry in blur.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom blur: $key');
       buffer.writeln('  static const double $fieldName = $flutterValue;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlyBlurToken with custom extras
     buffer.writeln('  /// Create default custom blur as FlyBlurToken');
     buffer.writeln('  static FlyBlurToken defaultBlur() {');
@@ -848,73 +1037,94 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlyBlurToken to provide dot notation access');
+    buffer.writeln(
+      '/// Extension methods for FlyBlurToken to provide dot notation access',
+    );
     buffer.writeln('extension FlyBlurTokenExtensions on FlyBlurToken {');
-    
+
     for (final entry in blur.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom blur: $key');
-      buffer.writeln('  double get $fieldName => extras[\'$key\'] ?? $flutterValue;');
+      buffer.writeln(
+        '  double get $fieldName => extras[\'$key\'] ?? $flutterValue;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/blur.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom blur: ${blur.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/blur.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom blur: ${blur.keys.join(', ')}');
   }
 
   /// Generate custom perspective class
-  Future<void> _generateCustomPerspective() async {
-    final perspective = config['extend']['perspective'] as Map<String, dynamic>;
+  Future<void> _generateCustomPerspective(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final perspective = Map<String, dynamic>.from(
+      config['extend']['perspective'],
+    );
     if (perspective.isEmpty) return;
-    
-    print('Generating custom perspective...');
-    
+
+    log.info('Generating custom perspective...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
-    buffer.writeln("import '../tokens/perspective.dart';");
+    buffer.writeln("import 'package:flywind/tokens/perspective.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom perspective that provide dot notation access to custom perspective values');
+    buffer.writeln(
+      '/// Custom perspective that provide dot notation access to custom perspective values',
+    );
     buffer.writeln('class CustomPerspective {');
     buffer.writeln('  const CustomPerspective._();');
     buffer.writeln();
-    
+
     // Generate custom perspective properties
     for (final entry in perspective.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom perspective: $key');
       buffer.writeln('  static const double $fieldName = $flutterValue;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlyPerspectiveToken with custom extras
-    buffer.writeln('  /// Create default custom perspective as FlyPerspectiveToken');
+    buffer.writeln(
+      '  /// Create default custom perspective as FlyPerspectiveToken',
+    );
     buffer.writeln('  static FlyPerspectiveToken defaultPerspective() {');
-    buffer.writeln('    return FlyPerspectiveToken.defaultPerspective().copyWith(');
+    buffer.writeln(
+      '    return FlyPerspectiveToken.defaultPerspective().copyWith(',
+    );
     buffer.writeln('      extras: {');
     for (final entry in perspective.entries) {
       final key = entry.key;
@@ -927,69 +1137,86 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlyPerspectiveToken to provide dot notation access');
-    buffer.writeln('extension FlyPerspectiveTokenExtensions on FlyPerspectiveToken {');
-    
+    buffer.writeln(
+      '/// Extension methods for FlyPerspectiveToken to provide dot notation access',
+    );
+    buffer.writeln(
+      'extension FlyPerspectiveTokenExtensions on FlyPerspectiveToken {',
+    );
+
     for (final entry in perspective.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom perspective: $key');
-      buffer.writeln('  double get $fieldName => extras[\'$key\'] ?? $flutterValue;');
+      buffer.writeln(
+        '  double get $fieldName => extras[\'$key\'] ?? $flutterValue;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/perspective.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom perspective: ${perspective.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/perspective.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom perspective: ${perspective.keys.join(', ')}');
   }
 
   /// Generate custom leading class
-  Future<void> _generateCustomLeading() async {
-    final leading = config['extend']['leading'] as Map<String, dynamic>;
+  Future<void> _generateCustomLeading(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
+    final leading = Map<String, dynamic>.from(config['extend']['leading']);
     if (leading.isEmpty) return;
-    
-    print('Generating custom leading...');
-    
+
+    log.info('Generating custom leading...');
+
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add imports
-    buffer.writeln("import '../tokens/leading.dart';");
+    buffer.writeln("import 'package:flywind/tokens/leading.dart';");
     buffer.writeln();
-    
+
     // Add class documentation
-    buffer.writeln('/// Custom leading that provide dot notation access to custom leading values');
+    buffer.writeln(
+      '/// Custom leading that provide dot notation access to custom leading values',
+    );
     buffer.writeln('class CustomLeading {');
     buffer.writeln('  const CustomLeading._();');
     buffer.writeln();
-    
+
     // Generate custom leading properties
     for (final entry in leading.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom leading: $key');
       buffer.writeln('  static const double $fieldName = $flutterValue;');
     }
     buffer.writeln();
-    
+
     // Generate default method that creates a FlyLeadingToken with custom extras
     buffer.writeln('  /// Create default custom leading as FlyLeadingToken');
     buffer.writeln('  static FlyLeadingToken defaultLeading() {');
@@ -1006,42 +1233,55 @@ class CustomTokenGenerator {
     buffer.writeln('  }');
     buffer.writeln('}');
     buffer.writeln();
-    
+
     // Add extension methods for dot notation
-    buffer.writeln('/// Extension methods for FlyLeadingToken to provide dot notation access');
+    buffer.writeln(
+      '/// Extension methods for FlyLeadingToken to provide dot notation access',
+    );
     buffer.writeln('extension FlyLeadingTokenExtensions on FlyLeadingToken {');
-    
+
     for (final entry in leading.entries) {
       final key = entry.key;
       final value = entry.value.toString();
       final fieldName = _getFieldName(key);
       final flutterValue = _convertDoubleValue(value);
-      
+
       buffer.writeln('  /// Custom leading: $key');
-      buffer.writeln('  double get $fieldName => extras[\'$key\'] ?? $flutterValue;');
+      buffer.writeln(
+        '  double get $fieldName => extras[\'$key\'] ?? $flutterValue;',
+      );
     }
-    
+
     buffer.writeln('}');
-    
-    // Write the file
-    final outputFile = File('lib/config/leading.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
-    print('Custom leading: ${leading.keys.join(', ')}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/leading.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
+    log.info('Custom leading: ${leading.keys.join(', ')}');
   }
 
   /// Generate the main custom tokens file
-  Future<void> _generateCustomTokensFile() async {
+  Future<void> _generateCustomTokensFile(
+    BuildStep buildStep,
+    Map<dynamic, dynamic> config,
+  ) async {
     final buffer = StringBuffer();
-    
+
     // Add header
     buffer.writeln('// GENERATED FILE - DO NOT EDIT MANUALLY');
-    buffer.writeln('// To regenerate, run: dart cli/generate_config.dart');
+    buffer.writeln('// This file was generated by FlyWind build runner');
+    buffer.writeln('// To regenerate, run: dart run build_runner build');
+    buffer.writeln('//');
+    buffer.writeln('// Generated on: ${DateTime.now().toIso8601String()}');
+    buffer.writeln();
 
     buffer.writeln();
-    
+
     // Add exports
     if (config['extend']?['colors'] != null) {
       buffer.writeln("export 'colors.dart';");
@@ -1079,13 +1319,15 @@ class CustomTokenGenerator {
     if (config['extend']?['leading'] != null) {
       buffer.writeln("export 'leading.dart';");
     }
-    
-    // Write the file
-    final outputFile = File('lib/config/config.dart');
-    await outputFile.parent.create(recursive: true);
-    await outputFile.writeAsString(buffer.toString());
-    
-    print('Generated: ${outputFile.path}');
+
+    // Write the file using BuildStep
+    final outputAsset = AssetId(
+      buildStep.inputId.package,
+      'lib/fly/config/config.dart',
+    );
+    await buildStep.writeAsString(outputAsset, buffer.toString());
+
+    log.info('Generated: ${outputAsset.path}');
   }
 
   /// Convert key to valid Dart field name (camelCase)
@@ -1150,96 +1392,14 @@ class CustomTokenGenerator {
   /// Convert font weight value to Flutter FontWeight
   String _convertFontWeightValue(String value) {
     final intValue = int.tryParse(value) ?? 400;
-    
+
     // Clamp to valid FontWeight values (100-900, in steps of 100)
     final clampedValue = (intValue / 100).round() * 100;
     final validValue = clampedValue.clamp(100, 900);
-    
+
     return 'FontWeight.w$validValue';
   }
-
-  /// Simple YAML parser for the config file
-  static Map<String, dynamic> _parseYaml(String content) {
-    final result = <String, dynamic>{};
-    final lines = content.split('\n');
-    
-    String? currentSection;
-    Map<String, dynamic>? currentMap;
-    Map<String, dynamic>? currentSubMap;
-    
-    for (final line in lines) {
-      final trimmed = line.trim();
-      
-      if (trimmed.isEmpty || trimmed.startsWith('#')) {
-        continue;
-      }
-      
-      if (trimmed == 'extend:') {
-        currentSection = 'extend';
-        result[currentSection] = <String, dynamic>{};
-        currentMap = result[currentSection];
-        continue;
-      }
-      
-      if (currentSection == 'extend' && trimmed.endsWith(':') && !trimmed.contains(' ')) {
-        final key = trimmed.substring(0, trimmed.length - 1);
-        currentSubMap = <String, dynamic>{};
-        currentMap![key] = currentSubMap;
-        continue;
-      }
-      
-      if (currentSubMap != null && trimmed.contains(':')) {
-        final parts = trimmed.split(':');
-        if (parts.length >= 2) {
-          final key = parts[0].trim();
-          final value = parts.sublist(1).join(':').trim().replaceAll("'", '');
-          currentSubMap[key] = value;
-        }
-      }
-    }
-    
-    return result;
-  }
 }
 
-Future<void> main(List<String> args) async {
-  if (args.isNotEmpty && (args[0] == '--help' || args[0] == '-h')) {
-    print('Usage: dart cli/generate_config.dart');
-    print('');
-    print('This script generates custom FlyWind design token classes and extensions');
-    print('that provide dot notation access to custom values');
-    print('');
-    print('The script will generate:');
-    print('  - CustomColors class with static properties');
-    print('  - CustomSpacing class with static properties');
-    print('  - CustomRadius class with static properties');
-    print('  - CustomBreakpoint class with static properties');
-    print('  - CustomContainer class with static properties');
-    print('  - CustomText class with static properties');
-    print('  - CustomTextLineHeight class with static properties');
-    print('  - CustomFontWeight class with static properties');
-    print('  - CustomTracking class with static properties');
-    print('  - CustomBlur class with static properties');
-    print('  - CustomPerspective class with static properties');
-    print('  - CustomLeading class with static properties');
-    print('  - Extension methods for all FlyToken types');
-    print('');
-    print('Generated files will be placed in lib/config/');
-    print('  - colors.dart (instead of custom_colors.dart)');
-    print('  - spacing.dart (instead of custom_spacing.dart)');
-    print('  - radius.dart (instead of custom_radius.dart)');
-    print('  - breakpoint.dart (instead of custom_breakpoint.dart)');
-    print('  - container.dart (instead of custom_container.dart)');
-    print('  - text.dart (instead of custom_text.dart)');
-    print('  - text_line_height.dart (instead of custom_text_line_height.dart)');
-    print('  - font_weight.dart (instead of custom_font_weight.dart)');
-    print('  - tracking.dart (instead of custom_tracking.dart)');
-    print('  - blur.dart (instead of custom_blur.dart)');
-    print('  - perspective.dart (instead of custom_perspective.dart)');
-    print('  - leading.dart (instead of custom_leading.dart)');
-    print('  - config.dart (instead of custom_tokens.dart)');
-    return;
-  }
-  
-  await CustomTokenGenerator.generateAll();
-}
+/// Builder factory function for the build system
+Builder customTokenBuilder(BuilderOptions options) => CustomTokenBuilder();
