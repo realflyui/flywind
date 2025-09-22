@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-// Example apps - uncomment one to test different implementations:
-// import 'examples/material_app.dart';     // Material Design example
-// import 'examples/cupertino_app.dart';      // Cupertino (iOS-style) example
-// import 'examples/simple_app.dart';       // Simple example
-import 'examples/flywind_app.dart';       // Flywind app example
+// Example app - uncomment one to test different implementations:
+// import 'examples/material.dart';     // Material Design example
+// import 'apexamplesps/cupertino.dart';      // Cupertino (iOS-style) example
+// import 'examples/simple.dart';       // Simple example
+import 'examples/flywind.dart';       // Flywind app example
 
 void main() {
   runApp(const Flywind());
