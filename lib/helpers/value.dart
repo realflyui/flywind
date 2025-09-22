@@ -1,27 +1,8 @@
 import 'package:flutter/material.dart';
 import '../core/token.dart';
 
-/// Generic value resolver that handles type conversion for Flywind utilities
+/// Value resolver that handles type conversion for Flywind utilities
 class FlyValue {
-  /// Resolves a dynamic value to the target type using context and tokens
-  static T resolve<T>(dynamic value, BuildContext context, FlyToken<T> tokens) {
-    if (value is T) return value;
-    
-    if (value is int && T == double) return value.toDouble() as T;
-    
-    if (value is String) {
-      // Try token lookup first
-      final tokenValue = tokens[value];
-      if (tokenValue != null) return tokenValue;
-      
-      // Then try type-specific parsing
-      if (T == double) return _parseUnit(value) as T;
-      if (T == Color) return _parseColor(value, context) as T;
-    }
-    
-    throw ArgumentError('Cannot resolve $value to $T');
-  }
-  
   /// Resolves values to double (int, double, string tokens, CSS units) for spacing and radius
   static double resolveDouble(dynamic value, BuildContext context, FlyToken<double> tokens) {
     double result;
