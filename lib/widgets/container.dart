@@ -5,6 +5,7 @@ import '../helpers/margin.dart';
 import '../helpers/color.dart';
 import '../helpers/rounded.dart';
 import '../helpers/border.dart';
+import '../helpers/size.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for containers
 class FlyContainer extends StatelessWidget
@@ -13,7 +14,8 @@ class FlyContainer extends StatelessWidget
         FlyMargin<FlyContainer>,
         FlyColor<FlyContainer>,
         FlyRounded<FlyContainer>,
-        FlyBorder<FlyContainer> {
+        FlyBorder<FlyContainer>,
+        FlySize<FlyContainer> {
   const FlyContainer({
     super.key,
     required this.child,
@@ -55,6 +57,8 @@ class FlyContainer extends StatelessWidget
         ? FlyMarginUtils.resolve(context, _style)
         : EdgeInsets.zero;
 
+    // Size constraints will be handled by FlySizeUtils.apply
+
     // Start with the child
     Widget container = child;
 
@@ -81,6 +85,11 @@ class FlyContainer extends StatelessWidget
     } else if (backgroundColor != null) {
       // No borders, just background color
       container = _createBackgroundContainer(backgroundColor, borderRadius, container);
+    }
+
+    // Apply size constraints if needed (before margin to avoid nesting)
+    if (_style.hasSize) {
+      container = FlySizeUtils.apply(context, _style, container);
     }
 
     // Apply margin if needed

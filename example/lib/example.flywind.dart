@@ -70,7 +70,7 @@ class _FlywindAppState extends State<FlywindApp> {
       child: Container(
         color: colors.white,
         child: SafeArea(
-          child: Padding(
+          child: SingleChildScrollView(
             padding: const EdgeInsets.all(24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,6 +174,156 @@ class _FlywindAppState extends State<FlywindApp> {
                   .borderStyle('dashed')
                   .rounded('xl')
                   .p(20)
+                  .mb(spacing.s4),
+
+                const SizedBox(height: 24),
+
+                // Size Examples Section
+                FlyText('Size Examples')
+                  .color(colors.gray700)
+                  .m(spacing.s3),
+
+                const SizedBox(height: 16),
+
+                // Fixed size with spacing tokens
+                FlyContainer(
+                  child: FlyText('Fixed Size (s4 x s8)')
+                    .color(Colors.white)
+                    .p(8),
+                )
+                  .bg(colors.blue500)
+                  .h('s8')    // 16px height
+                  .w('s20')    // 32px width
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // Fixed size with pixel values
+                FlyContainer(
+                  child: FlyText('Fixed Size (100px x 200px)')
+                    .color(Colors.white)
+                    .p(8),
+                )
+                  .bg(colors.green500)
+                  .h(100)     // 100px height
+                  .w(200)     // 200px width
+                  .rounded(8)
+                  .mb(spacing.s2),
+
+                // Fixed size with CSS units
+                FlyContainer(
+                  child: FlyText('Fixed Size (50px x 150px)')
+                    .color(Colors.white)
+                    .p(8),
+                )
+                  .bg(colors.purple500)
+                  .h('50px')  // 50px height
+                  .w('150px') // 150px width
+                  .rounded(6)
+                  .mb(spacing.s2),
+
+                // Height only (width auto)
+                FlyContainer(
+                  child: FlyText('Height Only (60px)')
+                    .color(Colors.white)
+                    .p(8),
+                )
+                  .bg(colors.orange500)
+                  .h(60)      // 60px height, width auto
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // Width only (height auto)
+                FlyContainer(
+                  child: FlyText('Width Only (120px)')
+                    .color(Colors.white)
+                    .p(8),
+                )
+                  .bg(colors.red500)
+                  .w(120)     // 120px width, height auto
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // Size with borders and padding
+                FlyContainer(
+                  child: FlyText('Size + Border + Padding')
+                    .color(Colors.white)
+                    .p(12),
+                )
+                  .bg(colors.indigo500)
+                  .h(80)      // 80px height
+                  .w(160)     // 160px width
+                  .border(2)
+                  .borderColor(colors.indigo700)
+                  .borderStyle('solid')
+                  .rounded(8)
+                  .p(16)
+                  .mb(spacing.s4),
+
+                // Max/Min Constraints Examples
+                FlyText('Max/Min Constraints')
+                  .color(colors.gray700)
+                  .m(spacing.s3),
+
+                const SizedBox(height: 16),
+
+                // Max height constraint
+                FlyContainer(
+                  child: FlyText('Max Height 100px\nThis text might overflow\nand be constrained\nby the max height\nsetting.')
+                    .color(Colors.white)
+                    .p(8),
+                )
+                  .bg(colors.orange500)
+                  .maxH(100)   // Max height 100px
+                  .w(200)      // Fixed width
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // Min height constraint
+                FlyContainer(
+                  child: FlyText('Min Height 80px')
+                    .color(Colors.white)
+                    .p(8),
+                )
+                  .bg(colors.purple500)
+                  .minH(80)    // Min height 80px
+                  .w(200)      // Fixed width
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // Max width constraint
+                FlyContainer(
+                  child: FlyText('Max Width 150px - This text will wrap when it exceeds the max width constraint.')
+                    .color(Colors.white)
+                    .p(8),
+                )
+                  .bg(colors.teal500)
+                  .h(60)       // Fixed height
+                  .maxW(150)   // Max width 150px
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // Min width constraint
+                FlyContainer(
+                  child: FlyText('Min Width 200px')
+                    .color(Colors.white)
+                    .p(8),
+                )
+                  .bg(colors.pink500)
+                  .h(60)       // Fixed height
+                  .minW(200)   // Min width 200px
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // Combined max/min constraints
+                FlyContainer(
+                  child: FlyText('Max H: 80px, Min W: 120px')
+                    .color(Colors.white)
+                    .p(8),
+                )
+                  .bg(colors.cyan500)
+                  .maxH(80)    // Max height 80px
+                  .minW(120)   // Min width 120px
+                  .rounded(4)
                   .mb(spacing.s4),
 
                 const SizedBox(height: 24),

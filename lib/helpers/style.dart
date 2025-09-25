@@ -38,6 +38,12 @@ class FlyStyle {
     this.borderL,
     this.borderColor,
     this.borderStyle,
+    this.h,
+    this.w,
+    this.maxH,
+    this.maxW,
+    this.minH,
+    this.minW,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -71,6 +77,12 @@ class FlyStyle {
   final dynamic borderL; // Left border width - can be int, double, String
   final dynamic borderColor; // Border color - can be Color, String
   final dynamic borderStyle; // Border style - can be String ('solid', 'dashed', 'dotted', 'none', 'hidden')
+  final dynamic h; // Height - can be int, double, String (token name/unit)
+  final dynamic w; // Width - can be int, double, String (token name/unit)
+  final dynamic maxH; // Max height - can be int, double, String (token name/unit)
+  final dynamic maxW; // Max width - can be int, double, String (token name/unit)
+  final dynamic minH; // Min height - can be int, double, String (token name/unit)
+  final dynamic minW; // Min width - can be int, double, String (token name/unit)
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -105,6 +117,12 @@ class FlyStyle {
     dynamic borderL,
     dynamic borderColor,
     dynamic borderStyle,
+    dynamic h,
+    dynamic w,
+    dynamic maxH,
+    dynamic maxW,
+    dynamic minH,
+    dynamic minW,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -138,6 +156,12 @@ class FlyStyle {
       borderL: borderL ?? this.borderL,
       borderColor: borderColor ?? this.borderColor,
       borderStyle: borderStyle ?? this.borderStyle,
+      h: h ?? this.h,
+      w: w ?? this.w,
+      maxH: maxH ?? this.maxH,
+      maxW: maxW ?? this.maxW,
+      minH: minH ?? this.minH,
+      minW: minW ?? this.minW,
     );
   }
 
@@ -216,6 +240,15 @@ class FlyStyle {
       borderR != null ||
       borderB != null ||
       borderL != null;
+
+  /// Check if any size is set
+  bool get hasSize =>
+      h != null ||
+      w != null ||
+      maxH != null ||
+      maxW != null ||
+      minH != null ||
+      minW != null;
 
   /// Check if any background color, border, or border radius is set
   bool get hasBackgroundOrBorder =>

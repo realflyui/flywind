@@ -10,6 +10,7 @@
 // - [FlyMargin] - Margin utility mixin
 // - [FlyPadding] - Padding utility mixin
 // - [FlyRounded] - Border radius utility mixin
+// - [FlySize] - Size utility mixin
 // - [FlySpacing] - Spacing utility mixin
 // - [FlyStyle] - Style utility class
 // - [FlyTheme] - Theme configuration
@@ -29,6 +30,7 @@ export 'color.dart';
 export 'margin.dart';
 export 'padding.dart';
 export 'rounded.dart';
+export 'size.dart';
 export 'spacing.dart';
 export 'style.dart';
 export 'value.dart';
