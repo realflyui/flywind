@@ -31,6 +31,13 @@ class FlyStyle {
     this.roundedTr,
     this.roundedBl,
     this.roundedBr,
+    this.border,
+    this.borderT,
+    this.borderR,
+    this.borderB,
+    this.borderL,
+    this.borderColor,
+    this.borderStyle,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -57,6 +64,13 @@ class FlyStyle {
   final dynamic roundedTr; // Top-right border radius - can be int, double, String
   final dynamic roundedBl; // Bottom-left border radius - can be int, double, String
   final dynamic roundedBr; // Bottom-right border radius - can be int, double, String
+  final dynamic border; // Uniform border width (all sides) - can be int, double, String
+  final dynamic borderT; // Top border width - can be int, double, String
+  final dynamic borderR; // Right border width - can be int, double, String
+  final dynamic borderB; // Bottom border width - can be int, double, String
+  final dynamic borderL; // Left border width - can be int, double, String
+  final dynamic borderColor; // Border color - can be Color, String
+  final dynamic borderStyle; // Border style - can be String ('solid', 'dashed', 'dotted', 'none', 'hidden')
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -84,6 +98,13 @@ class FlyStyle {
     dynamic roundedTr,
     dynamic roundedBl,
     dynamic roundedBr,
+    dynamic border,
+    dynamic borderT,
+    dynamic borderR,
+    dynamic borderB,
+    dynamic borderL,
+    dynamic borderColor,
+    dynamic borderStyle,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -110,6 +131,13 @@ class FlyStyle {
       roundedTr: roundedTr ?? this.roundedTr,
       roundedBl: roundedBl ?? this.roundedBl,
       roundedBr: roundedBr ?? this.roundedBr,
+      border: border ?? this.border,
+      borderT: borderT ?? this.borderT,
+      borderR: borderR ?? this.borderR,
+      borderB: borderB ?? this.borderB,
+      borderL: borderL ?? this.borderL,
+      borderColor: borderColor ?? this.borderColor,
+      borderStyle: borderStyle ?? this.borderStyle,
     );
   }
 
@@ -138,14 +166,13 @@ class FlyStyle {
       result = FlyRoundedUtils.apply(context, this, result);
     }
 
-    // 4. Margin (outermost - wraps the background)
+    // 3. Margin (outermost - wraps the decoration)
     if (hasMargin) {
       result = FlyMarginUtils.apply(context, this, result);
     }
 
     // Future utilities would go here:
-    // 5. Border (wraps margin)
-    // 6. Shadow (wraps border)
+    // 4. Shadow (wraps margin)
 
     return result;
   }
@@ -182,6 +209,20 @@ class FlyStyle {
       roundedBl != null ||
       roundedBr != null;
 
+  /// Check if any border is set
+  bool get hasBorder =>
+      border != null ||
+      borderT != null ||
+      borderR != null ||
+      borderB != null ||
+      borderL != null;
+
+  /// Check if any background color, border, or border radius is set
+  bool get hasBackgroundOrBorder =>
+      color != null ||
+      hasBorder ||
+      hasBorderRadius;
+
   /// Apply text color directly to a Text widget
   Widget _applyTextColorDirect(BuildContext context, Text textWidget) {
     return Text(
@@ -207,4 +248,5 @@ class FlyStyle {
       child: child,
     );
   }
+
 }

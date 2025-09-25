@@ -5,6 +5,7 @@
 //
 // ## Available Helpers
 //
+// - [FlyBorder] - Border utility mixin
 // - [FlyColor] - Color utility mixin
 // - [FlyMargin] - Margin utility mixin
 // - [FlyPadding] - Padding utility mixin
@@ -23,6 +24,7 @@
 // }
 // ```
 
+export 'border.dart';
 export 'color.dart';
 export 'margin.dart';
 export 'padding.dart';

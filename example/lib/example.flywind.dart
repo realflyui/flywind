@@ -98,6 +98,86 @@ class _FlywindAppState extends State<FlywindApp> {
 
                 const SizedBox(height: 24),
 
+                // Border Examples Section
+                FlyText('Border Examples')
+                  .color(colors.gray700)
+                  .m(spacing.s3),
+
+                const SizedBox(height: 16),
+
+                // Solid Border
+                FlyContainer(
+                  child: FlyText('Solid Border')
+                    .color(Colors.white)
+                    .p(12),
+                )
+                  .bg(colors.blue500)
+                  .border(10)
+                  .borderColor(colors.blue700)
+                  .borderStyle('solid')
+                  .rounded(20)
+                  .p(16)
+                  .mb(spacing.s2),
+                  
+
+                // Dashed Border
+                FlyContainer(
+                  child: FlyText('Dashed Border')
+                    .color(colors.green700)
+                    .p(12),
+                )
+                  .bg(colors.green50)
+                  .border(2)
+                  .borderColor(colors.green500)
+                  .borderStyle('dashed')
+                  .rounded(8)
+                  .p(16)
+                  .mb(spacing.s2),
+
+                // Dotted Border
+                FlyContainer(
+                  child: FlyText('Dotted Border')
+                    .color(colors.orange700)
+                    .p(12),
+                )
+                  .bg(colors.orange50)
+                  .border(2)
+                  .borderColor(colors.orange500)
+                  .borderStyle('dotted')
+                  .rounded(8)
+                  .p(16)
+                  .mb(spacing.s2),
+
+                // Double Border
+                FlyContainer(
+                  child: FlyText('Custom Borders')
+                    .color(colors.purple700)
+                    .p(12),
+                )
+                  .bg(colors.purple50)
+                  .borderT(10)
+                  .borderR(5)
+                  .borderB(10)
+                  .borderColor(colors.purple500)
+                  .p(16)
+                  .mb(spacing.s2),
+
+                // Complex Border Example
+                FlyContainer(
+                  child: FlyText('Complex Border with Rounded Corners')
+                    .color(colors.red700)
+                    .p(12),
+                )
+                  .bg(colors.red50)
+                  .border(3)
+                  .borderColor(colors.red500)
+                  .borderStyle('dashed')
+                  .rounded('xl')
+                  .p(20)
+                  .mb(spacing.s4),
+
+                const SizedBox(height: 24),
+
                 // Interactive button with theme switching
                 GestureDetector(
                   onTap: () {

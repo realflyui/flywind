@@ -27,6 +27,7 @@ dependencies:
   source_gen: any
   build: ">=3.0.0 <5.0.0"
   path: ^1.8.3
+  dotted_border: ^3.1.0
 
 dev_dependencies:
   flutter_test:
