@@ -4,6 +4,37 @@ import '../core/theme.dart';
 
 /// Utility class for handling Tailwind-like text style logic
 class FlyTextUtils {
+  /// Resolves text alignment from string to TextAlign enum
+  static TextAlign? resolveTextAlign(dynamic value) {
+    if (value == null) return null;
+    
+    // If it's already a TextAlign, return it directly
+    if (value is TextAlign) {
+      return value;
+    }
+    
+    // Otherwise, resolve as string
+    if (value is String) {
+      switch (value.toLowerCase()) {
+        case 'left':
+          return TextAlign.left;
+        case 'right':
+          return TextAlign.right;
+        case 'center':
+          return TextAlign.center;
+        case 'justify':
+          return TextAlign.justify;
+        case 'start':
+          return TextAlign.start;
+        case 'end':
+          return TextAlign.end;
+        default:
+          throw ArgumentError('Invalid text alignment: "$value". Supported values: left, right, center, justify, start, end');
+      }
+    }
+    
+    throw ArgumentError('Text alignment must be a String or TextAlign, got ${value.runtimeType}');
+  }
   /// Resolves text style from FlyStyle and FlyThemeData into TextStyle
   static TextStyle? resolve(BuildContext context, FlyStyle style) {
     if (style.text == null) return null;
@@ -69,5 +100,10 @@ mixin FlyTextHelper<T> {
   /// Set text style - accepts String (token name like 'sm', 'base', 'lg', etc.) or TextStyle
   T text(dynamic value) {
     return copyWith(style.copyWith(text: value));
+  }
+
+  /// Set text alignment - accepts String ('left', 'right', 'center', 'justify', 'start', 'end') or TextAlign
+  T align(dynamic value) {
+    return copyWith(style.copyWith(textAlign: value));
   }
 }

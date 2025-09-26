@@ -424,6 +424,93 @@ class _FlywindAppState extends State<FlywindApp> {
 
                 const SizedBox(height: 16),
 
+                // Text Alignment Examples
+                FlyText('Text Alignment Examples')
+                  .color(colors.gray700)
+                  .m(spacing.s3),
+
+                const SizedBox(height: 16),
+
+                // Left aligned text in container
+                FlyContainer(
+                  child: FlyText('Left Aligned Text')
+                    .align('left')
+                    .color(colors.blue600)
+                    .p(8),
+                )
+                  .w(300)
+                  .border(1)
+                  .borderColor(colors.blue300)
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // Center aligned text in container
+                FlyContainer(
+                  child: FlyText('Center Aligned Text')
+                    .align('center')
+                    .color(colors.green600)
+                    .p(8),
+                )
+                  .w(300)
+                  .border(1)
+                  .borderColor(colors.green300)
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // Right aligned text in container
+                FlyContainer(
+                  child: FlyText('Right Aligned Text')
+                    .align('right')
+                    .color(colors.purple600)
+                    .p(8),
+                )
+                  .w(300)
+                  .border(1)
+                  .borderColor(colors.purple300)
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // Justify aligned text in container
+                FlyContainer(
+                  child: FlyText('Justify Aligned Text - This is a longer text that will demonstrate how justify alignment works by spreading the text across the full width of the container.')
+                    .align('justify')
+                    .color(colors.orange600)
+                    .p(8),
+                )
+                  .w(300)
+                  .border(1)
+                  .borderColor(colors.orange300)
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // TextAlign enum example in container
+                FlyContainer(
+                  child: FlyText('TextAlign Enum Example')
+                    .align(TextAlign.center)
+                    .color(colors.red600)
+                    .p(8),
+                )
+                  .w(300)
+                  .border(1)
+                  .borderColor(colors.red300)
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                // Combined with other properties
+                FlyContainer(
+                  child: FlyText('Styled Text with Alignment')
+                    .text('lg')
+                    .align('center')
+                    .color(colors.white)
+                    .p(12),
+                )
+                  .w(300)
+                  .bg(colors.indigo500)
+                  .rounded(8)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
                 // Direct TextStyle test
                 FlyText('TextStyle Test')
                   .text(const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red))

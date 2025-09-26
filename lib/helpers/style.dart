@@ -46,6 +46,7 @@ class FlyStyle {
     this.minH,
     this.minW,
     this.text,
+    this.textAlign,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -86,6 +87,7 @@ class FlyStyle {
   final dynamic minH; // Min height - can be int, double, String (token name/unit)
   final dynamic minW; // Min width - can be int, double, String (token name/unit)
   final dynamic text; // Text style token name - can be String ('xs', 'sm', 'base', 'lg', etc.) or TextStyle
+  final dynamic textAlign; // Text alignment - can be String ('left', 'right', 'center', 'justify', 'start', 'end') or TextAlign
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -127,6 +129,7 @@ class FlyStyle {
     dynamic minH,
     dynamic minW,
     dynamic text,
+    dynamic textAlign,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -167,6 +170,7 @@ class FlyStyle {
       minH: minH ?? this.minH,
       minW: minW ?? this.minW,
       text: text ?? this.text,
+      textAlign: textAlign ?? this.textAlign,
     );
   }
 
@@ -276,10 +280,16 @@ class FlyStyle {
       finalStyle = FlyColorUtils.applyToTextStyle(context, this, finalStyle);
     }
     
+    // Resolve text alignment
+    TextAlign? finalTextAlign = textWidget.textAlign;
+    if (textAlign != null) {
+      finalTextAlign = FlyTextUtils.resolveTextAlign(textAlign);
+    }
+    
     return Text(
       textWidget.data ?? '',
       style: finalStyle,
-      textAlign: textWidget.textAlign,
+      textAlign: finalTextAlign,
       textDirection: textWidget.textDirection,
       locale: textWidget.locale,
       softWrap: textWidget.softWrap,
