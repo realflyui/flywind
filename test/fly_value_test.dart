@@ -59,6 +59,9 @@ Future<void> _runAllTests(
   _testUnitParsing(context, spacingTokens);
   _testEdgeCases(context, spacingTokens);
   _testErrorMessages(context, spacingTokens, colorTokens);
+  
+  // TextStyle support tests
+  _testTextStyleSupport(context);
 }
 
 void _testDoubleValues(BuildContext context, FlySpacingToken spacingTokens) {
@@ -256,6 +259,30 @@ void _testErrorMessages(BuildContext context, FlySpacingToken spacingTokens, Fly
   } catch (e) {
     expect(e.toString(), contains('Invalid color'));
   }
+}
+
+void _testTextStyleSupport(BuildContext context) {
+  // Test that FlyTextUtils.resolve handles direct TextStyle
+  final directStyle = const TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: Colors.red,
+  );
+  
+  final style = FlyStyle(text: directStyle);
+  final resolved = FlyTextUtils.resolve(context, style);
+  
+  expect(resolved, equals(directStyle));
+  expect(resolved?.fontSize, equals(24));
+  expect(resolved?.fontWeight, equals(FontWeight.bold));
+  expect(resolved?.color, equals(Colors.red));
+  
+  // Test that string tokens still work
+  final tokenStyle = FlyStyle(text: 'lg');
+  final tokenResolved = FlyTextUtils.resolve(context, tokenStyle);
+  
+  expect(tokenResolved, isNotNull);
+  expect(tokenResolved, isA<TextStyle>());
 }
 
 /// Simple test page to provide context

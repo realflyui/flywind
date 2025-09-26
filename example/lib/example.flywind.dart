@@ -422,6 +422,13 @@ class _FlywindAppState extends State<FlywindApp> {
                   .rounded(4)
                   .mb(spacing.s2),
 
+                const SizedBox(height: 16),
+
+                // Direct TextStyle test
+                FlyText('TextStyle Test')
+                  .text(const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red))
+                  .mb(spacing.s2),
+
                 const SizedBox(height: 24),
 
                 // Interactive button with theme switching

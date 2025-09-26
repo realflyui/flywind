@@ -8,6 +8,12 @@ class FlyTextUtils {
   static TextStyle? resolve(BuildContext context, FlyStyle style) {
     if (style.text == null) return null;
     
+    // If it's already a TextStyle, return it directly
+    if (style.text is TextStyle) {
+      return style.text as TextStyle;
+    }
+    
+    // Otherwise, resolve as token
     try {
       final textStyles = FlyTheme.of(context).textStyle;
       return textStyles[style.text];
@@ -60,7 +66,7 @@ mixin FlyTextHelper<T> {
 
   T Function(FlyStyle newStyle) get copyWith;
 
-  /// Set text style - accepts String (token name like 'sm', 'base', 'lg', etc.)
+  /// Set text style - accepts String (token name like 'sm', 'base', 'lg', etc.) or TextStyle
   T text(dynamic value) {
     return copyWith(style.copyWith(text: value));
   }

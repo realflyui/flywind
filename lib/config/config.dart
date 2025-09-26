@@ -6,8 +6,6 @@ export 'spacing.dart';
 export 'radius.dart';
 export 'breakpoint.dart';
 export 'container.dart';
-export 'text.dart';
-export 'text_line_height.dart';
 export 'font_weight.dart';
 export 'tracking.dart';
 export 'blur.dart';

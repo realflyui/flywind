@@ -85,7 +85,7 @@ class FlyStyle {
   final dynamic maxW; // Max width - can be int, double, String (token name/unit)
   final dynamic minH; // Min height - can be int, double, String (token name/unit)
   final dynamic minW; // Min width - can be int, double, String (token name/unit)
-  final dynamic text; // Text style token name - can be String ('xs', 'sm', 'base', 'lg', etc.)
+  final dynamic text; // Text style token name - can be String ('xs', 'sm', 'base', 'lg', etc.) or TextStyle
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
