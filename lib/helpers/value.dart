@@ -5,32 +5,7 @@ import '../core/token.dart';
 class FlyValue {
   /// Resolves values to double (int, double, string tokens, CSS units) for spacing and radius
   static double resolveDouble(dynamic value, BuildContext context, FlyToken<double> tokens) {
-    double result;
-    
-    if (value is double) {
-      result = value;
-    } else if (value is int) {
-      result = value.toDouble();
-    } else if (value is String) {
-      // Try token lookup first
-      final tokenValue = tokens[value];
-      if (tokenValue != null) {
-        result = tokenValue;
-      } else {
-        // Then try unit parsing
-        result = _parseUnit(value);
-      }
-    } else {
-      final availableTokens = tokens.keys.take(5).join(', ');
-      throw ArgumentError('Cannot resolve value "$value": expected int, double, or String (token name/unit). Available tokens: $availableTokens${tokens.keys.length > 5 ? '...' : ''}');
-    }
-    
-    // Validate that the result is not negative
-    if (result < 0) {
-      throw ArgumentError('Value "$value" resolved to negative number ($result). Spacing and radius values must be non-negative.');
-    }
-    
-    return result;
+    return _resolveDoubleInternal(value, context, tokens, allowNegative: false);
   }
   
   /// Resolves color values (Color, string tokens, hex)
@@ -49,38 +24,84 @@ class FlyValue {
     final availableTokens = tokens.keys.take(5).join(', ');
     throw ArgumentError('Cannot resolve color value "$value": expected Color object, hex string (#RRGGBB), or token name. Available tokens: $availableTokens${tokens.keys.length > 5 ? '...' : ''}');
   }
+
+  /// Resolves values to double (int, double, string tokens, CSS units) and allows negatives
+  ///
+  /// Note: Negative support is intended only for cases like tracking (letter spacing).
+  /// Token names themselves are never treated as negative when prefixed with '-'.
+  static double resolveDoubleAllowNegative(dynamic value, BuildContext context, FlyToken<double> tokens) {
+    return _resolveDoubleInternal(value, context, tokens, allowNegative: true);
+  }
+
+  /// Internal unified resolver with negative support toggle
+  static double _resolveDoubleInternal(
+    dynamic value,
+    BuildContext context,
+    FlyToken<double> tokens, {
+    required bool allowNegative,
+  }) {
+    double result;
+    if (value is double) {
+      result = value;
+    } else if (value is int) {
+      result = value.toDouble();
+    } else if (value is String) {
+      // Exact token (unsigned only)
+      final tokenValue = tokens[value];
+      if (tokenValue != null) {
+        result = tokenValue;
+      } else {
+        // Parse units/numbers (may include a leading '-' when allowNegative is true)
+        result = _parseUnitInternal(value, allowNegative: allowNegative);
+      }
+    } else {
+      final availableTokens = tokens.keys.take(5).join(', ');
+      throw ArgumentError('Cannot resolve value "$value": expected int, double, or String (token name/unit). Available tokens: $availableTokens${tokens.keys.length > 5 ? '...' : ''}');
+    }
+
+    if (!allowNegative && result < 0) {
+      throw ArgumentError('Value "$value" resolved to negative number ($result). Spacing and radius values must be non-negative.');
+    }
+    return result;
+  }
   
   /// Parses CSS-like units (px, em, rem, %)
-  static double _parseUnit(String value) {
-    // Handle "10px", "1.5em", "50%", etc.
-    final regex = RegExp(r'^(\d+(?:\.\d+)?)(px|em|rem|%)?$');
+  static double _parseUnitInternal(String value, {required bool allowNegative}) {
+    // Accept optional leading minus when allowed
+    final regex = allowNegative
+        ? RegExp(r'^(\-?\d+(?:\.\d+)?)(px|em|rem|%)?$')
+        : RegExp(r'^(\d+(?:\.\d+)?)(px|em|rem|%)?$');
     final match = regex.firstMatch(value);
     if (match == null) {
-      throw ArgumentError('Invalid unit "$value": expected format like "10px", "1.5em", "50%", or "16"');
+      // Try plain parse (covers signed numbers when allowNegative is true)
+      final asNum = double.tryParse(value);
+      if (asNum != null) {
+        if (!allowNegative && asNum < 0) {
+          throw ArgumentError('Value "$value" resolved to negative number ($asNum). Spacing and radius values must be non-negative.');
+        }
+        return asNum;
+      }
+      final expected = allowNegative
+          ? '"-10px", "-1.5em", "50%", or "16"'
+          : '"10px", "1.5em", "50%", or "16"';
+      throw ArgumentError('Invalid unit "$value": expected format like $expected');
     }
-    
-    double numValue;
-    try {
-      numValue = double.parse(match.group(1)!);
-    } catch (e) {
-      throw ArgumentError('Invalid number in unit "$value": ${match.group(1)}');
-    }
+
+    final numValue = double.parse(match.group(1)!);
     final unit = match.group(2) ?? 'px';
-    
     switch (unit) {
-      case 'px': 
+      case 'px':
         return numValue;
-      case 'em': 
-        return numValue * 16; // Assuming 16px base
-      case 'rem': 
+      case 'em':
         return numValue * 16;
-      case '%': 
-        // Validate percentage range
-        if (numValue < 0 || numValue > 100) {
+      case 'rem':
+        return numValue * 16;
+      case '%':
+        if (!allowNegative && (numValue < 0 || numValue > 100)) {
           throw ArgumentError('Invalid percentage "$value": must be between 0% and 100%');
         }
-        return numValue / 100; // Convert to decimal
-      default: 
+        return numValue / 100;
+      default:
         return numValue;
     }
   }

@@ -51,6 +51,7 @@ class FlyStyle {
     this.leading,
     this.textDecoration,
     this.fontWeight,
+    this.tracking,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -96,6 +97,7 @@ class FlyStyle {
   final dynamic leading; // Line height - can be int, double, or String (token name like 'tight', 'normal', 'relaxed')
   final dynamic textDecoration; // Text decoration - can be String ('underline', 'line-through', 'none') or TextDecoration
   final dynamic fontWeight; // Font weight - can be String ('thin', 'light', 'normal', 'medium', 'bold', etc.) or FontWeight
+  final dynamic tracking; // Letter spacing - can be int, double, or String token ('tighter', 'tight', 'normal', 'wide', 'wider', 'widest')
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -142,6 +144,7 @@ class FlyStyle {
     dynamic leading,
     dynamic textDecoration,
     dynamic fontWeight,
+    dynamic tracking,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -187,6 +190,7 @@ class FlyStyle {
       leading: leading ?? this.leading,
       textDecoration: textDecoration ?? this.textDecoration,
       fontWeight: fontWeight ?? this.fontWeight,
+      tracking: tracking ?? this.tracking,
     );
   }
 
@@ -286,10 +290,8 @@ class FlyStyle {
     // Start with the existing text widget style
     TextStyle finalStyle = textWidget.style ?? const TextStyle();
     
-    // Apply text style token if set
-    if (text != null) {
-      finalStyle = FlyTextUtils.applyToTextStyle(context, this, finalStyle);
-    }
+    // Apply text style token and text-related utilities
+    finalStyle = FlyTextUtils.applyToTextStyle(context, this, finalStyle);
     
     // Then apply color if set (this will override the color from the text style token)
     if (color != null) {

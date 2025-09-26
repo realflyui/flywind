@@ -67,6 +67,11 @@ class FlyNotifier extends ChangeNotifier {
     update((data) => data.copyWith(leading: updater(data.leading)));
   }
 
+  /// Update tracking token
+  void updateTracking(FlyTrackingToken Function(FlyTrackingToken current) updater) {
+    update((data) => data.copyWith(tracking: updater(data.tracking)));
+  }
+
   /// Put a spacing value
   void putSpacing(String key, num value) {
     if (key.isEmpty) {
@@ -124,6 +129,14 @@ class FlyNotifier extends ChangeNotifier {
     updateLeading((leading) => leading.put(key, value));
   }
 
+  /// Put a tracking value
+  void putTracking(String key, double value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Tracking key cannot be empty');
+    }
+    updateTracking((tracking) => tracking.put(key, value));
+  }
+
 }
 
 /// Main theme data container that holds all tokens
@@ -135,6 +148,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     required this.textStyle,
     required this.fontWeight,
     required this.leading,
+    required this.tracking,
   });
 
   /// Factory constructor with optional parameters and defaults
@@ -145,6 +159,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     FlyTextStyleToken? textStyle,
     FlyFontWeightToken? fontWeight,
     FlyLeadingToken? leading,
+    FlyTrackingToken? tracking,
   }) {
     return FlyThemeData(
       spacing: spacing ?? FlySpacingToken.defaultSpacing(),
@@ -153,6 +168,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       textStyle: textStyle ?? FlyTextStyleToken.defaultTextStyle(),
       fontWeight: fontWeight ?? FlyFontWeightToken.defaultFontWeight(),
       leading: leading ?? FlyLeadingToken.defaultLeading(),
+      tracking: tracking ?? FlyTrackingToken.defaultTracking(),
     );
   }
 
@@ -162,6 +178,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
   final FlyTextStyleToken textStyle;
   final FlyFontWeightToken fontWeight;
   final FlyLeadingToken leading;
+  final FlyTrackingToken tracking;
 
   /// Create a copy with updated values
   @override
@@ -172,6 +189,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     FlyTextStyleToken? textStyle,
     FlyFontWeightToken? fontWeight,
     FlyLeadingToken? leading,
+    FlyTrackingToken? tracking,
   }) {
     return FlyThemeData(
       spacing: spacing ?? this.spacing,
@@ -180,6 +198,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       textStyle: textStyle ?? this.textStyle,
       fontWeight: fontWeight ?? this.fontWeight,
       leading: leading ?? this.leading,
+      tracking: tracking ?? this.tracking,
     );
   }
 
@@ -194,6 +213,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       textStyle: textStyle.merge(other.textStyle),
       fontWeight: fontWeight.merge(other.fontWeight),
       leading: leading.merge(other.leading),
+      tracking: tracking.merge(other.tracking),
     );
   }
 
@@ -206,6 +226,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       textStyle: FlyTextStyleToken.defaultTextStyle(),
       fontWeight: FlyFontWeightToken.defaultFontWeight(),
       leading: FlyLeadingToken.defaultLeading(),
+      tracking: FlyTrackingToken.defaultTracking(),
     );
   }
 
@@ -221,6 +242,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       textStyle: textStyle.lerp(other.textStyle, t),
       fontWeight: fontWeight.lerp(other.fontWeight, t),
       leading: leading.lerp(other.leading, t),
+      tracking: tracking.lerp(other.tracking, t),
     );
   }
 
@@ -233,12 +255,13 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
         other.radius == radius &&
         other.textStyle == textStyle &&
         other.fontWeight == fontWeight &&
-        other.leading == leading;
+        other.leading == leading &&
+        other.tracking == tracking;
   }
 
   @override
   int get hashCode => Object.hash(
-    spacing, colors, radius, textStyle, fontWeight, leading
+    spacing, colors, radius, textStyle, fontWeight, leading, tracking
   );
 }
 

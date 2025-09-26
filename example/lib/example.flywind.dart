@@ -767,6 +767,64 @@ class _FlywindAppState extends State<FlywindApp> {
 
                 const SizedBox(height: 16),
 
+                // Letter Spacing (Tracking) Examples
+                FlyText('Letter Spacing (Tracking) Examples')
+                  .color(colors.gray700)
+                  .m(spacing.s3),
+
+                const SizedBox(height: 16),
+
+                // Token-based tracking values
+                FlyText('Tighter Tracking')
+                  .tracking('tighter')
+                  .color(colors.blue600)
+                  .mb(spacing.s2),
+
+                FlyText('Tight Tracking')
+                  .tracking('tight')
+                  .color(colors.green600)
+                  .mb(spacing.s2),
+
+                FlyText('Normal Tracking')
+                  .tracking('normal')
+                  .color(colors.purple600)
+                  .mb(spacing.s2),
+
+                FlyText('Wide Tracking')
+                  .tracking('wide')
+                  .color(colors.orange600)
+                  .mb(spacing.s2),
+
+                FlyText('Wider Tracking')
+                  .tracking('wider')
+                  .color(colors.red600)
+                  .mb(spacing.s2),
+
+                FlyText('Widest Tracking')
+                  .tracking('widest')
+                  .color(colors.indigo600)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
+                // Numeric/custom tracking values including negative
+                FlyText('Custom Tracking (-1.0)')
+                  .tracking(-1.0)
+                  .color(colors.teal600)
+                  .mb(spacing.s2),
+
+                FlyText('Custom Tracking (2.0)')
+                  .tracking(2.0)
+                  .color(colors.cyan600)
+                  .mb(spacing.s2),
+
+                FlyText('Custom Tracking (0.1em)')
+                  .tracking('0.1em')
+                  .color(colors.pink600)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
                 // Leading with other text properties
                 FlyText('Leading with Multiple Properties')
                   .text('lg')

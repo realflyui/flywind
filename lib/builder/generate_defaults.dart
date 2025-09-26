@@ -65,13 +65,13 @@ class TokenGenerator {
       'description': 'Font weight values',
       'conversionType': 'fontWeight',
     },
-    // 'tracking': {
-    //   'prefix': 'tracking',
-    //   'className': 'FlyTrackingToken',
-    //   'dartType': 'double',
-    //   'description': 'Letter spacing values',
-    //   'conversionType': 'unit',
-    // },
+    'tracking': {
+      'prefix': 'tracking',
+      'className': 'FlyTrackingToken',
+      'dartType': 'double',
+      'description': 'Letter spacing values',
+      'conversionType': 'unit',
+    },
     // 'blur': {
     //   'prefix': 'blur',
     //   'className': 'FlyBlurToken',

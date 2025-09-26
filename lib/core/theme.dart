@@ -107,6 +107,16 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
     _getNotifier(context)?.putLeading(key, value);
   }
 
+  /// Update tracking token
+  static void updateTracking(BuildContext context, FlyTrackingToken Function(FlyTrackingToken current) updater) {
+    _getNotifier(context)?.updateTracking(updater);
+  }
+
+  /// Put a tracking value
+  static void putTracking(BuildContext context, String key, double value) {
+    _getNotifier(context)?.putTracking(key, value);
+  }
+
   /// Check if FlyTheme is available in the context
   static bool hasFlyTheme(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<FlyTheme>() != null;

@@ -3,6 +3,7 @@ import 'style.dart';
 import '../core/theme.dart';
 import 'leading.dart';
 import 'font_weight.dart';
+import 'tracking.dart';
 
 /// Utility class for handling Tailwind-like text style logic
 class FlyTextUtils {
@@ -123,8 +124,9 @@ class FlyTextUtils {
     final leadingValue = FlyLeadingUtils.resolve(context, style);
     final textDecoration = resolveTextDecoration(style.textDecoration);
     final fontWeight = FlyFontWeightUtils.resolve(context, style.fontWeight);
+    final trackingValue = FlyTrackingUtils.resolve(context, style);
 
-    if (textStyle == null && leadingValue == null && textDecoration == null && fontWeight == null) {
+    if (textStyle == null && leadingValue == null && textDecoration == null && fontWeight == null && trackingValue == null) {
       return baseStyle ?? const TextStyle();
     }
 
@@ -170,6 +172,11 @@ class FlyTextUtils {
     // Apply font weight if available
     if (fontWeight != null) {
       result = result.copyWith(fontWeight: fontWeight);
+    }
+
+    // Apply tracking (letter spacing) if available
+    if (trackingValue != null) {
+      result = result.copyWith(letterSpacing: trackingValue);
     }
 
     return result;

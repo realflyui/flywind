@@ -47,6 +47,7 @@ Future<void> _runAllTests(
   _testStringTokenNames(context, spacingTokens);
   _testCSSUnits(context, spacingTokens);
   _testNegativeValues(context, spacingTokens);
+  _testNegativeAllowedValues(context, spacingTokens);
   _testInvalidInputs(context, spacingTokens);
   
   // resolveColor tests
@@ -107,6 +108,26 @@ void _testNegativeValues(BuildContext context, FlySpacingToken spacingTokens) {
   
   expect(
     () => FlyValue.resolveDouble('-10px', context, spacingTokens),
+    throwsA(isA<ArgumentError>().having(
+      (e) => e.message,
+      'message',
+      contains('Invalid unit'),
+    )),
+  );
+}
+
+void _testNegativeAllowedValues(BuildContext context, FlySpacingToken spacingTokens) {
+  // When negatives are explicitly allowed, numeric and unit values should parse
+  expect(FlyValue.resolveDoubleAllowNegative(-10, context, spacingTokens), equals(-10.0));
+  expect(FlyValue.resolveDoubleAllowNegative('-10', context, spacingTokens), equals(-10.0));
+  expect(FlyValue.resolveDoubleAllowNegative('-10px', context, spacingTokens), equals(-10.0));
+  expect(FlyValue.resolveDoubleAllowNegative('-1.5em', context, spacingTokens), equals(-24.0));
+  expect(FlyValue.resolveDoubleAllowNegative('-2rem', context, spacingTokens), equals(-32.0));
+  expect(FlyValue.resolveDoubleAllowNegative('-50%', context, spacingTokens), equals(-0.5));
+
+  // Negative token shorthand like "-s3" should NOT be supported
+  expect(
+    () => FlyValue.resolveDoubleAllowNegative('-s3', context, spacingTokens),
     throwsA(isA<ArgumentError>().having(
       (e) => e.message,
       'message',
