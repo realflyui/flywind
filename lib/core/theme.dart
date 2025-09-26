@@ -67,6 +67,11 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
     _getNotifier(context)?.updateTextStyle(updater);
   }
 
+  /// Update font token
+  static void updateFont(BuildContext context, FlyFontToken Function(FlyFontToken current) updater) {
+    _getNotifier(context)?.updateFont(updater);
+  }
+
   /// Update font weight token
   static void updateFontWeight(BuildContext context, FlyFontWeightToken Function(FlyFontWeightToken current) updater) {
     _getNotifier(context)?.updateFontWeight(updater);
@@ -95,6 +100,11 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
   /// Put a text style value
   static void putTextStyle(BuildContext context, String key, TextStyle value) {
     _getNotifier(context)?.putTextStyle(key, value);
+  }
+
+  /// Put a font value
+  static void putFont(BuildContext context, String key, List<String> value) {
+    _getNotifier(context)?.putFont(key, value);
   }
 
   /// Put a font weight value

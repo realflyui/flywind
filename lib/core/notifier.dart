@@ -57,6 +57,11 @@ class FlyNotifier extends ChangeNotifier {
     update((data) => data.copyWith(textStyle: updater(data.textStyle)));
   }
 
+  /// Update font token
+  void updateFont(FlyFontToken Function(FlyFontToken current) updater) {
+    update((data) => data.copyWith(font: updater(data.font)));
+  }
+
   /// Update font weight token
   void updateFontWeight(FlyFontWeightToken Function(FlyFontWeightToken current) updater) {
     update((data) => data.copyWith(fontWeight: updater(data.fontWeight)));
@@ -110,6 +115,14 @@ class FlyNotifier extends ChangeNotifier {
     updateTextStyle((textStyle) => textStyle.put(key, value));
   }
 
+  /// Put a font value
+  void putFont(String key, List<String> value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Font key cannot be empty');
+    }
+    updateFont((font) => font.put(key, value));
+  }
+
   /// Put a font weight value
   void putFontWeight(String key, FontWeight value) {
     if (key.isEmpty) {
@@ -146,6 +159,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     required this.colors,
     required this.radius,
     required this.textStyle,
+    required this.font,
     required this.fontWeight,
     required this.leading,
     required this.tracking,
@@ -157,6 +171,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     FlyColorToken? colors,
     FlyRadiusToken? radius,
     FlyTextStyleToken? textStyle,
+    FlyFontToken? font,
     FlyFontWeightToken? fontWeight,
     FlyLeadingToken? leading,
     FlyTrackingToken? tracking,
@@ -166,6 +181,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       colors: colors ?? FlyColorToken.defaultColor(),
       radius: radius ?? FlyRadiusToken.defaultRadius(),
       textStyle: textStyle ?? FlyTextStyleToken.defaultTextStyle(),
+      font: font ?? FlyFontToken.defaultFont(),
       fontWeight: fontWeight ?? FlyFontWeightToken.defaultFontWeight(),
       leading: leading ?? FlyLeadingToken.defaultLeading(),
       tracking: tracking ?? FlyTrackingToken.defaultTracking(),
@@ -176,6 +192,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
   final FlyColorToken colors;
   final FlyRadiusToken radius;
   final FlyTextStyleToken textStyle;
+  final FlyFontToken font;
   final FlyFontWeightToken fontWeight;
   final FlyLeadingToken leading;
   final FlyTrackingToken tracking;
@@ -187,6 +204,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     FlyColorToken? colors,
     FlyRadiusToken? radius,
     FlyTextStyleToken? textStyle,
+    FlyFontToken? font,
     FlyFontWeightToken? fontWeight,
     FlyLeadingToken? leading,
     FlyTrackingToken? tracking,
@@ -196,6 +214,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       colors: colors ?? this.colors,
       radius: radius ?? this.radius,
       textStyle: textStyle ?? this.textStyle,
+      font: font ?? this.font,
       fontWeight: fontWeight ?? this.fontWeight,
       leading: leading ?? this.leading,
       tracking: tracking ?? this.tracking,
@@ -211,6 +230,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       colors: colors.merge(other.colors),
       radius: radius.merge(other.radius),
       textStyle: textStyle.merge(other.textStyle),
+      font: font.merge(other.font),
       fontWeight: fontWeight.merge(other.fontWeight),
       leading: leading.merge(other.leading),
       tracking: tracking.merge(other.tracking),
@@ -224,6 +244,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       colors: FlyColorToken.defaultColor(),
       radius: FlyRadiusToken.defaultRadius(),
       textStyle: FlyTextStyleToken.defaultTextStyle(),
+      font: FlyFontToken.defaultFont(),
       fontWeight: FlyFontWeightToken.defaultFontWeight(),
       leading: FlyLeadingToken.defaultLeading(),
       tracking: FlyTrackingToken.defaultTracking(),
@@ -240,6 +261,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       colors: colors.lerp(other.colors, t),
       radius: radius.lerp(other.radius, t),
       textStyle: textStyle.lerp(other.textStyle, t),
+      font: t < 0.5 ? font : other.font,
       fontWeight: fontWeight.lerp(other.fontWeight, t),
       leading: leading.lerp(other.leading, t),
       tracking: tracking.lerp(other.tracking, t),
@@ -254,6 +276,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
         other.colors == colors &&
         other.radius == radius &&
         other.textStyle == textStyle &&
+        other.font == font &&
         other.fontWeight == fontWeight &&
         other.leading == leading &&
         other.tracking == tracking;
@@ -261,7 +284,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
 
   @override
   int get hashCode => Object.hash(
-    spacing, colors, radius, textStyle, fontWeight, leading, tracking
+    spacing, colors, radius, textStyle, font, fontWeight, leading, tracking
   );
 }
 

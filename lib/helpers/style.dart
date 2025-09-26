@@ -50,6 +50,7 @@ class FlyStyle {
     this.textTransform,
     this.leading,
     this.textDecoration,
+    this.font,
     this.fontWeight,
     this.tracking,
   });
@@ -96,6 +97,7 @@ class FlyStyle {
   final dynamic textTransform; // Text transformation - can be String ('uppercase', 'lowercase', 'capitalize', 'none')
   final dynamic leading; // Line height - can be int, double, or String (token name like 'tight', 'normal', 'relaxed')
   final dynamic textDecoration; // Text decoration - can be String ('underline', 'line-through', 'none') or TextDecoration
+  final dynamic font; // Font family - can be String token ('sans', 'serif', 'mono'), raw String family, List<String> stack, or TextStyle
   final dynamic fontWeight; // Font weight - can be String ('thin', 'light', 'normal', 'medium', 'bold', etc.) or FontWeight
   final dynamic tracking; // Letter spacing - can be int, double, or String token ('tighter', 'tight', 'normal', 'wide', 'wider', 'widest')
 
@@ -143,6 +145,7 @@ class FlyStyle {
     dynamic textTransform,
     dynamic leading,
     dynamic textDecoration,
+    dynamic font,
     dynamic fontWeight,
     dynamic tracking,
   }) {
@@ -189,6 +192,7 @@ class FlyStyle {
       textTransform: textTransform ?? this.textTransform,
       leading: leading ?? this.leading,
       textDecoration: textDecoration ?? this.textDecoration,
+      font: font ?? this.font,
       fontWeight: fontWeight ?? this.fontWeight,
       tracking: tracking ?? this.tracking,
     );

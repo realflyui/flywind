@@ -10,11 +10,41 @@ class FontConverter {
         .map((f) => f.trim())
         .toList();
     
-    // Convert to Flutter format
-    if (fonts.length == 1) {
-      return '"${fonts.first}"';
-    } else {
-      return '[${fonts.map((f) => '"$f"').join(', ')}]';
+    // Convert CSS generic names to Flutter-compatible families
+    final flutterFonts = fonts
+        .map((font) => _convertCssFontToFlutter(font))
+        .where((font) => font.isNotEmpty) // Filter out empty strings
+        .toSet() // Remove duplicates
+        .toList();
+    
+    // Always return a Dart list literal so token type can be List<String>
+    return '[${flutterFonts.map((f) => '"$f"').join(', ')}]';
+  }
+
+  /// Convert CSS generic font names to Flutter-compatible families
+  static String _convertCssFontToFlutter(String font) {
+    switch (font.toLowerCase()) {
+      case 'ui-sans-serif':
+        return 'Roboto'; // Android default
+      case 'system-ui':
+        return 'Helvetica'; // iOS default
+      case 'ui-serif':
+        return 'Noto Serif'; // Android default
+      case 'ui-monospace':
+        return 'Roboto Mono'; // Android default
+      case 'apple color emoji':
+      case 'segoe ui emoji':
+      case 'segoe ui symbol':
+      case 'noto color emoji':
+        // Skip emoji fonts as they cause spacing issues
+        return '';
+      case 'sans-serif':
+      case 'serif':
+      case 'monospace':
+        // Keep these as fallbacks
+        return font;
+      default:
+        return font;
     }
   }
 

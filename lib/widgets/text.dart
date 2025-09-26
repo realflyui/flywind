@@ -25,6 +25,11 @@ class FlyText extends StatelessWidget
       color: style.color ?? 'gray900',      // Default text color (Tailwind-like)
       leading: style.leading ?? 'normal',  // Default line height (Tailwind-like)
       textAlign: style.textAlign ?? 'left', // Default to left alignment
+      font: style.font ?? 'sans',           // Default to sans font
+      fontWeight: style.fontWeight ?? 'normal', // Default to normal weight
+      tracking: style.tracking ?? 'normal', // Default to normal letter spacing
+      textTransform: style.textTransform ?? 'none', // Default to no transformation
+      textDecoration: style.textDecoration ?? 'none', // Default to no decoration
     );
   }
 

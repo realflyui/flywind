@@ -65,6 +65,13 @@ class TokenGenerator {
       'description': 'Font weight values',
       'conversionType': 'fontWeight',
     },
+    'font': {
+      'prefix': 'font',
+      'className': 'FlyFontToken',
+      'dartType': 'List<String>',
+      'description': 'Font family stacks (sans, serif, mono)',
+      'conversionType': 'string',
+    },
     'tracking': {
       'prefix': 'tracking',
       'className': 'FlyTrackingToken',
@@ -116,6 +123,9 @@ class TokenGenerator {
     } else if (propertyPrefix == 'text') {
       // Handle text tokens (--text-xs: 0.75rem;) but exclude line-height variables
       regex = RegExp('--text-([^:]+):\\s*([^;]+);', multiLine: true, dotAll: true);
+    } else if (propertyPrefix == 'font') {
+      // Only capture the canonical stacks: --font-sans, --font-serif, --font-mono
+      regex = RegExp('--font-(sans|serif|mono):\\s*([^;]+);', multiLine: true, dotAll: true);
     } else {
       regex = RegExp('--$propertyPrefix-([^:]+):\\s*([^;]+);', multiLine: true, dotAll: true);
     }
@@ -137,6 +147,10 @@ class TokenGenerator {
         // For aspect-video, there's no token name, just use 'base' as the default
         tokenName = 'base';
         tokenValue = match.group(1)!.trim().replaceAll(RegExp(r'\s+'), ' ');
+      } else if (propertyPrefix == 'font') {
+        // Regex ensures name is one of: sans | serif | mono
+        tokenName = match.group(1)!.trim();
+        tokenValue = match.group(2)!.trim().replaceAll(RegExp(r'\s+'), ' ');
       } else {
         tokenName = match.group(1)!.trim();
         tokenValue = match.group(2)!.trim().replaceAll(RegExp(r'\s+'), ' ');
@@ -156,6 +170,17 @@ class TokenGenerator {
       final defaultSpacing = _getDefaultSpacingValues();
       // Merge default values, but don't override existing ones from theme
       for (final entry in defaultSpacing.entries) {
+        if (!tokens.containsKey(entry.key)) {
+          tokens[entry.key] = entry.value;
+        }
+      }
+    }
+    
+    // For font, always include default values
+    if (propertyPrefix == 'font') {
+      final defaultFonts = _getDefaultFontValues();
+      // Merge default values, but don't override existing ones from theme
+      for (final entry in defaultFonts.entries) {
         if (!tokens.containsKey(entry.key)) {
           tokens[entry.key] = entry.value;
         }
@@ -256,6 +281,15 @@ class TokenGenerator {
       's80': '320.0', // 20rem = 320px
       's96': '384.0', // 24rem = 384px
       'base': '16.0', // Base spacing unit (1rem = 16px)
+    };
+  }
+
+  /// Get default font values when theme doesn't provide them
+  Map<String, String> _getDefaultFontValues() {
+    return {
+      'sans': '["Roboto", "Helvetica", "Arial", "sans-serif"]',
+      'serif': '["Noto Serif", "Times New Roman", "serif"]',
+      'mono': '["Roboto Mono", "Courier New", "monospace"]',
     };
   }
 

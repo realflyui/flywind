@@ -4,6 +4,7 @@ import '../core/theme.dart';
 import 'leading.dart';
 import 'font_weight.dart';
 import 'tracking.dart';
+import 'font.dart';
 
 /// Utility class for handling Tailwind-like text style logic
 class FlyTextUtils {
@@ -125,8 +126,9 @@ class FlyTextUtils {
     final textDecoration = resolveTextDecoration(style.textDecoration);
     final fontWeight = FlyFontWeightUtils.resolve(context, style.fontWeight);
     final trackingValue = FlyTrackingUtils.resolve(context, style);
+    final fontFamilies = FlyFontUtils.resolve(context, style.font);
 
-    if (textStyle == null && leadingValue == null && textDecoration == null && fontWeight == null && trackingValue == null) {
+    if (textStyle == null && leadingValue == null && textDecoration == null && fontWeight == null && trackingValue == null && fontFamilies == null) {
       return baseStyle ?? const TextStyle();
     }
 
@@ -177,6 +179,14 @@ class FlyTextUtils {
     // Apply tracking (letter spacing) if available
     if (trackingValue != null) {
       result = result.copyWith(letterSpacing: trackingValue);
+    }
+
+    // Apply font families if available
+    if (fontFamilies != null) {
+      result = result.copyWith(
+        fontFamily: fontFamilies.primary ?? result.fontFamily,
+        fontFamilyFallback: fontFamilies.fallback,
+      );
     }
 
     return result;
@@ -243,5 +253,13 @@ mixin FlyTextHelper<T> {
   /// Set font weight - accepts String ('thin', 'light', 'normal', 'medium', 'bold', etc.) or FontWeight
   T weight(dynamic value) {
     return copyWith(style.copyWith(fontWeight: value));
+  }
+
+  /// Set font family - accepts:
+  /// - String token ('sans', 'serif', 'mono' or extras) or raw family name
+  /// - List<String> full stack
+  /// - TextStyle (uses its fontFamily and fontFamilyFallback)
+  T font(dynamic value) {
+    return copyWith(style.copyWith(font: value));
   }
 }

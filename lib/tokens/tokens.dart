@@ -6,5 +6,6 @@ export 'radius.dart';
 export 'color.dart';
 export 'text_style.dart';
 export 'font_weight.dart';
+export 'font.dart';
 export 'tracking.dart';
 export 'leading.dart';
