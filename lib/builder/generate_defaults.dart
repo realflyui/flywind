@@ -16,13 +16,13 @@ class TokenGenerator {
 
   /// Token configuration for what to extract
   static const Map<String, Map<String, String>> _tokenConfigs = {
-    'breakpoint': {
-      'prefix': 'breakpoint',
-      'className': 'FlyBreakpointToken',
-      'dartType': 'double',
-      'description': 'Breakpoint values for responsive design',
-      'conversionType': 'breakpoint',
-    },
+    // 'breakpoint': {
+    //   'prefix': 'breakpoint',
+    //   'className': 'FlyBreakpointToken',
+    //   'dartType': 'double',
+    //   'description': 'Breakpoint values for responsive design',
+    //   'conversionType': 'breakpoint',
+    // },
     'spacing': {
       'prefix': 'spacing',
       'className': 'FlySpacingToken',
@@ -44,13 +44,13 @@ class TokenGenerator {
       'description': 'Color values from Tailwind CSS theme',
       'conversionType': 'color',
     },
-    'container': {
-      'prefix': 'container',
-      'className': 'FlyContainerToken',
-      'dartType': 'double',
-      'description': 'Container width values',
-      'conversionType': 'unit',
-    },
+    // 'container': {
+    //   'prefix': 'container',
+    //   'className': 'FlyContainerToken',
+    //   'dartType': 'double',
+    //   'description': 'Container width values',
+    //   'conversionType': 'unit',
+    // },
     'text-style': {
       'prefix': 'text-style',
       'className': 'FlyTextStyleToken',
@@ -65,27 +65,27 @@ class TokenGenerator {
       'description': 'Font weight values',
       'conversionType': 'fontWeight',
     },
-    'tracking': {
-      'prefix': 'tracking',
-      'className': 'FlyTrackingToken',
-      'dartType': 'double',
-      'description': 'Letter spacing values',
-      'conversionType': 'unit',
-    },
-    'blur': {
-      'prefix': 'blur',
-      'className': 'FlyBlurToken',
-      'dartType': 'double',
-      'description': 'Blur effect values',
-      'conversionType': 'unit',
-    },
-    'perspective': {
-      'prefix': 'perspective',
-      'className': 'FlyPerspectiveToken',
-      'dartType': 'double',
-      'description': 'Perspective transform values',
-      'conversionType': 'unit',
-    },
+    // 'tracking': {
+    //   'prefix': 'tracking',
+    //   'className': 'FlyTrackingToken',
+    //   'dartType': 'double',
+    //   'description': 'Letter spacing values',
+    //   'conversionType': 'unit',
+    // },
+    // 'blur': {
+    //   'prefix': 'blur',
+    //   'className': 'FlyBlurToken',
+    //   'dartType': 'double',
+    //   'description': 'Blur effect values',
+    //   'conversionType': 'unit',
+    // },
+    // 'perspective': {
+    //   'prefix': 'perspective',
+    //   'className': 'FlyPerspectiveToken',
+    //   'dartType': 'double',
+    //   'description': 'Perspective transform values',
+    //   'conversionType': 'unit',
+    // },
     'leading': {
       'prefix': 'leading',
       'className': 'FlyLeadingToken',
@@ -747,17 +747,17 @@ Future<void> main(List<String> args) async {
       print('Usage: dart cli/generate_defaults.dart [--url <custom-theme-url>]');
       print('');
       print('This script generates FlyWind design token classes for:');
-      print('  - breakpoints (responsive design)');
+      // print('  - breakpoints (responsive design)');
       print('  - spacing (margins and padding)');
       print('  - radius (border radius)');
       print('  - colors (color palette)');
       print('  - font (font families)');
-      print('  - container (container widths)');
+      // print('  - container (container widths)');
       print('  - text-style (text styles with fontSize and height)');
       print('  - font-weight (font weights)');
-      print('  - tracking (letter spacing)');
-      print('  - blur (blur effects)');
-      print('  - perspective (perspective transforms)');
+      // print('  - tracking (letter spacing)');
+      // print('  - blur (blur effects)');
+      // print('  - perspective (perspective transforms)');
       print('  - aspect-video (aspect ratios)');
       print('  - leading (line heights)');
       print('');

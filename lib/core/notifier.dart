@@ -52,16 +52,6 @@ class FlyNotifier extends ChangeNotifier {
     update((data) => data.copyWith(radius: updater(data.radius)));
   }
 
-  /// Update breakpoints token
-  void updateBreakpoints(FlyBreakpointToken Function(FlyBreakpointToken current) updater) {
-    update((data) => data.copyWith(breakpoints: updater(data.breakpoints)));
-  }
-
-  /// Update container token
-  void updateContainer(FlyContainerToken Function(FlyContainerToken current) updater) {
-    update((data) => data.copyWith(container: updater(data.container)));
-  }
-
   /// Update text style token
   void updateTextStyle(FlyTextStyleToken Function(FlyTextStyleToken current) updater) {
     update((data) => data.copyWith(textStyle: updater(data.textStyle)));
@@ -70,21 +60,6 @@ class FlyNotifier extends ChangeNotifier {
   /// Update font weight token
   void updateFontWeight(FlyFontWeightToken Function(FlyFontWeightToken current) updater) {
     update((data) => data.copyWith(fontWeight: updater(data.fontWeight)));
-  }
-
-  /// Update tracking token
-  void updateTracking(FlyTrackingToken Function(FlyTrackingToken current) updater) {
-    update((data) => data.copyWith(tracking: updater(data.tracking)));
-  }
-
-  /// Update blur token
-  void updateBlur(FlyBlurToken Function(FlyBlurToken current) updater) {
-    update((data) => data.copyWith(blur: updater(data.blur)));
-  }
-
-  /// Update perspective token
-  void updatePerspective(FlyPerspectiveToken Function(FlyPerspectiveToken current) updater) {
-    update((data) => data.copyWith(perspective: updater(data.perspective)));
   }
 
   /// Update leading token
@@ -122,28 +97,6 @@ class FlyNotifier extends ChangeNotifier {
     updateRadius((radius) => radius.put(key, value));
   }
 
-  /// Put a breakpoint value
-  void putBreakpoint(String key, double value) {
-    if (key.isEmpty) {
-      throw ArgumentError('Breakpoint key cannot be empty');
-    }
-    if (value < 0) {
-      throw ArgumentError('Breakpoint value cannot be negative: $value');
-    }
-    updateBreakpoints((breakpoints) => breakpoints.put(key, value));
-  }
-
-  /// Put a container value
-  void putContainer(String key, double value) {
-    if (key.isEmpty) {
-      throw ArgumentError('Container key cannot be empty');
-    }
-    if (value < 0) {
-      throw ArgumentError('Container value cannot be negative: $value');
-    }
-    updateContainer((container) => container.put(key, value));
-  }
-
   /// Put a text style value
   void putTextStyle(String key, TextStyle value) {
     if (key.isEmpty) {
@@ -158,36 +111,6 @@ class FlyNotifier extends ChangeNotifier {
       throw ArgumentError('Font weight key cannot be empty');
     }
     updateFontWeight((fontWeight) => fontWeight.put(key, value));
-  }
-
-  /// Put a tracking value
-  void putTracking(String key, double value) {
-    if (key.isEmpty) {
-      throw ArgumentError('Tracking key cannot be empty');
-    }
-    updateTracking((tracking) => tracking.put(key, value));
-  }
-
-  /// Put a blur value
-  void putBlur(String key, double value) {
-    if (key.isEmpty) {
-      throw ArgumentError('Blur key cannot be empty');
-    }
-    if (value < 0) {
-      throw ArgumentError('Blur value cannot be negative: $value');
-    }
-    updateBlur((blur) => blur.put(key, value));
-  }
-
-  /// Put a perspective value
-  void putPerspective(String key, double value) {
-    if (key.isEmpty) {
-      throw ArgumentError('Perspective key cannot be empty');
-    }
-    if (value < 0) {
-      throw ArgumentError('Perspective value cannot be negative: $value');
-    }
-    updatePerspective((perspective) => perspective.put(key, value));
   }
 
   /// Put a leading value
@@ -209,13 +132,8 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     required this.spacing,
     required this.colors,
     required this.radius,
-    required this.breakpoints,
-    required this.container,
     required this.textStyle,
     required this.fontWeight,
-    required this.tracking,
-    required this.blur,
-    required this.perspective,
     required this.leading,
   });
 
@@ -224,26 +142,16 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     FlySpacingToken? spacing,
     FlyColorToken? colors,
     FlyRadiusToken? radius,
-    FlyBreakpointToken? breakpoints,
-    FlyContainerToken? container,
     FlyTextStyleToken? textStyle,
     FlyFontWeightToken? fontWeight,
-    FlyTrackingToken? tracking,
-    FlyBlurToken? blur,
-    FlyPerspectiveToken? perspective,
     FlyLeadingToken? leading,
   }) {
     return FlyThemeData(
       spacing: spacing ?? FlySpacingToken.defaultSpacing(),
       colors: colors ?? FlyColorToken.defaultColor(),
       radius: radius ?? FlyRadiusToken.defaultRadius(),
-      breakpoints: breakpoints ?? FlyBreakpointToken.defaultBreakpoint(),
-      container: container ?? FlyContainerToken.defaultContainer(),
       textStyle: textStyle ?? FlyTextStyleToken.defaultTextStyle(),
       fontWeight: fontWeight ?? FlyFontWeightToken.defaultFontWeight(),
-      tracking: tracking ?? FlyTrackingToken.defaultTracking(),
-      blur: blur ?? FlyBlurToken.defaultBlur(),
-      perspective: perspective ?? FlyPerspectiveToken.defaultPerspective(),
       leading: leading ?? FlyLeadingToken.defaultLeading(),
     );
   }
@@ -251,13 +159,8 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
   final FlySpacingToken spacing;
   final FlyColorToken colors;
   final FlyRadiusToken radius;
-  final FlyBreakpointToken breakpoints;
-  final FlyContainerToken container;
   final FlyTextStyleToken textStyle;
   final FlyFontWeightToken fontWeight;
-  final FlyTrackingToken tracking;
-  final FlyBlurToken blur;
-  final FlyPerspectiveToken perspective;
   final FlyLeadingToken leading;
 
   /// Create a copy with updated values
@@ -266,26 +169,16 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     FlySpacingToken? spacing,
     FlyColorToken? colors,
     FlyRadiusToken? radius,
-    FlyBreakpointToken? breakpoints,
-    FlyContainerToken? container,
     FlyTextStyleToken? textStyle,
     FlyFontWeightToken? fontWeight,
-    FlyTrackingToken? tracking,
-    FlyBlurToken? blur,
-    FlyPerspectiveToken? perspective,
     FlyLeadingToken? leading,
   }) {
     return FlyThemeData(
       spacing: spacing ?? this.spacing,
       colors: colors ?? this.colors,
       radius: radius ?? this.radius,
-      breakpoints: breakpoints ?? this.breakpoints,
-      container: container ?? this.container,
       textStyle: textStyle ?? this.textStyle,
       fontWeight: fontWeight ?? this.fontWeight,
-      tracking: tracking ?? this.tracking,
-      blur: blur ?? this.blur,
-      perspective: perspective ?? this.perspective,
       leading: leading ?? this.leading,
     );
   }
@@ -298,13 +191,8 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       spacing: spacing.merge(other.spacing),
       colors: colors.merge(other.colors),
       radius: radius.merge(other.radius),
-      breakpoints: breakpoints.merge(other.breakpoints),
-      container: container.merge(other.container),
       textStyle: textStyle.merge(other.textStyle),
       fontWeight: fontWeight.merge(other.fontWeight),
-      tracking: tracking.merge(other.tracking),
-      blur: blur.merge(other.blur),
-      perspective: perspective.merge(other.perspective),
       leading: leading.merge(other.leading),
     );
   }
@@ -315,13 +203,8 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       spacing: FlySpacingToken.defaultSpacing(),
       colors: FlyColorToken.defaultColor(),
       radius: FlyRadiusToken.defaultRadius(),
-      breakpoints: FlyBreakpointToken.defaultBreakpoint(),
-      container: FlyContainerToken.defaultContainer(),
       textStyle: FlyTextStyleToken.defaultTextStyle(),
       fontWeight: FlyFontWeightToken.defaultFontWeight(),
-      tracking: FlyTrackingToken.defaultTracking(),
-      blur: FlyBlurToken.defaultBlur(),
-      perspective: FlyPerspectiveToken.defaultPerspective(),
       leading: FlyLeadingToken.defaultLeading(),
     );
   }
@@ -335,13 +218,8 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       spacing: spacing.lerp(other.spacing, t),
       colors: colors.lerp(other.colors, t),
       radius: radius.lerp(other.radius, t),
-      breakpoints: breakpoints.lerp(other.breakpoints, t),
-      container: container.lerp(other.container, t),
       textStyle: textStyle.lerp(other.textStyle, t),
       fontWeight: fontWeight.lerp(other.fontWeight, t),
-      tracking: tracking.lerp(other.tracking, t),
-      blur: blur.lerp(other.blur, t),
-      perspective: perspective.lerp(other.perspective, t),
       leading: leading.lerp(other.leading, t),
     );
   }
@@ -353,20 +231,14 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
         other.spacing == spacing &&
         other.colors == colors &&
         other.radius == radius &&
-        other.breakpoints == breakpoints &&
-        other.container == container &&
         other.textStyle == textStyle &&
         other.fontWeight == fontWeight &&
-        other.tracking == tracking &&
-        other.blur == blur &&
-        other.perspective == perspective &&
         other.leading == leading;
   }
 
   @override
   int get hashCode => Object.hash(
-    spacing, colors, radius, breakpoints, container, textStyle, 
-    fontWeight, tracking, blur, perspective, leading
+    spacing, colors, radius, textStyle, fontWeight, leading
   );
 }
 

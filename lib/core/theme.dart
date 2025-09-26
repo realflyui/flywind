@@ -62,16 +62,6 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
     _getNotifier(context)?.updateRadius(updater);
   }
 
-  /// Update breakpoints token
-  static void updateBreakpoints(BuildContext context, FlyBreakpointToken Function(FlyBreakpointToken current) updater) {
-    _getNotifier(context)?.updateBreakpoints(updater);
-  }
-
-  /// Update container token
-  static void updateContainer(BuildContext context, FlyContainerToken Function(FlyContainerToken current) updater) {
-    _getNotifier(context)?.updateContainer(updater);
-  }
-
   /// Update text style token
   static void updateTextStyle(BuildContext context, FlyTextStyleToken Function(FlyTextStyleToken current) updater) {
     _getNotifier(context)?.updateTextStyle(updater);
@@ -80,21 +70,6 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
   /// Update font weight token
   static void updateFontWeight(BuildContext context, FlyFontWeightToken Function(FlyFontWeightToken current) updater) {
     _getNotifier(context)?.updateFontWeight(updater);
-  }
-
-  /// Update tracking token
-  static void updateTracking(BuildContext context, FlyTrackingToken Function(FlyTrackingToken current) updater) {
-    _getNotifier(context)?.updateTracking(updater);
-  }
-
-  /// Update blur token
-  static void updateBlur(BuildContext context, FlyBlurToken Function(FlyBlurToken current) updater) {
-    _getNotifier(context)?.updateBlur(updater);
-  }
-
-  /// Update perspective token
-  static void updatePerspective(BuildContext context, FlyPerspectiveToken Function(FlyPerspectiveToken current) updater) {
-    _getNotifier(context)?.updatePerspective(updater);
   }
 
   /// Update leading token
@@ -117,16 +92,6 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
     _getNotifier(context)?.putRadius(key, value);
   }
 
-  /// Put a breakpoint value
-  static void putBreakpoint(BuildContext context, String key, double value) {
-    _getNotifier(context)?.putBreakpoint(key, value);
-  }
-
-  /// Put a container value
-  static void putContainer(BuildContext context, String key, double value) {
-    _getNotifier(context)?.putContainer(key, value);
-  }
-
   /// Put a text style value
   static void putTextStyle(BuildContext context, String key, TextStyle value) {
     _getNotifier(context)?.putTextStyle(key, value);
@@ -135,21 +100,6 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
   /// Put a font weight value
   static void putFontWeight(BuildContext context, String key, FontWeight value) {
     _getNotifier(context)?.putFontWeight(key, value);
-  }
-
-  /// Put a tracking value
-  static void putTracking(BuildContext context, String key, double value) {
-    _getNotifier(context)?.putTracking(key, value);
-  }
-
-  /// Put a blur value
-  static void putBlur(BuildContext context, String key, double value) {
-    _getNotifier(context)?.putBlur(key, value);
-  }
-
-  /// Put a perspective value
-  static void putPerspective(BuildContext context, String key, double value) {
-    _getNotifier(context)?.putPerspective(key, value);
   }
 
   /// Put a leading value

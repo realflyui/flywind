@@ -32,12 +32,8 @@ class _FlywindExampleState extends State<FlywindExample> {
         spacing: CustomSpacing.defaultSpacing(),
         colors: CustomColors.defaultColors(),
         radius: CustomRadius.defaultRadius(),
-        breakpoints: CustomBreakpoint.defaultBreakpoint(),
-        container: CustomContainer.defaultContainer(),
+        textStyle: CustomTextStyle.defaultTextStyle(),
         fontWeight: CustomFontWeight.defaultFontWeight(),
-        tracking: CustomTracking.defaultTracking(),
-        blur: CustomBlur.defaultBlur(),
-        perspective: CustomPerspective.defaultPerspective(),
         leading: CustomLeading.defaultLeading(),
       ),
       darkThemeData: FlyThemeData.withDefaults(
@@ -46,12 +42,8 @@ class _FlywindExampleState extends State<FlywindExample> {
             .put('primary', const Color(0xFF10B981)) // Green for dark mode
             .put('surface', const Color(0xFF1F2937)), // Dark surface
         radius: CustomRadius.defaultRadius(),
-        breakpoints: CustomBreakpoint.defaultBreakpoint(),
-        container: CustomContainer.defaultContainer(),
+        textStyle: CustomTextStyle.defaultTextStyle(),
         fontWeight: CustomFontWeight.defaultFontWeight(),
-        tracking: CustomTracking.defaultTracking(),
-        blur: CustomBlur.defaultBlur(),
-        perspective: CustomPerspective.defaultPerspective(),
         leading: CustomLeading.defaultLeading(),
       ),
       appBuilder: (context) {

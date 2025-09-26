@@ -189,28 +189,10 @@ extend:
   radius:
     test: "99"
 
-  breakpoint:
-    test: "999"
-
-  container:
-    test: "999"
-
-  text:
-    test: "99"
-
-  text_line_height:
-    test: "99"
+  text_style:
+    test: ["16", "1.5"]
 
   font_weight:
-    test: "999"
-
-  tracking:
-    test: "0.99"
-
-  blur:
-    test: "99"
-
-  perspective:
     test: "999"
 
   leading:

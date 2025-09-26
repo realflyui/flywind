@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flywind/flywind.dart';
-import 'package:flywind/helpers/font_weight.dart';
 
 void main() {
   group('FlyValue Tests', () {
