@@ -7,6 +7,7 @@
 //
 // - [FlyBorder] - Border utility mixin
 // - [FlyColor] - Color utility mixin
+// - [FlyFontWeight] - Font weight utility mixin
 // - [FlyMargin] - Margin utility mixin
 // - [FlyPadding] - Padding utility mixin
 // - [FlyRounded] - Border radius utility mixin
@@ -20,13 +21,14 @@
 // ```dart
 // import 'package:flywind/helpers.dart';
 //
-// class MyWidget extends StatelessWidget with FlyColor, FlyPadding {
+// class MyWidget extends StatelessWidget with FlyColor, FlyPadding, FlyTextHelper {
 //   // Your widget implementation
 // }
 // ```
 
 export 'border.dart';
 export 'color.dart';
+export 'font_weight.dart';
 export 'leading.dart';
 export 'margin.dart';
 export 'padding.dart';

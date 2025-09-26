@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'style.dart';
 import '../core/theme.dart';
 import 'leading.dart';
+import 'font_weight.dart';
 
 /// Utility class for handling Tailwind-like text style logic
 class FlyTextUtils {
@@ -121,8 +122,9 @@ class FlyTextUtils {
     final textStyle = resolve(context, style);
     final leadingValue = FlyLeadingUtils.resolve(context, style);
     final textDecoration = resolveTextDecoration(style.textDecoration);
+    final fontWeight = FlyFontWeightUtils.resolve(context, style.fontWeight);
 
-    if (textStyle == null && leadingValue == null && textDecoration == null) {
+    if (textStyle == null && leadingValue == null && textDecoration == null && fontWeight == null) {
       return baseStyle ?? const TextStyle();
     }
 
@@ -163,6 +165,11 @@ class FlyTextUtils {
     // Apply text decoration if available
     if (textDecoration != null) {
       result = result.copyWith(decoration: textDecoration);
+    }
+
+    // Apply font weight if available
+    if (fontWeight != null) {
+      result = result.copyWith(fontWeight: fontWeight);
     }
 
     return result;
@@ -224,5 +231,10 @@ mixin FlyTextHelper<T> {
   /// Remove text decoration
   T noDecoration() {
     return copyWith(style.copyWith(textDecoration: 'none'));
+  }
+
+  /// Set font weight - accepts String ('thin', 'light', 'normal', 'medium', 'bold', etc.) or FontWeight
+  T weight(dynamic value) {
+    return copyWith(style.copyWith(fontWeight: value));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flywind/flywind.dart';
+import 'package:flywind/helpers/font_weight.dart';
 
 void main() {
   group('FlyValue Tests', () {
@@ -62,6 +63,12 @@ Future<void> _runAllTests(
   
   // TextStyle support tests
   _testTextStyleSupport(context);
+  
+  // Font weight tests
+  _testFontWeightSupport(context);
+  
+  // Text align tests
+  _testTextAlignSupport(context);
 }
 
 void _testDoubleValues(BuildContext context, FlySpacingToken spacingTokens) {
@@ -283,6 +290,110 @@ void _testTextStyleSupport(BuildContext context) {
   
   expect(tokenResolved, isNotNull);
   expect(tokenResolved, isA<TextStyle>());
+}
+
+void _testFontWeightSupport(BuildContext context) {
+  // Test direct FontWeight values
+  final boldStyle = FlyStyle(fontWeight: FontWeight.bold);
+  final boldResolved = FlyFontWeightUtils.resolve(context, boldStyle.fontWeight);
+  expect(boldResolved, equals(FontWeight.bold));
+  
+  // Test string token values
+  final tokenStyle = FlyStyle(fontWeight: 'bold');
+  final tokenResolved = FlyFontWeightUtils.resolve(context, tokenStyle.fontWeight);
+  expect(tokenResolved, equals(FontWeight.bold));
+  
+  // Test other weight tokens
+  final lightStyle = FlyStyle(fontWeight: 'light');
+  final lightResolved = FlyFontWeightUtils.resolve(context, lightStyle.fontWeight);
+  expect(lightResolved, equals(FontWeight.w300));
+  
+  final mediumStyle = FlyStyle(fontWeight: 'medium');
+  final mediumResolved = FlyFontWeightUtils.resolve(context, mediumStyle.fontWeight);
+  expect(mediumResolved, equals(FontWeight.w500));
+  
+  // Test null handling
+  final nullResolved = FlyFontWeightUtils.resolve(context, null);
+  expect(nullResolved, isNull);
+  
+  // Test invalid input
+  expect(
+    () => FlyFontWeightUtils.resolve(context, 123),
+    throwsA(isA<ArgumentError>().having(
+      (e) => e.message,
+      'message',
+      contains('must be a String or FontWeight'),
+    )),
+  );
+}
+
+void _testTextAlignSupport(BuildContext context) {
+  // Test direct TextAlign values
+  final leftStyle = FlyStyle(textAlign: TextAlign.left);
+  final leftResolved = FlyTextUtils.resolveTextAlign(leftStyle.textAlign);
+  expect(leftResolved, equals(TextAlign.left));
+  
+  final centerStyle = FlyStyle(textAlign: TextAlign.center);
+  final centerResolved = FlyTextUtils.resolveTextAlign(centerStyle.textAlign);
+  expect(centerResolved, equals(TextAlign.center));
+  
+  final rightStyle = FlyStyle(textAlign: TextAlign.right);
+  final rightResolved = FlyTextUtils.resolveTextAlign(rightStyle.textAlign);
+  expect(rightResolved, equals(TextAlign.right));
+  
+  // Test string values
+  final leftStringStyle = FlyStyle(textAlign: 'left');
+  final leftStringResolved = FlyTextUtils.resolveTextAlign(leftStringStyle.textAlign);
+  expect(leftStringResolved, equals(TextAlign.left));
+  
+  final centerStringStyle = FlyStyle(textAlign: 'center');
+  final centerStringResolved = FlyTextUtils.resolveTextAlign(centerStringStyle.textAlign);
+  expect(centerStringResolved, equals(TextAlign.center));
+  
+  final rightStringStyle = FlyStyle(textAlign: 'right');
+  final rightStringResolved = FlyTextUtils.resolveTextAlign(rightStringStyle.textAlign);
+  expect(rightStringResolved, equals(TextAlign.right));
+  
+  final justifyStringStyle = FlyStyle(textAlign: 'justify');
+  final justifyStringResolved = FlyTextUtils.resolveTextAlign(justifyStringStyle.textAlign);
+  expect(justifyStringResolved, equals(TextAlign.justify));
+  
+  final startStringStyle = FlyStyle(textAlign: 'start');
+  final startStringResolved = FlyTextUtils.resolveTextAlign(startStringStyle.textAlign);
+  expect(startStringResolved, equals(TextAlign.start));
+  
+  final endStringStyle = FlyStyle(textAlign: 'end');
+  final endStringResolved = FlyTextUtils.resolveTextAlign(endStringStyle.textAlign);
+  expect(endStringResolved, equals(TextAlign.end));
+  
+  // Test case insensitive
+  final centerUpperStyle = FlyStyle(textAlign: 'CENTER');
+  final centerUpperResolved = FlyTextUtils.resolveTextAlign(centerUpperStyle.textAlign);
+  expect(centerUpperResolved, equals(TextAlign.center));
+  
+  // Test null handling
+  final nullResolved = FlyTextUtils.resolveTextAlign(null);
+  expect(nullResolved, isNull);
+  
+  // Test invalid string input
+  expect(
+    () => FlyTextUtils.resolveTextAlign('invalid'),
+    throwsA(isA<ArgumentError>().having(
+      (e) => e.message,
+      'message',
+      contains('Invalid text alignment'),
+    )),
+  );
+  
+  // Test invalid type input
+  expect(
+    () => FlyTextUtils.resolveTextAlign(123),
+    throwsA(isA<ArgumentError>().having(
+      (e) => e.message,
+      'message',
+      contains('must be a String or TextAlign'),
+    )),
+  );
 }
 
 /// Simple test page to provide context

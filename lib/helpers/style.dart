@@ -50,6 +50,7 @@ class FlyStyle {
     this.textTransform,
     this.leading,
     this.textDecoration,
+    this.fontWeight,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -94,6 +95,7 @@ class FlyStyle {
   final dynamic textTransform; // Text transformation - can be String ('uppercase', 'lowercase', 'capitalize', 'none')
   final dynamic leading; // Line height - can be int, double, or String (token name like 'tight', 'normal', 'relaxed')
   final dynamic textDecoration; // Text decoration - can be String ('underline', 'line-through', 'none') or TextDecoration
+  final dynamic fontWeight; // Font weight - can be String ('thin', 'light', 'normal', 'medium', 'bold', etc.) or FontWeight
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -139,6 +141,7 @@ class FlyStyle {
     dynamic textTransform,
     dynamic leading,
     dynamic textDecoration,
+    dynamic fontWeight,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -183,6 +186,7 @@ class FlyStyle {
       textTransform: textTransform ?? this.textTransform,
       leading: leading ?? this.leading,
       textDecoration: textDecoration ?? this.textDecoration,
+      fontWeight: fontWeight ?? this.fontWeight,
     );
   }
 

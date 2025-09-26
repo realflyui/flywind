@@ -788,6 +788,140 @@ class _FlywindAppState extends State<FlywindApp> {
 
                 const SizedBox(height: 16),
 
+                // Font Weight Examples
+                FlyText('Font Weight Examples')
+                  .color(colors.gray700)
+                  .m(spacing.s3),
+
+                const SizedBox(height: 16),
+
+                // Different font weights using tokens
+                FlyText('Thin Weight Text')
+                  .weight('thin')
+                  .color(colors.blue600)
+                  .mb(spacing.s2),
+
+                FlyText('Light Weight Text')
+                  .weight('light')
+                  .color(colors.green600)
+                  .mb(spacing.s2),
+
+                FlyText('Normal Weight Text')
+                  .weight('normal')
+                  .color(colors.purple600)
+                  .mb(spacing.s2),
+
+                FlyText('Medium Weight Text')
+                  .weight('medium')
+                  .color(colors.orange600)
+                  .mb(spacing.s2),
+
+                FlyText('Semibold Weight Text')
+                  .weight('semibold')
+                  .color(colors.red600)
+                  .mb(spacing.s2),
+
+                FlyText('Bold Weight Text')
+                  .weight('bold')
+                  .color(colors.indigo600)
+                  .mb(spacing.s2),
+
+                FlyText('Extra Bold Weight Text')
+                  .weight('extrabold')
+                  .color(colors.teal600)
+                  .mb(spacing.s2),
+
+                FlyText('Black Weight Text')
+                  .weight('black')
+                  .color(colors.pink600)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
+                // Direct FontWeight values
+                FlyText('Direct FontWeight.w300')
+                  .weight(FontWeight.w300)
+                  .color(colors.blue600)
+                  .mb(spacing.s2),
+
+                FlyText('Direct FontWeight.w600')
+                  .weight(FontWeight.w600)
+                  .color(colors.green600)
+                  .mb(spacing.s2),
+
+                FlyText('Direct FontWeight.w900')
+                  .weight(FontWeight.w900)
+                  .color(colors.purple600)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
+                // Font weight with other properties
+                FlyText('Styled Bold Text')
+                  .text('lg')
+                  .weight('bold')
+                  .color(colors.white)
+                  .p(12)
+                  .bg(colors.blue500)
+                  .rounded(8)
+                  .mb(spacing.s2),
+
+                FlyText('Styled Medium Text with Alignment')
+                  .weight('medium')
+                  .align('center')
+                  .color(colors.white)
+                  .p(8)
+                  .bg(colors.green500)
+                  .rounded(6)
+                  .mb(spacing.s2),
+
+                // Font weight in containers
+                FlyContainer(
+                  child: FlyText('Container with Bold Text')
+                    .weight('bold')
+                    .color(colors.white)
+                    .p(12),
+                )
+                  .bg(colors.purple500)
+                  .rounded(8)
+                  .p(16)
+                  .mb(spacing.s2),
+
+                FlyContainer(
+                  child: FlyText('Container with Light Text')
+                    .weight('light')
+                    .color(colors.gray700)
+                    .p(12),
+                )
+                  .bg(colors.gray100)
+                  .border(1)
+                  .borderColor(colors.gray300)
+                  .rounded(6)
+                  .p(16)
+                  .mb(spacing.s2),
+
+                // Font weight with text styles
+                FlyText('Font Weight with Text Style')
+                  .text('xl')
+                  .weight('semibold')
+                  .color(colors.white)
+                  .p(12)
+                  .bg(colors.orange500)
+                  .rounded(8)
+                  .mb(spacing.s2),
+
+                // Font weight with leading
+                FlyText('Font Weight with Leading')
+                  .weight('medium')
+                  .leading('relaxed')
+                  .color(colors.indigo600)
+                  .p(8)
+                  .bg(colors.indigo50)
+                  .rounded(6)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
                 // Direct TextStyle test
                 FlyText('TextStyle Test')
                   .text(const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red))
