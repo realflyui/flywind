@@ -48,6 +48,7 @@ class FlyStyle {
     this.text,
     this.textAlign,
     this.textTransform,
+    this.leading,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -90,6 +91,7 @@ class FlyStyle {
   final dynamic text; // Text style token name - can be String ('xs', 'sm', 'base', 'lg', etc.) or TextStyle
   final dynamic textAlign; // Text alignment - can be String ('left', 'right', 'center', 'justify', 'start', 'end') or TextAlign
   final dynamic textTransform; // Text transformation - can be String ('uppercase', 'lowercase', 'capitalize', 'none')
+  final dynamic leading; // Line height - can be int, double, or String (token name like 'tight', 'normal', 'relaxed')
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -133,6 +135,7 @@ class FlyStyle {
     dynamic text,
     dynamic textAlign,
     dynamic textTransform,
+    dynamic leading,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -175,6 +178,7 @@ class FlyStyle {
       text: text ?? this.text,
       textAlign: textAlign ?? this.textAlign,
       textTransform: textTransform ?? this.textTransform,
+      leading: leading ?? this.leading,
     );
   }
 

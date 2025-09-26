@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'style.dart';
 import '../core/theme.dart';
+import 'leading.dart';
 
 /// Utility class for handling Tailwind-like text style logic
 class FlyTextUtils {
@@ -89,34 +90,47 @@ class FlyTextUtils {
     TextStyle? baseStyle,
   ) {
     final textStyle = resolve(context, style);
+    final leadingValue = FlyLeadingUtils.resolve(context, style);
 
-    if (textStyle == null) {
+    if (textStyle == null && leadingValue == null) {
       return baseStyle ?? const TextStyle();
     }
 
-    // Use copyWith to merge token style with existing style
-    return textStyle.copyWith(
-      color: baseStyle?.color,
-      fontWeight: baseStyle?.fontWeight,
-      fontStyle: baseStyle?.fontStyle,
-      letterSpacing: baseStyle?.letterSpacing,
-      wordSpacing: baseStyle?.wordSpacing,
-      textBaseline: baseStyle?.textBaseline,
-      height: baseStyle?.height,
-      leadingDistribution: baseStyle?.leadingDistribution,
-      locale: baseStyle?.locale,
-      foreground: baseStyle?.foreground,
-      background: baseStyle?.background,
-      shadows: baseStyle?.shadows,
-      fontFeatures: baseStyle?.fontFeatures,
-      decoration: baseStyle?.decoration,
-      decorationColor: baseStyle?.decorationColor,
-      decorationStyle: baseStyle?.decorationStyle,
-      decorationThickness: baseStyle?.decorationThickness,
-      debugLabel: baseStyle?.debugLabel,
-      fontFamily: baseStyle?.fontFamily,
-      fontFamilyFallback: baseStyle?.fontFamilyFallback,
-    );
+    // Start with base style or empty style
+    TextStyle result = baseStyle ?? const TextStyle();
+    
+    // Apply text style if available
+    if (textStyle != null) {
+      result = textStyle.copyWith(
+        color: baseStyle?.color,
+        fontWeight: baseStyle?.fontWeight,
+        fontStyle: baseStyle?.fontStyle,
+        letterSpacing: baseStyle?.letterSpacing,
+        wordSpacing: baseStyle?.wordSpacing,
+        textBaseline: baseStyle?.textBaseline,
+        height: baseStyle?.height,
+        leadingDistribution: baseStyle?.leadingDistribution,
+        locale: baseStyle?.locale,
+        foreground: baseStyle?.foreground,
+        background: baseStyle?.background,
+        shadows: baseStyle?.shadows,
+        fontFeatures: baseStyle?.fontFeatures,
+        decoration: baseStyle?.decoration,
+        decorationColor: baseStyle?.decorationColor,
+        decorationStyle: baseStyle?.decorationStyle,
+        decorationThickness: baseStyle?.decorationThickness,
+        debugLabel: baseStyle?.debugLabel,
+        fontFamily: baseStyle?.fontFamily,
+        fontFamilyFallback: baseStyle?.fontFamilyFallback,
+      );
+    }
+    
+    // Apply leading if available
+    if (leadingValue != null) {
+      result = result.copyWith(height: leadingValue);
+    }
+
+    return result;
   }
 }
 
@@ -149,5 +163,10 @@ mixin FlyTextHelper<T> {
   /// Transform text to capitalize first letter of each word
   T capitalize() {
     return copyWith(style.copyWith(textTransform: 'capitalize'));
+  }
+
+  /// Set line height - accepts int, double, or String (token name like 'tight', 'normal', 'relaxed')
+  T leading(dynamic value) {
+    return copyWith(style.copyWith(leading: value));
   }
 }

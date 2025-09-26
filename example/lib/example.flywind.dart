@@ -568,6 +568,132 @@ class _FlywindAppState extends State<FlywindApp> {
 
                 const SizedBox(height: 16),
 
+                // Line Height (Leading) Examples
+                FlyText('Line Height (Leading) Examples')
+                  .color(colors.gray700)
+                  .m(spacing.s3),
+
+                const SizedBox(height: 16),
+
+                // Different leading values using tokens
+                FlyText('Tight Leading (1.25x)\nThis is a longer text block that spans multiple lines to demonstrate the tight line spacing. Notice how the lines are closer together for compact layouts.')
+                  .text('base')
+                  .leading('tight')
+                  .color(colors.blue600)
+                  .mb(spacing.s2),
+
+                FlyText('Snug Leading (1.375x)\nThis is a longer text block that spans multiple lines to demonstrate the snug line spacing. Notice how there is slightly more breathing room between lines.')
+                  .text('base')
+                  .leading('snug')
+                  .color(colors.green600)
+                  .mb(spacing.s2),
+
+                FlyText('Normal Leading (1.5x)\nThis is a longer text block that spans multiple lines to demonstrate the normal line spacing. This provides comfortable reading with standard line height.')
+                  .text('base')
+                  .leading('normal')
+                  .color(colors.purple600)
+                  .mb(spacing.s2),
+
+                FlyText('Relaxed Leading (1.625x)\nThis is a longer text block that spans multiple lines to demonstrate the relaxed line spacing. Notice the increased space between lines for better readability.')
+                  .text('base')
+                  .leading('relaxed')
+                  .color(colors.orange600)
+                  .mb(spacing.s2),
+
+                FlyText('Loose Leading (2.0x)\nThis is a longer text block that spans multiple lines to demonstrate the loose line spacing. Notice the maximum spacing between lines for optimal readability.')
+                  .text('base')
+                  .leading('loose')
+                  .color(colors.red600)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
+                // Custom numeric leading values
+                FlyText('Custom Leading (1.2x) - This text uses a custom numeric leading value.')
+                  .leading(1.2)
+                  .color(colors.indigo600)
+                  .mb(spacing.s2),
+
+                FlyText('Custom Leading (2.5x) - This text uses a very loose custom leading value.')
+                  .leading(2.5)
+                  .color(colors.teal600)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
+                // Leading with different text sizes
+                FlyText('Leading with Text Sizes')
+                  .color(colors.gray700)
+                  .m(spacing.s3),
+
+                const SizedBox(height: 16),
+
+                FlyText('Small Text with Tight Leading')
+                  .text('sm')
+                  .leading('tight')
+                  .color(colors.blue600)
+                  .mb(spacing.s2),
+
+                FlyText('Large Text with Relaxed Leading')
+                  .text('lg')
+                  .leading('relaxed')
+                  .color(colors.green600)
+                  .mb(spacing.s2),
+
+                FlyText('Extra Large Text with Loose Leading')
+                  .text('xl')
+                  .leading('loose')
+                  .color(colors.purple600)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
+                // Leading in containers
+                FlyContainer(
+                  child: FlyText('Container with Leading')
+                    .leading('snug')
+                    .color(colors.white)
+                    .p(12),
+                )
+                  .bg(colors.blue500)
+                  .rounded(8)
+                  .p(16)
+                  .mb(spacing.s2),
+
+                FlyContainer(
+                  child: FlyText('Container with Custom Leading')
+                    .leading(1.8)
+                    .color(colors.white)
+                    .p(12),
+                )
+                  .bg(colors.green500)
+                  .rounded(8)
+                  .p(16)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
+                // Leading with other text properties
+                FlyText('Leading with Multiple Properties')
+                  .text('lg')
+                  .leading('relaxed')
+                  .color(colors.white)
+                  .p(12)
+                  .bg(colors.purple500)
+                  .rounded(8)
+                  .mb(spacing.s2),
+
+                FlyText('Leading with Alignment and Color')
+                  .leading('snug')
+                  .align('center')
+                  .color(colors.orange600)
+                  .p(8)
+                  .bg(colors.orange50)
+                  .rounded(6)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
                 // Direct TextStyle test
                 FlyText('TextStyle Test')
                   .text(const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red))

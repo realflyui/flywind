@@ -27,6 +27,7 @@
 
 export 'border.dart';
 export 'color.dart';
+export 'leading.dart';
 export 'margin.dart';
 export 'padding.dart';
 export 'rounded.dart';
