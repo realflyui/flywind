@@ -56,6 +56,35 @@ class FlyTextUtils {
     }
   }
 
+  /// Resolves text decoration from string to TextDecoration enum
+  static TextDecoration? resolveTextDecoration(dynamic value) {
+    if (value == null) return null;
+    
+    // If it's already a TextDecoration, return it directly
+    if (value is TextDecoration) {
+      return value;
+    }
+    
+    // Otherwise, resolve as string
+    if (value is String) {
+      switch (value.toLowerCase()) {
+        case 'underline':
+          return TextDecoration.underline;
+        case 'line-through':
+        case 'lineThrough':
+          return TextDecoration.lineThrough;
+        case 'overline':
+          return TextDecoration.overline;
+        case 'none':
+          return TextDecoration.none;
+        default:
+          throw ArgumentError('Invalid text decoration: "$value". Supported values: underline, line-through, overline, none');
+      }
+    }
+    
+    throw ArgumentError('Text decoration must be a String or TextDecoration, got ${value.runtimeType}');
+  }
+
   /// Converts text to title case (capitalize first letter of each word)
   static String _toTitleCase(String text) {
     if (text.isEmpty) return text;
@@ -91,8 +120,9 @@ class FlyTextUtils {
   ) {
     final textStyle = resolve(context, style);
     final leadingValue = FlyLeadingUtils.resolve(context, style);
+    final textDecoration = resolveTextDecoration(style.textDecoration);
 
-    if (textStyle == null && leadingValue == null) {
+    if (textStyle == null && leadingValue == null && textDecoration == null) {
       return baseStyle ?? const TextStyle();
     }
 
@@ -130,6 +160,11 @@ class FlyTextUtils {
       result = result.copyWith(height: leadingValue);
     }
 
+    // Apply text decoration if available
+    if (textDecoration != null) {
+      result = result.copyWith(decoration: textDecoration);
+    }
+
     return result;
   }
 }
@@ -141,6 +176,7 @@ mixin FlyTextHelper<T> {
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set text style - accepts String (token name like 'sm', 'base', 'lg', etc.) or TextStyle
+  /// Pass null to remove all text styling and use Flutter's default text style
   T text(dynamic value) {
     return copyWith(style.copyWith(text: value));
   }
@@ -168,5 +204,25 @@ mixin FlyTextHelper<T> {
   /// Set line height - accepts int, double, or String (token name like 'tight', 'normal', 'relaxed')
   T leading(dynamic value) {
     return copyWith(style.copyWith(leading: value));
+  }
+
+  /// Add underline decoration to text
+  T underline() {
+    return copyWith(style.copyWith(textDecoration: 'underline'));
+  }
+
+  /// Add line-through decoration to text
+  T lineThrough() {
+    return copyWith(style.copyWith(textDecoration: 'line-through'));
+  }
+
+  /// Add overline decoration to text
+  T overline() {
+    return copyWith(style.copyWith(textDecoration: 'overline'));
+  }
+
+  /// Remove text decoration
+  T noDecoration() {
+    return copyWith(style.copyWith(textDecoration: 'none'));
   }
 }

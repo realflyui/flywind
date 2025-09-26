@@ -14,8 +14,17 @@ class FlyText extends StatelessWidget
         FlyColor<FlyText>,
         FlyRounded<FlyText>,
         FlyTextHelper<FlyText> {
-  const FlyText(this.data, {style = const FlyStyle(), super.key})
-    : _style = style;
+  FlyText(this.data, {style = const FlyStyle(), super.key})
+    : _style = _buildStyleWithDefaults(style);
+
+  static FlyStyle _buildStyleWithDefaults(FlyStyle style) {
+    return style.copyWith(
+      text: style.text ?? 'base',           // Default to base text style
+      color: style.color ?? 'gray900',      // Default text color (Tailwind-like)
+      leading: style.leading ?? 'normal',  // Default line height (Tailwind-like)
+      textAlign: style.textAlign ?? 'left', // Default to left alignment
+    );
+  }
 
   final String data;
   final FlyStyle _style;

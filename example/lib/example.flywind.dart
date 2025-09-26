@@ -568,6 +568,100 @@ class _FlywindAppState extends State<FlywindApp> {
 
                 const SizedBox(height: 16),
 
+                // Text Decoration Examples
+                FlyText('Text Decoration Examples')
+                  .color(colors.gray700)
+                  .m(spacing.s3),
+
+                const SizedBox(height: 16),
+
+                // Underline decoration
+                FlyText('Underlined Text')
+                  .underline()
+                  .color(colors.blue600)
+                  .mb(spacing.s2),
+
+                // Line-through decoration
+                FlyText('Strikethrough Text')
+                  .lineThrough()
+                  .color(colors.red600)
+                  .mb(spacing.s2),
+
+                // Overline decoration
+                FlyText('Overlined Text')
+                  .overline()
+                  .color(colors.green600)
+                  .mb(spacing.s2),
+
+                // No decoration
+                FlyText('No Decoration Text')
+                  .noDecoration()
+                  .color(colors.purple600)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
+                // Decoration with other properties
+                FlyText('Styled Underlined Text')
+                  .text('lg')
+                  .underline()
+                  .color(colors.white)
+                  .p(12)
+                  .bg(colors.blue500)
+                  .rounded(8)
+                  .mb(spacing.s2),
+
+                FlyText('Styled Strikethrough Text')
+                  .text('base')
+                  .lineThrough()
+                  .color(colors.white)
+                  .p(8)
+                  .bg(colors.red500)
+                  .rounded(6)
+                  .mb(spacing.s2),
+
+                // Decoration in containers
+                FlyContainer(
+                  child: FlyText('Container with Underlined Text')
+                    .underline()
+                    .color(colors.white)
+                    .p(12),
+                )
+                  .bg(colors.green500)
+                  .rounded(8)
+                  .p(16)
+                  .mb(spacing.s2),
+
+                FlyContainer(
+                  child: FlyText('Container with Strikethrough Text')
+                    .lineThrough()
+                    .color(colors.white)
+                    .p(12),
+                )
+                  .bg(colors.orange500)
+                  .rounded(8)
+                  .p(16)
+                  .mb(spacing.s2),
+
+                // Decoration with alignment
+                FlyText('Centered Underlined Text')
+                  .underline()
+                  .align('center')
+                  .color(colors.purple600)
+                  .p(8)
+                  .bg(colors.purple50)
+                  .rounded(6)
+                  .mb(spacing.s2),
+
+                // Multiple decorations (last one wins)
+                FlyText('Multiple Decorations')
+                  .underline()
+                  .lineThrough()  // This will override underline
+                  .color(colors.indigo600)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
                 // Line Height (Leading) Examples
                 FlyText('Line Height (Leading) Examples')
                   .color(colors.gray700)
