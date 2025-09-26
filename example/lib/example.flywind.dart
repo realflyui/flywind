@@ -30,8 +30,7 @@ class _FlywindExampleState extends State<FlywindExample> {
   }
 }
 
-/// Simple app without Material or Cupertino - just basic Flutter widgets
-class FlywindApp extends StatefulWidget {
+class FlywindApp extends StatelessWidget {
   const FlywindApp({
     super.key,
     required this.themeMode,
@@ -42,28 +41,16 @@ class FlywindApp extends StatefulWidget {
   final void Function(ThemeMode) onThemeModeChanged;
 
   @override
-  State<FlywindApp> createState() => _FlywindAppState();
-}
-
-class _FlywindAppState extends State<FlywindApp> {
-  bool _isGreen = false;
-
-  String _getThemeModeText(ThemeMode mode) {
-    switch (mode) {
-      case ThemeMode.system:
-        return 'System';
-      case ThemeMode.light:
-        return 'Light';
-      case ThemeMode.dark:
-        return 'Dark';
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     final flyTheme = FlyTheme.of(context);
     final colors = flyTheme.colors;
     final spacing = flyTheme.spacing;
+    final radius = flyTheme.radius;
+    final textStyle = flyTheme.textStyle;
+    final font = flyTheme.font;
+    final fontWeight = flyTheme.fontWeight;
+    final leading = flyTheme.leading;
+    final tracking = flyTheme.tracking;
 
     return Directionality(
       textDirection: TextDirection.ltr,
@@ -75,960 +62,529 @@ class _FlywindAppState extends State<FlywindApp> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Simple FlyText with mixed value types
-                FlyText('Flywind Examples')
-                  .color(colors.blue500)      // Direct token access: colors.blue500
-                  .m(spacing.s3),             // Direct token access: spacing.s3
-
-                const SizedBox(height: 24),
-
-                // FlyContainer with FlyText - showcasing all value types
-                FlyContainer(
-                  child: FlyText('Mixed Value Types')
-                    .color(Colors.white)      // Color object
-                    .p('12px'),               // CSS unit
-                )
-                  .bg('#FF6B35')             // Hex color
-                  .p(20)                     // int
-                  .px('1.5rem')              // CSS unit (rem)
-                  .py(8)                     // int
-                  .rounded('md')             // Token name
-                  .roundedTl('lg')           // Token name
-                  .m(spacing['s3'] ?? 16),   // Bracket access: spacing['s3']
-
-                const SizedBox(height: 24),
-
-                // Border Examples Section
-                FlyText('Border Examples')
-                  .color(colors.gray700)
-                  .m(spacing.s3),
-
-                const SizedBox(height: 16),
-
-                // Solid Border
-                FlyContainer(
-                  child: FlyText('Solid Border')
-                    .color(Colors.white)
-                    .p(12),
-                )
-                  .bg(colors.blue500)
-                  .border(10)
-                  .borderColor(colors.blue700)
-                  .borderStyle('solid')
-                  .rounded(20)
-                  .p(16)
-                  .mb(spacing.s2),
-                  
-
-                // Dashed Border
-                FlyContainer(
-                  child: FlyText('Dashed Border')
-                    .color(colors.green700)
-                    .p(12),
-                )
-                  .bg(colors.green50)
-                  .border(2)
-                  .borderColor(colors.green500)
-                  .borderStyle('dashed')
-                  .rounded(8)
-                  .p(16)
-                  .mb(spacing.s2),
-
-                // Dotted Border
-                FlyContainer(
-                  child: FlyText('Dotted Border')
-                    .color(colors.orange700)
-                    .p(12),
-                )
-                  .bg(colors.orange50)
-                  .border(2)
-                  .borderColor(colors.orange500)
-                  .borderStyle('dotted')
-                  .rounded(8)
-                  .p(16)
-                  .mb(spacing.s2),
-
-                // Double Border
-                FlyContainer(
-                  child: FlyText('Custom Borders')
-                    .color(colors.purple700)
-                    .p(12),
-                )
-                  .bg(colors.purple50)
-                  .borderT(10)
-                  .borderR(5)
-                  .borderB(10)
-                  .borderColor(colors.purple500)
-                  .p(16)
-                  .mb(spacing.s2),
-
-                // Complex Border Example
-                FlyContainer(
-                  child: FlyText('Complex Border with Rounded Corners')
-                    .color(colors.red700)
-                    .p(12),
-                )
-                  .bg(colors.red50)
-                  .border(3)
-                  .borderColor(colors.red500)
-                  .borderStyle('dashed')
-                  .rounded('xl')
-                  .p(20)
-                  .mb(spacing.s4),
-
-                const SizedBox(height: 24),
-
-                // Size Examples Section
-                FlyText('Size Examples')
-                  .color(colors.gray700)
-                  .m(spacing.s3),
-
-                const SizedBox(height: 16),
-
-                // Fixed size with spacing tokens
-                FlyContainer(
-                  child: FlyText('Fixed Size (s4 x s8)')
-                    .color(Colors.white)
-                    .p(8),
-                )
-                  .bg(colors.blue500)
-                  .h('s8')    // 16px height
-                  .w('s20')    // 32px width
-                  .rounded(4)
-                  .mb(spacing.s2),
-
-                // Fixed size with pixel values
-                FlyContainer(
-                  child: FlyText('Fixed Size (100px x 200px)')
-                    .color(Colors.white)
-                    .p(8),
-                )
-                  .bg(colors.green500)
-                  .h(100)     // 100px height
-                  .w(200)     // 200px width
-                  .rounded(8)
-                  .mb(spacing.s2),
-
-                // Fixed size with CSS units
-                FlyContainer(
-                  child: FlyText('Fixed Size (50px x 150px)')
-                    .color(Colors.white)
-                    .p(8),
-                )
-                  .bg(colors.purple500)
-                  .h('50px')  // 50px height
-                  .w('150px') // 150px width
-                  .rounded(6)
-                  .mb(spacing.s2),
-
-                // Height only (width auto)
-                FlyContainer(
-                  child: FlyText('Height Only (60px)')
-                    .color(Colors.white)
-                    .p(8),
-                )
-                  .bg(colors.orange500)
-                  .h(60)      // 60px height, width auto
-                  .rounded(4)
-                  .mb(spacing.s2),
-
-                // Width only (height auto)
-                FlyContainer(
-                  child: FlyText('Width Only (120px)')
-                    .color(Colors.white)
-                    .p(8),
-                )
-                  .bg(colors.red500)
-                  .w(120)     // 120px width, height auto
-                  .rounded(4)
-                  .mb(spacing.s2),
-
-                // Size with borders and padding
-                FlyContainer(
-                  child: FlyText('Size + Border + Padding')
-                    .color(Colors.white)
-                    .p(12),
-                )
-                  .bg(colors.indigo500)
-                  .h(80)      // 80px height
-                  .w(160)     // 160px width
-                  .border(2)
-                  .borderColor(colors.indigo700)
-                  .borderStyle('solid')
-                  .rounded(8)
-                  .p(16)
-                  .mb(spacing.s4),
-
-                // Max/Min Constraints Examples
-                FlyText('Max/Min Constraints')
-                  .color(colors.gray700)
-                  .m(spacing.s3),
-
-                const SizedBox(height: 16),
-
-                // Max height constraint
-                FlyContainer(
-                  child: FlyText('Max Height 100px\nThis text might overflow\nand be constrained\nby the max height\nsetting.')
-                    .color(Colors.white)
-                    .p(8),
-                )
-                  .bg(colors.orange500)
-                  .maxH(100)   // Max height 100px
-                  .w(200)      // Fixed width
-                  .rounded(4)
-                  .mb(spacing.s2),
-
-                // Min height constraint
-                FlyContainer(
-                  child: FlyText('Min Height 80px')
-                    .color(Colors.white)
-                    .p(8),
-                )
-                  .bg(colors.purple500)
-                  .minH(80)    // Min height 80px
-                  .w(200)      // Fixed width
-                  .rounded(4)
-                  .mb(spacing.s2),
-
-                // Max width constraint
-                FlyContainer(
-                  child: FlyText('Max Width 150px - This text will wrap when it exceeds the max width constraint.')
-                    .color(Colors.white)
-                    .p(8),
-                )
-                  .bg(colors.teal500)
-                  .h(60)       // Fixed height
-                  .maxW(150)   // Max width 150px
-                  .rounded(4)
-                  .mb(spacing.s2),
-
-                // Min width constraint
-                FlyContainer(
-                  child: FlyText('Min Width 200px')
-                    .color(Colors.white)
-                    .p(8),
-                )
-                  .bg(colors.pink500)
-                  .h(60)       // Fixed height
-                  .minW(200)   // Min width 200px
-                  .rounded(4)
-                  .mb(spacing.s2),
-
-                // Combined max/min constraints
-                FlyContainer(
-                  child: FlyText('Max H: 80px, Min W: 120px')
-                    .color(Colors.white)
-                    .p(8),
-                )
-                  .bg(colors.cyan500)
-                  .maxH(80)    // Max height 80px
-                  .minW(120)   // Min width 120px
-                  .rounded(4)
-                  .mb(spacing.s4),
-
-                const SizedBox(height: 24),
-
-                // Text Style Examples Section
-                FlyText('Text Style Examples')
-                  .color(colors.gray700)
-                  .m(spacing.s3),
-
-                const SizedBox(height: 16),
-
-                // Different text sizes
-                FlyText('Extra Small Text (xs)')
-                  .text('xs')
-                  .color(colors.blue600)
-                  .mb(spacing.s2),
-
-                FlyText('Small Text (sm)')
-                  .text('sm')
-                  .color(colors.green600)
-                  .mb(spacing.s2),
-
-                FlyText('Base Text (base)')
-                  .text('base')
-                  .color(colors.purple600)
-                  .mb(spacing.s2),
-
-                FlyText('Large Text (lg)')
+                // ========================================
+                // 1. BASIC USAGE
+                // ========================================
+                _buildSectionHeader('Basic Usage'),
+                
+                // Simple FlyText
+                FlyText('Hello Flywind!')
+                  .color('blue600')
                   .text('lg')
-                  .color(colors.orange600)
-                  .mb(spacing.s2),
+                  .mb('s4'),
 
-                FlyText('Extra Large Text (xl)')
-                  .text('xl')
-                  .color(colors.red600)
-                  .mb(spacing.s2),
+                // Simple FlyContainer
+                FlyContainer(
+                  child: FlyText('Container with utilities')
+                    .color('white')
+                    .p('s4'),
+                )
+                  .bg('green500')
+                  .rounded('md')
+                  .p('s5')
+                  .mb('s4'),
 
-                FlyText('2XL Text (xl2)')
-                  .text('xl2')
-                  .color(colors.indigo600)
-                  .mb(spacing.s2),
-
-                FlyText('3XL Text (xl3)')
-                  .text('xl3')
-                  .color(colors.teal600)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Text with color overrides
-                FlyText('Text with Color Override')
-                  .text('lg')
-                  .color(colors.pink600)  // This overrides the color from the text style token
-                  .mb(spacing.s2),
-
-                // Text with multiple properties
-                FlyText('Styled Text with Multiple Properties')
+                // Utility chaining
+                FlyText('Chained utilities')
+                  .color('purple600')
                   .text('base')
-                  .color(colors.white)
-                  .p(12)
-                  .bg(colors.blue500)
-                  .rounded(8)
-                  .mb(spacing.s2),
+                  .weight('bold')
+                  .p('s3')
+                  .bg('purple50')
+                  .rounded('sm')
+                  .mb('s6'),
 
-                // Text in containers with different styles
+                // ========================================
+                // 2. TEXT UTILITIES
+                // ========================================
+                _buildSectionHeader('Text Utilities'),
+
+                // Text Sizes
+                _buildSubsectionHeader('Text Sizes'),
+                FlyText('Extra Small (xs)').text('xs').color('gray700').mb('s2'),
+                FlyText('Small (sm)').text('sm').color('gray700').mb('s2'),
+                FlyText('Base (base)').text('base').color('gray700').mb('s2'),
+                FlyText('Large (lg)').text('lg').color('gray700').mb('s2'),
+                FlyText('Extra Large (xl)').text('xl').color('gray700').mb('s2'),
+                FlyText('2XL (xl2)').text('xl2').color('gray700').mb('s4'),
+
+                // Font Families
+                _buildSubsectionHeader('Font Families'),
+                FlyText('Sans Font').font('sans').color('blue600').mb('s2'),
+                FlyText('Serif Font').font('serif').color('green600').mb('s2'),
+                FlyText('Mono Font').font('mono').color('purple600').mb('s2'),
+                FlyText('Custom Stack').font(['Inter', 'system-ui', 'sans-serif']).color('orange600').mb('s4'),
+
+                // Font Weights
+                _buildSubsectionHeader('Font Weights'),
+                FlyText('Thin').weight('thin').color('gray700').mb('s2'),
+                FlyText('Light').weight('light').color('gray700').mb('s2'),
+                FlyText('Normal').weight('normal').color('gray700').mb('s2'),
+                FlyText('Medium').weight('medium').color('gray700').mb('s2'),
+                FlyText('Bold').weight('bold').color('gray700').mb('s2'),
+                FlyText('Black').weight('black').color('gray700').mb('s4'),
+
+                // Text Alignment
+                _buildSubsectionHeader('Text Alignment'),
                 FlyContainer(
-                  child: FlyText('Container with Text Style')
-                    .text('xl')
-                    .color(colors.white)
-                    .p(16),
-                )
-                  .bg(colors.green500)
-                  .rounded(12)
-                  .p(20)
-                  .mb(spacing.s2),
-
+                  child: FlyText('Left Aligned').align('left').color('blue600').p('s2'),
+                ).w('s80').border(1).borderColor('blue300').rounded('sm').mb('s2'),
+                
                 FlyContainer(
-                  child: FlyText('Small Text in Container')
-                    .text('sm')
-                    .color(colors.gray700)
-                    .p(12),
-                )
-                  .bg(colors.gray100)
-                  .border(1)
-                  .borderColor(colors.gray300)
-                  .rounded(6)
-                  .p(16)
-                  .mb(spacing.s2),
-
-                // Text with custom styling over text style
-                FlyText('Custom Styling Over Text Style')
-                  .text('base')
-                  .color(colors.white)
-                  .p(8)
-                  .bg(colors.purple500)
-                  .rounded(4)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Text Alignment Examples
-                FlyText('Text Alignment Examples')
-                  .color(colors.gray700)
-                  .m(spacing.s3),
-
-                const SizedBox(height: 16),
-
-                // Left aligned text in container
+                  child: FlyText('Center Aligned').align('center').color('green600').p('s2'),
+                ).w('s80').border(1).borderColor('green300').rounded('sm').mb('s2'),
+                
                 FlyContainer(
-                  child: FlyText('Left Aligned Text')
-                    .align('left')
-                    .color(colors.blue600)
-                    .p(8),
-                )
-                  .w(300)
-                  .border(1)
-                  .borderColor(colors.blue300)
-                  .rounded(4)
-                  .mb(spacing.s2),
+                  child: FlyText('Right Aligned').align('right').color('purple600').p('s2'),
+                ).w('s80').border(1).borderColor('purple300').rounded('sm').mb('s4'),
 
-                // Center aligned text in container
-                FlyContainer(
-                  child: FlyText('Center Aligned Text')
-                    .align('center')
-                    .color(colors.green600)
-                    .p(8),
-                )
-                  .w(300)
-                  .border(1)
-                  .borderColor(colors.green300)
-                  .rounded(4)
-                  .mb(spacing.s2),
+                // Text Transformations
+                _buildSubsectionHeader('Text Transformations'),
+                FlyText('uppercase text').uppercase().color('blue600').mb('s2'),
+                FlyText('LOWERCASE TEXT').lowercase().color('green600').mb('s2'),
+                FlyText('capitalize text').capitalize().color('purple600').mb('s4'),
 
-                // Right aligned text in container
-                FlyContainer(
-                  child: FlyText('Right Aligned Text')
-                    .align('right')
-                    .color(colors.purple600)
-                    .p(8),
-                )
-                  .w(300)
-                  .border(1)
-                  .borderColor(colors.purple300)
-                  .rounded(4)
-                  .mb(spacing.s2),
+                // Text Decorations
+                _buildSubsectionHeader('Text Decorations'),
+                FlyText('Underlined Text').underline().color('blue600').mb('s2'),
+                FlyText('Strikethrough Text').lineThrough().color('red600').mb('s2'),
+                FlyText('Overlined Text').overline().color('green600').mb('s4'),
 
-                // Justify aligned text in container
-                FlyContainer(
-                  child: FlyText('Justify Aligned Text - This is a longer text that will demonstrate how justify alignment works by spreading the text across the full width of the container.')
-                    .align('justify')
-                    .color(colors.orange600)
-                    .p(8),
-                )
-                  .w(300)
-                  .border(1)
-                  .borderColor(colors.orange300)
-                  .rounded(4)
-                  .mb(spacing.s2),
-
-                // TextAlign enum example in container
-                FlyContainer(
-                  child: FlyText('TextAlign Enum Example')
-                    .align(TextAlign.center)
-                    .color(colors.red600)
-                    .p(8),
-                )
-                  .w(300)
-                  .border(1)
-                  .borderColor(colors.red300)
-                  .rounded(4)
-                  .mb(spacing.s2),
-
-                // Combined with other properties
-                FlyContainer(
-                  child: FlyText('Styled Text with Alignment')
-                    .text('lg')
-                    .align('center')
-                    .color(colors.white)
-                    .p(12),
-                )
-                  .w(300)
-                  .bg(colors.indigo500)
-                  .rounded(8)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Text Transformation Examples
-                FlyText('Text Transformation Examples')
-                  .color(colors.gray700)
-                  .m(spacing.s3),
-
-                const SizedBox(height: 16),
-
-                // Uppercase transformation
-                FlyText('uppercase transformation')
-                  .uppercase()
-                  .color(colors.blue600)
-                  .mb(spacing.s2),
-
-                // Lowercase transformation
-                FlyText('LOWERCASE TRANSFORMATION')
-                  .lowercase()
-                  .color(colors.green600)
-                  .mb(spacing.s2),
-
-                // Capitalize transformation
-                FlyText('capitalize transformation')
-                  .capitalize()
-                  .color(colors.purple600)
-                  .mb(spacing.s2),
-
-                // Combined with other properties
-                FlyText('Styled Text with Transformation')
-                  .text('lg')
-                  .uppercase()
-                  .color(colors.white)
-                  .p(12)
-                  .bg(colors.indigo500)
-                  .rounded(8)
-                  .mb(spacing.s2),
-
-                // Multiple transformations (last one wins)
-                FlyText('Multiple Transformations')
-                  .uppercase()
-                  .lowercase()  // This will override uppercase
-                  .color(colors.red600)
-                  .mb(spacing.s2),
-
-                // In containers with alignment
-                FlyContainer(
-                  child: FlyText('Centered Uppercase Text')
-                    .uppercase()
-                    .align('center')
-                    .color(colors.white)
-                    .p(8),
-                )
-                  .w(300)
-                  .bg(colors.teal500)
-                  .rounded(8)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Text Decoration Examples
-                FlyText('Text Decoration Examples')
-                  .color(colors.gray700)
-                  .m(spacing.s3),
-
-                const SizedBox(height: 16),
-
-                // Underline decoration
-                FlyText('Underlined Text')
-                  .underline()
-                  .color(colors.blue600)
-                  .mb(spacing.s2),
-
-                // Line-through decoration
-                FlyText('Strikethrough Text')
-                  .lineThrough()
-                  .color(colors.red600)
-                  .mb(spacing.s2),
-
-                // Overline decoration
-                FlyText('Overlined Text')
-                  .overline()
-                  .color(colors.green600)
-                  .mb(spacing.s2),
-
-                // No decoration
-                FlyText('No Decoration Text')
-                  .noDecoration()
-                  .color(colors.purple600)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Decoration with other properties
-                FlyText('Styled Underlined Text')
-                  .text('lg')
-                  .underline()
-                  .color(colors.white)
-                  .p(12)
-                  .bg(colors.blue500)
-                  .rounded(8)
-                  .mb(spacing.s2),
-
-                FlyText('Styled Strikethrough Text')
-                  .text('base')
-                  .lineThrough()
-                  .color(colors.white)
-                  .p(8)
-                  .bg(colors.red500)
-                  .rounded(6)
-                  .mb(spacing.s2),
-
-                // Decoration in containers
-                FlyContainer(
-                  child: FlyText('Container with Underlined Text')
-                    .underline()
-                    .color(colors.white)
-                    .p(12),
-                )
-                  .bg(colors.green500)
-                  .rounded(8)
-                  .p(16)
-                  .mb(spacing.s2),
-
-                FlyContainer(
-                  child: FlyText('Container with Strikethrough Text')
-                    .lineThrough()
-                    .color(colors.white)
-                    .p(12),
-                )
-                  .bg(colors.orange500)
-                  .rounded(8)
-                  .p(16)
-                  .mb(spacing.s2),
-
-                // Decoration with alignment
-                FlyText('Centered Underlined Text')
-                  .underline()
-                  .align('center')
-                  .color(colors.purple600)
-                  .p(8)
-                  .bg(colors.purple50)
-                  .rounded(6)
-                  .mb(spacing.s2),
-
-                // Multiple decorations (last one wins)
-                FlyText('Multiple Decorations')
-                  .underline()
-                  .lineThrough()  // This will override underline
-                  .color(colors.indigo600)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Line Height (Leading) Examples
-                FlyText('Line Height (Leading) Examples')
-                  .color(colors.gray700)
-                  .m(spacing.s3),
-
-                const SizedBox(height: 16),
-
-                // Different leading values using tokens
+                // Line Height (Leading)
+                _buildSubsectionHeader('Line Height (Leading)'),
                 FlyText('Tight Leading (1.25x)\nThis is a longer text block that spans multiple lines to demonstrate the tight line spacing. Notice how the lines are closer together for compact layouts.')
-                  .text('base')
-                  .leading('tight')
-                  .color(colors.blue600)
-                  .mb(spacing.s2),
-
+                  .text('base').leading('tight').color('blue600').mb('s2'),
                 FlyText('Snug Leading (1.375x)\nThis is a longer text block that spans multiple lines to demonstrate the snug line spacing. Notice how there is slightly more breathing room between lines.')
-                  .text('base')
-                  .leading('snug')
-                  .color(colors.green600)
-                  .mb(spacing.s2),
-
+                  .text('base').leading('snug').color('green600').mb('s2'),
                 FlyText('Normal Leading (1.5x)\nThis is a longer text block that spans multiple lines to demonstrate the normal line spacing. This provides comfortable reading with standard line height.')
-                  .text('base')
-                  .leading('normal')
-                  .color(colors.purple600)
-                  .mb(spacing.s2),
-
+                  .text('base').leading('normal').color('purple600').mb('s2'),
                 FlyText('Relaxed Leading (1.625x)\nThis is a longer text block that spans multiple lines to demonstrate the relaxed line spacing. Notice the increased space between lines for better readability.')
-                  .text('base')
-                  .leading('relaxed')
-                  .color(colors.orange600)
-                  .mb(spacing.s2),
-
+                  .text('base').leading('relaxed').color('orange600').mb('s2'),
                 FlyText('Loose Leading (2.0x)\nThis is a longer text block that spans multiple lines to demonstrate the loose line spacing. Notice the maximum spacing between lines for optimal readability.')
-                  .text('base')
-                  .leading('loose')
-                  .color(colors.red600)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Custom numeric leading values
+                  .text('base').leading('loose').color('red600').mb('s2'),
                 FlyText('Custom Leading (1.2x) - This text uses a custom numeric leading value.')
-                  .leading(1.2)
-                  .color(colors.indigo600)
-                  .mb(spacing.s2),
-
+                  .leading(1.2).color('indigo600').mb('s2'),
                 FlyText('Custom Leading (2.5x) - This text uses a very loose custom leading value.')
-                  .leading(2.5)
-                  .color(colors.teal600)
-                  .mb(spacing.s2),
+                  .leading(2.5).color('teal600').mb('s4'),
 
-                const SizedBox(height: 16),
+                // Letter Spacing (Tracking)
+                _buildSubsectionHeader('Letter Spacing (Tracking)'),
+                FlyText('Tighter Tracking').tracking('tighter').color('blue600').mb('s2'),
+                FlyText('Tight Tracking').tracking('tight').color('green600').mb('s2'),
+                FlyText('Normal Tracking').tracking('normal').color('purple600').mb('s2'),
+                FlyText('Wide Tracking').tracking('wide').color('orange600').mb('s2'),
+                FlyText('Wider Tracking').tracking('wider').color('red600').mb('s2'),
+                FlyText('Widest Tracking').tracking('widest').color('indigo600').mb('s2'),
+                FlyText('Custom Tracking (-1.0)').tracking(-1.0).color('teal600').mb('s2'),
+                FlyText('Custom Tracking (2.0)').tracking(2.0).color('cyan600').mb('s2'),
+                FlyText('Custom Tracking (0.1em)').tracking('0.1em').color('pink600').mb('s6'),
 
-                // Leading with different text sizes
-                FlyText('Leading with Text Sizes')
-                  .color(colors.gray700)
-                  .m(spacing.s3),
+                // ========================================
+                // 3. CONTAINER UTILITIES
+                // ========================================
+                _buildSectionHeader('Container Utilities'),
 
-                const SizedBox(height: 16),
-
-                FlyText('Small Text with Tight Leading')
-                  .text('sm')
-                  .leading('tight')
-                  .color(colors.blue600)
-                  .mb(spacing.s2),
-
-                FlyText('Large Text with Relaxed Leading')
-                  .text('lg')
-                  .leading('relaxed')
-                  .color(colors.green600)
-                  .mb(spacing.s2),
-
-                FlyText('Extra Large Text with Loose Leading')
-                  .text('xl')
-                  .leading('loose')
-                  .color(colors.purple600)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Leading in containers
+                // Background Colors
+                _buildSubsectionHeader('Background Colors'),
                 FlyContainer(
-                  child: FlyText('Container with Leading')
-                    .leading('snug')
-                    .color(colors.white)
-                    .p(12),
-                )
-                  .bg(colors.blue500)
-                  .rounded(8)
-                  .p(16)
-                  .mb(spacing.s2),
-
+                  child: FlyText('Blue Background').color('white').p('s3'),
+                ).bg('blue500').rounded('sm').mb('s2'),
+                
                 FlyContainer(
-                  child: FlyText('Container with Custom Leading')
-                    .leading(1.8)
-                    .color(colors.white)
-                    .p(12),
-                )
-                  .bg(colors.green500)
-                  .rounded(8)
-                  .p(16)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Letter Spacing (Tracking) Examples
-                FlyText('Letter Spacing (Tracking) Examples')
-                  .color(colors.gray700)
-                  .m(spacing.s3),
-
-                const SizedBox(height: 16),
-
-                // Token-based tracking values
-                FlyText('Tighter Tracking')
-                  .tracking('tighter')
-                  .color(colors.blue600)
-                  .mb(spacing.s2),
-
-                FlyText('Tight Tracking')
-                  .tracking('tight')
-                  .color(colors.green600)
-                  .mb(spacing.s2),
-
-                FlyText('Normal Tracking')
-                  .tracking('normal')
-                  .color(colors.purple600)
-                  .mb(spacing.s2),
-
-                FlyText('Wide Tracking')
-                  .tracking('wide')
-                  .color(colors.orange600)
-                  .mb(spacing.s2),
-
-                FlyText('Wider Tracking')
-                  .tracking('wider')
-                  .color(colors.red600)
-                  .mb(spacing.s2),
-
-                FlyText('Widest Tracking')
-                  .tracking('widest')
-                  .color(colors.indigo600)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Numeric/custom tracking values including negative
-                FlyText('Custom Tracking (-1.0)')
-                  .tracking(-1.0)
-                  .color(colors.teal600)
-                  .mb(spacing.s2),
-
-                FlyText('Custom Tracking (2.0)')
-                  .tracking(2.0)
-                  .color(colors.cyan600)
-                  .mb(spacing.s2),
-
-                FlyText('Custom Tracking (0.1em)')
-                  .tracking('0.1em')
-                  .color(colors.pink600)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Leading with other text properties
-                FlyText('Leading with Multiple Properties')
-                  .text('lg')
-                  .leading('relaxed')
-                  .color(colors.white)
-                  .p(12)
-                  .bg(colors.purple500)
-                  .rounded(8)
-                  .mb(spacing.s2),
-
-                FlyText('Leading with Alignment and Color')
-                  .leading('snug')
-                  .align('center')
-                  .color(colors.orange600)
-                  .p(8)
-                  .bg(colors.orange50)
-                  .rounded(6)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Font Weight Examples
-                FlyText('Font Weight Examples')
-                  .color(colors.gray700)
-                  .m(spacing.s3),
-
-                const SizedBox(height: 16),
-
-                // Different font weights using tokens
-                FlyText('Thin Weight Text')
-                  .weight('thin')
-                  .color(colors.blue600)
-                  .mb(spacing.s2),
-
-                FlyText('Light Weight Text')
-                  .weight('light')
-                  .color(colors.green600)
-                  .mb(spacing.s2),
-
-                FlyText('Normal Weight Text')
-                  .weight('normal')
-                  .color(colors.purple600)
-                  .mb(spacing.s2),
-
-                FlyText('Medium Weight Text')
-                  .weight('medium')
-                  .color(colors.orange600)
-                  .mb(spacing.s2),
-
-                FlyText('Semibold Weight Text')
-                  .weight('semibold')
-                  .color(colors.red600)
-                  .mb(spacing.s2),
-
-                FlyText('Bold Weight Text')
-                  .weight('bold')
-                  .color(colors.indigo600)
-                  .mb(spacing.s2),
-
-                FlyText('Extra Bold Weight Text')
-                  .weight('extrabold')
-                  .color(colors.teal600)
-                  .mb(spacing.s2),
-
-                FlyText('Black Weight Text')
-                  .weight('black')
-                  .color(colors.pink600)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Direct FontWeight values
-                FlyText('Direct FontWeight.w300')
-                  .weight(FontWeight.w300)
-                  .color(colors.blue600)
-                  .mb(spacing.s2),
-
-                FlyText('Direct FontWeight.w600')
-                  .weight(FontWeight.w600)
-                  .color(colors.green600)
-                  .mb(spacing.s2),
-
-                FlyText('Direct FontWeight.w900')
-                  .weight(FontWeight.w900)
-                  .color(colors.purple600)
-                  .mb(spacing.s2),
-
-                const SizedBox(height: 16),
-
-                // Font weight with other properties
-                FlyText('Styled Bold Text')
-                  .text('lg')
-                  .weight('bold')
-                  .color(colors.white)
-                  .p(12)
-                  .bg(colors.blue500)
-                  .rounded(8)
-                  .mb(spacing.s2),
-
-                FlyText('Styled Medium Text with Alignment')
-                  .weight('medium')
-                  .align('center')
-                  .color(colors.white)
-                  .p(8)
-                  .bg(colors.green500)
-                  .rounded(6)
-                  .mb(spacing.s2),
-
-                // Font weight in containers
+                  child: FlyText('Green Background').color('white').p('s3'),
+                ).bg('green500').rounded('sm').mb('s2'),
+                
                 FlyContainer(
-                  child: FlyText('Container with Bold Text')
-                    .weight('bold')
-                    .color(colors.white)
-                    .p(12),
-                )
-                  .bg(colors.purple500)
-                  .rounded(8)
-                  .p(16)
-                  .mb(spacing.s2),
+                  child: FlyText('Purple Background').color('white').p('s3'),
+                ).bg('purple500').rounded('sm').mb('s4'),
 
+                // Padding and Margins
+                _buildSubsectionHeader('Padding and Margins'),
+                
+                // Basic Padding
                 FlyContainer(
-                  child: FlyText('Container with Light Text')
-                    .weight('light')
-                    .color(colors.gray700)
-                    .p(12),
-                )
-                  .bg(colors.gray100)
-                  .border(1)
-                  .borderColor(colors.gray300)
-                  .rounded(6)
-                  .p(16)
-                  .mb(spacing.s2),
+                  child: FlyText('Small Padding').color('white').p('s2'),
+                ).bg('blue500').p('s2').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Medium Padding').color('white').p('s2'),
+                ).bg('green500').p('s4').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Large Padding').color('white').p('s2'),
+                ).bg('purple500').p('s6').mb('s2'),
 
-                // Font weight with text styles
-                FlyText('Font Weight with Text Style')
-                  .text('xl')
-                  .weight('semibold')
-                  .color(colors.white)
-                  .p(12)
-                  .bg(colors.orange500)
-                  .rounded(8)
-                  .mb(spacing.s2),
+                // Directional Padding
+                FlyContainer(
+                  child: FlyText('Horizontal Padding').color('white').p('s2'),
+                ).bg('blue500').px('s4').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Vertical Padding').color('white').p('s2'),
+                ).bg('green500').py('s3').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Top Padding Only').color('white').p('s2'),
+                ).bg('purple500').pt('s6').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Right Padding Only').color('white').p('s2'),
+                ).bg('orange500').pr('s4').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Bottom Padding Only').color('white').p('s2'),
+                ).bg('teal500').pb('s5').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Left Padding Only').color('white').p('s2'),
+                ).bg('pink500').pl('s3').mb('s4'),
 
-                // Font weight with leading
-                FlyText('Font Weight with Leading')
-                  .weight('medium')
-                  .leading('relaxed')
-                  .color(colors.indigo600)
-                  .p(8)
-                  .bg(colors.indigo50)
-                  .rounded(6)
-                  .mb(spacing.s2),
+                // Margins
+                FlyContainer(
+                  child: FlyText('With Margin').color('white').p('s2'),
+                ).bg('indigo500').p('s4').m('s2').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Horizontal Margin').color('white').p('s2'),
+                ).bg('cyan500').p('s3').mx('s4').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Vertical Margin').color('white').p('s2'),
+                ).bg('amber500').p('s3').my('s2').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Top Margin Only').color('white').p('s2'),
+                ).bg('red500').p('s3').mt('s6').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Right Margin Only').color('white').p('s2'),
+                ).bg('lime500').p('s3').mr('s4').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Bottom Margin Only').color('white').p('s2'),
+                ).bg('purple500').p('s3').mb('s5').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Left Margin Only').color('white').p('s2'),
+                ).bg('gray500').p('s3').ml('s3').mb('s4'),
 
-                const SizedBox(height: 16),
+                // Border Radius
+                _buildSubsectionHeader('Border Radius'),
+                
+                // Basic Border Radius
+                FlyContainer(
+                  child: FlyText('Small Radius').color('white').p('s3'),
+                ).bg('blue500').rounded('sm').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Medium Radius').color('white').p('s3'),
+                ).bg('green500').rounded('md').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Large Radius').color('white').p('s3'),
+                ).bg('purple500').rounded('lg').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Extra Large Radius').color('white').p('s3'),
+                ).bg('orange500').rounded('xl').mb('s4'),
 
-                // Direct TextStyle test
-                FlyText('TextStyle Test')
-                  .text(const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red))
-                  .mb(spacing.s2),
+                // Selective Border Radius
+                _buildSubsectionHeader('Selective Border Radius'),
+                FlyContainer(
+                  child: FlyText('Top Corners Only').color('white').p('s3'),
+                ).bg('blue500').roundedT('lg').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Right Corners Only').color('white').p('s3'),
+                ).bg('green500').roundedR('md').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Bottom Corners Only').color('white').p('s3'),
+                ).bg('purple500').roundedB('lg').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Left Corners Only').color('white').p('s3'),
+                ).bg('orange500').roundedL('md').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Top-Left Corner Only').color('white').p('s3'),
+                ).bg('teal500').roundedTl('xl').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Top-Right Corner Only').color('white').p('s3'),
+                ).bg('pink500').roundedTr('xl').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Bottom-Left Corner Only').color('white').p('s3'),
+                ).bg('indigo500').roundedBl('xl').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Bottom-Right Corner Only').color('white').p('s3'),
+                ).bg('cyan500').roundedBr('xl').mb('s4'),
 
-                const SizedBox(height: 24),
+                // Borders
+                _buildSubsectionHeader('Borders'),
+                FlyContainer(
+                  child: FlyText('Solid Border').color('blue700').p('s3'),
+                ).bg('blue50').border(2).borderColor('blue500').borderStyle('solid').rounded('sm').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Dashed Border').color('green700').p('s3'),
+                ).bg('green50').border(2).borderColor('green500').borderStyle('dashed').rounded('sm').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Dotted Border').color('purple700').p('s3'),
+                ).bg('purple50').border(2).borderColor('purple500').borderStyle('dotted').rounded('sm').mb('s2'),
 
-                // Interactive button with theme switching
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isGreen = !_isGreen;
-                    });
+                // Selective Borders
+                _buildSubsectionHeader('Selective Borders'),
+                FlyContainer(
+                  child: FlyText('Custom Borders (Top + Right + Bottom)').color('purple700').p('s3'),
+                ).bg('purple50').borderT(10).borderR(5).borderB(10).borderColor('purple500').p('s4').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Left Border Only').color('orange700').p('s3'),
+                ).bg('orange50').borderL(8).borderColor('orange500').p('s4').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Top Border Only').color('teal700').p('s3'),
+                ).bg('teal50').borderT(6).borderColor('teal500').p('s4').mb('s4'),
 
-                    final newColor = _isGreen
-                        ? colors.green600
-                        : colors.indigo600;
-                    FlyTheme.putColor(context, 'primary', newColor);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: flyTheme.spacing.s4,
-                      vertical: flyTheme.spacing.s4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: _isGreen ? colors.green600 : colors.indigo600,
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow: [
-                        BoxShadow(
-                          color: colors.black.withValues(alpha: 0.1),
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Text(
-                      _isGreen ? 'Change to Indigo' : 'Change to Green',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                // Sizes
+                _buildSubsectionHeader('Sizes'),
+                FlyContainer(
+                  child: FlyText('Fixed Size').color('white').p('s2'),
+                ).bg('blue500').w('s32').h('s16').rounded('sm').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Max Width').color('white').p('s2'),
+                ).bg('green500').maxW('s40').h('s16').rounded('sm').mb('s2'),
+                
+                FlyContainer(
+                  child: FlyText('Min Height').color('white').p('s2'),
+                ).bg('purple500').minH('s20').w('s52').rounded('sm').mb('s4'),
+
+                // Complex Example
+                _buildSubsectionHeader('Complex Example'),
+                FlyContainer(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FlyText('Card Title')
+                        .text('lg')
+                        .weight('bold')
+                        .color('gray900')
+                        .mb('s2'),
+                      FlyText('This is a complex card with multiple utilities applied.')
+                        .text('sm')
+                        .color('gray600')
+                        .leading('relaxed')
+                        .mb('s3'),
+                      FlyContainer(
+                        child: FlyText('Action Button')
+                          .color('white')
+                          .text('sm')
+                          .weight('medium')
+                          .p('s2'),
+                      ).bg('blue500').rounded('sm').p('s3'),
+                    ],
                   ),
-                ),
+                )
+                  .bg('white')
+                  .border(1)
+                  .borderColor('gray200')
+                  .rounded('lg')
+                  .p('s5')
+                  .mb('s6'),
+
+                // ========================================
+                // 4. ADVANCED SYNTAX
+                // ========================================
+                _buildSectionHeader('Advanced Syntax'),
+
+                // Theme Token Access Patterns
+                _buildSubsectionHeader('Theme Token Access'),
+                
+                // Dot access
+                FlyText('Dot Access: font.sans, colors.blue500')
+                  .font(font.sans)
+                  .color(colors.blue500)
+                  .mb('s2'),
+                
+                // Bracket access
+                FlyText('Bracket Access: font[\'serif\'], colors[\'green500\']')
+                  .font(font['serif'])
+                  .color(colors['green500'])
+                  .mb('s2'),
+                
+                // String tokens
+                FlyText('String Tokens: \'mono\', \'purple500\'')
+                  .font('mono')
+                  .color('purple500')
+                  .mb('s4'),
+
+                // Value Type Flexibility
+                _buildSubsectionHeader('Value Type Flexibility'),
+                
+                // Font examples
+                FlyText('Font: String token vs dot access vs raw string')
+                  .font('sans')
+                  .color('gray700')
+                  .mb('s1'),
+                FlyText('Font: font.serif')
+                  .font(font.serif)
+                  .color('gray700')
+                  .mb('s1'),
+                FlyText('Font: \'Inter\'')
+                  .font('Inter')
+                  .color('gray700')
+                  .mb('s2'),
+                
+                // Font weight examples
+                FlyText('Weight: String token vs dot access vs FontWeight')
+                  .weight('bold')
+                  .color('gray700')
+                  .mb('s1'),
+                FlyText('Weight: fontWeight.medium')
+                  .weight(fontWeight.medium)
+                  .color('gray700')
+                  .mb('s1'),
+                FlyText('Weight: FontWeight.w600')
+                  .weight(FontWeight.w600)
+                  .color('gray700')
+                  .mb('s2'),
+                
+                // Text style examples
+                FlyText('Text Style: String token vs dot access vs TextStyle')
+                  .text('lg')
+                  .color('gray700')
+                  .mb('s1'),
+                FlyText('Text Style: textStyle.base')
+                  .text(textStyle.base)
+                  .color('gray700')
+                  .mb('s1'),
+                FlyText('Text Style: TextStyle(fontSize: 20)')
+                  .text(TextStyle(fontSize: 20))
+                  .color('gray700')
+                  .mb('s2'),
+                
+                // Tracking examples
+                FlyText('Tracking: String token vs dot access vs numeric')
+                  .tracking('wide')
+                  .color('gray700')
+                  .mb('s1'),
+                FlyText('Tracking: tracking.tight')
+                  .tracking(tracking.tight)
+                  .color('gray700')
+                  .mb('s1'),
+                FlyText('Tracking: 2.0')
+                  .tracking(2.0)
+                  .color('gray700')
+                  .mb('s2'),
+                
+                // Spacing examples
+                FlyText('Spacing: String token vs dot access vs numeric vs CSS vs raw')
+                  .color('gray700')
+                  .mb('s1'),
+                FlyContainer(
+                  child: FlyText('p(\'s4\')').color('white').p('s1'),
+                ).bg('blue500').p('s4').mb('s1'),
+                FlyContainer(
+                  child: FlyText('p(spacing.s3)').color('white').p('s1'),
+                ).bg('green500').p(spacing.s3).mb('s1'),
+                FlyContainer(
+                  child: FlyText('p(16)').color('white').p('s1'),
+                ).bg('purple500').p(16).mb('s1'),
+                FlyContainer(
+                  child: FlyText('p(\'20px\')').color('white').p('s1'),
+                ).bg('orange500').p('20px').mb('s1'),
+                FlyContainer(
+                  child: FlyText('p(32)').color('white').p('s1'),
+                ).bg('indigo500').p(32).mb('s2'),
+                
+                // Color examples
+                FlyText('Colors: String token vs dot access vs Color object vs hex vs raw')
+                  .color('gray700')
+                  .mb('s1'),
+                FlyText('String: \'red500\'')
+                  .color('red500')
+                  .mb('s1'),
+                FlyText('Dot: colors.teal500')
+                  .color(colors.teal500)
+                  .mb('s1'),
+                FlyText('Object: Colors.pink')
+                  .color(Colors.pink)
+                  .mb('s1'),
+                FlyText('Hex: \'#FF6B35\'')
+                  .color('#FF6B35')
+                  .mb('s1'),
+                FlyText('Raw: Color(0xFF8B5CF6)')
+                  .color(Color(0xFF8B5CF6))
+                  .mb('s4'),
+
+                // Mixed Syntax Example
+                _buildSubsectionHeader('Mixed Syntax Example'),
+                FlyContainer(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FlyText('Mixed Syntax Card')
+                        .text('lg')
+                        .weight(fontWeight.bold)
+                        .color(colors.gray900)
+                        .mb('s2'),
+                      FlyText('This card uses different syntax patterns:\n• font(font.sans) - dot access\n• color(\'blue600\') - string token\n• p(spacing.s4) - dot access\n• bg(\'blue50\') - string token\n• rounded(radius.md) - dot access')
+                        .text('sm')
+                        .color('gray600')
+                        .leading(leading.relaxed)
+                        .mb('s3'),
+                      FlyContainer(
+                        child: FlyText('Mixed Button')
+                          .color(Colors.white)
+                          .text('sm')
+                          .weight('medium')
+                          .p('s2'),
+                      ).bg('#FF6B35').rounded(radius.sm).p('s3'),
+                    ],
+                  ),
+                )
+                  .bg('white')
+                  .border(1)
+                  .borderColor(colors.gray200)
+                  .rounded('lg')
+                  .p('s5')
+                  .mb('s6'),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildSectionHeader(String title) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        FlyText(title)
+          .text('xl2')
+          .weight('bold')
+          .color('gray900')
+          .mb('s2'),
+      ],
+    );
+  }
+
+  Widget _buildSubsectionHeader(String title) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        FlyText(title)
+          .text('lg')
+          .weight('semibold')
+          .color('gray800')
+          .mb('s3'),
+      ],
     );
   }
 }
