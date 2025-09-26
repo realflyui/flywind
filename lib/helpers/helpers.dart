@@ -33,4 +33,5 @@ export 'rounded.dart';
 export 'size.dart';
 export 'spacing.dart';
 export 'style.dart';
+export 'text.dart';
 export 'value.dart';

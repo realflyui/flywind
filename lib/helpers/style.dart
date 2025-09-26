@@ -3,6 +3,7 @@ import 'padding.dart';
 import 'margin.dart';
 import 'color.dart';
 import 'rounded.dart';
+import 'text.dart';
 
 /// Internal style storage for FlyText widget
 class FlyStyle {
@@ -44,6 +45,7 @@ class FlyStyle {
     this.maxW,
     this.minH,
     this.minW,
+    this.text,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -83,6 +85,7 @@ class FlyStyle {
   final dynamic maxW; // Max width - can be int, double, String (token name/unit)
   final dynamic minH; // Min height - can be int, double, String (token name/unit)
   final dynamic minW; // Min width - can be int, double, String (token name/unit)
+  final dynamic text; // Text style token name - can be String ('xs', 'sm', 'base', 'lg', etc.)
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -123,6 +126,7 @@ class FlyStyle {
     dynamic maxW,
     dynamic minH,
     dynamic minW,
+    dynamic text,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -162,6 +166,7 @@ class FlyStyle {
       maxW: maxW ?? this.maxW,
       minH: minH ?? this.minH,
       minW: minW ?? this.minW,
+      text: text ?? this.text,
     );
   }
 
@@ -170,9 +175,9 @@ class FlyStyle {
     Widget result = child;
 
     // Apply utilities in the correct order (inner to outer)
-    // For text widgets, we need to apply color first to preserve text styling
-    if (child is Text && color != null) {
-      result = _applyTextColorDirect(context, child);
+    // For text widgets, we need to apply text style first, then color
+    if (child is Text) {
+      result = _applyTextStyleDirect(context, child);
     }
 
     // 1. Padding (applied to the content)
@@ -256,11 +261,24 @@ class FlyStyle {
       hasBorder ||
       hasBorderRadius;
 
-  /// Apply text color directly to a Text widget
-  Widget _applyTextColorDirect(BuildContext context, Text textWidget) {
+  /// Apply text style directly to a Text widget
+  Widget _applyTextStyleDirect(BuildContext context, Text textWidget) {
+    // Start with the existing text widget style
+    TextStyle finalStyle = textWidget.style ?? const TextStyle();
+    
+    // Apply text style token if set
+    if (text != null) {
+      finalStyle = FlyTextUtils.applyToTextStyle(context, this, finalStyle);
+    }
+    
+    // Then apply color if set (this will override the color from the text style token)
+    if (color != null) {
+      finalStyle = FlyColorUtils.applyToTextStyle(context, this, finalStyle);
+    }
+    
     return Text(
       textWidget.data ?? '',
-      style: FlyColorUtils.applyToTextStyle(context, this, textWidget.style),
+      style: finalStyle,
       textAlign: textWidget.textAlign,
       textDirection: textWidget.textDirection,
       locale: textWidget.locale,
@@ -273,6 +291,7 @@ class FlyStyle {
       textHeightBehavior: textWidget.textHeightBehavior,
     );
   }
+
 
   /// Apply background color to a widget
   Widget _applyBackgroundColor(BuildContext context, Widget child) {

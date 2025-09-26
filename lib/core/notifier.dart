@@ -62,14 +62,9 @@ class FlyNotifier extends ChangeNotifier {
     update((data) => data.copyWith(container: updater(data.container)));
   }
 
-  /// Update text token
-  void updateText(FlyTextToken Function(FlyTextToken current) updater) {
-    update((data) => data.copyWith(text: updater(data.text)));
-  }
-
-  /// Update text line height token
-  void updateTextLineHeight(FlyTextLineHeightToken Function(FlyTextLineHeightToken current) updater) {
-    update((data) => data.copyWith(textLineHeight: updater(data.textLineHeight)));
+  /// Update text style token
+  void updateTextStyle(FlyTextStyleToken Function(FlyTextStyleToken current) updater) {
+    update((data) => data.copyWith(textStyle: updater(data.textStyle)));
   }
 
   /// Update font weight token
@@ -149,26 +144,12 @@ class FlyNotifier extends ChangeNotifier {
     updateContainer((container) => container.put(key, value));
   }
 
-  /// Put a text value
-  void putText(String key, double value) {
+  /// Put a text style value
+  void putTextStyle(String key, TextStyle value) {
     if (key.isEmpty) {
-      throw ArgumentError('Text key cannot be empty');
+      throw ArgumentError('Text style key cannot be empty');
     }
-    if (value < 0) {
-      throw ArgumentError('Text value cannot be negative: $value');
-    }
-    updateText((text) => text.put(key, value));
-  }
-
-  /// Put a text line height value
-  void putTextLineHeight(String key, double value) {
-    if (key.isEmpty) {
-      throw ArgumentError('Text line height key cannot be empty');
-    }
-    if (value < 0) {
-      throw ArgumentError('Text line height value cannot be negative: $value');
-    }
-    updateTextLineHeight((textLineHeight) => textLineHeight.put(key, value));
+    updateTextStyle((textStyle) => textStyle.put(key, value));
   }
 
   /// Put a font weight value
@@ -230,8 +211,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     required this.radius,
     required this.breakpoints,
     required this.container,
-    required this.text,
-    required this.textLineHeight,
+    required this.textStyle,
     required this.fontWeight,
     required this.tracking,
     required this.blur,
@@ -246,8 +226,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     FlyRadiusToken? radius,
     FlyBreakpointToken? breakpoints,
     FlyContainerToken? container,
-    FlyTextToken? text,
-    FlyTextLineHeightToken? textLineHeight,
+    FlyTextStyleToken? textStyle,
     FlyFontWeightToken? fontWeight,
     FlyTrackingToken? tracking,
     FlyBlurToken? blur,
@@ -260,8 +239,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       radius: radius ?? FlyRadiusToken.defaultRadius(),
       breakpoints: breakpoints ?? FlyBreakpointToken.defaultBreakpoint(),
       container: container ?? FlyContainerToken.defaultContainer(),
-      text: text ?? FlyTextToken.defaultText(),
-      textLineHeight: textLineHeight ?? FlyTextLineHeightToken.defaultTextLineHeight(),
+      textStyle: textStyle ?? FlyTextStyleToken.defaultTextStyle(),
       fontWeight: fontWeight ?? FlyFontWeightToken.defaultFontWeight(),
       tracking: tracking ?? FlyTrackingToken.defaultTracking(),
       blur: blur ?? FlyBlurToken.defaultBlur(),
@@ -275,8 +253,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
   final FlyRadiusToken radius;
   final FlyBreakpointToken breakpoints;
   final FlyContainerToken container;
-  final FlyTextToken text;
-  final FlyTextLineHeightToken textLineHeight;
+  final FlyTextStyleToken textStyle;
   final FlyFontWeightToken fontWeight;
   final FlyTrackingToken tracking;
   final FlyBlurToken blur;
@@ -291,8 +268,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     FlyRadiusToken? radius,
     FlyBreakpointToken? breakpoints,
     FlyContainerToken? container,
-    FlyTextToken? text,
-    FlyTextLineHeightToken? textLineHeight,
+    FlyTextStyleToken? textStyle,
     FlyFontWeightToken? fontWeight,
     FlyTrackingToken? tracking,
     FlyBlurToken? blur,
@@ -305,8 +281,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       radius: radius ?? this.radius,
       breakpoints: breakpoints ?? this.breakpoints,
       container: container ?? this.container,
-      text: text ?? this.text,
-      textLineHeight: textLineHeight ?? this.textLineHeight,
+      textStyle: textStyle ?? this.textStyle,
       fontWeight: fontWeight ?? this.fontWeight,
       tracking: tracking ?? this.tracking,
       blur: blur ?? this.blur,
@@ -325,8 +300,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       radius: radius.merge(other.radius),
       breakpoints: breakpoints.merge(other.breakpoints),
       container: container.merge(other.container),
-      text: text.merge(other.text),
-      textLineHeight: textLineHeight.merge(other.textLineHeight),
+      textStyle: textStyle.merge(other.textStyle),
       fontWeight: fontWeight.merge(other.fontWeight),
       tracking: tracking.merge(other.tracking),
       blur: blur.merge(other.blur),
@@ -343,8 +317,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       radius: FlyRadiusToken.defaultRadius(),
       breakpoints: FlyBreakpointToken.defaultBreakpoint(),
       container: FlyContainerToken.defaultContainer(),
-      text: FlyTextToken.defaultText(),
-      textLineHeight: FlyTextLineHeightToken.defaultTextLineHeight(),
+      textStyle: FlyTextStyleToken.defaultTextStyle(),
       fontWeight: FlyFontWeightToken.defaultFontWeight(),
       tracking: FlyTrackingToken.defaultTracking(),
       blur: FlyBlurToken.defaultBlur(),
@@ -364,8 +337,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       radius: radius.lerp(other.radius, t),
       breakpoints: breakpoints.lerp(other.breakpoints, t),
       container: container.lerp(other.container, t),
-      text: text.lerp(other.text, t),
-      textLineHeight: textLineHeight.lerp(other.textLineHeight, t),
+      textStyle: textStyle.lerp(other.textStyle, t),
       fontWeight: fontWeight.lerp(other.fontWeight, t),
       tracking: tracking.lerp(other.tracking, t),
       blur: blur.lerp(other.blur, t),
@@ -383,8 +355,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
         other.radius == radius &&
         other.breakpoints == breakpoints &&
         other.container == container &&
-        other.text == text &&
-        other.textLineHeight == textLineHeight &&
+        other.textStyle == textStyle &&
         other.fontWeight == fontWeight &&
         other.tracking == tracking &&
         other.blur == blur &&
@@ -394,8 +365,8 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
 
   @override
   int get hashCode => Object.hash(
-    spacing, colors, radius, breakpoints, container, text, 
-    textLineHeight, fontWeight, tracking, blur, perspective, leading
+    spacing, colors, radius, breakpoints, container, textStyle, 
+    fontWeight, tracking, blur, perspective, leading
   );
 }
 

@@ -328,6 +328,102 @@ class _FlywindAppState extends State<FlywindApp> {
 
                 const SizedBox(height: 24),
 
+                // Text Style Examples Section
+                FlyText('Text Style Examples')
+                  .color(colors.gray700)
+                  .m(spacing.s3),
+
+                const SizedBox(height: 16),
+
+                // Different text sizes
+                FlyText('Extra Small Text (xs)')
+                  .text('xs')
+                  .color(colors.blue600)
+                  .mb(spacing.s2),
+
+                FlyText('Small Text (sm)')
+                  .text('sm')
+                  .color(colors.green600)
+                  .mb(spacing.s2),
+
+                FlyText('Base Text (base)')
+                  .text('base')
+                  .color(colors.purple600)
+                  .mb(spacing.s2),
+
+                FlyText('Large Text (lg)')
+                  .text('lg')
+                  .color(colors.orange600)
+                  .mb(spacing.s2),
+
+                FlyText('Extra Large Text (xl)')
+                  .text('xl')
+                  .color(colors.red600)
+                  .mb(spacing.s2),
+
+                FlyText('2XL Text (xl2)')
+                  .text('xl2')
+                  .color(colors.indigo600)
+                  .mb(spacing.s2),
+
+                FlyText('3XL Text (xl3)')
+                  .text('xl3')
+                  .color(colors.teal600)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
+                // Text with color overrides
+                FlyText('Text with Color Override')
+                  .text('lg')
+                  .color(colors.pink600)  // This overrides the color from the text style token
+                  .mb(spacing.s2),
+
+                // Text with multiple properties
+                FlyText('Styled Text with Multiple Properties')
+                  .text('base')
+                  .color(colors.white)
+                  .p(12)
+                  .bg(colors.blue500)
+                  .rounded(8)
+                  .mb(spacing.s2),
+
+                // Text in containers with different styles
+                FlyContainer(
+                  child: FlyText('Container with Text Style')
+                    .text('xl')
+                    .color(colors.white)
+                    .p(16),
+                )
+                  .bg(colors.green500)
+                  .rounded(12)
+                  .p(20)
+                  .mb(spacing.s2),
+
+                FlyContainer(
+                  child: FlyText('Small Text in Container')
+                    .text('sm')
+                    .color(colors.gray700)
+                    .p(12),
+                )
+                  .bg(colors.gray100)
+                  .border(1)
+                  .borderColor(colors.gray300)
+                  .rounded(6)
+                  .p(16)
+                  .mb(spacing.s2),
+
+                // Text with custom styling over text style
+                FlyText('Custom Styling Over Text Style')
+                  .text('base')
+                  .color(colors.white)
+                  .p(8)
+                  .bg(colors.purple500)
+                  .rounded(4)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 24),
+
                 // Interactive button with theme switching
                 GestureDetector(
                   onTap: () {

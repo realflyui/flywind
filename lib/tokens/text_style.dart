@@ -1,11 +1,12 @@
 // GENERATED FILE - DO NOT EDIT MANUALLY
 // To regenerate, run: dart cli/generate_defaults.dart
 
+import 'package:flutter/material.dart';
 import '../core/token.dart';
 
-/// Text line height values
-class FlyTextLineHeightToken implements FlyToken<double> {
-  const FlyTextLineHeightToken({
+/// Text style values with fontSize and height
+class FlyTextStyleToken implements FlyToken<TextStyle> {
+  const FlyTextStyleToken({
     required this.xs,
     required this.sm,
     required this.base,
@@ -22,38 +23,38 @@ class FlyTextLineHeightToken implements FlyToken<double> {
     this.extras = const {},
   });
 
-  /// xs Text line height values
-  final double xs;
-  /// sm Text line height values
-  final double sm;
-  /// base Text line height values
-  final double base;
-  /// lg Text line height values
-  final double lg;
-  /// xl Text line height values
-  final double xl;
-  /// 2xl Text line height values
-  final double xl2;
-  /// 3xl Text line height values
-  final double xl3;
-  /// 4xl Text line height values
-  final double xl4;
-  /// 5xl Text line height values
-  final double xl5;
-  /// 6xl Text line height values
-  final double xl6;
-  /// 7xl Text line height values
-  final double xl7;
-  /// 8xl Text line height values
-  final double xl8;
-  /// 9xl Text line height values
-  final double xl9;
+  /// xs Text style values with fontSize and height
+  final TextStyle xs;
+  /// sm Text style values with fontSize and height
+  final TextStyle sm;
+  /// base Text style values with fontSize and height
+  final TextStyle base;
+  /// lg Text style values with fontSize and height
+  final TextStyle lg;
+  /// xl Text style values with fontSize and height
+  final TextStyle xl;
+  /// 2xl Text style values with fontSize and height
+  final TextStyle xl2;
+  /// 3xl Text style values with fontSize and height
+  final TextStyle xl3;
+  /// 4xl Text style values with fontSize and height
+  final TextStyle xl4;
+  /// 5xl Text style values with fontSize and height
+  final TextStyle xl5;
+  /// 6xl Text style values with fontSize and height
+  final TextStyle xl6;
+  /// 7xl Text style values with fontSize and height
+  final TextStyle xl7;
+  /// 8xl Text style values with fontSize and height
+  final TextStyle xl8;
+  /// 9xl Text style values with fontSize and height
+  final TextStyle xl9;
 
   /// Additional custom values
-  final Map<String, double> extras;
+  final Map<String, TextStyle> extras;
 
   /// All values in a single map for easier iteration
-  Map<String, double> get _allValues => {
+  Map<String, TextStyle> get _allValues => {
     'xs': xs,
     'sm': sm,
     'base': base,
@@ -72,7 +73,7 @@ class FlyTextLineHeightToken implements FlyToken<double> {
 
   /// Access value by key (canonical or extra)
   @override
-  double? operator[](String key) => _allValues[key];
+  TextStyle? operator[](String key) => _allValues[key];
 
   /// Get all available keys (canonical + extras)
   @override
@@ -80,7 +81,7 @@ class FlyTextLineHeightToken implements FlyToken<double> {
 
   /// Put a new value for the given key
   @override
-  FlyTextLineHeightToken put(String key, double value) {
+  FlyTextStyleToken put(String key, TextStyle value) {
     switch (key) {
       case 'xs':
         return copyWith(xs: value);
@@ -109,7 +110,7 @@ class FlyTextLineHeightToken implements FlyToken<double> {
       case 'xl9':
         return copyWith(xl9: value);
       default:
-        final newExtras = Map<String, double>.from(extras);
+        final newExtras = Map<String, TextStyle>.from(extras);
         newExtras[key] = value;
         return copyWith(extras: newExtras);
     }
@@ -117,8 +118,8 @@ class FlyTextLineHeightToken implements FlyToken<double> {
 
   /// Merge another token into this one (right side wins)
   @override
-  FlyTextLineHeightToken merge(FlyToken<double> other) {
-    if (other is! FlyTextLineHeightToken) return this;
+  FlyTextStyleToken merge(FlyToken<TextStyle> other) {
+    if (other is! FlyTextStyleToken) return this;
     
     return copyWith(
       xs: other.xs,
@@ -139,23 +140,23 @@ class FlyTextLineHeightToken implements FlyToken<double> {
   }
 
   /// Create a copy with updated values
-  FlyTextLineHeightToken copyWith({
-    double? xs,
-    double? sm,
-    double? base,
-    double? lg,
-    double? xl,
-    double? xl2,
-    double? xl3,
-    double? xl4,
-    double? xl5,
-    double? xl6,
-    double? xl7,
-    double? xl8,
-    double? xl9,
-    Map<String, double>? extras,
+  FlyTextStyleToken copyWith({
+    TextStyle? xs,
+    TextStyle? sm,
+    TextStyle? base,
+    TextStyle? lg,
+    TextStyle? xl,
+    TextStyle? xl2,
+    TextStyle? xl3,
+    TextStyle? xl4,
+    TextStyle? xl5,
+    TextStyle? xl6,
+    TextStyle? xl7,
+    TextStyle? xl8,
+    TextStyle? xl9,
+    Map<String, TextStyle>? extras,
   }) {
-    return FlyTextLineHeightToken(
+    return FlyTextStyleToken(
       xs: xs ?? this.xs,
       sm: sm ?? this.sm,
       base: base ?? this.base,
@@ -174,19 +175,23 @@ class FlyTextLineHeightToken implements FlyToken<double> {
   }
 
   /// Linear interpolation between two tokens
-  FlyTextLineHeightToken lerp(FlyTextLineHeightToken other, double t) {
-    final result = <String, double>{};
+  FlyTextStyleToken lerp(FlyTextStyleToken other, double t) {
+    final result = <String, TextStyle>{};
     final allKeys = {..._allValues.keys, ...other._allValues.keys};
     
     for (final key in allKeys) {
       final valueA = _allValues[key];
       final valueB = other._allValues[key];
-      final numA = valueA ?? 0.0;
-      final numB = valueB ?? 0.0;
-      result[key] = numA + (numB - numA) * t;
+      if (valueA != null && valueB != null) {
+        result[key] = TextStyle.lerp(valueA, valueB, t) ?? valueA;
+      } else if (valueA != null) {
+        result[key] = valueA;
+      } else if (valueB != null) {
+        result[key] = valueB;
+      }
     }
     
-    return FlyTextLineHeightToken(
+    return FlyTextStyleToken(
       xs: result['xs']!,
       sm: result['sm']!,
       base: result['base']!,
@@ -205,28 +210,28 @@ class FlyTextLineHeightToken implements FlyToken<double> {
   }
 
   /// Create default values
-  static FlyTextLineHeightToken defaultTextLineHeight() {
-    return const FlyTextLineHeightToken(
-      xs: 1.3333333333333333,
-      sm: 1.4285714285714286,
-      base: 1.5,
-      lg: 1.5555555555555556,
-      xl: 1.4,
-      xl2: 1.3333333333333333,
-      xl3: 1.2,
-      xl4: 1.1111111111111112,
-      xl5: 1.0,
-      xl6: 1.0,
-      xl7: 1.0,
-      xl8: 1.0,
-      xl9: 1.0,
+  static FlyTextStyleToken defaultTextStyle() {
+    return const FlyTextStyleToken(
+      xs: TextStyle(fontSize: 12, height: 1.3333333333333333),
+      sm: TextStyle(fontSize: 14, height: 1.4285714285714286),
+      base: TextStyle(fontSize: 16, height: 1.5),
+      lg: TextStyle(fontSize: 18, height: 1.5555555555555556),
+      xl: TextStyle(fontSize: 20, height: 1.4),
+      xl2: TextStyle(fontSize: 24, height: 1.3333333333333333),
+      xl3: TextStyle(fontSize: 30, height: 1.2),
+      xl4: TextStyle(fontSize: 36, height: 1.1111111111111112),
+      xl5: TextStyle(fontSize: 48, height: 1),
+      xl6: TextStyle(fontSize: 60, height: 1),
+      xl7: TextStyle(fontSize: 72, height: 1),
+      xl8: TextStyle(fontSize: 96, height: 1),
+      xl9: TextStyle(fontSize: 128, height: 1),
     );
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is FlyTextLineHeightToken && _allValues.toString() == other._allValues.toString();
+    return other is FlyTextStyleToken && _allValues.toString() == other._allValues.toString();
   }
 
   @override

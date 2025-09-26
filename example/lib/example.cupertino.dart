@@ -34,8 +34,6 @@ class _FlywindExampleState extends State<FlywindExample> {
         radius: CustomRadius.defaultRadius(),
         breakpoints: CustomBreakpoint.defaultBreakpoint(),
         container: CustomContainer.defaultContainer(),
-        text: CustomText.defaultText(),
-        textLineHeight: CustomTextLineHeight.defaultTextLineHeight(),
         fontWeight: CustomFontWeight.defaultFontWeight(),
         tracking: CustomTracking.defaultTracking(),
         blur: CustomBlur.defaultBlur(),
@@ -50,8 +48,6 @@ class _FlywindExampleState extends State<FlywindExample> {
         radius: CustomRadius.defaultRadius(),
         breakpoints: CustomBreakpoint.defaultBreakpoint(),
         container: CustomContainer.defaultContainer(),
-        text: CustomText.defaultText(),
-        textLineHeight: CustomTextLineHeight.defaultTextLineHeight(),
         fontWeight: CustomFontWeight.defaultFontWeight(),
         tracking: CustomTracking.defaultTracking(),
         blur: CustomBlur.defaultBlur(),
@@ -115,7 +111,7 @@ class _FlywindAppState extends State<FlywindApp> {
                   color: flyTheme.colors['text'] ?? CupertinoColors.black,
                 ),
               ),
-              SizedBox(height: flyTheme.spacing.test),
+              SizedBox(height: flyTheme.spacing.s4),
               Text(
                 'Your Fly theming library is ready to use.',
                 style: TextStyle(

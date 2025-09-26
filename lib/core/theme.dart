@@ -72,14 +72,9 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
     _getNotifier(context)?.updateContainer(updater);
   }
 
-  /// Update text token
-  static void updateText(BuildContext context, FlyTextToken Function(FlyTextToken current) updater) {
-    _getNotifier(context)?.updateText(updater);
-  }
-
-  /// Update text line height token
-  static void updateTextLineHeight(BuildContext context, FlyTextLineHeightToken Function(FlyTextLineHeightToken current) updater) {
-    _getNotifier(context)?.updateTextLineHeight(updater);
+  /// Update text style token
+  static void updateTextStyle(BuildContext context, FlyTextStyleToken Function(FlyTextStyleToken current) updater) {
+    _getNotifier(context)?.updateTextStyle(updater);
   }
 
   /// Update font weight token
@@ -132,14 +127,9 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
     _getNotifier(context)?.putContainer(key, value);
   }
 
-  /// Put a text value
-  static void putText(BuildContext context, String key, double value) {
-    _getNotifier(context)?.putText(key, value);
-  }
-
-  /// Put a text line height value
-  static void putTextLineHeight(BuildContext context, String key, double value) {
-    _getNotifier(context)?.putTextLineHeight(key, value);
+  /// Put a text style value
+  static void putTextStyle(BuildContext context, String key, TextStyle value) {
+    _getNotifier(context)?.putTextStyle(key, value);
   }
 
   /// Put a font weight value

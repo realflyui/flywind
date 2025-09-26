@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+import 'style.dart';
+import '../core/theme.dart';
+
+/// Utility class for handling Tailwind-like text style logic
+class FlyTextUtils {
+  /// Resolves text style from FlyStyle and FlyThemeData into TextStyle
+  static TextStyle? resolve(BuildContext context, FlyStyle style) {
+    if (style.text == null) return null;
+    
+    try {
+      final textStyles = FlyTheme.of(context).textStyle;
+      return textStyles[style.text];
+    } catch (e) {
+      throw ArgumentError('Failed to resolve text style "${style.text}": $e');
+    }
+  }
+
+  /// Applies text style to a TextStyle using copyWith
+  static TextStyle applyToTextStyle(
+    BuildContext context,
+    FlyStyle style,
+    TextStyle? baseStyle,
+  ) {
+    final textStyle = resolve(context, style);
+
+    if (textStyle == null) {
+      return baseStyle ?? const TextStyle();
+    }
+
+    // Use copyWith to merge token style with existing style
+    return textStyle.copyWith(
+      color: baseStyle?.color,
+      fontWeight: baseStyle?.fontWeight,
+      fontStyle: baseStyle?.fontStyle,
+      letterSpacing: baseStyle?.letterSpacing,
+      wordSpacing: baseStyle?.wordSpacing,
+      textBaseline: baseStyle?.textBaseline,
+      height: baseStyle?.height,
+      leadingDistribution: baseStyle?.leadingDistribution,
+      locale: baseStyle?.locale,
+      foreground: baseStyle?.foreground,
+      background: baseStyle?.background,
+      shadows: baseStyle?.shadows,
+      fontFeatures: baseStyle?.fontFeatures,
+      decoration: baseStyle?.decoration,
+      decorationColor: baseStyle?.decorationColor,
+      decorationStyle: baseStyle?.decorationStyle,
+      decorationThickness: baseStyle?.decorationThickness,
+      debugLabel: baseStyle?.debugLabel,
+      fontFamily: baseStyle?.fontFamily,
+      fontFamilyFallback: baseStyle?.fontFamilyFallback,
+    );
+  }
+}
+
+/// Mixin that provides Tailwind-like text style methods for any widget
+mixin FlyTextHelper<T> {
+  FlyStyle get style;
+
+  T Function(FlyStyle newStyle) get copyWith;
+
+  /// Set text style - accepts String (token name like 'sm', 'base', 'lg', etc.)
+  T text(dynamic value) {
+    return copyWith(style.copyWith(text: value));
+  }
+}

@@ -51,19 +51,12 @@ class TokenGenerator {
       'description': 'Container width values',
       'conversionType': 'unit',
     },
-    'text': {
-      'prefix': 'text',
-      'className': 'FlyTextToken',
-      'dartType': 'double',
-      'description': 'Text size values',
-      'conversionType': 'unit',
-    },
-    'text-line-height': {
-      'prefix': 'text-line-height',
-      'className': 'FlyTextLineHeightToken',
-      'dartType': 'double',
-      'description': 'Text line height values',
-      'conversionType': 'unit',
+    'text-style': {
+      'prefix': 'text-style',
+      'className': 'FlyTextStyleToken',
+      'dartType': 'TextStyle',
+      'description': 'Text style values with fontSize and height',
+      'conversionType': 'textStyle',
     },
     'font-weight': {
       'prefix': 'font-weight',
@@ -114,9 +107,9 @@ class TokenGenerator {
     } else if (propertyPrefix == 'color') {
       // Handle color tokens (--color-red-500: #ef4444;)
       regex = RegExp('--color-([^:]+):\\s*([^;]+);', multiLine: true, dotAll: true);
-    } else if (propertyPrefix == 'text-line-height') {
-      // Handle text-line-height tokens (--text-xs--line-height: calc(1 / 0.75);)
-      regex = RegExp('--text-([^:]+)--line-height:\\s*([^;]+);', multiLine: true, dotAll: true);
+    } else if (propertyPrefix == 'text-style') {
+      // Handle text-style tokens by combining text size and line height
+      return _extractTextStyleTokens();
     } else if (propertyPrefix == 'aspect-video') {
       // Handle aspect-video token (--aspect-video: 16 / 9;)
       regex = RegExp('--aspect-video:\\s*([^;]+);', multiLine: true, dotAll: true);
@@ -165,6 +158,58 @@ class TokenGenerator {
       for (final entry in defaultSpacing.entries) {
         if (!tokens.containsKey(entry.key)) {
           tokens[entry.key] = entry.value;
+        }
+      }
+    }
+    
+    return tokens;
+  }
+
+  /// Extract text style tokens by combining text size and line height
+  Map<String, String> _extractTextStyleTokens() {
+    final tokens = <String, String>{};
+    
+    // Extract text size tokens
+    final textSizeRegex = RegExp('--text-([^:]+):\\s*([^;]+);', multiLine: true, dotAll: true);
+    final textSizeMatches = textSizeRegex.allMatches(cssContent);
+    final textSizes = <String, String>{};
+    
+    for (final match in textSizeMatches) {
+      if (match.group(1)!.contains('--line-height')) continue;
+      final tokenName = match.group(1)!.trim();
+      final tokenValue = match.group(2)!.trim().replaceAll(RegExp(r'\s+'), ' ');
+      textSizes[tokenName] = tokenValue;
+    }
+    
+    // Extract line height tokens
+    final lineHeightRegex = RegExp('--text-([^:]+)--line-height:\\s*([^;]+);', multiLine: true, dotAll: true);
+    final lineHeightMatches = lineHeightRegex.allMatches(cssContent);
+    final lineHeights = <String, String>{};
+    
+    for (final match in lineHeightMatches) {
+      final tokenName = match.group(1)!.trim();
+      final tokenValue = match.group(2)!.trim().replaceAll(RegExp(r'\s+'), ' ');
+      lineHeights[tokenName] = tokenValue;
+    }
+    
+    // Combine text sizes and line heights into TextStyle objects
+    final allKeys = {...textSizes.keys, ...lineHeights.keys};
+    
+    for (final key in allKeys) {
+      final fontSize = textSizes[key];
+      final lineHeight = lineHeights[key];
+      
+      if (fontSize != null) {
+        try {
+          final fontSizeValue = UnitConverter.convertToDouble(fontSize);
+          final lineHeightValue = lineHeight != null 
+              ? UnitConverter.convertToDouble(lineHeight)
+              : '1.0'; // Default line height
+          
+          final cleanName = _cleanTokenName(key);
+          tokens[cleanName] = 'TextStyle(fontSize: $fontSizeValue, height: $lineHeightValue)';
+        } catch (e) {
+          print('Warning: Could not convert text-style $key: $e');
         }
       }
     }
@@ -255,6 +300,9 @@ class TokenGenerator {
       case 'fontweight':
         // Convert font weight values to FontWeight
         return FontConverter.convertFontWeight(value);
+      case 'textstyle':
+        // TextStyle values are already formatted in _extractTextStyleTokens
+        return value;
       default:
         return '"$value"';
     }
@@ -365,7 +413,7 @@ class TokenGenerator {
     buffer.writeln();
     
     // Add imports
-    if (dartType == 'Color' || dartType == 'FontWeight') {
+    if (dartType == 'Color' || dartType == 'FontWeight' || dartType == 'TextStyle') {
       buffer.writeln("import 'package:flutter/material.dart';");
     }
     buffer.writeln("import '../core/token.dart';");
@@ -492,8 +540,8 @@ class TokenGenerator {
     buffer.writeln('  }');
     buffer.writeln();
     
-    // Generate lerp method (for numeric types, Color, and FontWeight)
-    if (dartType == 'double' || dartType == 'int' || dartType == 'Color' || dartType == 'FontWeight') {
+    // Generate lerp method (for numeric types, Color, FontWeight, and TextStyle)
+    if (dartType == 'double' || dartType == 'int' || dartType == 'Color' || dartType == 'FontWeight' || dartType == 'TextStyle') {
       buffer.writeln('  /// Linear interpolation between two tokens');
       buffer.writeln('  $className lerp($className other, double t) {');
       buffer.writeln('    final result = <String, $dartType>{};');
@@ -517,6 +565,14 @@ class TokenGenerator {
         buffer.writeln('        final weightB = valueB.index;');
         buffer.writeln('        final interpolatedIndex = (weightA + (weightB - weightA) * t).round();');
         buffer.writeln('        result[key] = FontWeight.values[interpolatedIndex.clamp(0, FontWeight.values.length - 1)];');
+        buffer.writeln('      } else if (valueA != null) {');
+        buffer.writeln('        result[key] = valueA;');
+        buffer.writeln('      } else if (valueB != null) {');
+        buffer.writeln('        result[key] = valueB;');
+        buffer.writeln('      }');
+      } else if (dartType == 'TextStyle') {
+        buffer.writeln('      if (valueA != null && valueB != null) {');
+        buffer.writeln('        result[key] = TextStyle.lerp(valueA, valueB, t) ?? valueA;');
         buffer.writeln('      } else if (valueA != null) {');
         buffer.writeln('        result[key] = valueA;');
         buffer.writeln('      } else if (valueB != null) {');
@@ -697,8 +753,7 @@ Future<void> main(List<String> args) async {
       print('  - colors (color palette)');
       print('  - font (font families)');
       print('  - container (container widths)');
-      print('  - text (text sizes)');
-      print('  - text-line-height (line heights)');
+      print('  - text-style (text styles with fontSize and height)');
       print('  - font-weight (font weights)');
       print('  - tracking (letter spacing)');
       print('  - blur (blur effects)');
