@@ -35,6 +35,35 @@ class FlyTextUtils {
     
     throw ArgumentError('Text alignment must be a String or TextAlign, got ${value.runtimeType}');
   }
+
+  /// Transforms text based on the specified transformation type
+  static String transformText(String text, dynamic transform) {
+    if (transform == null || text.isEmpty) return text;
+    
+    final transformStr = transform.toString().toLowerCase();
+    
+    switch (transformStr) {
+      case 'uppercase':
+        return text.toUpperCase();
+      case 'lowercase':
+        return text.toLowerCase();
+      case 'capitalize':
+        return _toTitleCase(text);
+      case 'none':
+      default:
+        return text;
+    }
+  }
+
+  /// Converts text to title case (capitalize first letter of each word)
+  static String _toTitleCase(String text) {
+    if (text.isEmpty) return text;
+    
+    return text.split(' ').map((word) {
+      if (word.isEmpty) return word;
+      return '${word[0].toUpperCase()}${word.substring(1).toLowerCase()}';
+    }).join(' ');
+  }
   /// Resolves text style from FlyStyle and FlyThemeData into TextStyle
   static TextStyle? resolve(BuildContext context, FlyStyle style) {
     if (style.text == null) return null;
@@ -105,5 +134,20 @@ mixin FlyTextHelper<T> {
   /// Set text alignment - accepts String ('left', 'right', 'center', 'justify', 'start', 'end') or TextAlign
   T align(dynamic value) {
     return copyWith(style.copyWith(textAlign: value));
+  }
+
+  /// Transform text to uppercase
+  T uppercase() {
+    return copyWith(style.copyWith(textTransform: 'uppercase'));
+  }
+
+  /// Transform text to lowercase
+  T lowercase() {
+    return copyWith(style.copyWith(textTransform: 'lowercase'));
+  }
+
+  /// Transform text to capitalize first letter of each word
+  T capitalize() {
+    return copyWith(style.copyWith(textTransform: 'capitalize'));
   }
 }

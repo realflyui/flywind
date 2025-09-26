@@ -47,6 +47,7 @@ class FlyStyle {
     this.minW,
     this.text,
     this.textAlign,
+    this.textTransform,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -88,6 +89,7 @@ class FlyStyle {
   final dynamic minW; // Min width - can be int, double, String (token name/unit)
   final dynamic text; // Text style token name - can be String ('xs', 'sm', 'base', 'lg', etc.) or TextStyle
   final dynamic textAlign; // Text alignment - can be String ('left', 'right', 'center', 'justify', 'start', 'end') or TextAlign
+  final dynamic textTransform; // Text transformation - can be String ('uppercase', 'lowercase', 'capitalize', 'none')
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -130,6 +132,7 @@ class FlyStyle {
     dynamic minW,
     dynamic text,
     dynamic textAlign,
+    dynamic textTransform,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -171,6 +174,7 @@ class FlyStyle {
       minW: minW ?? this.minW,
       text: text ?? this.text,
       textAlign: textAlign ?? this.textAlign,
+      textTransform: textTransform ?? this.textTransform,
     );
   }
 
@@ -286,8 +290,14 @@ class FlyStyle {
       finalTextAlign = FlyTextUtils.resolveTextAlign(textAlign);
     }
     
+    // Transform text if needed
+    String finalText = textWidget.data ?? '';
+    if (textTransform != null) {
+      finalText = FlyTextUtils.transformText(finalText, textTransform);
+    }
+    
     return Text(
-      textWidget.data ?? '',
+      finalText,
       style: finalStyle,
       textAlign: finalTextAlign,
       textDirection: textWidget.textDirection,

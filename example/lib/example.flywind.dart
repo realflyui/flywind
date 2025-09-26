@@ -511,6 +511,63 @@ class _FlywindAppState extends State<FlywindApp> {
 
                 const SizedBox(height: 16),
 
+                // Text Transformation Examples
+                FlyText('Text Transformation Examples')
+                  .color(colors.gray700)
+                  .m(spacing.s3),
+
+                const SizedBox(height: 16),
+
+                // Uppercase transformation
+                FlyText('uppercase transformation')
+                  .uppercase()
+                  .color(colors.blue600)
+                  .mb(spacing.s2),
+
+                // Lowercase transformation
+                FlyText('LOWERCASE TRANSFORMATION')
+                  .lowercase()
+                  .color(colors.green600)
+                  .mb(spacing.s2),
+
+                // Capitalize transformation
+                FlyText('capitalize transformation')
+                  .capitalize()
+                  .color(colors.purple600)
+                  .mb(spacing.s2),
+
+                // Combined with other properties
+                FlyText('Styled Text with Transformation')
+                  .text('lg')
+                  .uppercase()
+                  .color(colors.white)
+                  .p(12)
+                  .bg(colors.indigo500)
+                  .rounded(8)
+                  .mb(spacing.s2),
+
+                // Multiple transformations (last one wins)
+                FlyText('Multiple Transformations')
+                  .uppercase()
+                  .lowercase()  // This will override uppercase
+                  .color(colors.red600)
+                  .mb(spacing.s2),
+
+                // In containers with alignment
+                FlyContainer(
+                  child: FlyText('Centered Uppercase Text')
+                    .uppercase()
+                    .align('center')
+                    .color(colors.white)
+                    .p(8),
+                )
+                  .w(300)
+                  .bg(colors.teal500)
+                  .rounded(8)
+                  .mb(spacing.s2),
+
+                const SizedBox(height: 16),
+
                 // Direct TextStyle test
                 FlyText('TextStyle Test')
                   .text(const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red))
