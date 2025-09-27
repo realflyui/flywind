@@ -33,14 +33,6 @@ FlyLayout([
 | `.justify('around')` | `.justify-around` | `MainAxisAlignment.spaceAround` |
 | `.justify('evenly')` | `.justify-evenly` | `MainAxisAlignment.spaceEvenly` |
 | `.reverse()` | `.flex-col-reverse` | `Column()` with `verticalDirection: VerticalDirection.up` |
-| `.mainAxisSize('min')` | N/A | `MainAxisSize.min` |
-| `.mainAxisSize('max')` | N/A | `MainAxisSize.max` |
-| `.textBaseline('alphabetic')` | N/A | `TextBaseline.alphabetic` |
-| `.textBaseline('ideographic')` | N/A | `TextBaseline.ideographic` |
-| `.textDirection('ltr')` | N/A | `TextDirection.ltr` |
-| `.textDirection('rtl')` | N/A | `TextDirection.rtl` |
-| `.verticalDirection('down')` | N/A | `VerticalDirection.down` |
-| `.verticalDirection('up')` | N/A | `VerticalDirection.up` |
 | `.gap('s0')` to `.gap('s96')` | `.gap-0` to `.gap-96` | Custom spacing between children |
 | `.gap('px')` | `.gap-px` | Custom spacing (1px) |
 | `.gapX('s0')` to `.gapX('s96')` | `.gap-x-0` to `.gap-x-96` | `mainAxisSpacing` in GridView |
@@ -50,6 +42,14 @@ FlyLayout([
 
 | FlyLayout Helper | Tailwind Class | Flutter Widget |
 |---|---|---|
+| `.mainAxisSize('min')` | N/A | `MainAxisSize.min` |
+| `.mainAxisSize('max')` | N/A | `MainAxisSize.max` |
+| `.textBaseline('alphabetic')` | N/A | `TextBaseline.alphabetic` |
+| `.textBaseline('ideographic')` | N/A | `TextBaseline.ideographic` |
+| `.textDirection('ltr')` | N/A | `TextDirection.ltr` |
+| `.textDirection('rtl')` | N/A | `TextDirection.rtl` |
+| `.verticalDirection('down')` | N/A | `VerticalDirection.down` |
+| `.verticalDirection('up')` | N/A | `VerticalDirection.up` |
 | `.content('start')` | `.content-start` | `WrapAlignment.start` |
 | `.content('center')` | `.content-center` | `WrapAlignment.center` |
 | `.content('end')` | `.content-end` | `WrapAlignment.end` |
@@ -117,14 +117,6 @@ FlyLayout([
 | `.justify('between')` | `.justify-between` | `MainAxisAlignment.spaceBetween` |
 | `.justify('around')` | `.justify-around` | `MainAxisAlignment.spaceAround` |
 | `.justify('evenly')` | `.justify-evenly` | `MainAxisAlignment.spaceEvenly` |
-| `.mainAxisSize('min')` | N/A | `MainAxisSize.min` |
-| `.mainAxisSize('max')` | N/A | `MainAxisSize.max` |
-| `.textBaseline('alphabetic')` | N/A | `TextBaseline.alphabetic` |
-| `.textBaseline('ideographic')` | N/A | `TextBaseline.ideographic` |
-| `.textDirection('ltr')` | N/A | `TextDirection.ltr` |
-| `.textDirection('rtl')` | N/A | `TextDirection.rtl` |
-| `.verticalDirection('down')` | N/A | `VerticalDirection.down` |
-| `.verticalDirection('up')` | N/A | `VerticalDirection.up` |
 | `.gap('s0')` to `.gap('s96')` | `.gap-0` to `.gap-96` | Custom spacing between children |
 | `.gap('px')` | `.gap-px` | Custom spacing (1px) |
 | `.gapX('s0')` to `.gapX('s96')` | `.gap-x-0` to `.gap-x-96` | `mainAxisSpacing` in GridView |
@@ -134,6 +126,14 @@ FlyLayout([
 
 | FlyLayout Helper | Tailwind Class | Flutter Widget |
 |---|---|---|
+| `.mainAxisSize('min')` | N/A | `MainAxisSize.min` |
+| `.mainAxisSize('max')` | N/A | `MainAxisSize.max` |
+| `.textBaseline('alphabetic')` | N/A | `TextBaseline.alphabetic` |
+| `.textBaseline('ideographic')` | N/A | `TextBaseline.ideographic` |
+| `.textDirection('ltr')` | N/A | `TextDirection.ltr` |
+| `.textDirection('rtl')` | N/A | `TextDirection.rtl` |
+| `.verticalDirection('down')` | N/A | `VerticalDirection.down` |
+| `.verticalDirection('up')` | N/A | `VerticalDirection.up` |
 | `.content('start')` | `.content-start` | `WrapAlignment.start` |
 | `.content('center')` | `.content-center` | `WrapAlignment.center` |
 | `.content('end')` | `.content-end` | `WrapAlignment.end` |
@@ -206,13 +206,13 @@ FlyLayout([
 | `.basis('s32')` | `.flex-basis-32` | `Flexible(flexBasis: 32)` |
 | `.basis('s40')` | `.flex-basis-40` | `Flexible(flexBasis: 40)` |
 | `.basis('s48')` | `.flex-basis-48` | `Flexible(flexBasis: 48)` |
-| `.fit('loose')` | N/A | `Flexible(fit: FlexFit.loose)` |
-| `.fit('tight')` | N/A | `Flexible(fit: FlexFit.tight)` |
 
 ### Not Implemented
 
 | FlyLayout Helper | Tailwind Class | Flutter Widget |
 |---|---|---|
+| `.fit('loose')` | N/A | `Flexible(fit: FlexFit.loose)` |
+| `.fit('tight')` | N/A | `Flexible(fit: FlexFit.tight)` |
 | `.order(-9999)` | `.order-first` | `Flexible(flex: -9999)` |
 | `.order(9999)` | `.order-last` | `Flexible(flex: 9999)` |
 | `.order(0)` | `.order-none` | `Flexible(flex: 0)` |
@@ -258,6 +258,12 @@ FlyLayout([
 |---|---|---|
 | `.wrap()` | `.flex-wrap` | `Wrap()` |
 | `.reverse()` | `.flex-wrap-reverse` | `Wrap()` with `verticalDirection: VerticalDirection.up` |
+| `.gap('s2')` | `.gap-2` | `spacing` property |
+
+### Not Implemented
+
+| FlyLayout Helper | Tailwind Class | Flutter Widget |
+|---|---|---|
 | `.direction('horizontal')` | N/A | `Axis.horizontal` |
 | `.direction('vertical')` | N/A | `Axis.vertical` |
 | `.align('start')` | N/A | `WrapAlignment.start` |
@@ -270,13 +276,7 @@ FlyLayout([
 | `.runAlign('center')` | N/A | `WrapCrossAlignment.center` |
 | `.runAlign('end')` | N/A | `WrapCrossAlignment.end` |
 | `.runAlign('stretch')` | N/A | `WrapCrossAlignment.stretch` |
-| `.gap('s2')` | `.gap-2` | `spacing` property |
 | `.runGap('s1')` | N/A | `runSpacing` property |
-
-### Not Implemented
-
-| FlyLayout Helper | Tailwind Class | Flutter Widget |
-|---|---|---|
 | `.textDirection('ltr')` | N/A | `TextDirection.ltr` |
 | `.textDirection('rtl')` | N/A | `TextDirection.rtl` |
 | `.verticalDirection('down')` | N/A | `VerticalDirection.down` |
@@ -305,59 +305,6 @@ FlyLayout([...children])
     crossAxisAlignment: WrapCrossAlignment.start,
     textDirection: TextDirection.ltr,
     verticalDirection: VerticalDirection.down,
-    clipBehavior: Clip.none,
-  });
-```
-
----
-
-## `.flow()` Component
-
-Based on the `Flow()` flutter component. Maps to Tailwind's flexbox system with custom flow delegates.
-
-### Code Example
-```dart
-FlyLayout([
-  FlyText('Item 1'),
-  FlyText('Item 2'),
-  FlyText('Item 3'),
-])
-  .flow()
-  .delegate('custom')
-  .clipBehavior('hardEdge');
-```
-
-### Supported Properties
-
-| FlyLayout Helper | Tailwind Class | Flutter Widget |
-|---|---|---|
-| `.flow()` | N/A | `Flow()` |
-| `.delegate('custom')` | N/A | Custom `FlowDelegate` |
-| `.delegate('spiral')` | N/A | Custom `FlowDelegate` |
-| `.clipBehavior('hardEdge')` | N/A | `Clip.hardEdge` |
-| `.clipBehavior('antiAlias')` | N/A | `Clip.antiAlias` |
-| `.clipBehavior('antiAliasWithSaveLayer')` | N/A | `Clip.antiAliasWithSaveLayer` |
-| `.clipBehavior('none')` | N/A | `Clip.none` |
-
-### Not Implemented
-
-| FlyLayout Helper | Tailwind Class | Flutter Widget |
-|---|---|---|
-| `.textDirection('ltr')` | N/A | `TextDirection.ltr` |
-| `.textDirection('rtl')` | N/A | `TextDirection.rtl` |
-| `.delegate('row')` | N/A | Custom `FlowDelegate` |
-| `.delegate('column')` | N/A | Custom `FlowDelegate` |
-| `.delegate('row-dense')` | N/A | Custom `FlowDelegate` |
-| `.delegate('column-dense')` | N/A | Custom `FlowDelegate` |
-
-### Flutter API Access
-
-Access the underlying Flutter `Flow` widget with direct constructor parameter configuration:
-
-```dart
-FlyLayout([...children])
-  .flow({
-    delegate: FlowDelegate(),
     clipBehavior: Clip.none,
   });
 ```
@@ -570,6 +517,11 @@ FlyLayout([
 | FlyLayout Helper | Tailwind Class | Flutter Widget |
 |---|---|---|
 | `.stack()` | `.relative` | `Stack()` |
+
+### Not Implemented
+
+| FlyLayout Helper | Tailwind Class | Flutter Widget |
+|---|---|---|
 | `.align('center')` | N/A | `Stack alignment` |
 | `.align('start')` | N/A | `Stack alignment` |
 | `.align('end')` | N/A | `Stack alignment` |
@@ -581,11 +533,6 @@ FlyLayout([
 | `.clipBehavior('antiAlias')` | N/A | `Clip.antiAlias` |
 | `.clipBehavior('antiAliasWithSaveLayer')` | N/A | `Clip.antiAliasWithSaveLayer` |
 | `.clipBehavior('none')` | N/A | `Clip.none` |
-
-### Not Implemented
-
-| FlyLayout Helper | Tailwind Class | Flutter Widget |
-|---|---|---|
 | `.textDirection('ltr')` | N/A | `TextDirection.ltr` |
 | `.textDirection('rtl')` | N/A | `TextDirection.rtl` |
 | `.verticalDirection('down')` | N/A | `VerticalDirection.down` |
@@ -739,6 +686,7 @@ The following Flutter layout widgets are not yet implemented in Flywind:
 - **ClipPath** - `.clipPath()` - `ClipPath()`
 
 ### Custom Layouts
+- **Flow** - `.flow()` - `Flow()`
 - **CustomSingleChildLayout** - `.customSingleChild()` - `CustomSingleChildLayout()`
 - **CustomMultiChildLayout** - `.customMultiChild()` - `CustomMultiChildLayout()`
 
