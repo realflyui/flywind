@@ -77,6 +77,11 @@ class FlyNotifier extends ChangeNotifier {
     update((data) => data.copyWith(tracking: updater(data.tracking)));
   }
 
+  /// Update breakpoint token
+  void updateBreakpoint(FlyBreakpointToken Function(FlyBreakpointToken current) updater) {
+    update((data) => data.copyWith(breakpoint: updater(data.breakpoint)));
+  }
+
   /// Put a spacing value
   void putSpacing(String key, num value) {
     if (key.isEmpty) {
@@ -150,6 +155,17 @@ class FlyNotifier extends ChangeNotifier {
     updateTracking((tracking) => tracking.put(key, value));
   }
 
+  /// Put a breakpoint value
+  void putBreakpoint(String key, double value) {
+    if (key.isEmpty) {
+      throw ArgumentError('Breakpoint key cannot be empty');
+    }
+    if (value < 0) {
+      throw ArgumentError('Breakpoint value cannot be negative: $value');
+    }
+    updateBreakpoint((breakpoint) => breakpoint.put(key, value));
+  }
+
 }
 
 /// Main theme data container that holds all tokens
@@ -163,6 +179,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     required this.fontWeight,
     required this.leading,
     required this.tracking,
+    required this.breakpoint,
   });
 
   /// Factory constructor with optional parameters and defaults
@@ -175,6 +192,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     FlyFontWeightToken? fontWeight,
     FlyLeadingToken? leading,
     FlyTrackingToken? tracking,
+    FlyBreakpointToken? breakpoint,
   }) {
     return FlyThemeData(
       spacing: spacing ?? FlySpacingToken.defaultSpacing(),
@@ -185,6 +203,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       fontWeight: fontWeight ?? FlyFontWeightToken.defaultFontWeight(),
       leading: leading ?? FlyLeadingToken.defaultLeading(),
       tracking: tracking ?? FlyTrackingToken.defaultTracking(),
+      breakpoint: breakpoint ?? FlyBreakpointToken.defaultBreakpoint(),
     );
   }
 
@@ -196,6 +215,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
   final FlyFontWeightToken fontWeight;
   final FlyLeadingToken leading;
   final FlyTrackingToken tracking;
+  final FlyBreakpointToken breakpoint;
 
   /// Create a copy with updated values
   @override
@@ -208,6 +228,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
     FlyFontWeightToken? fontWeight,
     FlyLeadingToken? leading,
     FlyTrackingToken? tracking,
+    FlyBreakpointToken? breakpoint,
   }) {
     return FlyThemeData(
       spacing: spacing ?? this.spacing,
@@ -218,6 +239,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       fontWeight: fontWeight ?? this.fontWeight,
       leading: leading ?? this.leading,
       tracking: tracking ?? this.tracking,
+      breakpoint: breakpoint ?? this.breakpoint,
     );
   }
 
@@ -234,6 +256,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       fontWeight: fontWeight.merge(other.fontWeight),
       leading: leading.merge(other.leading),
       tracking: tracking.merge(other.tracking),
+      breakpoint: breakpoint.merge(other.breakpoint),
     );
   }
 
@@ -248,6 +271,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       fontWeight: FlyFontWeightToken.defaultFontWeight(),
       leading: FlyLeadingToken.defaultLeading(),
       tracking: FlyTrackingToken.defaultTracking(),
+      breakpoint: FlyBreakpointToken.defaultBreakpoint(),
     );
   }
 
@@ -265,6 +289,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
       fontWeight: fontWeight.lerp(other.fontWeight, t),
       leading: leading.lerp(other.leading, t),
       tracking: tracking.lerp(other.tracking, t),
+      breakpoint: breakpoint.lerp(other.breakpoint, t),
     );
   }
 
@@ -279,12 +304,13 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
         other.font == font &&
         other.fontWeight == fontWeight &&
         other.leading == leading &&
-        other.tracking == tracking;
+        other.tracking == tracking &&
+        other.breakpoint == breakpoint;
   }
 
   @override
   int get hashCode => Object.hash(
-    spacing, colors, radius, textStyle, font, fontWeight, leading, tracking
+    spacing, colors, radius, textStyle, font, fontWeight, leading, tracking, breakpoint
   );
 }
 

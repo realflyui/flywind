@@ -122,9 +122,19 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
     _getNotifier(context)?.updateTracking(updater);
   }
 
+  /// Update breakpoint token
+  static void updateBreakpoint(BuildContext context, FlyBreakpointToken Function(FlyBreakpointToken current) updater) {
+    _getNotifier(context)?.updateBreakpoint(updater);
+  }
+
   /// Put a tracking value
   static void putTracking(BuildContext context, String key, double value) {
     _getNotifier(context)?.putTracking(key, value);
+  }
+
+  /// Put a breakpoint value
+  static void putBreakpoint(BuildContext context, String key, double value) {
+    _getNotifier(context)?.putBreakpoint(key, value);
   }
 
   /// Check if FlyTheme is available in the context

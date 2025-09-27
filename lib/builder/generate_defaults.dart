@@ -16,13 +16,13 @@ class TokenGenerator {
 
   /// Token configuration for what to extract
   static const Map<String, Map<String, String>> _tokenConfigs = {
-    // 'breakpoint': {
-    //   'prefix': 'breakpoint',
-    //   'className': 'FlyBreakpointToken',
-    //   'dartType': 'double',
-    //   'description': 'Breakpoint values for responsive design',
-    //   'conversionType': 'breakpoint',
-    // },
+    'breakpoint': {
+      'prefix': 'breakpoint',
+      'className': 'FlyBreakpointToken',
+      'dartType': 'double',
+      'description': 'Breakpoint values for responsive design',
+      'conversionType': 'breakpoint',
+    },
     'spacing': {
       'prefix': 'spacing',
       'className': 'FlySpacingToken',
