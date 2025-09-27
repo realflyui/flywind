@@ -689,3 +689,59 @@ FlyLayout([
 | `.zIndex(40)` | `.z-40` | `Container()` with `z-index` |
 | `.zIndex(50)` | `.z-50` | `Container()` with `z-index` |
 | `.zIndex('auto')` | `.z-auto` | `Container()` with `z-index: auto` |
+
+---
+
+## Missing Flutter Layout Components
+
+The following Flutter layout widgets are not yet implemented in Flywind:
+
+### Scrollable Layouts
+- **SingleChildScrollView** - `.scrollable()` - `SingleChildScrollView()`
+- **ListView** - `.list()` - `ListView()`
+- **CustomScrollView** - `.customScroll()` - `CustomScrollView()`
+- **SliverList** - `.sliverList()` - `SliverList()`
+- **SliverGrid** - `.sliverGrid()` - `SliverGrid()`
+- **SliverAppBar** - `.sliverAppBar()` - `SliverAppBar()`
+- **SliverFillRemaining** - `.sliverFillRemaining()` - `SliverFillRemaining()`
+- **SliverToBoxAdapter** - `.sliverToBoxAdapter()` - `SliverToBoxAdapter()`
+
+### Table Layouts
+- **Table** - `.table()` - `Table()`
+- **DataTable** - `.dataTable()` - `DataTable()`
+- **TableRow** - `.tableRow()` - `TableRow()`
+- **TableCell** - `.tableCell()` - `TableCell()`
+
+### Constraint Layouts
+- **SizedBox** - `.sizedBox()` - `SizedBox()`
+- **ConstrainedBox** - `.constrainedBox()` - `ConstrainedBox()`
+- **UnconstrainedBox** - `.unconstrainedBox()` - `UnconstrainedBox()`
+- **LimitedBox** - `.limitedBox()` - `LimitedBox()`
+- **IntrinsicHeight** - `.intrinsicHeight()` - `IntrinsicHeight()`
+- **IntrinsicWidth** - `.intrinsicWidth()` - `IntrinsicWidth()`
+- **FractionallySizedBox** - `.fractionallySized()` - `FractionallySizedBox()`
+- **SizedOverflowBox** - `.sizedOverflow()` - `SizedOverflowBox()`
+- **OverflowBox** - `.overflowBox()` - `OverflowBox()`
+
+### Aspect and Fitting
+- **AspectRatio** - `.aspectRatio()` - `AspectRatio()`
+- **FittedBox** - `.fittedBox()` - `FittedBox()`
+- **Baseline** - `.baseline()` - `Baseline()`
+
+### Transformations
+- **Transform** - `.transform()` - `Transform()`
+- **RotatedBox** - `.rotatedBox()` - `RotatedBox()`
+
+### Clipping
+- **ClipRect** - `.clipRect()` - `ClipRect()`
+- **ClipRRect** - `.clipRRect()` - `ClipRRect()`
+- **ClipOval** - `.clipOval()` - `ClipOval()`
+- **ClipPath** - `.clipPath()` - `ClipPath()`
+
+### Custom Layouts
+- **CustomSingleChildLayout** - `.customSingleChild()` - `CustomSingleChildLayout()`
+- **CustomMultiChildLayout** - `.customMultiChild()` - `CustomMultiChildLayout()`
+
+### Performance and Semantics
+- **RepaintBoundary** - `.repaintBoundary()` - `RepaintBoundary()`
+- **Semantics** - `.semantics()` - `Semantics()`
