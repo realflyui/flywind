@@ -68,9 +68,9 @@ final spacing = flyTheme.spacing;
 .m('2rem')                       // String with rem unit
 .m('50%')                        // String with percentage
 .m('s4')                         // String token lookup
+.m(spacing.s4)                   // Theme spacing dot access
+.m(spacing['s4'] ?? 0)           // Theme spacing index access
 ```
-
-**Note:** Complex Flutter objects like `EdgeInsets` and token object access are not yet implemented.
 
 For complete details on supported value types, input patterns, and resolution order, see [VALUE_SPEC.md](VALUE_SPEC.md).
 

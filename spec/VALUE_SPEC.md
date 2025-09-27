@@ -114,6 +114,7 @@ const fontWeight = flyTheme.fontWeight;
 ```
 
 For complete details on supported value types, input patterns, and resolution order, see the implementation in `lib/helpers/value.dart`.
+
 ---
 
 ## CSS Unit Support
