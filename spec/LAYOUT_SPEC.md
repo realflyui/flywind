@@ -697,3 +697,94 @@ The following Flutter layout widgets are not yet implemented in Flywind:
 ### Performance and Semantics
 - **RepaintBoundary** - `.repaintBoundary()` - `RepaintBoundary()`
 - **Semantics** - `.semantics()` - `Semantics()`
+
+---
+
+## Implementation Details
+
+### Direct Flutter API Access
+
+The layout system supports both utility methods and direct Flutter API access, allowing developers to choose the most appropriate approach for their needs.
+
+#### Architecture
+
+The implementation uses a hybrid approach that stores both utility method values and direct Flutter parameters in the `FlyStyle` class:
+
+```dart
+class FlyStyle {
+  // Utility method properties (String values)
+  final dynamic justify; // 'start', 'end', 'center', 'between', 'around', 'evenly'
+  final dynamic items;   // 'start', 'end', 'center', 'stretch', 'baseline'
+  
+  // Direct Flutter API properties (Flutter objects)
+  final dynamic col; // ColParams object
+  final dynamic row; // RowParams object
+}
+
+class ColParams {
+  final MainAxisAlignment? mainAxisAlignment;
+  final CrossAxisAlignment? crossAxisAlignment;
+  final MainAxisSize? mainAxisSize;
+  final TextBaseline? textBaseline;
+  final TextDirection? textDirection;
+  final VerticalDirection? verticalDirection;
+}
+```
+
+#### Method Overloading
+
+Layout methods support both utility and direct API approaches through optional parameters:
+
+```dart
+// Utility method (no parameters)
+T col() => copyWith(style.copyWith(layoutType: 'col'));
+
+// Direct Flutter API (with parameters)
+T col({
+  MainAxisAlignment? mainAxisAlignment,
+  CrossAxisAlignment? crossAxisAlignment,
+  MainAxisSize? mainAxisSize,
+  TextBaseline? textBaseline,
+  TextDirection? textDirection,
+  VerticalDirection? verticalDirection,
+}) {
+  // Store direct Flutter parameters in ColParams object
+}
+```
+
+#### Priority Resolution
+
+The build logic uses a priority system to resolve parameter conflicts:
+
+1. **Direct Flutter API parameters** - Highest priority
+2. **Utility method values** - Fallback when direct API not provided
+3. **Default Flutter values** - Used when neither is specified
+
+```dart
+// In buildColumn/buildRow methods:
+if (colParams != null) {
+  // Use direct Flutter API parameters with utility method fallbacks
+  mainAxisAlignment = colParams.mainAxisAlignment ?? resolveMainAxisAlignment(style.justify);
+  crossAxisAlignment = colParams.crossAxisAlignment ?? resolveCrossAxisAlignment(style.items);
+} else {
+  // Use utility method parameters only
+  mainAxisAlignment = resolveMainAxisAlignment(style.justify);
+  crossAxisAlignment = resolveCrossAxisAlignment(style.items);
+}
+```
+
+#### Mix and Match Support
+
+Developers can combine both approaches in a single layout:
+
+```dart
+FlyLayout([...children])
+  .col({
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Direct API
+    mainAxisSize: MainAxisSize.min,                   // Direct API
+  })
+  .items('center')  // Utility method
+  .gap('s4');       // Utility method
+```
+
+This flexibility allows for gradual migration from utility methods to direct API access while maintaining backward compatibility with existing code.

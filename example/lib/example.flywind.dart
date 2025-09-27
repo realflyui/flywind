@@ -554,6 +554,26 @@ class FlywindApp extends StatelessWidget {
                   .rounded('lg')
                   .p('s5')
                   .mb('s6'),
+                  FlyLayout([
+  FlyText('Header'),
+  FlyText('Content'),
+  FlyText('Footer'),
+])
+  .col()
+  // .items('center')
+  // .justify('between')
+  .gap('s3'),
+
+// Row layout  
+FlyLayout([
+  FlyText('Left'),
+  FlyText('Center'),
+  FlyText('Right'),
+])
+  .row()
+  .justify('between')
+  .items('center')
+  .gap('s2'),
               ],
             ),
           ),

@@ -15,6 +15,7 @@
 // - [FlySpacing] - Spacing utility mixin
 // - [FlyStyle] - Style utility class
 // - [FlyTheme] - Theme configuration
+// - [FlyLayoutUtils] - Layout utility class
 //
 // ## Usage
 //
@@ -31,6 +32,7 @@ export 'color.dart';
 export 'font_weight.dart';
 export 'font.dart';
 export 'leading.dart';
+export 'layout.dart';
 export 'margin.dart';
 export 'padding.dart';
 export 'rounded.dart';

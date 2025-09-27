@@ -53,6 +53,16 @@ class FlyStyle {
     this.font,
     this.fontWeight,
     this.tracking,
+    this.layoutType,
+    this.justify,
+    this.items,
+    this.gap,
+    this.gapX,
+    this.gapY,
+    this.reverse,
+    this.inline,
+    this.col,
+    this.row,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -100,6 +110,16 @@ class FlyStyle {
   final dynamic font; // Font family - can be String token ('sans', 'serif', 'mono'), raw String family, List<String> stack, or TextStyle
   final dynamic fontWeight; // Font weight - can be String ('thin', 'light', 'normal', 'medium', 'bold', etc.) or FontWeight
   final dynamic tracking; // Letter spacing - can be int, double, or String token ('tighter', 'tight', 'normal', 'wide', 'wider', 'widest')
+  final dynamic layoutType; // Layout type - can be String ('col', 'row', 'grid', 'stack')
+  final dynamic justify; // Main axis alignment - can be String ('start', 'end', 'center', 'between', 'around', 'evenly')
+  final dynamic items; // Cross axis alignment - can be String ('start', 'end', 'center', 'stretch', 'baseline')
+  final dynamic gap; // Gap spacing - can be String ('s0' to 's96', 'px')
+  final dynamic gapX; // Horizontal gap spacing - can be String ('s0' to 's96', 'px')
+  final dynamic gapY; // Vertical gap spacing - can be String ('s0' to 's96', 'px')
+  final dynamic reverse; // Reverse direction - can be bool
+  final dynamic inline; // Inline layout - can be bool
+  final dynamic col; // Column Flutter API parameters - can be ColParams
+  final dynamic row; // Row Flutter API parameters - can be RowParams
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -148,6 +168,16 @@ class FlyStyle {
     dynamic font,
     dynamic fontWeight,
     dynamic tracking,
+    dynamic layoutType,
+    dynamic justify,
+    dynamic items,
+    dynamic gap,
+    dynamic gapX,
+    dynamic gapY,
+    dynamic reverse,
+    dynamic inline,
+    dynamic col,
+    dynamic row,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -195,6 +225,16 @@ class FlyStyle {
       font: font ?? this.font,
       fontWeight: fontWeight ?? this.fontWeight,
       tracking: tracking ?? this.tracking,
+      layoutType: layoutType ?? this.layoutType,
+      justify: justify ?? this.justify,
+      items: items ?? this.items,
+      gap: gap ?? this.gap,
+      gapX: gapX ?? this.gapX,
+      gapY: gapY ?? this.gapY,
+      reverse: reverse ?? this.reverse,
+      inline: inline ?? this.inline,
+      col: col ?? this.col,
+      row: row ?? this.row,
     );
   }
 
@@ -288,6 +328,19 @@ class FlyStyle {
       color != null ||
       hasBorder ||
       hasBorderRadius;
+
+  /// Check if any layout properties are set
+  bool get hasLayoutProperties =>
+      layoutType != null ||
+      justify != null ||
+      items != null ||
+      gap != null ||
+      gapX != null ||
+      gapY != null ||
+      reverse != null ||
+      inline != null ||
+      col != null ||
+      row != null;
 
   /// Apply text style directly to a Text widget
   Widget _applyTextStyleDirect(BuildContext context, Text textWidget) {
