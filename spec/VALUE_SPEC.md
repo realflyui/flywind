@@ -2,231 +2,165 @@
 
 ## Overview
 
-This specification defines the requirements for implementing Flywind's value resolution system. The system provides a unified way to convert various input types into Flutter-compatible values.
+This specification defines the requirements for implementing Flywind's value resolution system. The system provides a unified way to convert various input types into Flutter-compatible values for all utility methods.
 
-## Input Type Support
+## Value Properties
 
-**REQUIRED**: All helper methods MUST support these input patterns:
+Value properties control how different input types are resolved into Flutter-compatible values. All value properties accept `<flyValue>` which represents Flywind's unified value resolution system.
+
+### Code Example
+```dart
+final flyTheme = FlyTheme.of(context);
+final text = flyTheme.textStyle;
+
+FlyText('Hello World')
+  .color('blue500')        // String token
+  .text(text.sm)           // Token enum
+  .p(16)                   // Direct numeric value
+  .bg(Colors.white)        // Flutter object
+  .underline();            // Parameterless method
+```
+
+### Supported Properties
+
+| Flywind Helper | Input Type | Flutter Widget | Description |
+|---|---|---|---|
+| `.method(<direct>)` | `int`, `double`, `Color`, `TextStyle`, `EdgeInsets`, etc. | Direct conversion | Direct Flutter object or primitive |
+| `.method('<token>')` | `'blue500'`, `'s4'`, `'bold'` | Token lookup | String token resolution |
+| `.method('<unit>')` | `'16px'`, `'1.5em'`, `'50%'` | CSS unit parsing | String with CSS units |
+| `.method('<hex>')` | `'#FF0000'`, `'#FF0000FF'` | Hex color parsing | String with hex color |
+| `.method(tokens.property)` | `colors.blue500`, `spacing.s4` | Token object access | Direct token property access |
+| `.method(tokens['property'])` | `colors['blue500']`, `spacing['s4']` | Token bracket access | Token property with bracket notation |
+| `.method()` | No parameters | Method call | Parameterless method (underline, uppercase, etc.) |
+
+### Not Implemented
+
+| Flywind Helper | Input Type | Flutter Widget | Description |
+|---|---|---|---|
+| `.method('calc(100%-2rem)')` | `'calc(...)'` | CSS calc() parsing | CSS calc() expressions |
+
+**Note:** CSS calc() expressions are not yet implemented. These would require additional CSS parsing capabilities.
+
+## FlyValue Types
+
+The `<flyValue>` notation accepts different input types depending on the context. Everywhere else `<flyValue>` means:
+
+### Get tokens
+```dart
+final flyTheme = FlyTheme.of(context);
+final colors = flyTheme.colors;
+final spacing = flyTheme.spacing;
+final radius = flyTheme.radius;
+const fontWeight = flyTheme.fontWeight;
+// ...
+```
 
 ### Direct Values
 ```dart
-.method(16)              // int → target type
-.method(16.0)            // double → target type
-.method(Colors.blue)     // Flutter object → target type
-.method(TextStyle())     // Flutter object → target type
+.p(16)                           // Direct numeric value
+.color(Colors.blue)              // Direct Flutter object
 ```
 
-### String Inputs
+### String Tokens
 ```dart
-// Token lookup
-.method('blue200')       // string → token lookup → target type
-.method('s4')            // string → token lookup → target type
-
-// CSS units
-.method('16px')          // string → parse unit → target type
-.method('1.5em')         // string → parse unit → target type
-.method('2rem')          // string → parse unit → target type
-.method('50%')           // string → parse unit → target type
-
-// Special parsing
-.method('#FF0000')       // string → parse hex → Color
-.method('solid')         // string → parse enum → target type
+.color('blue500')                // String token lookup
+.p('s4')                         // String token lookup
+.weight('bold')                  // String token lookup
+.rounded('md')                   // String token lookup
 ```
 
-### Token Object Access
+### CSS Units
 ```dart
-// Dot notation
-.method(colors.blue200)  // token property → target type
-.method(spacing.s4)      // token property → target type
-
-// Bracket notation
-.method(colors['blue200']) // token bracket → target type
-.method(spacing['s4'])     // token bracket → target type
+.p('16px')                       // String with px unit
+.p('1.5em')                      // String with em unit
+.p('2rem')                       // String with rem unit
+.p('50%')                        // String with percentage
+.tracking('-1.5em')              // Negative units (letter spacing only)
 ```
 
-### Fallback Patterns
+### Hex Colors
 ```dart
-// With fallback
-.method(colors['blue200'] ?? Colors.black)  // token with fallback → target type
-.method(spacing['s4'] ?? 0)                 // token with fallback → target type
-
-// Token fallback
-.method(colors['blue200'] ?? 'red500')      // token with token fallback → target type
-.method(spacing['s4'] ?? 's1')              // token with token fallback → target type
+.color('#FF0000')                // String with hex color
+.color('#FF0000FF')              // String with hex color (with alpha)
+.bg('#0000ff')                   // String with hex color
 ```
 
-### Method Calls
+#### Token Object Access
 ```dart
-// Parameterless methods
-.underline()             // () → TextDecoration.underline
-.uppercase()             // () → 'uppercase'
-.noDecoration()          // () → TextDecoration.none
+.color(colors.blue500)           // Theme color access
+.p(spacing.s4)                   // Theme spacing access
+.weight(fontWeight.bold)         // Theme font weight access
+.rounded(radius.md)              // Theme radius access
 ```
+
+#### Bracket Notation
+```dart
+.color(colors['blue500'])        // Theme color with bracket access
+.p(spacing['s4'])                // Theme spacing with bracket access
+.weight(fontWeight['bold'])      // Theme font weight with bracket access
+```
+
+#### Complex Flutter Objects
+```dart
+.text(TextStyle(fontSize: 20))   // Direct TextStyle object
+.p(EdgeInsets.all(16))           // Direct EdgeInsets object
+```
+
+#### Fallback Patterns
+```dart
+.color(colors['blue200'] ?? Colors.black)  // Token with fallback
+.p(spacing['s4'] ?? 0)                     // Token with fallback
+.color(colors['blue200'] ?? 'red500')      // Token with token fallback
+```
+
+For complete details on supported value types, input patterns, and resolution order, see the implementation in `lib/helpers/value.dart`.
+---
 
 ## CSS Unit Support
 
-### Supported Units
+The system supports standard CSS units with specific conversion ratios:
 
-**REQUIRED**: All implementations MUST support these CSS units:
+| Unit | Conversion | Example | Result |
+|---|---|---|---|
+| `px` | 1:1 ratio | `'16px'` | `16.0` |
+| `em` | 16px base | `'1.5em'` | `24.0` |
+| `rem` | 16px base | `'2rem'` | `32.0` |
+| `%` | 0-100% range | `'50%'` | `0.5` |
 
-```dart
-'16px'   // Pixels (1:1 ratio)
-'1em'    // Em units (16px base)
-'1.5em'  // Em units (24.0)
-'2rem'   // Rem units (32.0)
-'50%'    // Percentage (0.5)
-'100%'   // Percentage (1.0)
-```
+**Note:** Negative units are supported for letter spacing methods only (e.g., `'-16px'`, `'-1.5em'`).
 
-### Negative Units (Letter Spacing Only)
-
-**REQUIRED**: Letter spacing methods MUST support negative units:
-
-```dart
-'-16px'  // Negative pixels (-16.0)
-'-1.5em' // Negative em units (-24.0)
-'-2rem'  // Negative rem units (-32.0)
-```
+---
 
 ## Error Handling
 
-### Invalid Token Names
+The system provides clear error messages for invalid inputs:
 
 ```dart
+// Invalid token names
 .method('invalid')  // Error: Invalid unit "invalid": expected format like "10px", "1.5em", "50%", or "16"
-```
 
-### Invalid CSS Units
-
-```dart
+// Invalid CSS units
 .method('16pt')  // Error: Invalid unit "16pt": expected format like "10px", "1.5em", "50%", or "16"
-```
 
-### Invalid Hex Colors
-
-```dart
-.method('#GG0000')  // Error: Invalid hex color "#GG0000": contains non-hex characters. Use format #RRGGBB or #AARRGGBB
+// Invalid hex colors
+.method('#GG0000')  // Error: Invalid hex color "#GG0000": contains non-hex characters
 .method('#12345')   // Error: Invalid hex color "#12345": must be 6 (#RRGGBB) or 8 (#AARRGGBB) characters
-```
 
-### Range Violations
-
-```dart
+// Range violations
 .method('150%')  // Error: Invalid percentage "150%": must be between 0% and 100%
-```
 
-### Type Validation Errors
-
-```dart
-// Invalid types for numeric methods
+// Type validation errors
 .method(true)  // Error: expected int, double, or String (token name/unit)
-
-// Invalid types for color methods  
-.method(123)  // Error: expected Color object, hex string, or token name
-
-// Invalid types for FontWeight
-.method(123)  // Error: must be a String or FontWeight
-
-// Invalid types for TextAlign
-.method(123)  // Error: must be a String or TextAlign
 ```
 
-## Method Chaining
+---
 
-### Chaining Pattern
+## Value API
 
-**REQUIRED**: All helper methods MUST support method chaining:
+Access the underlying value resolution with direct object configuration:
 
 ```dart
-FlyText('Hello')
-  .p('s4')           // padding
-  .color('blue600')  // color
-  .text('lg')        // text style
-  .weight('bold')    // font weight
-  .align('center');  // text alignment
+FlyText('Content')
+  .color(Colors.red)      // Direct Color object
+  .p(16);                 // Direct numeric value
 ```
-
-### Mixed Value Types
-
-**REQUIRED**: Methods MUST support mixed value types in chaining:
-
-```dart
-FlyContainer(
-  child: FlyText('Content'),
-)
-  .p(16)              // direct numeric
-  .px('s4')           // token lookup
-  .py('1.5em')        // CSS unit
-  .bg(Colors.white)   // direct Flutter object
-  .rounded('s2')      // token lookup
-  .border('1px')      // CSS unit
-  .borderColor('gray300'); // token lookup
-```
-
-## Behavioral Requirements
-
-### Case Insensitive String Parsing
-
-**REQUIRED**: All string-based resolution MUST be case insensitive:
-
-```dart
-// FontWeight resolution
-.weight('BOLD')    // same as 'bold'
-.weight('Light')   // same as 'light'
-
-// TextAlign resolution  
-.align('CENTER')   // same as 'center'
-.align('Left')     // same as 'left'
-
-// Color hex parsing
-.color('#ff5733')  // same as '#FF5733'
-```
-
-### Null Handling
-
-**REQUIRED**: All utility methods MUST handle null inputs gracefully:
-
-```dart
-// Core resolution methods throw errors for null inputs
-.method(null)          // → throws ArgumentError
-```
-
-### Token Lookup Priority
-
-**REQUIRED**: String inputs MUST be resolved in this order:
-
-1. **Token lookup** - Check if string matches a token name
-2. **CSS unit parsing** - Parse as unit if not a token
-3. **Error** - Throw error if neither token nor valid unit
-
-```dart
-.method('s4')     // 1. Token lookup → spacing.s4
-.method('16px')   // 2. CSS unit parsing → 16.0
-.method('invalid') // 3. Error → throws ArgumentError
-```
-
-## Implementation Guidelines
-
-### Value Resolution Order
-
-1. **Direct Flutter objects** (Color, TextStyle, etc.) - return as-is
-2. **Primitive types** (int, double) - convert to target type
-3. **Token lookup** - resolve string through token map
-4. **CSS unit parsing** - parse string with units
-5. **Fallback** - use default value on failure
-
-### Error Handling Strategy
-
-- **Graceful degradation**: Always provide sensible fallbacks
-- **Clear error messages**: Include available options in error text
-- **Debug logging**: Log resolution attempts in debug mode
-- **Type safety**: Validate input types before processing
-
-### Performance Requirements
-
-- **Token lookup**: O(1) map access for valid tokens
-- **CSS parsing**: Minimal overhead for common units
-- **Caching**: Cache resolved values per context
-- **Memory efficiency**: Avoid unnecessary object creation
-
-This specification defines the complete requirements for implementing Flywind's value resolution system. All implementations MUST conform to these patterns and behaviors.
