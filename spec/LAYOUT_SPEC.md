@@ -1,4 +1,8 @@
-# Flywind Layout Spec
+# Flywind Layout Specification
+
+## Overview
+
+This specification defines the requirements for implementing Flywind's layout system. The system provides Tailwind-like layout utilities that map to Flutter's core layout widgets including Column, Row, Wrap, GridView, and Stack.
 
 ## `.col()` Component
 
