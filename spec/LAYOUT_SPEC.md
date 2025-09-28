@@ -643,6 +643,127 @@ FlyLayout([
 
 ---
 
+## Not Considered
+
+The following aspects of Flutter's `Stack` widget were not considered in the initial specification but are important for a complete implementation:
+
+#### 1. **Stack Constructor Parameters**
+Flutter's `Stack` widget has the following constructor parameters that were not fully considered:
+
+```dart
+Stack({
+  Key? key,
+  AlignmentGeometry alignment = AlignmentDirectional.topStart,
+  TextDirection? textDirection,
+  StackFit fit = StackFit.loose,
+  Clip clipBehavior = Clip.hardEdge,
+  List<Widget> children = const <Widget>[],
+})
+```
+
+**Missing Properties:**
+- `alignment` - Controls how non-positioned children are aligned (default: `AlignmentDirectional.topStart`)
+- `textDirection` - Affects interpretation of `AlignmentDirectional` values
+- `fit` - Controls how non-positioned children are sized (default: `StackFit.loose`)
+- `clipBehavior` - Controls clipping of overflowing content (default: `Clip.hardEdge`)
+
+#### 2. **Positioned Widget Constructor Parameters**
+Flutter's `Positioned` widget has the following constructor parameters that were not fully considered:
+
+```dart
+Positioned({
+  Key? key,
+  double? left,
+  double? top,
+  double? right,
+  double? bottom,
+  double? width,
+  double? height,
+  Widget? child,
+})
+```
+
+**Missing Properties:**
+- `width` - Explicit width constraint for positioned child
+- `height` - Explicit height constraint for positioned child
+- `left` + `right` - Horizontal positioning with both sides
+- `top` + `bottom` - Vertical positioning with both sides
+
+#### 3. **StackFit Enumeration Values**
+The `StackFit` enum has three values that affect how non-positioned children are sized:
+
+- `StackFit.loose` - Children can be any size up to the Stack's size (default)
+- `StackFit.expand` - Children are forced to fill the Stack
+- `StackFit.passthrough` - Children can be any size they want
+
+#### 4. **Clip Enumeration Values**
+The `Clip` enum has four values for controlling overflow behavior:
+
+- `Clip.none` - No clipping, allow overflow
+- `Clip.hardEdge` - Clip to the Stack's bounds with hard edges (default)
+- `Clip.antiAlias` - Clip with anti-aliased edges
+- `Clip.antiAliasWithSaveLayer` - Clip with anti-aliased edges and save layer
+
+#### 5. **AlignmentGeometry vs Alignment**
+Flutter uses `AlignmentGeometry` (not just `Alignment`) for Stack alignment, which includes:
+- `Alignment` - For absolute positioning
+- `AlignmentDirectional` - For text-direction-aware positioning (default)
+
+#### 6. **Z-Order and Painting Order**
+- Children are painted in the order they appear in the `children` list
+- First child is painted at the bottom, last child on top
+- No built-in z-index system (relies on child order)
+
+#### 7. **Performance Considerations**
+- Stack with many positioned children can impact performance
+- Consider using `RepaintBoundary` for complex stacks
+- Avoid unnecessary rebuilds of positioned children
+
+#### 8. **Responsive Design Challenges**
+- Stack doesn't automatically adapt to screen size changes
+- Positioned children maintain fixed positions
+- Consider using `MediaQuery` or `LayoutBuilder` for responsive positioning
+
+#### 9. **Accessibility Considerations**
+- Positioned children may not follow natural reading order
+- Screen readers may not announce positioned content correctly
+- Consider using `Semantics` widget for important positioned content
+
+#### 10. **Common Use Cases Not Addressed**
+- Image overlays with text
+- Floating action buttons
+- Modal dialogs and overlays
+- Badge notifications
+- Loading indicators
+- Drag and drop interfaces
+
+#### 11. **Animation Integration**
+- `AnimatedPositioned` for animated positioning
+- `AnimatedContainer` within Stack for size animations
+- `Transform` widget for rotation, scale, and translation effects
+
+#### 12. **Layout Constraints**
+- Stack respects parent constraints
+- Positioned children can overflow Stack bounds
+- Consider using `OverflowBox` for unconstrained positioning
+
+#### 13. **Text Direction Support**
+- `AlignmentDirectional.topStart` vs `Alignment.topLeft`
+- RTL language support considerations
+- `TextDirection.ltr` vs `TextDirection.rtl` impact on alignment
+
+#### 14. **Nested Stack Considerations**
+- Stack within Stack behavior
+- Constraint propagation through nested stacks
+- Performance implications of deep nesting
+
+#### 15. **Custom Layout Integration**
+- Integration with `CustomSingleChildLayout`
+- Integration with `CustomMultiChildLayout`
+- Custom positioning logic within Stack
+
+---
+
 ## Missing Flutter Layout Components
 
 The following Flutter layout widgets are not yet implemented in Flywind:
