@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'padding.dart';
-import 'margin.dart';
+
 import 'color.dart';
+import 'margin.dart';
+import 'padding.dart';
 import 'rounded.dart';
 import 'text.dart';
 
@@ -71,6 +72,7 @@ class FlyStyle {
     this.col,
     this.row,
     this.wrap,
+    this.stack,
     this.flex,
     this.grow,
     this.shrink,
@@ -165,6 +167,7 @@ class FlyStyle {
   final dynamic col; // Column Flutter API parameters - can be ColParams
   final dynamic row; // Row Flutter API parameters - can be RowParams
   final dynamic wrap; // Wrap Flutter API parameters - can be WrapParams
+  final dynamic stack; // Stack Flutter API parameters - can be StackParams
   final dynamic
   flex; // Flex value - can be int (1-12) or String ('auto', 'initial', 'none')
   final dynamic grow; // Flex grow - can be int (0-2)
@@ -229,6 +232,7 @@ class FlyStyle {
     dynamic col,
     dynamic row,
     dynamic wrap,
+    dynamic stack,
     dynamic flex,
     dynamic grow,
     dynamic shrink,
@@ -291,6 +295,7 @@ class FlyStyle {
       col: col ?? this.col,
       row: row ?? this.row,
       wrap: wrap ?? this.wrap,
+      stack: stack ?? this.stack,
       flex: flex ?? this.flex,
       grow: grow ?? this.grow,
       shrink: shrink ?? this.shrink,

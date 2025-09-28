@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
+import '../core/theme.dart';
+import 'flex.dart';
 import 'style.dart';
 import 'value.dart';
-import 'flex.dart';
-import '../core/theme.dart';
 
 /// Parameters for Column widget direct Flutter API access
 class ColParams {
@@ -64,6 +65,21 @@ class WrapParams {
   final WrapCrossAlignment? crossAxisAlignment;
   final TextDirection? textDirection;
   final VerticalDirection? verticalDirection;
+  final Clip? clipBehavior;
+}
+
+/// Parameters for Stack widget direct Flutter API access
+class StackParams {
+  const StackParams({
+    this.alignment,
+    this.textDirection,
+    this.fit,
+    this.clipBehavior,
+  });
+
+  final AlignmentGeometry? alignment;
+  final TextDirection? textDirection;
+  final StackFit? fit;
   final Clip? clipBehavior;
 }
 
@@ -358,6 +374,49 @@ class FlyLayoutUtils {
       children: childrenWithFlex,
     );
   }
+
+  /// Build a Stack widget with layout properties from FlyStyle
+  static Widget buildStack(
+    BuildContext context,
+    FlyStyle style,
+    List<Widget> children,
+  ) {
+    // Check if direct Flutter API parameters are provided
+    final stackParams = style.stack as StackParams?;
+
+    AlignmentGeometry alignment;
+    TextDirection? textDirection;
+    StackFit fit;
+    Clip clipBehavior;
+
+    if (stackParams != null) {
+      // Use direct Flutter API parameters
+      alignment = stackParams.alignment ?? AlignmentDirectional.topStart;
+      textDirection = stackParams.textDirection;
+      fit = stackParams.fit ?? StackFit.loose;
+      clipBehavior = stackParams.clipBehavior ?? Clip.hardEdge;
+    } else {
+      // Use default values when no direct API parameters provided
+      alignment = AlignmentDirectional.topStart;
+      textDirection = null;
+      fit = StackFit.loose;
+      clipBehavior = Clip.hardEdge;
+    }
+
+    // Apply flex properties to children first
+    final childrenWithFlex = applyFlexToChildren(context, children);
+
+    // Note: For Stack, we don't apply gap using SizedBox like Column/Row
+    // Stack children are positioned absolutely or use the stack's alignment
+
+    return Stack(
+      alignment: alignment,
+      textDirection: textDirection,
+      fit: fit,
+      clipBehavior: clipBehavior,
+      children: childrenWithFlex,
+    );
+  }
 }
 
 /// Mixin that provides Tailwind-like layout methods for any widget
@@ -512,6 +571,35 @@ mixin FlyLayoutUtilities<T> {
     } else {
       // Use utility method (no parameters)
       return copyWith(style.copyWith(layoutType: 'wrap'));
+    }
+  }
+
+  /// Set layout type to stack with optional direct Flutter API access
+  T stack({
+    AlignmentGeometry? alignment,
+    TextDirection? textDirection,
+    StackFit? fit,
+    Clip? clipBehavior,
+  }) {
+    if (alignment != null ||
+        textDirection != null ||
+        fit != null ||
+        clipBehavior != null) {
+      // Use direct Flutter API access
+      return copyWith(
+        style.copyWith(
+          layoutType: 'stack',
+          stack: StackParams(
+            alignment: alignment,
+            textDirection: textDirection,
+            fit: fit,
+            clipBehavior: clipBehavior,
+          ),
+        ),
+      );
+    } else {
+      // Use utility method (no parameters)
+      return copyWith(style.copyWith(layoutType: 'stack'));
     }
   }
 }

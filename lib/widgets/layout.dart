@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../helpers/layout.dart';
 import '../helpers/style.dart';
 
@@ -29,6 +30,8 @@ class FlyLayout extends StatelessWidget with FlyLayoutUtilities<FlyLayout> {
         return FlyLayoutUtils.buildRow(context, _style, children);
       case 'wrap':
         return FlyLayoutUtils.buildWrap(context, _style, children);
+      case 'stack':
+        return FlyLayoutUtils.buildStack(context, _style, children);
       default:
         return FlyLayoutUtils.buildColumn(context, _style, children);
     }
