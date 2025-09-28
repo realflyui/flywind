@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import '../helpers/style.dart';
-import '../helpers/padding.dart';
-import '../helpers/margin.dart';
+
 import '../helpers/color.dart';
+import '../helpers/flex.dart';
+import '../helpers/margin.dart';
+import '../helpers/padding.dart';
+import '../helpers/position.dart';
 import '../helpers/rounded.dart';
+import '../helpers/style.dart';
 import '../helpers/text.dart';
 import '../helpers/tracking.dart';
-import '../helpers/flex.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for text
 class FlyText extends StatelessWidget
@@ -17,7 +19,8 @@ class FlyText extends StatelessWidget
         FlyRounded<FlyText>,
         FlyTextHelper<FlyText>,
         FlyTracking<FlyText>,
-        FlyFlex<FlyText> {
+        FlyFlex<FlyText>,
+        FlyPosition<FlyText> {
   FlyText(this.data, {style = const FlyStyle(), super.key})
     : _style = _buildStyleWithDefaults(style);
 

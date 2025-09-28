@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import '../helpers/style.dart';
-import '../helpers/padding.dart';
-import '../helpers/margin.dart';
-import '../helpers/color.dart';
-import '../helpers/rounded.dart';
+
 import '../helpers/border.dart';
-import '../helpers/size.dart';
+import '../helpers/color.dart';
 import '../helpers/flex.dart';
+import '../helpers/margin.dart';
+import '../helpers/padding.dart';
+import '../helpers/position.dart';
+import '../helpers/rounded.dart';
+import '../helpers/size.dart';
+import '../helpers/style.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for containers
 class FlyContainer extends StatelessWidget
@@ -17,7 +19,8 @@ class FlyContainer extends StatelessWidget
         FlyRounded<FlyContainer>,
         FlyBorder<FlyContainer>,
         FlySize<FlyContainer>,
-        FlyFlex<FlyContainer> {
+        FlyFlex<FlyContainer>,
+        FlyPosition<FlyContainer> {
   const FlyContainer({
     super.key,
     required this.child,

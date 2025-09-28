@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../core/theme.dart';
 import 'flex.dart';
+import 'position.dart';
 import 'style.dart';
 import 'value.dart';
 
@@ -164,6 +165,36 @@ class FlyLayoutUtils {
               final FlyStyle style = widget.style;
               if (FlyFlexUtils.hasFlexProperties(style)) {
                 return FlyFlexUtils.apply(context, style, child);
+              }
+            }
+          }
+        } catch (e) {
+          // If reflection fails, just return the child as-is
+        }
+      }
+      return child;
+    }).toList();
+  }
+
+  /// Apply position properties to children if they have position utilities
+  static List<Widget> applyPositionToChildren(
+    BuildContext context,
+    List<Widget> children,
+  ) {
+    return children.map((child) {
+      // Check if the child has position properties by looking for FlyPositionUtilities mixin
+      if (child is StatelessWidget) {
+        // Try to access the style property through reflection or type checking
+        try {
+          // Check if it's a FlyText or FlyContainer with position properties
+          if (child.runtimeType.toString().contains('FlyText') ||
+              child.runtimeType.toString().contains('FlyContainer')) {
+            // Use reflection to get the style property
+            final dynamic widget = child;
+            if (widget.style != null && widget.style is FlyStyle) {
+              final FlyStyle style = widget.style;
+              if (FlyPositionUtils.hasPositionProperties(style)) {
+                return FlyPositionUtils.apply(context, style, child);
               }
             }
           }
@@ -406,6 +437,12 @@ class FlyLayoutUtils {
     // Apply flex properties to children first
     final childrenWithFlex = applyFlexToChildren(context, children);
 
+    // Apply position properties to children
+    final childrenWithPosition = applyPositionToChildren(
+      context,
+      childrenWithFlex,
+    );
+
     // Note: For Stack, we don't apply gap using SizedBox like Column/Row
     // Stack children are positioned absolutely or use the stack's alignment
 
@@ -414,7 +451,7 @@ class FlyLayoutUtils {
       textDirection: textDirection,
       fit: fit,
       clipBehavior: clipBehavior,
-      children: childrenWithFlex,
+      children: childrenWithPosition,
     );
   }
 }

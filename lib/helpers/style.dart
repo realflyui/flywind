@@ -77,6 +77,13 @@ class FlyStyle {
     this.grow,
     this.shrink,
     this.basis,
+    this.top,
+    this.right,
+    this.bottom,
+    this.left,
+    this.inset,
+    this.insetX,
+    this.insetY,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -173,6 +180,20 @@ class FlyStyle {
   final dynamic grow; // Flex grow - can be int (0-2)
   final dynamic shrink; // Flex shrink - can be int (0-1)
   final dynamic basis; // Flex basis - can be String ('s32', 's40', 's48', etc.)
+  final dynamic
+  top; // Top position - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  right; // Right position - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  bottom; // Bottom position - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  left; // Left position - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  inset; // Inset (all sides) - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  insetX; // InsetX (left and right) - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  insetY; // InsetY (top and bottom) - can be int, double, or String (token name like 's2', 's4', etc.)
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -237,6 +258,13 @@ class FlyStyle {
     dynamic grow,
     dynamic shrink,
     dynamic basis,
+    dynamic top,
+    dynamic right,
+    dynamic bottom,
+    dynamic left,
+    dynamic inset,
+    dynamic insetX,
+    dynamic insetY,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -300,6 +328,13 @@ class FlyStyle {
       grow: grow ?? this.grow,
       shrink: shrink ?? this.shrink,
       basis: basis ?? this.basis,
+      top: top ?? this.top,
+      right: right ?? this.right,
+      bottom: bottom ?? this.bottom,
+      left: left ?? this.left,
+      inset: inset ?? this.inset,
+      insetX: insetX ?? this.insetX,
+      insetY: insetY ?? this.insetY,
     );
   }
 
@@ -409,6 +444,16 @@ class FlyStyle {
   /// Check if any flex properties are set
   bool get hasFlexProperties =>
       flex != null || grow != null || shrink != null || basis != null;
+
+  /// Check if any position properties are set
+  bool get hasPositionProperties =>
+      top != null ||
+      right != null ||
+      bottom != null ||
+      left != null ||
+      inset != null ||
+      insetX != null ||
+      insetY != null;
 
   /// Apply text style directly to a Text widget
   Widget _applyTextStyleDirect(BuildContext context, Text textWidget) {

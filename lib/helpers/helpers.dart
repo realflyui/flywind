@@ -11,6 +11,7 @@
 // - [FlyFontWeight] - Font weight utility mixin
 // - [FlyMargin] - Margin utility mixin
 // - [FlyPadding] - Padding utility mixin
+// - [FlyPosition] - Position utility mixin
 // - [FlyRounded] - Border radius utility mixin
 // - [FlySize] - Size utility mixin
 // - [FlySpacing] - Spacing utility mixin
@@ -31,12 +32,13 @@
 export 'border.dart';
 export 'color.dart';
 export 'flex.dart';
-export 'font_weight.dart';
 export 'font.dart';
-export 'leading.dart';
+export 'font_weight.dart';
 export 'layout.dart';
+export 'leading.dart';
 export 'margin.dart';
 export 'padding.dart';
+export 'position.dart';
 export 'rounded.dart';
 export 'size.dart';
 export 'spacing.dart';

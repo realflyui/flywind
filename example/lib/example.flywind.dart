@@ -953,6 +953,60 @@ class FlywindApp extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                       ),
                 ).bg('purple600').rounded('md').p('s4').mb('s4'),
+
+                // Position Examples
+                _buildSubsectionHeader('Position Examples'),
+
+                // Stack with four positioned containers
+                FlyContainer(
+                  child: FlyLayout([
+                    // Background container
+                    FlyContainer(
+                      child: FlyLayout([
+                        FlyText('Background').color('black').p('s4'),
+                      ]).col().justify('center').items('center'),
+                    ).bg('gray200').rounded('md').w('s80').h('s48'),
+
+                    // Top-left positioned container
+                    FlyContainer(
+                      child: FlyText('Top-Left').color('white').p('s2'),
+                    ).bg('red500').rounded('sm').top('s2').left('s2'),
+
+                    // Top-right positioned container
+                    FlyContainer(
+                      child: FlyText('Top-Right').color('white').p('s2'),
+                    ).bg('blue500').rounded('sm').top('s2').right('s2'),
+
+                    // Bottom-left positioned container
+                    FlyContainer(
+                      child: FlyText('Bottom-Left').color('white').p('s2'),
+                    ).bg('green500').rounded('sm').bottom('s2').left('s2'),
+
+                    // Bottom-right positioned container
+                    FlyContainer(
+                      child: FlyText('Bottom-Right').color('white').p('s2'),
+                    ).bg('purple500').rounded('sm').bottom('s2').right('s2'),
+                  ]).stack(),
+                ).mb('s4'),
+
+                // Stack with inset example
+                FlyContainer(
+                  child: FlyLayout([
+                    // Background container
+                    FlyContainer(
+                      child: FlyLayout([
+                        FlyText(
+                          'Background',
+                        ).color('white').p('s4').align('center'),
+                      ]).col().justify('center').items('center'),
+                    ).bg('gray200').rounded('md').w('s80').h('s48'),
+
+                    // Inset container (fills with margin)
+                    FlyContainer(
+                      child: FlyText('Inset').color('white').p('s2'),
+                    ).bg('orange500').rounded('sm').inset('s5'),
+                  ]).stack(),
+                ).mb('s4'),
               ],
             ),
           ),
