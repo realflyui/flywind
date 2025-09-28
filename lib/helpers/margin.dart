@@ -10,20 +10,28 @@ class FlyMarginUtils {
   static EdgeInsets resolve(BuildContext context, FlyStyle style) {
     try {
       final spacing = FlyTheme.of(context).spacing;
-      
+
       return EdgeInsets.only(
         left: _resolveValue(style.ml ?? style.mx ?? style.m, context, spacing),
         right: _resolveValue(style.mr ?? style.mx ?? style.m, context, spacing),
         top: _resolveValue(style.mt ?? style.my ?? style.m, context, spacing),
-        bottom: _resolveValue(style.mb ?? style.my ?? style.m, context, spacing),
+        bottom: _resolveValue(
+          style.mb ?? style.my ?? style.m,
+          context,
+          spacing,
+        ),
       );
     } catch (e) {
       throw ArgumentError('Failed to resolve margin: $e');
     }
   }
-  
+
   /// Resolves a dynamic value to double using the numeric value resolver
-  static double _resolveValue(dynamic value, BuildContext context, FlySpacingToken tokens) {
+  static double _resolveValue(
+    dynamic value,
+    BuildContext context,
+    FlySpacingToken tokens,
+  ) {
     if (value == null) return 0;
     return FlyValue.resolveDouble(value, context, tokens);
   }

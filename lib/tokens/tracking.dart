@@ -17,14 +17,19 @@ class FlyTrackingToken implements FlyToken<double> {
 
   /// tighter Letter spacing values
   final double tighter;
+
   /// tight Letter spacing values
   final double tight;
+
   /// normal Letter spacing values
   final double normal;
+
   /// wide Letter spacing values
   final double wide;
+
   /// wider Letter spacing values
   final double wider;
+
   /// widest Letter spacing values
   final double widest;
 
@@ -44,7 +49,7 @@ class FlyTrackingToken implements FlyToken<double> {
 
   /// Access value by key (canonical or extra)
   @override
-  double? operator[](String key) => _allValues[key];
+  double? operator [](String key) => _allValues[key];
 
   /// Get all available keys (canonical + extras)
   @override
@@ -77,7 +82,7 @@ class FlyTrackingToken implements FlyToken<double> {
   @override
   FlyTrackingToken merge(FlyToken<double> other) {
     if (other is! FlyTrackingToken) return this;
-    
+
     return copyWith(
       tighter: other.tighter,
       tight: other.tight,
@@ -114,7 +119,7 @@ class FlyTrackingToken implements FlyToken<double> {
   FlyTrackingToken lerp(FlyTrackingToken other, double t) {
     final result = <String, double>{};
     final allKeys = {..._allValues.keys, ...other._allValues.keys};
-    
+
     for (final key in allKeys) {
       final valueA = _allValues[key];
       final valueB = other._allValues[key];
@@ -122,7 +127,7 @@ class FlyTrackingToken implements FlyToken<double> {
       final numB = valueB ?? 0.0;
       result[key] = numA + (numB - numA) * t;
     }
-    
+
     return FlyTrackingToken(
       tighter: result['tighter']!,
       tight: result['tight']!,
@@ -130,7 +135,18 @@ class FlyTrackingToken implements FlyToken<double> {
       wide: result['wide']!,
       wider: result['wider']!,
       widest: result['widest']!,
-      extras: Map.fromEntries(result.entries.where((e) => !['tighter', 'tight', 'normal', 'wide', 'wider', 'widest'].contains(e.key))),
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) => ![
+            'tighter',
+            'tight',
+            'normal',
+            'wide',
+            'wider',
+            'widest',
+          ].contains(e.key),
+        ),
+      ),
     );
   }
 
@@ -149,7 +165,8 @@ class FlyTrackingToken implements FlyToken<double> {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is FlyTrackingToken && _allValues.toString() == other._allValues.toString();
+    return other is FlyTrackingToken &&
+        _allValues.toString() == other._allValues.toString();
   }
 
   @override

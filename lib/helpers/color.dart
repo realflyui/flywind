@@ -8,7 +8,7 @@ class FlyColorUtils {
   /// Resolves color from FlyStyle and FlyThemeData into Color
   static Color? resolve(BuildContext context, FlyStyle style) {
     if (style.color == null) return null;
-    
+
     try {
       final colors = FlyTheme.of(context).colors;
       return FlyValue.resolveColor(style.color, context, colors);
@@ -36,7 +36,6 @@ class FlyColorUtils {
   static Color? applyToContainer(BuildContext context, FlyStyle style) {
     return resolve(context, style);
   }
-
 }
 
 /// Mixin that provides Tailwind-like color methods for any widget
@@ -49,7 +48,7 @@ mixin FlyColor<T> {
   T color(dynamic value) {
     return copyWith(style.copyWith(color: value));
   }
-  
+
   /// Set background color - accepts Color object or String (token name/hex)
   T bg(dynamic value) {
     return copyWith(style.copyWith(color: value));

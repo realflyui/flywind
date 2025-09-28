@@ -1,7 +1,6 @@
 // GENERATED FILE - DO NOT EDIT MANUALLY
 // To regenerate, run: dart run flywind:fly generate
 
-
 import 'package:flywind/tokens/radius.dart';
 
 /// Custom radius that provide dot notation access to custom radius values
@@ -13,11 +12,7 @@ class CustomRadius {
 
   /// Create default custom radius as FlyRadiusToken
   static FlyRadiusToken defaultRadius() {
-    return FlyRadiusToken.defaultRadius().copyWith(
-      extras: {
-        'test': 99.0,
-      },
-    );
+    return FlyRadiusToken.defaultRadius().copyWith(extras: {'test': 99.0});
   }
 }
 

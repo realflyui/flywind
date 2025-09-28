@@ -9,7 +9,7 @@ class FlyLeadingUtils {
   /// Resolves leading values from FlyStyle and FlyThemeData into TextStyle height
   static double? resolve(BuildContext context, FlyStyle style) {
     if (style.leading == null) return null;
-    
+
     try {
       final leading = FlyTheme.of(context).leading;
       return _resolveValue(style.leading, context, leading);
@@ -17,9 +17,13 @@ class FlyLeadingUtils {
       throw ArgumentError('Failed to resolve leading: $e');
     }
   }
-  
+
   /// Resolves a dynamic value to double using the numeric value resolver
-  static double _resolveValue(dynamic value, BuildContext context, FlyLeadingToken tokens) {
+  static double _resolveValue(
+    dynamic value,
+    BuildContext context,
+    FlyLeadingToken tokens,
+  ) {
     if (value == null) return 0;
     return FlyValue.resolveDouble(value, context, tokens);
   }
@@ -37,9 +41,7 @@ class FlyLeadingUtils {
     }
 
     // Use copyWith to merge leading with existing style
-    return (baseStyle ?? const TextStyle()).copyWith(
-      height: leadingValue,
-    );
+    return (baseStyle ?? const TextStyle()).copyWith(height: leadingValue);
   }
 }
 

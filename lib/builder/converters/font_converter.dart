@@ -9,14 +9,14 @@ class FontConverter {
         .split(',')
         .map((f) => f.trim())
         .toList();
-    
+
     // Convert CSS generic names to Flutter-compatible families
     final flutterFonts = fonts
         .map((font) => _convertCssFontToFlutter(font))
         .where((font) => font.isNotEmpty) // Filter out empty strings
         .toSet() // Remove duplicates
         .toList();
-    
+
     // Always return a Dart list literal so token type can be List<String>
     return '[${flutterFonts.map((f) => '"$f"').join(', ')}]';
   }
@@ -135,7 +135,7 @@ class FontConverter {
   static String _resolveCalcExpression(String calcValue) {
     // Remove calc() wrapper
     final content = calcValue.replaceAll(RegExp(r'calc\(|\)'), '').trim();
-    
+
     if (content.contains('/')) {
       // Handle division: calc(1.25 / 0.875)
       final parts = content.split('/');
@@ -169,7 +169,7 @@ class FontConverter {
         return (left * right).toString();
       }
     }
-    
+
     // If no operators found, try to parse as a single value
     return _parseValue(content).toString();
   }

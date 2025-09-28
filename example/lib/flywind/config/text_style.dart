@@ -1,7 +1,6 @@
 // GENERATED FILE - DO NOT EDIT MANUALLY
 // To regenerate, run: dart run flywind:fly generate
 
-
 import 'package:flutter/material.dart';
 import 'package:flywind/tokens/text_style.dart';
 
@@ -15,9 +14,7 @@ class CustomTextStyle {
   /// Create default custom text style as FlyTextStyleToken
   static FlyTextStyleToken defaultTextStyle() {
     return FlyTextStyleToken.defaultTextStyle().copyWith(
-      extras: {
-        'test': TextStyle(fontSize: 16.0, height: 1.5),
-      },
+      extras: {'test': TextStyle(fontSize: 16.0, height: 1.5)},
     );
   }
 }
@@ -25,5 +22,6 @@ class CustomTextStyle {
 /// Extension methods for FlyTextStyleToken to provide dot notation access
 extension FlyTextStyleTokenExtensions on FlyTextStyleToken {
   /// Custom text style: test
-  TextStyle get test => extras['test'] ?? TextStyle(fontSize: 16.0, height: 1.5);
+  TextStyle get test =>
+      extras['test'] ?? TextStyle(fontSize: 16.0, height: 1.5);
 }

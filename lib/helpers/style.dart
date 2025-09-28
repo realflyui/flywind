@@ -6,11 +6,11 @@ import 'rounded.dart';
 import 'text.dart';
 
 /// Internal style storage for FlyText widget
-/// 
+///
 /// NAMING CONVENTION: All properties should match the actual method names
 /// used in the API. For example:
 /// - Use `grow` not `flexGrow` (matches .grow() method)
-/// - Use `shrink` not `flexShrink` (matches .shrink() method)  
+/// - Use `shrink` not `flexShrink` (matches .shrink() method)
 /// - Use `basis` not `flexBasis` (matches .basis() method)
 /// - Use `flex` for the main flex property (matches .flex() method)
 class FlyStyle {
@@ -78,62 +78,95 @@ class FlyStyle {
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
-  final dynamic px; // Horizontal padding (left + right) - can be int, double, String
-  final dynamic py; // Vertical padding (top + bottom) - can be int, double, String
+  final dynamic
+  px; // Horizontal padding (left + right) - can be int, double, String
+  final dynamic
+  py; // Vertical padding (top + bottom) - can be int, double, String
   final dynamic pl; // Left padding - can be int, double, String
   final dynamic pr; // Right padding - can be int, double, String
   final dynamic pb; // Bottom padding - can be int, double, String
   final dynamic pt; // Top padding - can be int, double, String
   final dynamic m; // Uniform margin (all sides) - can be int, double, String
-  final dynamic mx; // Horizontal margin (left + right) - can be int, double, String
-  final dynamic my; // Vertical margin (top + bottom) - can be int, double, String
+  final dynamic
+  mx; // Horizontal margin (left + right) - can be int, double, String
+  final dynamic
+  my; // Vertical margin (top + bottom) - can be int, double, String
   final dynamic ml; // Left margin - can be int, double, String
   final dynamic mr; // Right margin - can be int, double, String
   final dynamic mb; // Bottom margin - can be int, double, String
   final dynamic mt; // Top margin - can be int, double, String
   final dynamic color; // Color - can be Color, String
-  final dynamic rounded; // Uniform border radius (all corners) - can be int, double, String
-  final dynamic roundedT; // Top border radius (top-left + top-right) - can be int, double, String
-  final dynamic roundedR; // Right border radius (top-right + bottom-right) - can be int, double, String
-  final dynamic roundedB; // Bottom border radius (bottom-left + bottom-right) - can be int, double, String
-  final dynamic roundedL; // Left border radius (top-left + bottom-left) - can be int, double, String
-  final dynamic roundedTl; // Top-left border radius - can be int, double, String
-  final dynamic roundedTr; // Top-right border radius - can be int, double, String
-  final dynamic roundedBl; // Bottom-left border radius - can be int, double, String
-  final dynamic roundedBr; // Bottom-right border radius - can be int, double, String
-  final dynamic border; // Uniform border width (all sides) - can be int, double, String
+  final dynamic
+  rounded; // Uniform border radius (all corners) - can be int, double, String
+  final dynamic
+  roundedT; // Top border radius (top-left + top-right) - can be int, double, String
+  final dynamic
+  roundedR; // Right border radius (top-right + bottom-right) - can be int, double, String
+  final dynamic
+  roundedB; // Bottom border radius (bottom-left + bottom-right) - can be int, double, String
+  final dynamic
+  roundedL; // Left border radius (top-left + bottom-left) - can be int, double, String
+  final dynamic
+  roundedTl; // Top-left border radius - can be int, double, String
+  final dynamic
+  roundedTr; // Top-right border radius - can be int, double, String
+  final dynamic
+  roundedBl; // Bottom-left border radius - can be int, double, String
+  final dynamic
+  roundedBr; // Bottom-right border radius - can be int, double, String
+  final dynamic
+  border; // Uniform border width (all sides) - can be int, double, String
   final dynamic borderT; // Top border width - can be int, double, String
   final dynamic borderR; // Right border width - can be int, double, String
   final dynamic borderB; // Bottom border width - can be int, double, String
   final dynamic borderL; // Left border width - can be int, double, String
   final dynamic borderColor; // Border color - can be Color, String
-  final dynamic borderStyle; // Border style - can be String ('solid', 'dashed', 'dotted', 'none', 'hidden')
+  final dynamic
+  borderStyle; // Border style - can be String ('solid', 'dashed', 'dotted', 'none', 'hidden')
   final dynamic h; // Height - can be int, double, String (token name/unit)
   final dynamic w; // Width - can be int, double, String (token name/unit)
-  final dynamic maxH; // Max height - can be int, double, String (token name/unit)
-  final dynamic maxW; // Max width - can be int, double, String (token name/unit)
-  final dynamic minH; // Min height - can be int, double, String (token name/unit)
-  final dynamic minW; // Min width - can be int, double, String (token name/unit)
-  final dynamic text; // Text style token name - can be String ('xs', 'sm', 'base', 'lg', etc.) or TextStyle
-  final dynamic textAlign; // Text alignment - can be String ('left', 'right', 'center', 'justify', 'start', 'end') or TextAlign
-  final dynamic textTransform; // Text transformation - can be String ('uppercase', 'lowercase', 'capitalize', 'none')
-  final dynamic leading; // Line height - can be int, double, or String (token name like 'tight', 'normal', 'relaxed')
-  final dynamic textDecoration; // Text decoration - can be String ('underline', 'line-through', 'none') or TextDecoration
-  final dynamic font; // Font family - can be String token ('sans', 'serif', 'mono'), raw String family, List<String> stack, or TextStyle
-  final dynamic fontWeight; // Font weight - can be String ('thin', 'light', 'normal', 'medium', 'bold', etc.) or FontWeight
-  final dynamic tracking; // Letter spacing - can be int, double, or String token ('tighter', 'tight', 'normal', 'wide', 'wider', 'widest')
-  final dynamic layoutType; // Layout type - can be String ('col', 'row', 'grid', 'stack')
-  final dynamic justify; // Main axis alignment - can be String ('start', 'end', 'center', 'between', 'around', 'evenly')
-  final dynamic items; // Cross axis alignment - can be String ('start', 'end', 'center', 'stretch', 'baseline')
+  final dynamic
+  maxH; // Max height - can be int, double, String (token name/unit)
+  final dynamic
+  maxW; // Max width - can be int, double, String (token name/unit)
+  final dynamic
+  minH; // Min height - can be int, double, String (token name/unit)
+  final dynamic
+  minW; // Min width - can be int, double, String (token name/unit)
+  final dynamic
+  text; // Text style token name - can be String ('xs', 'sm', 'base', 'lg', etc.) or TextStyle
+  final dynamic
+  textAlign; // Text alignment - can be String ('left', 'right', 'center', 'justify', 'start', 'end') or TextAlign
+  final dynamic
+  textTransform; // Text transformation - can be String ('uppercase', 'lowercase', 'capitalize', 'none')
+  final dynamic
+  leading; // Line height - can be int, double, or String (token name like 'tight', 'normal', 'relaxed')
+  final dynamic
+  textDecoration; // Text decoration - can be String ('underline', 'line-through', 'none') or TextDecoration
+  final dynamic
+  font; // Font family - can be String token ('sans', 'serif', 'mono'), raw String family, List<String> stack, or TextStyle
+  final dynamic
+  fontWeight; // Font weight - can be String ('thin', 'light', 'normal', 'medium', 'bold', etc.) or FontWeight
+  final dynamic
+  tracking; // Letter spacing - can be int, double, or String token ('tighter', 'tight', 'normal', 'wide', 'wider', 'widest')
+  final dynamic
+  layoutType; // Layout type - can be String ('col', 'row', 'grid', 'stack')
+  final dynamic
+  justify; // Main axis alignment - can be String ('start', 'end', 'center', 'between', 'around', 'evenly')
+  final dynamic
+  items; // Cross axis alignment - can be String ('start', 'end', 'center', 'stretch', 'baseline')
   final dynamic gap; // Gap spacing - can be String ('s0' to 's96', 'px')
-  final dynamic gapX; // Horizontal gap spacing - can be String ('s0' to 's96', 'px')
-  final dynamic gapY; // Vertical gap spacing - can be String ('s0' to 's96', 'px')
+  final dynamic
+  gapX; // Horizontal gap spacing - can be String ('s0' to 's96', 'px')
+  final dynamic
+  gapY; // Vertical gap spacing - can be String ('s0' to 's96', 'px')
   final dynamic reverse; // Reverse direction - can be bool
   final dynamic inline; // Inline layout - can be bool
   final dynamic col; // Column Flutter API parameters - can be ColParams
   final dynamic row; // Row Flutter API parameters - can be RowParams
   final dynamic wrap; // Wrap Flutter API parameters - can be WrapParams
-  final dynamic flex; // Flex value - can be int (1-12) or String ('auto', 'initial', 'none')
+  final dynamic
+  flex; // Flex value - can be int (1-12) or String ('auto', 'initial', 'none')
   final dynamic grow; // Flex grow - can be int (0-2)
   final dynamic shrink; // Flex shrink - can be int (0-1)
   final dynamic basis; // Flex basis - can be String ('s32', 's40', 's48', etc.)
@@ -352,9 +385,7 @@ class FlyStyle {
 
   /// Check if any background color, border, or border radius is set
   bool get hasBackgroundOrBorder =>
-      color != null ||
-      hasBorder ||
-      hasBorderRadius;
+      color != null || hasBorder || hasBorderRadius;
 
   /// Check if any layout properties are set
   bool get hasLayoutProperties =>
@@ -372,36 +403,33 @@ class FlyStyle {
 
   /// Check if any flex properties are set
   bool get hasFlexProperties =>
-      flex != null ||
-      grow != null ||
-      shrink != null ||
-      basis != null;
+      flex != null || grow != null || shrink != null || basis != null;
 
   /// Apply text style directly to a Text widget
   Widget _applyTextStyleDirect(BuildContext context, Text textWidget) {
     // Start with the existing text widget style
     TextStyle finalStyle = textWidget.style ?? const TextStyle();
-    
+
     // Apply text style token and text-related utilities
     finalStyle = FlyTextUtils.applyToTextStyle(context, this, finalStyle);
-    
+
     // Then apply color if set (this will override the color from the text style token)
     if (color != null) {
       finalStyle = FlyColorUtils.applyToTextStyle(context, this, finalStyle);
     }
-    
+
     // Resolve text alignment
     TextAlign? finalTextAlign = textWidget.textAlign;
     if (textAlign != null) {
       finalTextAlign = FlyTextUtils.resolveTextAlign(textAlign);
     }
-    
+
     // Transform text if needed
     String finalText = textWidget.data ?? '';
     if (textTransform != null) {
       finalText = FlyTextUtils.transformText(finalText, textTransform);
     }
-    
+
     return Text(
       finalText,
       style: finalStyle,
@@ -418,7 +446,6 @@ class FlyStyle {
     );
   }
 
-
   /// Apply background color to a widget
   Widget _applyBackgroundColor(BuildContext context, Widget child) {
     return Container(
@@ -426,5 +453,4 @@ class FlyStyle {
       child: child,
     );
   }
-
 }

@@ -25,28 +25,40 @@ class FlyTextStyleToken implements FlyToken<TextStyle> {
 
   /// xs Text style values with fontSize and height
   final TextStyle xs;
+
   /// sm Text style values with fontSize and height
   final TextStyle sm;
+
   /// base Text style values with fontSize and height
   final TextStyle base;
+
   /// lg Text style values with fontSize and height
   final TextStyle lg;
+
   /// xl Text style values with fontSize and height
   final TextStyle xl;
+
   /// 2xl Text style values with fontSize and height
   final TextStyle xl2;
+
   /// 3xl Text style values with fontSize and height
   final TextStyle xl3;
+
   /// 4xl Text style values with fontSize and height
   final TextStyle xl4;
+
   /// 5xl Text style values with fontSize and height
   final TextStyle xl5;
+
   /// 6xl Text style values with fontSize and height
   final TextStyle xl6;
+
   /// 7xl Text style values with fontSize and height
   final TextStyle xl7;
+
   /// 8xl Text style values with fontSize and height
   final TextStyle xl8;
+
   /// 9xl Text style values with fontSize and height
   final TextStyle xl9;
 
@@ -73,7 +85,7 @@ class FlyTextStyleToken implements FlyToken<TextStyle> {
 
   /// Access value by key (canonical or extra)
   @override
-  TextStyle? operator[](String key) => _allValues[key];
+  TextStyle? operator [](String key) => _allValues[key];
 
   /// Get all available keys (canonical + extras)
   @override
@@ -120,7 +132,7 @@ class FlyTextStyleToken implements FlyToken<TextStyle> {
   @override
   FlyTextStyleToken merge(FlyToken<TextStyle> other) {
     if (other is! FlyTextStyleToken) return this;
-    
+
     return copyWith(
       xs: other.xs,
       sm: other.sm,
@@ -178,7 +190,7 @@ class FlyTextStyleToken implements FlyToken<TextStyle> {
   FlyTextStyleToken lerp(FlyTextStyleToken other, double t) {
     final result = <String, TextStyle>{};
     final allKeys = {..._allValues.keys, ...other._allValues.keys};
-    
+
     for (final key in allKeys) {
       final valueA = _allValues[key];
       final valueB = other._allValues[key];
@@ -190,7 +202,7 @@ class FlyTextStyleToken implements FlyToken<TextStyle> {
         result[key] = valueB;
       }
     }
-    
+
     return FlyTextStyleToken(
       xs: result['xs']!,
       sm: result['sm']!,
@@ -205,7 +217,25 @@ class FlyTextStyleToken implements FlyToken<TextStyle> {
       xl7: result['xl7']!,
       xl8: result['xl8']!,
       xl9: result['xl9']!,
-      extras: Map.fromEntries(result.entries.where((e) => !['xs', 'sm', 'base', 'lg', 'xl', 'xl2', 'xl3', 'xl4', 'xl5', 'xl6', 'xl7', 'xl8', 'xl9'].contains(e.key))),
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) => ![
+            'xs',
+            'sm',
+            'base',
+            'lg',
+            'xl',
+            'xl2',
+            'xl3',
+            'xl4',
+            'xl5',
+            'xl6',
+            'xl7',
+            'xl8',
+            'xl9',
+          ].contains(e.key),
+        ),
+      ),
     );
   }
 
@@ -231,7 +261,8 @@ class FlyTextStyleToken implements FlyToken<TextStyle> {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is FlyTextStyleToken && _allValues.toString() == other._allValues.toString();
+    return other is FlyTextStyleToken &&
+        _allValues.toString() == other._allValues.toString();
   }
 
   @override

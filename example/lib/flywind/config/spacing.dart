@@ -1,7 +1,6 @@
 // GENERATED FILE - DO NOT EDIT MANUALLY
 // To regenerate, run: dart run flywind:fly generate
 
-
 import 'package:flywind/tokens/spacing.dart';
 
 /// Custom spacing that provide dot notation access to custom spacing values
@@ -13,11 +12,7 @@ class CustomSpacing {
 
   /// Create default custom spacing as FlySpacingToken
   static FlySpacingToken defaultSpacing() {
-    return FlySpacingToken.defaultSpacing().copyWith(
-      extras: {
-        'test': 99.0,
-      },
-    );
+    return FlySpacingToken.defaultSpacing().copyWith(extras: {'test': 99.0});
   }
 }
 

@@ -16,12 +16,16 @@ class FlyBreakpointToken implements FlyToken<double> {
 
   /// sm Breakpoint values for responsive design
   final double sm;
+
   /// md Breakpoint values for responsive design
   final double md;
+
   /// lg Breakpoint values for responsive design
   final double lg;
+
   /// xl Breakpoint values for responsive design
   final double xl;
+
   /// 2xl Breakpoint values for responsive design
   final double xl2;
 
@@ -40,7 +44,7 @@ class FlyBreakpointToken implements FlyToken<double> {
 
   /// Access value by key (canonical or extra)
   @override
-  double? operator[](String key) => _allValues[key];
+  double? operator [](String key) => _allValues[key];
 
   /// Get all available keys (canonical + extras)
   @override
@@ -71,7 +75,7 @@ class FlyBreakpointToken implements FlyToken<double> {
   @override
   FlyBreakpointToken merge(FlyToken<double> other) {
     if (other is! FlyBreakpointToken) return this;
-    
+
     return copyWith(
       sm: other.sm,
       md: other.md,
@@ -105,7 +109,7 @@ class FlyBreakpointToken implements FlyToken<double> {
   FlyBreakpointToken lerp(FlyBreakpointToken other, double t) {
     final result = <String, double>{};
     final allKeys = {..._allValues.keys, ...other._allValues.keys};
-    
+
     for (final key in allKeys) {
       final valueA = _allValues[key];
       final valueB = other._allValues[key];
@@ -113,14 +117,18 @@ class FlyBreakpointToken implements FlyToken<double> {
       final numB = valueB ?? 0.0;
       result[key] = numA + (numB - numA) * t;
     }
-    
+
     return FlyBreakpointToken(
       sm: result['sm']!,
       md: result['md']!,
       lg: result['lg']!,
       xl: result['xl']!,
       xl2: result['xl2']!,
-      extras: Map.fromEntries(result.entries.where((e) => !['sm', 'md', 'lg', 'xl', 'xl2'].contains(e.key))),
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) => !['sm', 'md', 'lg', 'xl', 'xl2'].contains(e.key),
+        ),
+      ),
     );
   }
 
@@ -138,7 +146,8 @@ class FlyBreakpointToken implements FlyToken<double> {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is FlyBreakpointToken && _allValues.toString() == other._allValues.toString();
+    return other is FlyBreakpointToken &&
+        _allValues.toString() == other._allValues.toString();
   }
 
   @override

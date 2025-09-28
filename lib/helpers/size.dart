@@ -9,7 +9,7 @@ class FlySizeUtils {
   /// Resolves height from FlyStyle and FlyTheme into double
   static double? resolveHeight(BuildContext context, FlyStyle style) {
     if (style.h == null) return null;
-    
+
     try {
       final spacing = FlyTheme.of(context).spacing;
       return _resolveValue(style.h, context, spacing);
@@ -21,7 +21,7 @@ class FlySizeUtils {
   /// Resolves width from FlyStyle and FlyTheme into double
   static double? resolveWidth(BuildContext context, FlyStyle style) {
     if (style.w == null) return null;
-    
+
     try {
       final spacing = FlyTheme.of(context).spacing;
       return _resolveValue(style.w, context, spacing);
@@ -33,7 +33,7 @@ class FlySizeUtils {
   /// Resolves max height from FlyStyle and FlyTheme into double
   static double? resolveMaxHeight(BuildContext context, FlyStyle style) {
     if (style.maxH == null) return null;
-    
+
     try {
       final spacing = FlyTheme.of(context).spacing;
       return _resolveValue(style.maxH, context, spacing);
@@ -45,7 +45,7 @@ class FlySizeUtils {
   /// Resolves max width from FlyStyle and FlyTheme into double
   static double? resolveMaxWidth(BuildContext context, FlyStyle style) {
     if (style.maxW == null) return null;
-    
+
     try {
       final spacing = FlyTheme.of(context).spacing;
       return _resolveValue(style.maxW, context, spacing);
@@ -57,7 +57,7 @@ class FlySizeUtils {
   /// Resolves min height from FlyStyle and FlyTheme into double
   static double? resolveMinHeight(BuildContext context, FlyStyle style) {
     if (style.minH == null) return null;
-    
+
     try {
       final spacing = FlyTheme.of(context).spacing;
       return _resolveValue(style.minH, context, spacing);
@@ -69,7 +69,7 @@ class FlySizeUtils {
   /// Resolves min width from FlyStyle and FlyTheme into double
   static double? resolveMinWidth(BuildContext context, FlyStyle style) {
     if (style.minW == null) return null;
-    
+
     try {
       final spacing = FlyTheme.of(context).spacing;
       return _resolveValue(style.minW, context, spacing);
@@ -77,9 +77,13 @@ class FlySizeUtils {
       throw ArgumentError('Failed to resolve min width: $e');
     }
   }
-  
+
   /// Resolves a dynamic value to double using the numeric value resolver
-  static double _resolveValue(dynamic value, BuildContext context, FlySpacingToken tokens) {
+  static double _resolveValue(
+    dynamic value,
+    BuildContext context,
+    FlySpacingToken tokens,
+  ) {
     if (value == null) return 0;
     return FlyValue.resolveDouble(value, context, tokens);
   }
@@ -94,14 +98,20 @@ class FlySizeUtils {
     final minWidth = resolveMinWidth(context, style);
 
     // If no size constraints are set, return the child as-is
-    if (height == null && width == null && 
-        maxHeight == null && maxWidth == null && 
-        minHeight == null && minWidth == null) {
+    if (height == null &&
+        width == null &&
+        maxHeight == null &&
+        maxWidth == null &&
+        minHeight == null &&
+        minWidth == null) {
       return child;
     }
 
     // If we have max/min constraints, use ConstrainedBox
-    if (maxHeight != null || maxWidth != null || minHeight != null || minWidth != null) {
+    if (maxHeight != null ||
+        maxWidth != null ||
+        minHeight != null ||
+        minWidth != null) {
       return ConstrainedBox(
         constraints: BoxConstraints(
           minWidth: minWidth ?? 0,
@@ -109,20 +119,12 @@ class FlySizeUtils {
           minHeight: minHeight ?? 0,
           maxHeight: maxHeight ?? double.infinity,
         ),
-        child: SizedBox(
-          height: height,
-          width: width,
-          child: child,
-        ),
+        child: SizedBox(height: height, width: width, child: child),
       );
     }
 
     // If only fixed size constraints, use SizedBox
-    return SizedBox(
-      height: height,
-      width: width,
-      child: child,
-    );
+    return SizedBox(height: height, width: width, child: child);
   }
 }
 

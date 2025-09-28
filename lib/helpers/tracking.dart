@@ -18,7 +18,11 @@ class FlyTrackingUtils {
   }
 
   /// Resolves a dynamic value to double using the numeric value resolver
-  static double _resolveValue(dynamic value, BuildContext context, FlyTrackingToken tokens) {
+  static double _resolveValue(
+    dynamic value,
+    BuildContext context,
+    FlyTrackingToken tokens,
+  ) {
     if (value == null) return 0;
     return FlyValue.resolveDoubleAllowNegative(value, context, tokens);
   }
@@ -60,5 +64,3 @@ mixin FlyTracking<T> {
     return FlyTrackingUtils.applyToTextStyle(context, style, baseStyle);
   }
 }
-
-

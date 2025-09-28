@@ -11,12 +11,12 @@ class FlyTextUtils {
   /// Resolves text alignment from string to TextAlign enum
   static TextAlign? resolveTextAlign(dynamic value) {
     if (value == null) return null;
-    
+
     // If it's already a TextAlign, return it directly
     if (value is TextAlign) {
       return value;
     }
-    
+
     // Otherwise, resolve as string
     if (value is String) {
       switch (value.toLowerCase()) {
@@ -33,19 +33,23 @@ class FlyTextUtils {
         case 'end':
           return TextAlign.end;
         default:
-          throw ArgumentError('Invalid text alignment: "$value". Supported values: left, right, center, justify, start, end');
+          throw ArgumentError(
+            'Invalid text alignment: "$value". Supported values: left, right, center, justify, start, end',
+          );
       }
     }
-    
-    throw ArgumentError('Text alignment must be a String or TextAlign, got ${value.runtimeType}');
+
+    throw ArgumentError(
+      'Text alignment must be a String or TextAlign, got ${value.runtimeType}',
+    );
   }
 
   /// Transforms text based on the specified transformation type
   static String transformText(String text, dynamic transform) {
     if (transform == null || text.isEmpty) return text;
-    
+
     final transformStr = transform.toString().toLowerCase();
-    
+
     switch (transformStr) {
       case 'uppercase':
         return text.toUpperCase();
@@ -62,12 +66,12 @@ class FlyTextUtils {
   /// Resolves text decoration from string to TextDecoration enum
   static TextDecoration? resolveTextDecoration(dynamic value) {
     if (value == null) return null;
-    
+
     // If it's already a TextDecoration, return it directly
     if (value is TextDecoration) {
       return value;
     }
-    
+
     // Otherwise, resolve as string
     if (value is String) {
       switch (value.toLowerCase()) {
@@ -81,31 +85,39 @@ class FlyTextUtils {
         case 'none':
           return TextDecoration.none;
         default:
-          throw ArgumentError('Invalid text decoration: "$value". Supported values: underline, line-through, overline, none');
+          throw ArgumentError(
+            'Invalid text decoration: "$value". Supported values: underline, line-through, overline, none',
+          );
       }
     }
-    
-    throw ArgumentError('Text decoration must be a String or TextDecoration, got ${value.runtimeType}');
+
+    throw ArgumentError(
+      'Text decoration must be a String or TextDecoration, got ${value.runtimeType}',
+    );
   }
 
   /// Converts text to title case (capitalize first letter of each word)
   static String _toTitleCase(String text) {
     if (text.isEmpty) return text;
-    
-    return text.split(' ').map((word) {
-      if (word.isEmpty) return word;
-      return '${word[0].toUpperCase()}${word.substring(1).toLowerCase()}';
-    }).join(' ');
+
+    return text
+        .split(' ')
+        .map((word) {
+          if (word.isEmpty) return word;
+          return '${word[0].toUpperCase()}${word.substring(1).toLowerCase()}';
+        })
+        .join(' ');
   }
+
   /// Resolves text style from FlyStyle and FlyThemeData into TextStyle
   static TextStyle? resolve(BuildContext context, FlyStyle style) {
     if (style.text == null) return null;
-    
+
     // If it's already a TextStyle, return it directly
     if (style.text is TextStyle) {
       return style.text as TextStyle;
     }
-    
+
     // Otherwise, resolve as token
     try {
       final textStyles = FlyTheme.of(context).textStyle;
@@ -128,13 +140,18 @@ class FlyTextUtils {
     final trackingValue = FlyTrackingUtils.resolve(context, style);
     final fontFamilies = FlyFontUtils.resolve(context, style.font);
 
-    if (textStyle == null && leadingValue == null && textDecoration == null && fontWeight == null && trackingValue == null && fontFamilies == null) {
+    if (textStyle == null &&
+        leadingValue == null &&
+        textDecoration == null &&
+        fontWeight == null &&
+        trackingValue == null &&
+        fontFamilies == null) {
       return baseStyle ?? const TextStyle();
     }
 
     // Start with base style or empty style
     TextStyle result = baseStyle ?? const TextStyle();
-    
+
     // Apply text style if available
     if (textStyle != null) {
       result = textStyle.copyWith(
@@ -160,7 +177,7 @@ class FlyTextUtils {
         fontFamilyFallback: baseStyle?.fontFamilyFallback,
       );
     }
-    
+
     // Apply leading if available
     if (leadingValue != null) {
       result = result.copyWith(height: leadingValue);

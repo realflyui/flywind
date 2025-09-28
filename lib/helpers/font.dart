@@ -31,8 +31,12 @@ class FlyFontUtils {
         return null;
       }
       return FlyFontFamilies(
-        primary: family ?? (fallback != null && fallback.isNotEmpty ? fallback.first : null),
-        fallback: family != null ? (fallback ?? const <String>[]) : (fallback?.skip(1).toList() ?? const <String>[]),
+        primary:
+            family ??
+            (fallback != null && fallback.isNotEmpty ? fallback.first : null),
+        fallback: family != null
+            ? (fallback ?? const <String>[])
+            : (fallback?.skip(1).toList() ?? const <String>[]),
       );
     }
 
@@ -64,7 +68,9 @@ class FlyFontUtils {
       return FlyFontFamilies(primary: value, fallback: const <String>[]);
     }
 
-    throw ArgumentError('Font must be a String, List<String>, or TextStyle, got ${value.runtimeType}');
+    throw ArgumentError(
+      'Font must be a String, List<String>, or TextStyle, got ${value.runtimeType}',
+    );
   }
 }
 
@@ -73,5 +79,3 @@ class FlyFontFamilies {
   final String? primary;
   final List<String> fallback;
 }
-
-

@@ -19,18 +19,25 @@ class FlyRadiusToken implements FlyToken<double> {
 
   /// xs Border radius values for rounded corners
   final double xs;
+
   /// sm Border radius values for rounded corners
   final double sm;
+
   /// md Border radius values for rounded corners
   final double md;
+
   /// lg Border radius values for rounded corners
   final double lg;
+
   /// xl Border radius values for rounded corners
   final double xl;
+
   /// 2xl Border radius values for rounded corners
   final double xl2;
+
   /// 3xl Border radius values for rounded corners
   final double xl3;
+
   /// 4xl Border radius values for rounded corners
   final double xl4;
 
@@ -52,7 +59,7 @@ class FlyRadiusToken implements FlyToken<double> {
 
   /// Access value by key (canonical or extra)
   @override
-  double? operator[](String key) => _allValues[key];
+  double? operator [](String key) => _allValues[key];
 
   /// Get all available keys (canonical + extras)
   @override
@@ -89,7 +96,7 @@ class FlyRadiusToken implements FlyToken<double> {
   @override
   FlyRadiusToken merge(FlyToken<double> other) {
     if (other is! FlyRadiusToken) return this;
-    
+
     return copyWith(
       xs: other.xs,
       sm: other.sm,
@@ -132,7 +139,7 @@ class FlyRadiusToken implements FlyToken<double> {
   FlyRadiusToken lerp(FlyRadiusToken other, double t) {
     final result = <String, double>{};
     final allKeys = {..._allValues.keys, ...other._allValues.keys};
-    
+
     for (final key in allKeys) {
       final valueA = _allValues[key];
       final valueB = other._allValues[key];
@@ -140,7 +147,7 @@ class FlyRadiusToken implements FlyToken<double> {
       final numB = valueB ?? 0.0;
       result[key] = numA + (numB - numA) * t;
     }
-    
+
     return FlyRadiusToken(
       xs: result['xs']!,
       sm: result['sm']!,
@@ -150,7 +157,20 @@ class FlyRadiusToken implements FlyToken<double> {
       xl2: result['xl2']!,
       xl3: result['xl3']!,
       xl4: result['xl4']!,
-      extras: Map.fromEntries(result.entries.where((e) => !['xs', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3', 'xl4'].contains(e.key))),
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) => ![
+            'xs',
+            'sm',
+            'md',
+            'lg',
+            'xl',
+            'xl2',
+            'xl3',
+            'xl4',
+          ].contains(e.key),
+        ),
+      ),
     );
   }
 
@@ -171,7 +191,8 @@ class FlyRadiusToken implements FlyToken<double> {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is FlyRadiusToken && _allValues.toString() == other._allValues.toString();
+    return other is FlyRadiusToken &&
+        _allValues.toString() == other._allValues.toString();
   }
 
   @override

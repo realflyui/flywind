@@ -10,20 +10,28 @@ class FlyPaddingUtils {
   static EdgeInsets resolve(BuildContext context, FlyStyle style) {
     try {
       final spacing = FlyTheme.of(context).spacing;
-      
+
       return EdgeInsets.only(
         left: _resolveValue(style.pl ?? style.px ?? style.p, context, spacing),
         right: _resolveValue(style.pr ?? style.px ?? style.p, context, spacing),
         top: _resolveValue(style.pt ?? style.py ?? style.p, context, spacing),
-        bottom: _resolveValue(style.pb ?? style.py ?? style.p, context, spacing),
+        bottom: _resolveValue(
+          style.pb ?? style.py ?? style.p,
+          context,
+          spacing,
+        ),
       );
     } catch (e) {
       throw ArgumentError('Failed to resolve padding: $e');
     }
   }
-  
+
   /// Resolves a dynamic value to double using the numeric value resolver
-  static double _resolveValue(dynamic value, BuildContext context, FlySpacingToken tokens) {
+  static double _resolveValue(
+    dynamic value,
+    BuildContext context,
+    FlySpacingToken tokens,
+  ) {
     if (value == null) return 0;
     return FlyValue.resolveDouble(value, context, tokens);
   }

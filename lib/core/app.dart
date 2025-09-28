@@ -46,7 +46,8 @@ class _FlyProvider extends StatefulWidget {
   State<_FlyProvider> createState() => _FlyProviderState();
 }
 
-class _FlyProviderState extends State<_FlyProvider> with WidgetsBindingObserver {
+class _FlyProviderState extends State<_FlyProvider>
+    with WidgetsBindingObserver {
   late FlyNotifier _notifier;
   Brightness? _lastBrightness;
 
@@ -84,16 +85,16 @@ class _FlyProviderState extends State<_FlyProvider> with WidgetsBindingObserver 
     final brightness = _getCurrentBrightness();
     if (brightness != _lastBrightness) {
       _lastBrightness = brightness;
-      final themeData = brightness == Brightness.dark 
-          ? widget.darkTheme 
+      final themeData = brightness == Brightness.dark
+          ? widget.darkTheme
           : widget.lightTheme;
-      
+
       // Debug information in debug mode
       assert(() {
         debugPrint('FlyTheme: Switching to ${brightness.name} theme');
         return true;
       }());
-      
+
       _notifier.set(themeData);
     }
   }
@@ -112,18 +113,15 @@ class _FlyProviderState extends State<_FlyProvider> with WidgetsBindingObserver 
   FlyNotifier _createController() {
     final brightness = _getCurrentBrightness();
     _lastBrightness = brightness;
-    final initialData = brightness == Brightness.dark 
-        ? widget.darkTheme 
+    final initialData = brightness == Brightness.dark
+        ? widget.darkTheme
         : widget.lightTheme;
-    
+
     return FlyNotifier(initialData: initialData);
   }
 
   @override
   Widget build(BuildContext context) {
-    return FlyTheme(
-      notifier: _notifier,
-      child: widget.child(context),
-    );
+    return FlyTheme(notifier: _notifier, child: widget.child(context));
   }
 }

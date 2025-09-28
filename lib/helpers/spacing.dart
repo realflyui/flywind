@@ -55,5 +55,4 @@ class FlySpacingUtils {
 
     return EdgeInsets.only(left: left, right: right, top: top, bottom: bottom);
   }
-
 }

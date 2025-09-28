@@ -256,490 +256,733 @@ class FlyColorToken implements FlyToken<Color> {
 
   /// red50 Color values from Tailwind CSS theme
   final Color red50;
+
   /// red100 Color values from Tailwind CSS theme
   final Color red100;
+
   /// red200 Color values from Tailwind CSS theme
   final Color red200;
+
   /// red300 Color values from Tailwind CSS theme
   final Color red300;
+
   /// red400 Color values from Tailwind CSS theme
   final Color red400;
+
   /// red500 Color values from Tailwind CSS theme
   final Color red500;
+
   /// red600 Color values from Tailwind CSS theme
   final Color red600;
+
   /// red700 Color values from Tailwind CSS theme
   final Color red700;
+
   /// red800 Color values from Tailwind CSS theme
   final Color red800;
+
   /// red900 Color values from Tailwind CSS theme
   final Color red900;
+
   /// red950 Color values from Tailwind CSS theme
   final Color red950;
+
   /// orange50 Color values from Tailwind CSS theme
   final Color orange50;
+
   /// orange100 Color values from Tailwind CSS theme
   final Color orange100;
+
   /// orange200 Color values from Tailwind CSS theme
   final Color orange200;
+
   /// orange300 Color values from Tailwind CSS theme
   final Color orange300;
+
   /// orange400 Color values from Tailwind CSS theme
   final Color orange400;
+
   /// orange500 Color values from Tailwind CSS theme
   final Color orange500;
+
   /// orange600 Color values from Tailwind CSS theme
   final Color orange600;
+
   /// orange700 Color values from Tailwind CSS theme
   final Color orange700;
+
   /// orange800 Color values from Tailwind CSS theme
   final Color orange800;
+
   /// orange900 Color values from Tailwind CSS theme
   final Color orange900;
+
   /// orange950 Color values from Tailwind CSS theme
   final Color orange950;
+
   /// amber50 Color values from Tailwind CSS theme
   final Color amber50;
+
   /// amber100 Color values from Tailwind CSS theme
   final Color amber100;
+
   /// amber200 Color values from Tailwind CSS theme
   final Color amber200;
+
   /// amber300 Color values from Tailwind CSS theme
   final Color amber300;
+
   /// amber400 Color values from Tailwind CSS theme
   final Color amber400;
+
   /// amber500 Color values from Tailwind CSS theme
   final Color amber500;
+
   /// amber600 Color values from Tailwind CSS theme
   final Color amber600;
+
   /// amber700 Color values from Tailwind CSS theme
   final Color amber700;
+
   /// amber800 Color values from Tailwind CSS theme
   final Color amber800;
+
   /// amber900 Color values from Tailwind CSS theme
   final Color amber900;
+
   /// amber950 Color values from Tailwind CSS theme
   final Color amber950;
+
   /// yellow50 Color values from Tailwind CSS theme
   final Color yellow50;
+
   /// yellow100 Color values from Tailwind CSS theme
   final Color yellow100;
+
   /// yellow200 Color values from Tailwind CSS theme
   final Color yellow200;
+
   /// yellow300 Color values from Tailwind CSS theme
   final Color yellow300;
+
   /// yellow400 Color values from Tailwind CSS theme
   final Color yellow400;
+
   /// yellow500 Color values from Tailwind CSS theme
   final Color yellow500;
+
   /// yellow600 Color values from Tailwind CSS theme
   final Color yellow600;
+
   /// yellow700 Color values from Tailwind CSS theme
   final Color yellow700;
+
   /// yellow800 Color values from Tailwind CSS theme
   final Color yellow800;
+
   /// yellow900 Color values from Tailwind CSS theme
   final Color yellow900;
+
   /// yellow950 Color values from Tailwind CSS theme
   final Color yellow950;
+
   /// lime50 Color values from Tailwind CSS theme
   final Color lime50;
+
   /// lime100 Color values from Tailwind CSS theme
   final Color lime100;
+
   /// lime200 Color values from Tailwind CSS theme
   final Color lime200;
+
   /// lime300 Color values from Tailwind CSS theme
   final Color lime300;
+
   /// lime400 Color values from Tailwind CSS theme
   final Color lime400;
+
   /// lime500 Color values from Tailwind CSS theme
   final Color lime500;
+
   /// lime600 Color values from Tailwind CSS theme
   final Color lime600;
+
   /// lime700 Color values from Tailwind CSS theme
   final Color lime700;
+
   /// lime800 Color values from Tailwind CSS theme
   final Color lime800;
+
   /// lime900 Color values from Tailwind CSS theme
   final Color lime900;
+
   /// lime950 Color values from Tailwind CSS theme
   final Color lime950;
+
   /// green50 Color values from Tailwind CSS theme
   final Color green50;
+
   /// green100 Color values from Tailwind CSS theme
   final Color green100;
+
   /// green200 Color values from Tailwind CSS theme
   final Color green200;
+
   /// green300 Color values from Tailwind CSS theme
   final Color green300;
+
   /// green400 Color values from Tailwind CSS theme
   final Color green400;
+
   /// green500 Color values from Tailwind CSS theme
   final Color green500;
+
   /// green600 Color values from Tailwind CSS theme
   final Color green600;
+
   /// green700 Color values from Tailwind CSS theme
   final Color green700;
+
   /// green800 Color values from Tailwind CSS theme
   final Color green800;
+
   /// green900 Color values from Tailwind CSS theme
   final Color green900;
+
   /// green950 Color values from Tailwind CSS theme
   final Color green950;
+
   /// emerald50 Color values from Tailwind CSS theme
   final Color emerald50;
+
   /// emerald100 Color values from Tailwind CSS theme
   final Color emerald100;
+
   /// emerald200 Color values from Tailwind CSS theme
   final Color emerald200;
+
   /// emerald300 Color values from Tailwind CSS theme
   final Color emerald300;
+
   /// emerald400 Color values from Tailwind CSS theme
   final Color emerald400;
+
   /// emerald500 Color values from Tailwind CSS theme
   final Color emerald500;
+
   /// emerald600 Color values from Tailwind CSS theme
   final Color emerald600;
+
   /// emerald700 Color values from Tailwind CSS theme
   final Color emerald700;
+
   /// emerald800 Color values from Tailwind CSS theme
   final Color emerald800;
+
   /// emerald900 Color values from Tailwind CSS theme
   final Color emerald900;
+
   /// emerald950 Color values from Tailwind CSS theme
   final Color emerald950;
+
   /// teal50 Color values from Tailwind CSS theme
   final Color teal50;
+
   /// teal100 Color values from Tailwind CSS theme
   final Color teal100;
+
   /// teal200 Color values from Tailwind CSS theme
   final Color teal200;
+
   /// teal300 Color values from Tailwind CSS theme
   final Color teal300;
+
   /// teal400 Color values from Tailwind CSS theme
   final Color teal400;
+
   /// teal500 Color values from Tailwind CSS theme
   final Color teal500;
+
   /// teal600 Color values from Tailwind CSS theme
   final Color teal600;
+
   /// teal700 Color values from Tailwind CSS theme
   final Color teal700;
+
   /// teal800 Color values from Tailwind CSS theme
   final Color teal800;
+
   /// teal900 Color values from Tailwind CSS theme
   final Color teal900;
+
   /// teal950 Color values from Tailwind CSS theme
   final Color teal950;
+
   /// cyan50 Color values from Tailwind CSS theme
   final Color cyan50;
+
   /// cyan100 Color values from Tailwind CSS theme
   final Color cyan100;
+
   /// cyan200 Color values from Tailwind CSS theme
   final Color cyan200;
+
   /// cyan300 Color values from Tailwind CSS theme
   final Color cyan300;
+
   /// cyan400 Color values from Tailwind CSS theme
   final Color cyan400;
+
   /// cyan500 Color values from Tailwind CSS theme
   final Color cyan500;
+
   /// cyan600 Color values from Tailwind CSS theme
   final Color cyan600;
+
   /// cyan700 Color values from Tailwind CSS theme
   final Color cyan700;
+
   /// cyan800 Color values from Tailwind CSS theme
   final Color cyan800;
+
   /// cyan900 Color values from Tailwind CSS theme
   final Color cyan900;
+
   /// cyan950 Color values from Tailwind CSS theme
   final Color cyan950;
+
   /// sky50 Color values from Tailwind CSS theme
   final Color sky50;
+
   /// sky100 Color values from Tailwind CSS theme
   final Color sky100;
+
   /// sky200 Color values from Tailwind CSS theme
   final Color sky200;
+
   /// sky300 Color values from Tailwind CSS theme
   final Color sky300;
+
   /// sky400 Color values from Tailwind CSS theme
   final Color sky400;
+
   /// sky500 Color values from Tailwind CSS theme
   final Color sky500;
+
   /// sky600 Color values from Tailwind CSS theme
   final Color sky600;
+
   /// sky700 Color values from Tailwind CSS theme
   final Color sky700;
+
   /// sky800 Color values from Tailwind CSS theme
   final Color sky800;
+
   /// sky900 Color values from Tailwind CSS theme
   final Color sky900;
+
   /// sky950 Color values from Tailwind CSS theme
   final Color sky950;
+
   /// blue50 Color values from Tailwind CSS theme
   final Color blue50;
+
   /// blue100 Color values from Tailwind CSS theme
   final Color blue100;
+
   /// blue200 Color values from Tailwind CSS theme
   final Color blue200;
+
   /// blue300 Color values from Tailwind CSS theme
   final Color blue300;
+
   /// blue400 Color values from Tailwind CSS theme
   final Color blue400;
+
   /// blue500 Color values from Tailwind CSS theme
   final Color blue500;
+
   /// blue600 Color values from Tailwind CSS theme
   final Color blue600;
+
   /// blue700 Color values from Tailwind CSS theme
   final Color blue700;
+
   /// blue800 Color values from Tailwind CSS theme
   final Color blue800;
+
   /// blue900 Color values from Tailwind CSS theme
   final Color blue900;
+
   /// blue950 Color values from Tailwind CSS theme
   final Color blue950;
+
   /// indigo50 Color values from Tailwind CSS theme
   final Color indigo50;
+
   /// indigo100 Color values from Tailwind CSS theme
   final Color indigo100;
+
   /// indigo200 Color values from Tailwind CSS theme
   final Color indigo200;
+
   /// indigo300 Color values from Tailwind CSS theme
   final Color indigo300;
+
   /// indigo400 Color values from Tailwind CSS theme
   final Color indigo400;
+
   /// indigo500 Color values from Tailwind CSS theme
   final Color indigo500;
+
   /// indigo600 Color values from Tailwind CSS theme
   final Color indigo600;
+
   /// indigo700 Color values from Tailwind CSS theme
   final Color indigo700;
+
   /// indigo800 Color values from Tailwind CSS theme
   final Color indigo800;
+
   /// indigo900 Color values from Tailwind CSS theme
   final Color indigo900;
+
   /// indigo950 Color values from Tailwind CSS theme
   final Color indigo950;
+
   /// violet50 Color values from Tailwind CSS theme
   final Color violet50;
+
   /// violet100 Color values from Tailwind CSS theme
   final Color violet100;
+
   /// violet200 Color values from Tailwind CSS theme
   final Color violet200;
+
   /// violet300 Color values from Tailwind CSS theme
   final Color violet300;
+
   /// violet400 Color values from Tailwind CSS theme
   final Color violet400;
+
   /// violet500 Color values from Tailwind CSS theme
   final Color violet500;
+
   /// violet600 Color values from Tailwind CSS theme
   final Color violet600;
+
   /// violet700 Color values from Tailwind CSS theme
   final Color violet700;
+
   /// violet800 Color values from Tailwind CSS theme
   final Color violet800;
+
   /// violet900 Color values from Tailwind CSS theme
   final Color violet900;
+
   /// violet950 Color values from Tailwind CSS theme
   final Color violet950;
+
   /// purple50 Color values from Tailwind CSS theme
   final Color purple50;
+
   /// purple100 Color values from Tailwind CSS theme
   final Color purple100;
+
   /// purple200 Color values from Tailwind CSS theme
   final Color purple200;
+
   /// purple300 Color values from Tailwind CSS theme
   final Color purple300;
+
   /// purple400 Color values from Tailwind CSS theme
   final Color purple400;
+
   /// purple500 Color values from Tailwind CSS theme
   final Color purple500;
+
   /// purple600 Color values from Tailwind CSS theme
   final Color purple600;
+
   /// purple700 Color values from Tailwind CSS theme
   final Color purple700;
+
   /// purple800 Color values from Tailwind CSS theme
   final Color purple800;
+
   /// purple900 Color values from Tailwind CSS theme
   final Color purple900;
+
   /// purple950 Color values from Tailwind CSS theme
   final Color purple950;
+
   /// fuchsia50 Color values from Tailwind CSS theme
   final Color fuchsia50;
+
   /// fuchsia100 Color values from Tailwind CSS theme
   final Color fuchsia100;
+
   /// fuchsia200 Color values from Tailwind CSS theme
   final Color fuchsia200;
+
   /// fuchsia300 Color values from Tailwind CSS theme
   final Color fuchsia300;
+
   /// fuchsia400 Color values from Tailwind CSS theme
   final Color fuchsia400;
+
   /// fuchsia500 Color values from Tailwind CSS theme
   final Color fuchsia500;
+
   /// fuchsia600 Color values from Tailwind CSS theme
   final Color fuchsia600;
+
   /// fuchsia700 Color values from Tailwind CSS theme
   final Color fuchsia700;
+
   /// fuchsia800 Color values from Tailwind CSS theme
   final Color fuchsia800;
+
   /// fuchsia900 Color values from Tailwind CSS theme
   final Color fuchsia900;
+
   /// fuchsia950 Color values from Tailwind CSS theme
   final Color fuchsia950;
+
   /// pink50 Color values from Tailwind CSS theme
   final Color pink50;
+
   /// pink100 Color values from Tailwind CSS theme
   final Color pink100;
+
   /// pink200 Color values from Tailwind CSS theme
   final Color pink200;
+
   /// pink300 Color values from Tailwind CSS theme
   final Color pink300;
+
   /// pink400 Color values from Tailwind CSS theme
   final Color pink400;
+
   /// pink500 Color values from Tailwind CSS theme
   final Color pink500;
+
   /// pink600 Color values from Tailwind CSS theme
   final Color pink600;
+
   /// pink700 Color values from Tailwind CSS theme
   final Color pink700;
+
   /// pink800 Color values from Tailwind CSS theme
   final Color pink800;
+
   /// pink900 Color values from Tailwind CSS theme
   final Color pink900;
+
   /// pink950 Color values from Tailwind CSS theme
   final Color pink950;
+
   /// rose50 Color values from Tailwind CSS theme
   final Color rose50;
+
   /// rose100 Color values from Tailwind CSS theme
   final Color rose100;
+
   /// rose200 Color values from Tailwind CSS theme
   final Color rose200;
+
   /// rose300 Color values from Tailwind CSS theme
   final Color rose300;
+
   /// rose400 Color values from Tailwind CSS theme
   final Color rose400;
+
   /// rose500 Color values from Tailwind CSS theme
   final Color rose500;
+
   /// rose600 Color values from Tailwind CSS theme
   final Color rose600;
+
   /// rose700 Color values from Tailwind CSS theme
   final Color rose700;
+
   /// rose800 Color values from Tailwind CSS theme
   final Color rose800;
+
   /// rose900 Color values from Tailwind CSS theme
   final Color rose900;
+
   /// rose950 Color values from Tailwind CSS theme
   final Color rose950;
+
   /// slate50 Color values from Tailwind CSS theme
   final Color slate50;
+
   /// slate100 Color values from Tailwind CSS theme
   final Color slate100;
+
   /// slate200 Color values from Tailwind CSS theme
   final Color slate200;
+
   /// slate300 Color values from Tailwind CSS theme
   final Color slate300;
+
   /// slate400 Color values from Tailwind CSS theme
   final Color slate400;
+
   /// slate500 Color values from Tailwind CSS theme
   final Color slate500;
+
   /// slate600 Color values from Tailwind CSS theme
   final Color slate600;
+
   /// slate700 Color values from Tailwind CSS theme
   final Color slate700;
+
   /// slate800 Color values from Tailwind CSS theme
   final Color slate800;
+
   /// slate900 Color values from Tailwind CSS theme
   final Color slate900;
+
   /// slate950 Color values from Tailwind CSS theme
   final Color slate950;
+
   /// gray50 Color values from Tailwind CSS theme
   final Color gray50;
+
   /// gray100 Color values from Tailwind CSS theme
   final Color gray100;
+
   /// gray200 Color values from Tailwind CSS theme
   final Color gray200;
+
   /// gray300 Color values from Tailwind CSS theme
   final Color gray300;
+
   /// gray400 Color values from Tailwind CSS theme
   final Color gray400;
+
   /// gray500 Color values from Tailwind CSS theme
   final Color gray500;
+
   /// gray600 Color values from Tailwind CSS theme
   final Color gray600;
+
   /// gray700 Color values from Tailwind CSS theme
   final Color gray700;
+
   /// gray800 Color values from Tailwind CSS theme
   final Color gray800;
+
   /// gray900 Color values from Tailwind CSS theme
   final Color gray900;
+
   /// gray950 Color values from Tailwind CSS theme
   final Color gray950;
+
   /// zinc50 Color values from Tailwind CSS theme
   final Color zinc50;
+
   /// zinc100 Color values from Tailwind CSS theme
   final Color zinc100;
+
   /// zinc200 Color values from Tailwind CSS theme
   final Color zinc200;
+
   /// zinc300 Color values from Tailwind CSS theme
   final Color zinc300;
+
   /// zinc400 Color values from Tailwind CSS theme
   final Color zinc400;
+
   /// zinc500 Color values from Tailwind CSS theme
   final Color zinc500;
+
   /// zinc600 Color values from Tailwind CSS theme
   final Color zinc600;
+
   /// zinc700 Color values from Tailwind CSS theme
   final Color zinc700;
+
   /// zinc800 Color values from Tailwind CSS theme
   final Color zinc800;
+
   /// zinc900 Color values from Tailwind CSS theme
   final Color zinc900;
+
   /// zinc950 Color values from Tailwind CSS theme
   final Color zinc950;
+
   /// neutral50 Color values from Tailwind CSS theme
   final Color neutral50;
+
   /// neutral100 Color values from Tailwind CSS theme
   final Color neutral100;
+
   /// neutral200 Color values from Tailwind CSS theme
   final Color neutral200;
+
   /// neutral300 Color values from Tailwind CSS theme
   final Color neutral300;
+
   /// neutral400 Color values from Tailwind CSS theme
   final Color neutral400;
+
   /// neutral500 Color values from Tailwind CSS theme
   final Color neutral500;
+
   /// neutral600 Color values from Tailwind CSS theme
   final Color neutral600;
+
   /// neutral700 Color values from Tailwind CSS theme
   final Color neutral700;
+
   /// neutral800 Color values from Tailwind CSS theme
   final Color neutral800;
+
   /// neutral900 Color values from Tailwind CSS theme
   final Color neutral900;
+
   /// neutral950 Color values from Tailwind CSS theme
   final Color neutral950;
+
   /// stone50 Color values from Tailwind CSS theme
   final Color stone50;
+
   /// stone100 Color values from Tailwind CSS theme
   final Color stone100;
+
   /// stone200 Color values from Tailwind CSS theme
   final Color stone200;
+
   /// stone300 Color values from Tailwind CSS theme
   final Color stone300;
+
   /// stone400 Color values from Tailwind CSS theme
   final Color stone400;
+
   /// stone500 Color values from Tailwind CSS theme
   final Color stone500;
+
   /// stone600 Color values from Tailwind CSS theme
   final Color stone600;
+
   /// stone700 Color values from Tailwind CSS theme
   final Color stone700;
+
   /// stone800 Color values from Tailwind CSS theme
   final Color stone800;
+
   /// stone900 Color values from Tailwind CSS theme
   final Color stone900;
+
   /// stone950 Color values from Tailwind CSS theme
   final Color stone950;
+
   /// black Color values from Tailwind CSS theme
   final Color black;
+
   /// white Color values from Tailwind CSS theme
   final Color white;
 
@@ -997,7 +1240,7 @@ class FlyColorToken implements FlyToken<Color> {
 
   /// Access value by key (canonical or extra)
   @override
-  Color? operator[](String key) => _allValues[key];
+  Color? operator [](String key) => _allValues[key];
 
   /// Get all available keys (canonical + extras)
   @override
@@ -1506,7 +1749,7 @@ class FlyColorToken implements FlyToken<Color> {
   @override
   FlyColorToken merge(FlyToken<Color> other) {
     if (other is! FlyColorToken) return this;
-    
+
     return copyWith(
       red50: other.red50,
       red100: other.red100,
@@ -2257,7 +2500,7 @@ class FlyColorToken implements FlyToken<Color> {
   FlyColorToken lerp(FlyColorToken other, double t) {
     final result = <String, Color>{};
     final allKeys = {..._allValues.keys, ...other._allValues.keys};
-    
+
     for (final key in allKeys) {
       final valueA = _allValues[key];
       final valueB = other._allValues[key];
@@ -2269,7 +2512,7 @@ class FlyColorToken implements FlyToken<Color> {
         result[key] = valueB;
       }
     }
-    
+
     return FlyColorToken(
       red50: result['red50']!,
       red100: result['red100']!,
@@ -2515,7 +2758,256 @@ class FlyColorToken implements FlyToken<Color> {
       stone950: result['stone950']!,
       black: result['black']!,
       white: result['white']!,
-      extras: Map.fromEntries(result.entries.where((e) => !['red50', 'red100', 'red200', 'red300', 'red400', 'red500', 'red600', 'red700', 'red800', 'red900', 'red950', 'orange50', 'orange100', 'orange200', 'orange300', 'orange400', 'orange500', 'orange600', 'orange700', 'orange800', 'orange900', 'orange950', 'amber50', 'amber100', 'amber200', 'amber300', 'amber400', 'amber500', 'amber600', 'amber700', 'amber800', 'amber900', 'amber950', 'yellow50', 'yellow100', 'yellow200', 'yellow300', 'yellow400', 'yellow500', 'yellow600', 'yellow700', 'yellow800', 'yellow900', 'yellow950', 'lime50', 'lime100', 'lime200', 'lime300', 'lime400', 'lime500', 'lime600', 'lime700', 'lime800', 'lime900', 'lime950', 'green50', 'green100', 'green200', 'green300', 'green400', 'green500', 'green600', 'green700', 'green800', 'green900', 'green950', 'emerald50', 'emerald100', 'emerald200', 'emerald300', 'emerald400', 'emerald500', 'emerald600', 'emerald700', 'emerald800', 'emerald900', 'emerald950', 'teal50', 'teal100', 'teal200', 'teal300', 'teal400', 'teal500', 'teal600', 'teal700', 'teal800', 'teal900', 'teal950', 'cyan50', 'cyan100', 'cyan200', 'cyan300', 'cyan400', 'cyan500', 'cyan600', 'cyan700', 'cyan800', 'cyan900', 'cyan950', 'sky50', 'sky100', 'sky200', 'sky300', 'sky400', 'sky500', 'sky600', 'sky700', 'sky800', 'sky900', 'sky950', 'blue50', 'blue100', 'blue200', 'blue300', 'blue400', 'blue500', 'blue600', 'blue700', 'blue800', 'blue900', 'blue950', 'indigo50', 'indigo100', 'indigo200', 'indigo300', 'indigo400', 'indigo500', 'indigo600', 'indigo700', 'indigo800', 'indigo900', 'indigo950', 'violet50', 'violet100', 'violet200', 'violet300', 'violet400', 'violet500', 'violet600', 'violet700', 'violet800', 'violet900', 'violet950', 'purple50', 'purple100', 'purple200', 'purple300', 'purple400', 'purple500', 'purple600', 'purple700', 'purple800', 'purple900', 'purple950', 'fuchsia50', 'fuchsia100', 'fuchsia200', 'fuchsia300', 'fuchsia400', 'fuchsia500', 'fuchsia600', 'fuchsia700', 'fuchsia800', 'fuchsia900', 'fuchsia950', 'pink50', 'pink100', 'pink200', 'pink300', 'pink400', 'pink500', 'pink600', 'pink700', 'pink800', 'pink900', 'pink950', 'rose50', 'rose100', 'rose200', 'rose300', 'rose400', 'rose500', 'rose600', 'rose700', 'rose800', 'rose900', 'rose950', 'slate50', 'slate100', 'slate200', 'slate300', 'slate400', 'slate500', 'slate600', 'slate700', 'slate800', 'slate900', 'slate950', 'gray50', 'gray100', 'gray200', 'gray300', 'gray400', 'gray500', 'gray600', 'gray700', 'gray800', 'gray900', 'gray950', 'zinc50', 'zinc100', 'zinc200', 'zinc300', 'zinc400', 'zinc500', 'zinc600', 'zinc700', 'zinc800', 'zinc900', 'zinc950', 'neutral50', 'neutral100', 'neutral200', 'neutral300', 'neutral400', 'neutral500', 'neutral600', 'neutral700', 'neutral800', 'neutral900', 'neutral950', 'stone50', 'stone100', 'stone200', 'stone300', 'stone400', 'stone500', 'stone600', 'stone700', 'stone800', 'stone900', 'stone950', 'black', 'white'].contains(e.key))),
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) => ![
+            'red50',
+            'red100',
+            'red200',
+            'red300',
+            'red400',
+            'red500',
+            'red600',
+            'red700',
+            'red800',
+            'red900',
+            'red950',
+            'orange50',
+            'orange100',
+            'orange200',
+            'orange300',
+            'orange400',
+            'orange500',
+            'orange600',
+            'orange700',
+            'orange800',
+            'orange900',
+            'orange950',
+            'amber50',
+            'amber100',
+            'amber200',
+            'amber300',
+            'amber400',
+            'amber500',
+            'amber600',
+            'amber700',
+            'amber800',
+            'amber900',
+            'amber950',
+            'yellow50',
+            'yellow100',
+            'yellow200',
+            'yellow300',
+            'yellow400',
+            'yellow500',
+            'yellow600',
+            'yellow700',
+            'yellow800',
+            'yellow900',
+            'yellow950',
+            'lime50',
+            'lime100',
+            'lime200',
+            'lime300',
+            'lime400',
+            'lime500',
+            'lime600',
+            'lime700',
+            'lime800',
+            'lime900',
+            'lime950',
+            'green50',
+            'green100',
+            'green200',
+            'green300',
+            'green400',
+            'green500',
+            'green600',
+            'green700',
+            'green800',
+            'green900',
+            'green950',
+            'emerald50',
+            'emerald100',
+            'emerald200',
+            'emerald300',
+            'emerald400',
+            'emerald500',
+            'emerald600',
+            'emerald700',
+            'emerald800',
+            'emerald900',
+            'emerald950',
+            'teal50',
+            'teal100',
+            'teal200',
+            'teal300',
+            'teal400',
+            'teal500',
+            'teal600',
+            'teal700',
+            'teal800',
+            'teal900',
+            'teal950',
+            'cyan50',
+            'cyan100',
+            'cyan200',
+            'cyan300',
+            'cyan400',
+            'cyan500',
+            'cyan600',
+            'cyan700',
+            'cyan800',
+            'cyan900',
+            'cyan950',
+            'sky50',
+            'sky100',
+            'sky200',
+            'sky300',
+            'sky400',
+            'sky500',
+            'sky600',
+            'sky700',
+            'sky800',
+            'sky900',
+            'sky950',
+            'blue50',
+            'blue100',
+            'blue200',
+            'blue300',
+            'blue400',
+            'blue500',
+            'blue600',
+            'blue700',
+            'blue800',
+            'blue900',
+            'blue950',
+            'indigo50',
+            'indigo100',
+            'indigo200',
+            'indigo300',
+            'indigo400',
+            'indigo500',
+            'indigo600',
+            'indigo700',
+            'indigo800',
+            'indigo900',
+            'indigo950',
+            'violet50',
+            'violet100',
+            'violet200',
+            'violet300',
+            'violet400',
+            'violet500',
+            'violet600',
+            'violet700',
+            'violet800',
+            'violet900',
+            'violet950',
+            'purple50',
+            'purple100',
+            'purple200',
+            'purple300',
+            'purple400',
+            'purple500',
+            'purple600',
+            'purple700',
+            'purple800',
+            'purple900',
+            'purple950',
+            'fuchsia50',
+            'fuchsia100',
+            'fuchsia200',
+            'fuchsia300',
+            'fuchsia400',
+            'fuchsia500',
+            'fuchsia600',
+            'fuchsia700',
+            'fuchsia800',
+            'fuchsia900',
+            'fuchsia950',
+            'pink50',
+            'pink100',
+            'pink200',
+            'pink300',
+            'pink400',
+            'pink500',
+            'pink600',
+            'pink700',
+            'pink800',
+            'pink900',
+            'pink950',
+            'rose50',
+            'rose100',
+            'rose200',
+            'rose300',
+            'rose400',
+            'rose500',
+            'rose600',
+            'rose700',
+            'rose800',
+            'rose900',
+            'rose950',
+            'slate50',
+            'slate100',
+            'slate200',
+            'slate300',
+            'slate400',
+            'slate500',
+            'slate600',
+            'slate700',
+            'slate800',
+            'slate900',
+            'slate950',
+            'gray50',
+            'gray100',
+            'gray200',
+            'gray300',
+            'gray400',
+            'gray500',
+            'gray600',
+            'gray700',
+            'gray800',
+            'gray900',
+            'gray950',
+            'zinc50',
+            'zinc100',
+            'zinc200',
+            'zinc300',
+            'zinc400',
+            'zinc500',
+            'zinc600',
+            'zinc700',
+            'zinc800',
+            'zinc900',
+            'zinc950',
+            'neutral50',
+            'neutral100',
+            'neutral200',
+            'neutral300',
+            'neutral400',
+            'neutral500',
+            'neutral600',
+            'neutral700',
+            'neutral800',
+            'neutral900',
+            'neutral950',
+            'stone50',
+            'stone100',
+            'stone200',
+            'stone300',
+            'stone400',
+            'stone500',
+            'stone600',
+            'stone700',
+            'stone800',
+            'stone900',
+            'stone950',
+            'black',
+            'white',
+          ].contains(e.key),
+        ),
+      ),
     );
   }
 
@@ -2772,7 +3264,8 @@ class FlyColorToken implements FlyToken<Color> {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is FlyColorToken && _allValues.toString() == other._allValues.toString();
+    return other is FlyColorToken &&
+        _allValues.toString() == other._allValues.toString();
   }
 
   @override

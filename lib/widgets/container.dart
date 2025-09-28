@@ -43,19 +43,19 @@ class FlyContainer extends StatelessWidget
   /// Build a single Container with all decorations applied
   Widget _buildStyledContainer(BuildContext context) {
     // Resolve all decoration properties once
-    final backgroundColor = _style.color != null 
-        ? FlyColorUtils.applyToContainer(context, _style) 
+    final backgroundColor = _style.color != null
+        ? FlyColorUtils.applyToContainer(context, _style)
         : null;
-    
-    final borderRadius = _style.hasBorderRadius 
-        ? FlyRoundedUtils.resolve(context, _style) 
+
+    final borderRadius = _style.hasBorderRadius
+        ? FlyRoundedUtils.resolve(context, _style)
         : BorderRadius.zero;
 
-    final padding = _style.hasPadding 
+    final padding = _style.hasPadding
         ? FlyPaddingUtils.resolve(context, _style)
         : EdgeInsets.zero;
 
-    final margin = _style.hasMargin 
+    final margin = _style.hasMargin
         ? FlyMarginUtils.resolve(context, _style)
         : EdgeInsets.zero;
 
@@ -73,20 +73,37 @@ class FlyContainer extends StatelessWidget
     if (_style.hasBorder) {
       if (FlyBorderUtils.needsCustomBorder(_style)) {
         // Custom borders (dashed, dotted, double)
-        container = FlyBorderUtils.createBorderWidget(context, _style, container);
-        
+        container = FlyBorderUtils.createBorderWidget(
+          context,
+          _style,
+          container,
+        );
+
         // Apply background color for custom borders
         if (backgroundColor != null) {
-          container = _createBackgroundContainer(backgroundColor, borderRadius, container);
+          container = _createBackgroundContainer(
+            backgroundColor,
+            borderRadius,
+            container,
+          );
         }
       } else {
         // Solid borders - include border in decoration
         final border = FlyBorderUtils.resolve(context, _style);
-        container = _createBackgroundContainer(backgroundColor, borderRadius, container, border);
+        container = _createBackgroundContainer(
+          backgroundColor,
+          borderRadius,
+          container,
+          border,
+        );
       }
     } else if (backgroundColor != null) {
       // No borders, just background color
-      container = _createBackgroundContainer(backgroundColor, borderRadius, container);
+      container = _createBackgroundContainer(
+        backgroundColor,
+        borderRadius,
+        container,
+      );
     }
 
     // Apply size constraints if needed (before margin to avoid nesting)
@@ -104,11 +121,11 @@ class FlyContainer extends StatelessWidget
 
   /// Creates a background container with optional border
   Widget _createBackgroundContainer(
-    Color? backgroundColor, 
-    BorderRadius borderRadius, 
-    Widget child, 
-    [Border? border]
-  ) {
+    Color? backgroundColor,
+    BorderRadius borderRadius,
+    Widget child, [
+    Border? border,
+  ]) {
     final decoration = BoxDecoration(
       color: backgroundColor,
       border: border,

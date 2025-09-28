@@ -16,12 +16,16 @@ class FlyLeadingToken implements FlyToken<double> {
 
   /// tight Line height values
   final double tight;
+
   /// snug Line height values
   final double snug;
+
   /// normal Line height values
   final double normal;
+
   /// relaxed Line height values
   final double relaxed;
+
   /// loose Line height values
   final double loose;
 
@@ -40,7 +44,7 @@ class FlyLeadingToken implements FlyToken<double> {
 
   /// Access value by key (canonical or extra)
   @override
-  double? operator[](String key) => _allValues[key];
+  double? operator [](String key) => _allValues[key];
 
   /// Get all available keys (canonical + extras)
   @override
@@ -71,7 +75,7 @@ class FlyLeadingToken implements FlyToken<double> {
   @override
   FlyLeadingToken merge(FlyToken<double> other) {
     if (other is! FlyLeadingToken) return this;
-    
+
     return copyWith(
       tight: other.tight,
       snug: other.snug,
@@ -105,7 +109,7 @@ class FlyLeadingToken implements FlyToken<double> {
   FlyLeadingToken lerp(FlyLeadingToken other, double t) {
     final result = <String, double>{};
     final allKeys = {..._allValues.keys, ...other._allValues.keys};
-    
+
     for (final key in allKeys) {
       final valueA = _allValues[key];
       final valueB = other._allValues[key];
@@ -113,14 +117,19 @@ class FlyLeadingToken implements FlyToken<double> {
       final numB = valueB ?? 0.0;
       result[key] = numA + (numB - numA) * t;
     }
-    
+
     return FlyLeadingToken(
       tight: result['tight']!,
       snug: result['snug']!,
       normal: result['normal']!,
       relaxed: result['relaxed']!,
       loose: result['loose']!,
-      extras: Map.fromEntries(result.entries.where((e) => !['tight', 'snug', 'normal', 'relaxed', 'loose'].contains(e.key))),
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) =>
+              !['tight', 'snug', 'normal', 'relaxed', 'loose'].contains(e.key),
+        ),
+      ),
     );
   }
 
@@ -138,7 +147,8 @@ class FlyLeadingToken implements FlyToken<double> {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is FlyLeadingToken && _allValues.toString() == other._allValues.toString();
+    return other is FlyLeadingToken &&
+        _allValues.toString() == other._allValues.toString();
   }
 
   @override

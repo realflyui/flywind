@@ -341,8 +341,6 @@ class CustomTokenBuilder implements Builder {
     log.info('Custom radius: ${radius.keys.join(', ')}');
   }
 
-
-
   /// Generate custom text style class
   Future<void> _generateCustomTextStyle(
     BuildStep buildStep,
@@ -388,7 +386,9 @@ class CustomTokenBuilder implements Builder {
     buffer.writeln();
 
     // Generate default method that creates a FlyTextStyleToken with custom extras
-    buffer.writeln('  /// Create default custom text style as FlyTextStyleToken');
+    buffer.writeln(
+      '  /// Create default custom text style as FlyTextStyleToken',
+    );
     buffer.writeln('  static FlyTextStyleToken defaultTextStyle() {');
     buffer.writeln('    return FlyTextStyleToken.defaultTextStyle().copyWith(');
     buffer.writeln('      extras: {');
@@ -408,7 +408,9 @@ class CustomTokenBuilder implements Builder {
     buffer.writeln(
       '/// Extension methods for FlyTextStyleToken to provide dot notation access',
     );
-    buffer.writeln('extension FlyTextStyleTokenExtensions on FlyTextStyleToken {');
+    buffer.writeln(
+      'extension FlyTextStyleTokenExtensions on FlyTextStyleToken {',
+    );
 
     for (final entry in textStyle.entries) {
       final key = entry.key;
@@ -434,8 +436,6 @@ class CustomTokenBuilder implements Builder {
     log.info('Generated: ${outputAsset.path}');
     log.info('Custom text style: ${textStyle.keys.join(', ')}');
   }
-
-
 
   /// Generate custom font weight class
   Future<void> _generateCustomFontWeight(
@@ -536,7 +536,6 @@ class CustomTokenBuilder implements Builder {
     log.info('Generated: ${outputAsset.path}');
     log.info('Custom font weight: ${fontWeight.keys.join(', ')}');
   }
-
 
   /// Generate custom leading class
   Future<void> _generateCustomLeading(

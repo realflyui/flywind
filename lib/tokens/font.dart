@@ -14,8 +14,10 @@ class FlyFontToken implements FlyToken<List<String>> {
 
   /// sans Font family stacks (sans, serif, mono)
   final List<String> sans;
+
   /// serif Font family stacks (sans, serif, mono)
   final List<String> serif;
+
   /// mono Font family stacks (sans, serif, mono)
   final List<String> mono;
 
@@ -32,7 +34,7 @@ class FlyFontToken implements FlyToken<List<String>> {
 
   /// Access value by key (canonical or extra)
   @override
-  List<String>? operator[](String key) => _allValues[key];
+  List<String>? operator [](String key) => _allValues[key];
 
   /// Get all available keys (canonical + extras)
   @override
@@ -59,7 +61,7 @@ class FlyFontToken implements FlyToken<List<String>> {
   @override
   FlyFontToken merge(FlyToken<List<String>> other) {
     if (other is! FlyFontToken) return this;
-    
+
     return copyWith(
       sans: other.sans,
       serif: other.serif,
@@ -87,15 +89,32 @@ class FlyFontToken implements FlyToken<List<String>> {
   static FlyFontToken defaultFont() {
     return const FlyFontToken(
       sans: ["Roboto", "Helvetica", "sans-serif"],
-      serif: ["Noto Serif", "Georgia", "Cambria", "Times New Roman", "Times", "serif"],
-      mono: ["Roboto Mono", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+      serif: [
+        "Noto Serif",
+        "Georgia",
+        "Cambria",
+        "Times New Roman",
+        "Times",
+        "serif",
+      ],
+      mono: [
+        "Roboto Mono",
+        "SFMono-Regular",
+        "Menlo",
+        "Monaco",
+        "Consolas",
+        "Liberation Mono",
+        "Courier New",
+        "monospace",
+      ],
     );
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is FlyFontToken && _allValues.toString() == other._allValues.toString();
+    return other is FlyFontToken &&
+        _allValues.toString() == other._allValues.toString();
   }
 
   @override

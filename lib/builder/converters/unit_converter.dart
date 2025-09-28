@@ -36,7 +36,7 @@ class UnitConverter {
   /// Convert any unit to Flutter double format
   static String convertToDouble(String value) {
     final trimmedValue = value.trim();
-    
+
     if (trimmedValue.contains('calc(')) {
       // Handle calc() expressions like calc(1.25 / 0.875)
       return _resolveCalcExpression(trimmedValue);
@@ -56,11 +56,12 @@ class UnitConverter {
       return emToDouble(trimmedValue);
     } else if (trimmedValue.endsWith('%')) {
       return percentToDouble(trimmedValue);
-    } else if (trimmedValue == '0' || RegExp(r'^\d+(\.\d+)?$').hasMatch(trimmedValue)) {
+    } else if (trimmedValue == '0' ||
+        RegExp(r'^\d+(\.\d+)?$').hasMatch(trimmedValue)) {
       // Pure number
       return trimmedValue;
     }
-    
+
     throw Exception('Unsupported unit format: $value');
   }
 
@@ -68,7 +69,7 @@ class UnitConverter {
   static String _resolveCalcExpression(String calcValue) {
     // Remove calc() wrapper
     final content = calcValue.replaceAll(RegExp(r'calc\(|\)'), '').trim();
-    
+
     if (content.contains('/')) {
       // Handle division: calc(1.25 / 0.875)
       final parts = content.split('/');
@@ -102,7 +103,7 @@ class UnitConverter {
         return (left * right).toString();
       }
     }
-    
+
     // If no operators found, try to parse as a single value
     return _parseValue(content).toString();
   }

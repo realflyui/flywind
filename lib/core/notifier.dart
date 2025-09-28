@@ -3,8 +3,8 @@ import '../tokens/tokens.dart';
 
 /// Controller for managing Fly theme data with runtime updates
 class FlyNotifier extends ChangeNotifier {
-  FlyNotifier({FlyThemeData? initialData}) 
-      : _data = initialData ?? FlyThemeData.fallback();
+  FlyNotifier({FlyThemeData? initialData})
+    : _data = initialData ?? FlyThemeData.fallback();
 
   FlyThemeData _data;
 
@@ -38,7 +38,9 @@ class FlyNotifier extends ChangeNotifier {
   }
 
   /// Update spacing token
-  void updateSpacing(FlySpacingToken Function(FlySpacingToken current) updater) {
+  void updateSpacing(
+    FlySpacingToken Function(FlySpacingToken current) updater,
+  ) {
     update((data) => data.copyWith(spacing: updater(data.spacing)));
   }
 
@@ -53,7 +55,9 @@ class FlyNotifier extends ChangeNotifier {
   }
 
   /// Update text style token
-  void updateTextStyle(FlyTextStyleToken Function(FlyTextStyleToken current) updater) {
+  void updateTextStyle(
+    FlyTextStyleToken Function(FlyTextStyleToken current) updater,
+  ) {
     update((data) => data.copyWith(textStyle: updater(data.textStyle)));
   }
 
@@ -63,22 +67,30 @@ class FlyNotifier extends ChangeNotifier {
   }
 
   /// Update font weight token
-  void updateFontWeight(FlyFontWeightToken Function(FlyFontWeightToken current) updater) {
+  void updateFontWeight(
+    FlyFontWeightToken Function(FlyFontWeightToken current) updater,
+  ) {
     update((data) => data.copyWith(fontWeight: updater(data.fontWeight)));
   }
 
   /// Update leading token
-  void updateLeading(FlyLeadingToken Function(FlyLeadingToken current) updater) {
+  void updateLeading(
+    FlyLeadingToken Function(FlyLeadingToken current) updater,
+  ) {
     update((data) => data.copyWith(leading: updater(data.leading)));
   }
 
   /// Update tracking token
-  void updateTracking(FlyTrackingToken Function(FlyTrackingToken current) updater) {
+  void updateTracking(
+    FlyTrackingToken Function(FlyTrackingToken current) updater,
+  ) {
     update((data) => data.copyWith(tracking: updater(data.tracking)));
   }
 
   /// Update breakpoint token
-  void updateBreakpoint(FlyBreakpointToken Function(FlyBreakpointToken current) updater) {
+  void updateBreakpoint(
+    FlyBreakpointToken Function(FlyBreakpointToken current) updater,
+  ) {
     update((data) => data.copyWith(breakpoint: updater(data.breakpoint)));
   }
 
@@ -165,7 +177,6 @@ class FlyNotifier extends ChangeNotifier {
     }
     updateBreakpoint((breakpoint) => breakpoint.put(key, value));
   }
-
 }
 
 /// Main theme data container that holds all tokens
@@ -246,7 +257,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
   /// Merge another theme data into this one
   FlyThemeData merge(FlyThemeData? other) {
     if (other == null) return this;
-    
+
     return FlyThemeData(
       spacing: spacing.merge(other.spacing),
       colors: colors.merge(other.colors),
@@ -279,7 +290,7 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
   @override
   FlyThemeData lerp(ThemeExtension<FlyThemeData>? other, double t) {
     if (other is! FlyThemeData) return this;
-    
+
     return FlyThemeData(
       spacing: spacing.lerp(other.spacing, t),
       colors: colors.lerp(other.colors, t),
@@ -310,7 +321,15 @@ class FlyThemeData extends ThemeExtension<FlyThemeData> {
 
   @override
   int get hashCode => Object.hash(
-    spacing, colors, radius, textStyle, font, fontWeight, leading, tracking, breakpoint
+    spacing,
+    colors,
+    radius,
+    textStyle,
+    font,
+    fontWeight,
+    leading,
+    tracking,
+    breakpoint,
   );
 }
 
@@ -319,5 +338,3 @@ extension FlyThemeDataExtension on ThemeData {
   /// Get Fly theme data from Material theme extensions
   FlyThemeData? get flyTheme => extension<FlyThemeData>();
 }
-
-

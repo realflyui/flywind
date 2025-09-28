@@ -47,74 +47,109 @@ class FlySpacingToken implements FlyToken<double> {
 
   /// base Spacing values for margins and padding
   final double base;
+
   /// px Spacing values for margins and padding
   final double px;
+
   /// s0 Spacing values for margins and padding
   final double s0;
+
   /// s0_5 Spacing values for margins and padding
   final double s05;
+
   /// s1 Spacing values for margins and padding
   final double s1;
+
   /// s1_5 Spacing values for margins and padding
   final double s15;
+
   /// s2 Spacing values for margins and padding
   final double s2;
+
   /// s2_5 Spacing values for margins and padding
   final double s25;
+
   /// s3 Spacing values for margins and padding
   final double s3;
+
   /// s3_5 Spacing values for margins and padding
   final double s35;
+
   /// s4 Spacing values for margins and padding
   final double s4;
+
   /// s5 Spacing values for margins and padding
   final double s5;
+
   /// s6 Spacing values for margins and padding
   final double s6;
+
   /// s7 Spacing values for margins and padding
   final double s7;
+
   /// s8 Spacing values for margins and padding
   final double s8;
+
   /// s9 Spacing values for margins and padding
   final double s9;
+
   /// s10 Spacing values for margins and padding
   final double s10;
+
   /// s11 Spacing values for margins and padding
   final double s11;
+
   /// s12 Spacing values for margins and padding
   final double s12;
+
   /// s14 Spacing values for margins and padding
   final double s14;
+
   /// s16 Spacing values for margins and padding
   final double s16;
+
   /// s20 Spacing values for margins and padding
   final double s20;
+
   /// s24 Spacing values for margins and padding
   final double s24;
+
   /// s28 Spacing values for margins and padding
   final double s28;
+
   /// s32 Spacing values for margins and padding
   final double s32;
+
   /// s36 Spacing values for margins and padding
   final double s36;
+
   /// s40 Spacing values for margins and padding
   final double s40;
+
   /// s44 Spacing values for margins and padding
   final double s44;
+
   /// s48 Spacing values for margins and padding
   final double s48;
+
   /// s52 Spacing values for margins and padding
   final double s52;
+
   /// s56 Spacing values for margins and padding
   final double s56;
+
   /// s60 Spacing values for margins and padding
   final double s60;
+
   /// s64 Spacing values for margins and padding
   final double s64;
+
   /// s72 Spacing values for margins and padding
   final double s72;
+
   /// s80 Spacing values for margins and padding
   final double s80;
+
   /// s96 Spacing values for margins and padding
   final double s96;
 
@@ -164,7 +199,7 @@ class FlySpacingToken implements FlyToken<double> {
 
   /// Access value by key (canonical or extra)
   @override
-  double? operator[](String key) => _allValues[key];
+  double? operator [](String key) => _allValues[key];
 
   /// Get all available keys (canonical + extras)
   @override
@@ -257,7 +292,7 @@ class FlySpacingToken implements FlyToken<double> {
   @override
   FlySpacingToken merge(FlyToken<double> other) {
     if (other is! FlySpacingToken) return this;
-    
+
     return copyWith(
       base: other.base,
       px: other.px,
@@ -384,7 +419,7 @@ class FlySpacingToken implements FlyToken<double> {
   FlySpacingToken lerp(FlySpacingToken other, double t) {
     final result = <String, double>{};
     final allKeys = {..._allValues.keys, ...other._allValues.keys};
-    
+
     for (final key in allKeys) {
       final valueA = _allValues[key];
       final valueB = other._allValues[key];
@@ -392,7 +427,7 @@ class FlySpacingToken implements FlyToken<double> {
       final numB = valueB ?? 0.0;
       result[key] = numA + (numB - numA) * t;
     }
-    
+
     return FlySpacingToken(
       base: result['base']!,
       px: result['px']!,
@@ -430,7 +465,48 @@ class FlySpacingToken implements FlyToken<double> {
       s72: result['s72']!,
       s80: result['s80']!,
       s96: result['s96']!,
-      extras: Map.fromEntries(result.entries.where((e) => !['base', 'px', 's0', 's05', 's1', 's15', 's2', 's25', 's3', 's35', 's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12', 's14', 's16', 's20', 's24', 's28', 's32', 's36', 's40', 's44', 's48', 's52', 's56', 's60', 's64', 's72', 's80', 's96'].contains(e.key))),
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) => ![
+            'base',
+            'px',
+            's0',
+            's05',
+            's1',
+            's15',
+            's2',
+            's25',
+            's3',
+            's35',
+            's4',
+            's5',
+            's6',
+            's7',
+            's8',
+            's9',
+            's10',
+            's11',
+            's12',
+            's14',
+            's16',
+            's20',
+            's24',
+            's28',
+            's32',
+            's36',
+            's40',
+            's44',
+            's48',
+            's52',
+            's56',
+            's60',
+            's64',
+            's72',
+            's80',
+            's96',
+          ].contains(e.key),
+        ),
+      ),
     );
   }
 
@@ -479,7 +555,8 @@ class FlySpacingToken implements FlyToken<double> {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is FlySpacingToken && _allValues.toString() == other._allValues.toString();
+    return other is FlySpacingToken &&
+        _allValues.toString() == other._allValues.toString();
   }
 
   @override

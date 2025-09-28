@@ -14,50 +14,98 @@ class FlyBorderUtils {
     try {
       final spacing = FlyTheme.of(context).spacing;
       final colors = FlyTheme.of(context).colors;
-      
+
       // Check if any border is set
       if (!_hasBorder(style)) return Border.all(width: 0);
-      
+
       // Resolve border color
       final borderColor = _resolveBorderColor(style, context, colors);
       if (borderColor == null) return Border.all(width: 0);
-      
+
       // Resolve border style
       final borderStyle = _resolveBorderStyle(style);
-      
+
       // Resolve individual border sides
-      final topWidth = _resolveBorderSideWidth(style.borderT ?? style.border, context, spacing);
-      final rightWidth = _resolveBorderSideWidth(style.borderR ?? style.border, context, spacing);
-      final bottomWidth = _resolveBorderSideWidth(style.borderB ?? style.border, context, spacing);
-      final leftWidth = _resolveBorderSideWidth(style.borderL ?? style.border, context, spacing);
-      
+      final topWidth = _resolveBorderSideWidth(
+        style.borderT ?? style.border,
+        context,
+        spacing,
+      );
+      final rightWidth = _resolveBorderSideWidth(
+        style.borderR ?? style.border,
+        context,
+        spacing,
+      );
+      final bottomWidth = _resolveBorderSideWidth(
+        style.borderB ?? style.border,
+        context,
+        spacing,
+      );
+      final leftWidth = _resolveBorderSideWidth(
+        style.borderL ?? style.border,
+        context,
+        spacing,
+      );
+
       return Border(
-        top: topWidth > 0 ? BorderSide(width: topWidth, color: borderColor, style: borderStyle) : BorderSide.none,
-        right: rightWidth > 0 ? BorderSide(width: rightWidth, color: borderColor, style: borderStyle) : BorderSide.none,
-        bottom: bottomWidth > 0 ? BorderSide(width: bottomWidth, color: borderColor, style: borderStyle) : BorderSide.none,
-        left: leftWidth > 0 ? BorderSide(width: leftWidth, color: borderColor, style: borderStyle) : BorderSide.none,
+        top: topWidth > 0
+            ? BorderSide(
+                width: topWidth,
+                color: borderColor,
+                style: borderStyle,
+              )
+            : BorderSide.none,
+        right: rightWidth > 0
+            ? BorderSide(
+                width: rightWidth,
+                color: borderColor,
+                style: borderStyle,
+              )
+            : BorderSide.none,
+        bottom: bottomWidth > 0
+            ? BorderSide(
+                width: bottomWidth,
+                color: borderColor,
+                style: borderStyle,
+              )
+            : BorderSide.none,
+        left: leftWidth > 0
+            ? BorderSide(
+                width: leftWidth,
+                color: borderColor,
+                style: borderStyle,
+              )
+            : BorderSide.none,
       );
     } catch (e) {
       throw ArgumentError('Failed to resolve border: $e');
     }
   }
-  
+
   /// Resolves border width for a specific side
-  static double _resolveBorderSideWidth(dynamic value, BuildContext context, FlySpacingToken tokens) {
+  static double _resolveBorderSideWidth(
+    dynamic value,
+    BuildContext context,
+    FlySpacingToken tokens,
+  ) {
     if (value == null) return 0;
     return FlyValue.resolveDouble(value, context, tokens);
   }
-  
+
   /// Resolves border color from style properties
-  static Color? _resolveBorderColor(FlyStyle style, BuildContext context, FlyColorToken tokens) {
+  static Color? _resolveBorderColor(
+    FlyStyle style,
+    BuildContext context,
+    FlyColorToken tokens,
+  ) {
     if (style.borderColor == null) return Colors.black; // Default border color
     return FlyValue.resolveColor(style.borderColor, context, tokens);
   }
-  
+
   /// Resolves border style from style properties
   static BorderStyle _resolveBorderStyle(FlyStyle style) {
     if (style.borderStyle == null) return BorderStyle.solid;
-    
+
     switch (style.borderStyle.toString().toLowerCase()) {
       case 'dashed':
         return BorderStyle.solid; // Flutter doesn't have dashed, use solid
@@ -75,16 +123,15 @@ class FlyBorderUtils {
   /// Checks if custom border rendering is needed (dashed, dotted)
   static bool needsCustomBorder(FlyStyle style) {
     if (style.borderStyle == null) return false;
-    
+
     final borderStyle = style.borderStyle.toString().toLowerCase();
-    return borderStyle == 'dashed' || 
-           borderStyle == 'dotted';
+    return borderStyle == 'dashed' || borderStyle == 'dotted';
   }
 
   /// Gets the dash pattern for custom borders
   static List<double> getDashPattern(FlyStyle style) {
     if (style.borderStyle == null) return [5, 5];
-    
+
     switch (style.borderStyle.toString().toLowerCase()) {
       case 'dashed':
         return [10, 5]; // Longer dashes
@@ -94,37 +141,52 @@ class FlyBorderUtils {
         return [5, 5];
     }
   }
-  
+
   /// Check if any border properties are set
   static bool _hasBorder(FlyStyle style) {
     return style.border != null ||
-           style.borderT != null ||
-           style.borderR != null ||
-           style.borderB != null ||
-           style.borderL != null;
+        style.borderT != null ||
+        style.borderR != null ||
+        style.borderB != null ||
+        style.borderL != null;
   }
 
-
   /// Creates a border widget that handles custom borders (dashed, dotted)
-  static Widget createBorderWidget(BuildContext context, FlyStyle style, Widget child) {
+  static Widget createBorderWidget(
+    BuildContext context,
+    FlyStyle style,
+    Widget child,
+  ) {
     return _createCustomBorder(context, style, child);
   }
 
   /// Creates custom border using DottedBorder for dashed and dotted styles
-  static Widget _createCustomBorder(BuildContext context, FlyStyle style, Widget child) {
+  static Widget _createCustomBorder(
+    BuildContext context,
+    FlyStyle style,
+    Widget child,
+  ) {
     final spacing = FlyTheme.of(context).spacing;
     final colors = FlyTheme.of(context).colors;
-    
+
     // Resolve border properties
-    final borderWidth = _resolveBorderSideWidth(style.borderT ?? style.borderR ?? style.borderB ?? style.borderL ?? style.border, context, spacing);
+    final borderWidth = _resolveBorderSideWidth(
+      style.borderT ??
+          style.borderR ??
+          style.borderB ??
+          style.borderL ??
+          style.border,
+      context,
+      spacing,
+    );
     final borderColor = _resolveBorderColor(style, context, colors);
     final dashPattern = getDashPattern(style);
-    
+
     if (borderWidth <= 0 || borderColor == null) return child;
-    
+
     // Get border radius for rounded corners
     final borderRadius = _getBorderRadius(context, style);
-    
+
     // Regular dashed or dotted border
     return DottedBorder(
       options: RoundedRectDottedBorderOptions(
@@ -142,7 +204,7 @@ class FlyBorderUtils {
   static Radius _getBorderRadius(BuildContext context, FlyStyle style) {
     // Use FlyRoundedUtils to get the proper border radius
     final borderRadius = FlyRoundedUtils.resolve(context, style);
-    
+
     // Return the top-left radius as the representative radius
     // DottedBorder will use this for all corners
     return borderRadius.topLeft;
@@ -164,7 +226,6 @@ class FlyBorderUtils {
     // The container will handle the border through BoxDecoration
     return child;
   }
-
 }
 
 /// Mixin that provides Tailwind-like border methods for any widget
@@ -217,5 +278,4 @@ mixin FlyBorder<T> {
   Widget applyBorder(BuildContext context, Widget child) {
     return FlyBorderUtils.apply(context, style, child);
   }
-
 }

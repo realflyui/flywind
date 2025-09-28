@@ -4,11 +4,8 @@ import '../helpers/style.dart';
 
 /// A layout widget that provides Tailwind-like layout utilities
 class FlyLayout extends StatelessWidget with FlyLayoutUtilities<FlyLayout> {
-  const FlyLayout(
-    this.children, {
-    super.key,
-    FlyStyle style = const FlyStyle(),
-  }) : _style = style;
+  const FlyLayout(this.children, {super.key, FlyStyle style = const FlyStyle()})
+    : _style = style;
 
   final List<Widget> children;
   final FlyStyle _style;
@@ -24,7 +21,7 @@ class FlyLayout extends StatelessWidget with FlyLayoutUtilities<FlyLayout> {
   Widget build(BuildContext context) {
     // If no layout type is specified, return children in a column by default
     final layoutType = _style.layoutType ?? 'col';
-    
+
     switch (layoutType) {
       case 'col':
         return FlyLayoutUtils.buildColumn(context, _style, children);

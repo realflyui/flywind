@@ -29,10 +29,10 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
   }
 
   /// Get the notifier for direct access to all theme methods
-  /// 
+  ///
   /// This provides access to all notifier methods while maintaining
   /// the convenience of context-based access.
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// FlyTheme.data(context)?.putSpacing('large', 32.0);
@@ -43,42 +43,66 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
   }
 
   /// Update the theme using a function
-  static void update(BuildContext context, FlyThemeData Function(FlyThemeData current) updater) {
+  static void update(
+    BuildContext context,
+    FlyThemeData Function(FlyThemeData current) updater,
+  ) {
     _getNotifier(context)?.update(updater);
   }
 
   /// Update spacing token
-  static void updateSpacing(BuildContext context, FlySpacingToken Function(FlySpacingToken current) updater) {
+  static void updateSpacing(
+    BuildContext context,
+    FlySpacingToken Function(FlySpacingToken current) updater,
+  ) {
     _getNotifier(context)?.updateSpacing(updater);
   }
 
   /// Update colors token
-  static void updateColors(BuildContext context, FlyColorToken Function(FlyColorToken current) updater) {
+  static void updateColors(
+    BuildContext context,
+    FlyColorToken Function(FlyColorToken current) updater,
+  ) {
     _getNotifier(context)?.updateColors(updater);
   }
 
   /// Update radius token
-  static void updateRadius(BuildContext context, FlyRadiusToken Function(FlyRadiusToken current) updater) {
+  static void updateRadius(
+    BuildContext context,
+    FlyRadiusToken Function(FlyRadiusToken current) updater,
+  ) {
     _getNotifier(context)?.updateRadius(updater);
   }
 
   /// Update text style token
-  static void updateTextStyle(BuildContext context, FlyTextStyleToken Function(FlyTextStyleToken current) updater) {
+  static void updateTextStyle(
+    BuildContext context,
+    FlyTextStyleToken Function(FlyTextStyleToken current) updater,
+  ) {
     _getNotifier(context)?.updateTextStyle(updater);
   }
 
   /// Update font token
-  static void updateFont(BuildContext context, FlyFontToken Function(FlyFontToken current) updater) {
+  static void updateFont(
+    BuildContext context,
+    FlyFontToken Function(FlyFontToken current) updater,
+  ) {
     _getNotifier(context)?.updateFont(updater);
   }
 
   /// Update font weight token
-  static void updateFontWeight(BuildContext context, FlyFontWeightToken Function(FlyFontWeightToken current) updater) {
+  static void updateFontWeight(
+    BuildContext context,
+    FlyFontWeightToken Function(FlyFontWeightToken current) updater,
+  ) {
     _getNotifier(context)?.updateFontWeight(updater);
   }
 
   /// Update leading token
-  static void updateLeading(BuildContext context, FlyLeadingToken Function(FlyLeadingToken current) updater) {
+  static void updateLeading(
+    BuildContext context,
+    FlyLeadingToken Function(FlyLeadingToken current) updater,
+  ) {
     _getNotifier(context)?.updateLeading(updater);
   }
 
@@ -108,7 +132,11 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
   }
 
   /// Put a font weight value
-  static void putFontWeight(BuildContext context, String key, FontWeight value) {
+  static void putFontWeight(
+    BuildContext context,
+    String key,
+    FontWeight value,
+  ) {
     _getNotifier(context)?.putFontWeight(key, value);
   }
 
@@ -118,12 +146,18 @@ class FlyTheme extends InheritedNotifier<FlyNotifier> {
   }
 
   /// Update tracking token
-  static void updateTracking(BuildContext context, FlyTrackingToken Function(FlyTrackingToken current) updater) {
+  static void updateTracking(
+    BuildContext context,
+    FlyTrackingToken Function(FlyTrackingToken current) updater,
+  ) {
     _getNotifier(context)?.updateTracking(updater);
   }
 
   /// Update breakpoint token
-  static void updateBreakpoint(BuildContext context, FlyBreakpointToken Function(FlyBreakpointToken current) updater) {
+  static void updateBreakpoint(
+    BuildContext context,
+    FlyBreakpointToken Function(FlyBreakpointToken current) updater,
+  ) {
     _getNotifier(context)?.updateBreakpoint(updater);
   }
 

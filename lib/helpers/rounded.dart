@@ -10,20 +10,60 @@ class FlyRoundedUtils {
   static BorderRadius resolve(BuildContext context, FlyStyle style) {
     try {
       final radius = FlyTheme.of(context).radius;
-      
+
       return BorderRadius.only(
-        topLeft: Radius.circular(_resolveValue(style.roundedTl ?? style.roundedT ?? style.roundedL ?? style.rounded, context, radius)),
-        topRight: Radius.circular(_resolveValue(style.roundedTr ?? style.roundedT ?? style.roundedR ?? style.rounded, context, radius)),
-        bottomLeft: Radius.circular(_resolveValue(style.roundedBl ?? style.roundedB ?? style.roundedL ?? style.rounded, context, radius)),
-        bottomRight: Radius.circular(_resolveValue(style.roundedBr ?? style.roundedB ?? style.roundedR ?? style.rounded, context, radius)),
+        topLeft: Radius.circular(
+          _resolveValue(
+            style.roundedTl ??
+                style.roundedT ??
+                style.roundedL ??
+                style.rounded,
+            context,
+            radius,
+          ),
+        ),
+        topRight: Radius.circular(
+          _resolveValue(
+            style.roundedTr ??
+                style.roundedT ??
+                style.roundedR ??
+                style.rounded,
+            context,
+            radius,
+          ),
+        ),
+        bottomLeft: Radius.circular(
+          _resolveValue(
+            style.roundedBl ??
+                style.roundedB ??
+                style.roundedL ??
+                style.rounded,
+            context,
+            radius,
+          ),
+        ),
+        bottomRight: Radius.circular(
+          _resolveValue(
+            style.roundedBr ??
+                style.roundedB ??
+                style.roundedR ??
+                style.rounded,
+            context,
+            radius,
+          ),
+        ),
       );
     } catch (e) {
       throw ArgumentError('Failed to resolve border radius: $e');
     }
   }
-  
+
   /// Resolves a dynamic value to double using the numeric value resolver
-  static double _resolveValue(dynamic value, BuildContext context, FlyRadiusToken tokens) {
+  static double _resolveValue(
+    dynamic value,
+    BuildContext context,
+    FlyRadiusToken tokens,
+  ) {
     if (value == null) return 0;
     return FlyValue.resolveDouble(value, context, tokens);
   }
@@ -40,7 +80,6 @@ class FlyRoundedUtils {
     // Apply border radius using ClipRRect
     return ClipRRect(borderRadius: borderRadius, child: child);
   }
-
 }
 
 /// Mixin that provides Tailwind-like rounded methods for any widget

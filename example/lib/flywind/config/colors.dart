@@ -1,7 +1,6 @@
 // GENERATED FILE - DO NOT EDIT MANUALLY
 // To regenerate, run: dart run flywind:fly generate
 
-
 import 'package:flutter/material.dart';
 import 'package:flywind/tokens/color.dart';
 
@@ -15,9 +14,7 @@ class CustomColors {
   /// Create default custom colors as FlyColorToken
   static FlyColorToken defaultColors() {
     return FlyColorToken.defaultColor().copyWith(
-      extras: {
-        'test': Color(0xFFFF0000),
-      },
+      extras: {'test': Color(0xFFFF0000)},
     );
   }
 }

@@ -21,20 +21,28 @@ class FlyFontWeightToken implements FlyToken<FontWeight> {
 
   /// thin Font weight values
   final FontWeight thin;
+
   /// extralight Font weight values
   final FontWeight extralight;
+
   /// light Font weight values
   final FontWeight light;
+
   /// normal Font weight values
   final FontWeight normal;
+
   /// medium Font weight values
   final FontWeight medium;
+
   /// semibold Font weight values
   final FontWeight semibold;
+
   /// bold Font weight values
   final FontWeight bold;
+
   /// extrabold Font weight values
   final FontWeight extrabold;
+
   /// black Font weight values
   final FontWeight black;
 
@@ -57,7 +65,7 @@ class FlyFontWeightToken implements FlyToken<FontWeight> {
 
   /// Access value by key (canonical or extra)
   @override
-  FontWeight? operator[](String key) => _allValues[key];
+  FontWeight? operator [](String key) => _allValues[key];
 
   /// Get all available keys (canonical + extras)
   @override
@@ -96,7 +104,7 @@ class FlyFontWeightToken implements FlyToken<FontWeight> {
   @override
   FlyFontWeightToken merge(FlyToken<FontWeight> other) {
     if (other is! FlyFontWeightToken) return this;
-    
+
     return copyWith(
       thin: other.thin,
       extralight: other.extralight,
@@ -142,7 +150,7 @@ class FlyFontWeightToken implements FlyToken<FontWeight> {
   FlyFontWeightToken lerp(FlyFontWeightToken other, double t) {
     final result = <String, FontWeight>{};
     final allKeys = {..._allValues.keys, ...other._allValues.keys};
-    
+
     for (final key in allKeys) {
       final valueA = _allValues[key];
       final valueB = other._allValues[key];
@@ -150,14 +158,15 @@ class FlyFontWeightToken implements FlyToken<FontWeight> {
         final weightA = valueA.index;
         final weightB = valueB.index;
         final interpolatedIndex = (weightA + (weightB - weightA) * t).round();
-        result[key] = FontWeight.values[interpolatedIndex.clamp(0, FontWeight.values.length - 1)];
+        result[key] = FontWeight
+            .values[interpolatedIndex.clamp(0, FontWeight.values.length - 1)];
       } else if (valueA != null) {
         result[key] = valueA;
       } else if (valueB != null) {
         result[key] = valueB;
       }
     }
-    
+
     return FlyFontWeightToken(
       thin: result['thin']!,
       extralight: result['extralight']!,
@@ -168,7 +177,21 @@ class FlyFontWeightToken implements FlyToken<FontWeight> {
       bold: result['bold']!,
       extrabold: result['extrabold']!,
       black: result['black']!,
-      extras: Map.fromEntries(result.entries.where((e) => !['thin', 'extralight', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black'].contains(e.key))),
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) => ![
+            'thin',
+            'extralight',
+            'light',
+            'normal',
+            'medium',
+            'semibold',
+            'bold',
+            'extrabold',
+            'black',
+          ].contains(e.key),
+        ),
+      ),
     );
   }
 
@@ -190,7 +213,8 @@ class FlyFontWeightToken implements FlyToken<FontWeight> {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is FlyFontWeightToken && _allValues.toString() == other._allValues.toString();
+    return other is FlyFontWeightToken &&
+        _allValues.toString() == other._allValues.toString();
   }
 
   @override

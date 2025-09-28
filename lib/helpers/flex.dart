@@ -8,7 +8,7 @@ class FlyFlexUtils {
   /// Resolves flex value from FlyStyle
   static int? resolveFlex(BuildContext context, FlyStyle style) {
     if (style.flex == null) return null;
-    
+
     // Handle string values
     if (style.flex is String) {
       switch (style.flex) {
@@ -24,49 +24,49 @@ class FlyFlexUtils {
           return parsed;
       }
     }
-    
+
     // Handle numeric values
     if (style.flex is int) {
       return style.flex;
     }
-    
+
     return null;
   }
 
   /// Resolves flex grow value from FlyStyle
   static int? resolveFlexGrow(BuildContext context, FlyStyle style) {
     if (style.grow == null) return null;
-    
+
     if (style.grow is int) {
       return style.grow;
     }
-    
+
     if (style.grow is String) {
       return int.tryParse(style.grow);
     }
-    
+
     return null;
   }
 
   /// Resolves flex shrink value from FlyStyle
   static int? resolveFlexShrink(BuildContext context, FlyStyle style) {
     if (style.shrink == null) return null;
-    
+
     if (style.shrink is int) {
       return style.shrink;
     }
-    
+
     if (style.shrink is String) {
       return int.tryParse(style.shrink);
     }
-    
+
     return null;
   }
 
   /// Resolves flex basis value from FlyStyle
   static double? resolveFlexBasis(BuildContext context, FlyStyle style) {
     if (style.basis == null) return null;
-    
+
     final spacing = FlyTheme.of(context).spacing;
     return FlyValue.resolveDouble(style.basis, context, spacing);
   }
@@ -88,10 +88,7 @@ class FlyFlexUtils {
 
     // If grow is specified, use Expanded
     if (flexGrow != null && flexGrow > 0) {
-      return Expanded(
-        flex: flexGrow,
-        child: child,
-      );
+      return Expanded(flex: flexGrow, child: child);
     }
 
     // If flex is specified, use Flexible
@@ -102,21 +99,13 @@ class FlyFlexUtils {
       }
 
       final fit = resolveFlexFit(context, style);
-      
-      return Flexible(
-        flex: flex,
-        fit: fit,
-        child: child,
-      );
+
+      return Flexible(flex: flex, fit: fit, child: child);
     }
 
     // If only shrink or basis is specified, use Flexible with default flex
     if (flexShrink != null || flexBasis != null) {
-      return Flexible(
-        flex: flexShrink ?? 1,
-        fit: FlexFit.loose,
-        child: child,
-      );
+      return Flexible(flex: flexShrink ?? 1, fit: FlexFit.loose, child: child);
     }
 
     // No flex properties, return child as-is
@@ -126,9 +115,9 @@ class FlyFlexUtils {
   /// Check if any flex properties are set
   static bool hasFlexProperties(FlyStyle style) {
     return style.flex != null ||
-           style.grow != null ||
-           style.shrink != null ||
-           style.basis != null;
+        style.grow != null ||
+        style.shrink != null ||
+        style.basis != null;
   }
 }
 

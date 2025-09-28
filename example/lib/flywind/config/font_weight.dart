@@ -1,7 +1,6 @@
 // GENERATED FILE - DO NOT EDIT MANUALLY
 // To regenerate, run: dart run flywind:fly generate
 
-
 import 'package:flutter/material.dart';
 import 'package:flywind/tokens/font_weight.dart';
 
@@ -15,9 +14,7 @@ class CustomFontWeight {
   /// Create default custom font weight as FlyFontWeightToken
   static FlyFontWeightToken defaultFontWeight() {
     return FlyFontWeightToken.defaultFontWeight().copyWith(
-      extras: {
-        'test': FontWeight.w900,
-      },
+      extras: {'test': FontWeight.w900},
     );
   }
 }
