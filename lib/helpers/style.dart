@@ -6,6 +6,13 @@ import 'rounded.dart';
 import 'text.dart';
 
 /// Internal style storage for FlyText widget
+/// 
+/// NAMING CONVENTION: All properties should match the actual method names
+/// used in the API. For example:
+/// - Use `grow` not `flexGrow` (matches .grow() method)
+/// - Use `shrink` not `flexShrink` (matches .shrink() method)  
+/// - Use `basis` not `flexBasis` (matches .basis() method)
+/// - Use `flex` for the main flex property (matches .flex() method)
 class FlyStyle {
   const FlyStyle({
     this.p,
@@ -63,6 +70,10 @@ class FlyStyle {
     this.inline,
     this.col,
     this.row,
+    this.flex,
+    this.grow,
+    this.shrink,
+    this.basis,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -120,6 +131,10 @@ class FlyStyle {
   final dynamic inline; // Inline layout - can be bool
   final dynamic col; // Column Flutter API parameters - can be ColParams
   final dynamic row; // Row Flutter API parameters - can be RowParams
+  final dynamic flex; // Flex value - can be int (1-12) or String ('auto', 'initial', 'none')
+  final dynamic grow; // Flex grow - can be int (0-2)
+  final dynamic shrink; // Flex shrink - can be int (0-1)
+  final dynamic basis; // Flex basis - can be String ('s32', 's40', 's48', etc.)
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -178,6 +193,10 @@ class FlyStyle {
     dynamic inline,
     dynamic col,
     dynamic row,
+    dynamic flex,
+    dynamic grow,
+    dynamic shrink,
+    dynamic basis,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -235,6 +254,10 @@ class FlyStyle {
       inline: inline ?? this.inline,
       col: col ?? this.col,
       row: row ?? this.row,
+      flex: flex ?? this.flex,
+      grow: grow ?? this.grow,
+      shrink: shrink ?? this.shrink,
+      basis: basis ?? this.basis,
     );
   }
 
@@ -341,6 +364,13 @@ class FlyStyle {
       inline != null ||
       col != null ||
       row != null;
+
+  /// Check if any flex properties are set
+  bool get hasFlexProperties =>
+      flex != null ||
+      grow != null ||
+      shrink != null ||
+      basis != null;
 
   /// Apply text style directly to a Text widget
   Widget _applyTextStyleDirect(BuildContext context, Text textWidget) {

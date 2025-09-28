@@ -6,6 +6,7 @@ import '../helpers/color.dart';
 import '../helpers/rounded.dart';
 import '../helpers/border.dart';
 import '../helpers/size.dart';
+import '../helpers/flex.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for containers
 class FlyContainer extends StatelessWidget
@@ -15,7 +16,8 @@ class FlyContainer extends StatelessWidget
         FlyColor<FlyContainer>,
         FlyRounded<FlyContainer>,
         FlyBorder<FlyContainer>,
-        FlySize<FlyContainer> {
+        FlySize<FlyContainer>,
+        FlyFlex<FlyContainer> {
   const FlyContainer({
     super.key,
     required this.child,

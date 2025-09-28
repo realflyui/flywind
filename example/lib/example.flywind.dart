@@ -554,26 +554,364 @@ class FlywindApp extends StatelessWidget {
                   .rounded('lg')
                   .p('s5')
                   .mb('s6'),
-                  FlyLayout([
-  FlyText('Header'),
-  FlyText('Content'),
-  FlyText('Footer'),
-])
-  .col()
-  // .items('center')
-  // .justify('between')
-  .gap('s3'),
 
-// Row layout  
-FlyLayout([
-  FlyText('Left'),
-  FlyText('Center'),
-  FlyText('Right'),
-])
-  .row()
-  .justify('between')
-  .items('center')
-  .gap('s2'),
+                // ========================================
+                // 5. LAYOUT UTILITIES
+                // ========================================
+                _buildSectionHeader('Layout Utilities'),
+
+                // Column Layout Examples
+                _buildSubsectionHeader('Column Layout'),
+                
+                // Basic Column
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('Header').color('white').p('s2'),
+                      FlyText('Content').color('white').p('s2'),
+                      FlyText('Footer').color('white').p('s2'),
+                    ],
+                  ).col(),
+                )
+                  .bg('blue500')
+                  .rounded('md')
+                  .p('s4')
+                  .mb('s4'),
+
+                // Column with alignment
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('Centered Header').color('white').p('s2'),
+                      FlyText('Centered Content').color('white').p('s2'),
+                      FlyText('Centered Footer').color('white').p('s2'),
+                    ],
+                  ).col().justify('center').items('center'),
+                )
+                  .bg('green500')
+                  .rounded('md')
+                  .p('s4')
+                  .mb('s4'),
+
+                // Column with gap
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('Item 1').color('white').p('s2'),
+                      FlyText('Item 2').color('white').p('s2'),
+                      FlyText('Item 3').color('white').p('s2'),
+                    ],
+                  ).col().gap('s3'),
+                )
+                  .bg('purple500')
+                  .rounded('md')
+                  .p('s4')
+                  .mb('s4'),
+
+                // Column with space between
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('Top').color('white').p('s2'),
+                      FlyText('Middle').color('white').p('s2'),
+                      FlyText('Bottom').color('white').p('s2'),
+                    ],
+                  ).col().justify('between').items('stretch'),
+                )
+                  .bg('orange500')
+                  .rounded('md')
+                  .p('s4')
+                  .h('s40')
+                  .mb('s4'),
+
+                // Row Layout Examples
+                _buildSubsectionHeader('Row Layout'),
+                
+                // Basic Row
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('Left').color('white').p('s2'),
+                      FlyText('Center').color('white').p('s2'),
+                      FlyText('Right').color('white').p('s2'),
+                    ],
+                  ).row(),
+                )
+                  .bg('teal500')
+                  .rounded('md')
+                  .p('s4')
+                  .mb('s4'),
+
+                // Row with space between
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('Start').color('white').p('s2'),
+                      FlyText('End').color('white').p('s2'),
+                    ],
+                  ).row().justify('between').items('center'),
+                )
+                  .bg('pink500')
+                  .rounded('md')
+                  .p('s4')
+                  .mb('s4'),
+
+                // Row with gap
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('A').color('white').p('s2'),
+                      FlyText('B').color('white').p('s2'),
+                      FlyText('C').color('white').p('s2'),
+                    ],
+                  ).row().gap('s2'),
+                )
+                  .bg('indigo500')
+                  .rounded('md')
+                  .p('s4')
+                  .mb('s4'),
+
+                // Row with center alignment
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('Left').color('white').p('s2'),
+                      FlyText('Center').color('white').p('s2'),
+                      FlyText('Right').color('white').p('s2'),
+                    ],
+                  ).row().justify('center').items('center'),
+                )
+                  .bg('red500')
+                  .rounded('md')
+                  .p('s4')
+                  .mb('s4'),
+
+                // ========================================
+                // 6. FLEX UTILITIES
+                // ========================================
+                _buildSectionHeader('Flex Utilities'),
+
+                // Basic Flex Examples
+                _buildSubsectionHeader('Basic Flex'),
+                
+                // Equal flex
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyContainer(
+                        child: FlyText('Flex 1').color('white').p('s2'),
+                      ).bg('blue500').rounded('sm').flex(1),
+                      FlyContainer(
+                        child: FlyText('Flex 1').color('white').p('s2'),
+                      ).bg('green500').rounded('sm').flex(1),
+                      FlyContainer(
+                        child: FlyText('Flex 1').color('white').p('s2'),
+                      ).bg('purple500').rounded('sm').flex(1),
+                    ],
+                  ).row().gap('s1'),
+                ).mb('s4'),
+
+                // Different flex values
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyContainer(
+                        child: FlyText('Flex 1').color('white').p('s2'),
+                      ).bg('red500').rounded('sm').flex(1),
+                      FlyContainer(
+                        child: FlyText('Flex 2').color('white').p('s2'),
+                      ).bg('yellow500').rounded('sm').flex(2),
+                      FlyContainer(
+                        child: FlyText('Flex 1').color('white').p('s2'),
+                      ).bg('teal500').rounded('sm').flex(1),
+                    ],
+                  ).row().gap('s1'),
+                ).mb('s4'),
+
+                // Auto flex
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyContainer(
+                        child: FlyText('Fixed').color('white').p('s2'),
+                      ).bg('indigo500').rounded('sm'),
+                      FlyContainer(
+                        child: FlyText('Auto').color('white').p('s2'),
+                      ).bg('pink500').rounded('sm').flex('auto'),
+                      FlyContainer(
+                        child: FlyText('Fixed').color('white').p('s2'),
+                      ).bg('cyan500').rounded('sm'),
+                    ],
+                  ).row().gap('s1'),
+                ).mb('s4'),
+
+                // None flex (fixed size)
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyContainer(
+                        child: FlyText('Fixed').color('white').p('s2'),
+                      ).bg('amber500').rounded('sm'),
+                      FlyContainer(
+                        child: FlyText('None').color('white').p('s2'),
+                      ).bg('lime500').rounded('sm').flex('none'),
+                      FlyContainer(
+                        child: FlyText('Auto').color('white').p('s2'),
+                      ).bg('emerald500').rounded('sm').flex('auto'),
+                    ],
+                  ).row().gap('s1'),
+                ).mb('s4'),
+
+                // Flex Grow Examples
+                _buildSubsectionHeader('Flex Grow'),
+                
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyContainer(
+                        child: FlyText('Grow 1').color('white').p('s2'),
+                      ).bg('violet500').rounded('sm').grow(1),
+                      FlyContainer(
+                        child: FlyText('Grow 2').color('white').p('s2'),
+                      ).bg('fuchsia500').rounded('sm').grow(2),
+                      FlyContainer(
+                        child: FlyText('Grow 1').color('white').p('s2'),
+                      ).bg('rose500').rounded('sm').grow(1),
+                    ],
+                  ).row().gap('s1'),
+                ).mb('s4'),
+
+                // Flex Shrink Examples
+                _buildSubsectionHeader('Flex Shrink'),
+                
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyContainer(
+                        child: FlyText('No Shrink').color('white').p('s2'),
+                      ).bg('sky500').rounded('sm').shrink(0),
+                      FlyContainer(
+                        child: FlyText('Shrink 1').color('white').p('s2'),
+                      ).bg('orange500').rounded('sm').shrink(1),
+                      FlyContainer(
+                        child: FlyText('No Shrink').color('white').p('s2'),
+                      ).bg('slate500').rounded('sm').shrink(0),
+                    ],
+                  ).row().gap('s1'),
+                ).mb('s4'),
+
+                // Flex Basis Examples
+                _buildSubsectionHeader('Flex Basis'),
+                
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyContainer(
+                        child: FlyText('Basis s20').color('white').p('s2'),
+                      ).bg('zinc500').rounded('sm').basis('s20'),
+                      FlyContainer(
+                        child: FlyText('Basis s32').color('white').p('s2'),
+                      ).bg('stone500').rounded('sm').basis('s32'),
+                      FlyContainer(
+                        child: FlyText('Basis s24').color('white').p('s2'),
+                      ).bg('neutral500').rounded('sm').basis('s24'),
+                    ],
+                  ).row().gap('s1'),
+                ).mb('s4'),
+
+                // Complex Layout Examples
+                _buildSubsectionHeader('Complex Layout Examples'),
+                
+                // Card with header, content, and actions
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('Card Title')
+                        .text('lg')
+                        .weight('bold')
+                        .color('white')
+                        .p('s2'),
+                      FlyText('This is a complex card with flex layout and multiple utilities applied.')
+                        .text('sm')
+                        .color('white')
+                        .leading('relaxed')
+                        .p('s2'),
+                      Row(
+                        children: [
+                          FlyText('Cancel').color('white').p('s2').flex('none'),
+                          FlyText('Save').color('white').p('s2').flex(1),
+                        ],
+                      ),
+                    ],
+                  ).col().justify('between').items('stretch').gap('s2'),
+                )
+                  .bg('gray800')
+                  .rounded('lg')
+                  .p('s4')
+                  .h('s48')
+                  .mb('s4'),
+
+                // Navigation bar with flex
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('Logo').color('white').p('s2').flex('none'),
+                      FlyText('Search').color('white').p('s2').flex('auto'),
+                      FlyText('Profile').color('white').p('s2').flex('none'),
+                    ],
+                  ).row().justify('between').items('center').gap('s3'),
+                )
+                  .bg('blue600')
+                  .rounded('md')
+                  .p('s4')
+                  .mb('s4'),
+
+                // Form layout with labels and inputs
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyLayout([
+                          FlyText('Name:').color('white').p('s2').flex('none'),
+                          FlyText('John Doe').color('white').p('s2').flex('auto'),
+                        ],
+                      ).row(),
+                      FlyLayout([
+                          FlyText('Email:').color('white').p('s2').flex('none'),
+                          FlyText('john@example.com').color('white').p('s2').flex('auto'),
+                        ],
+                      ).row(),
+                      FlyLayout([
+                          FlyText('Phone:').color('white').p('s2').flex('none'),
+                          FlyText('+1 234 567 8900').color('white').p('s2').flex('auto'),
+                        ],
+                      ).row(),
+                    ],
+                  ).col().gap('s2'),
+                )
+                  .bg('green600')
+                  .rounded('md')
+                  .p('s4')
+                  .mb('s4'),
+
+                // Direct Flutter API Examples
+                _buildSubsectionHeader('Direct Flutter API Access'),
+                
+                // Column with direct Flutter API
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('Direct API Column').color('white').p('s2'),
+                      FlyText('Custom Properties').color('white').p('s2'),
+                    ],
+                  ) .col(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.max,
+                  ),
+                )
+                  .bg('red600')
+                  .rounded('md')
+                  .p('s4')
+                  .h('s32')
+                  .mb('s4'),
+
+                // Row with direct Flutter API
+                FlyContainer(
+                  child: FlyLayout([
+                      FlyText('Left').color('white').p('s2'),
+                      FlyText('Right').color('white').p('s2'),
+                    ],
+                  ).row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                  ),
+                )
+                  .bg('purple600')
+                  .rounded('md')
+                  .p('s4')
+                  .mb('s4'),
               ],
             ),
           ),

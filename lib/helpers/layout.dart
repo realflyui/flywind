@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'style.dart';
 import 'value.dart';
+import 'flex.dart';
 import '../core/theme.dart';
 
 /// Parameters for Column widget direct Flutter API access
@@ -85,32 +86,8 @@ class FlyLayoutUtils {
   static double resolveSpacing(BuildContext context, String? value) {
     if (value == null) return 0.0;
     
-    try {
-      final spacing = FlyTheme.of(context).spacing;
-      return FlyValue.resolveDouble(value, context, spacing);
-    } catch (e) {
-      // Fallback to simple parsing if theme resolution fails
-      // Handle 'px' for 1 pixel
-      if (value == 'px') return 1.0;
-      
-      // Handle spacing tokens (s0, s1, s2, etc.)
-      if (value.startsWith('s')) {
-        final tokenValue = value.substring(1);
-        final spacingValue = int.tryParse(tokenValue);
-        if (spacingValue != null) {
-          // Convert to logical pixels (assuming 4px per unit like Tailwind)
-          return spacingValue * 4.0;
-        }
-      }
-      
-      // Handle direct numeric values
-      final numericValue = double.tryParse(value);
-      if (numericValue != null) {
-        return numericValue;
-      }
-      
-      return 0.0;
-    }
+    final spacing = FlyTheme.of(context).spacing;
+    return FlyValue.resolveDouble(value, context, spacing);
   }
 
   /// Apply gap spacing to children
@@ -125,6 +102,34 @@ class FlyLayoutUtils {
       }
     }
     return result;
+  }
+
+  /// Apply flex properties to children if they have flex utilities
+  static List<Widget> applyFlexToChildren(BuildContext context, List<Widget> children) {
+    return children.map((child) {
+      // Check if the child has flex properties by looking for FlyFlexUtilities mixin
+      if (child is StatelessWidget) {
+        // Try to access the style property through reflection or type checking
+        try {
+          // Check if it's a FlyText or FlyContainer with flex properties
+          if (child.runtimeType.toString().contains('FlyText') || 
+              child.runtimeType.toString().contains('FlyContainer')) {
+            
+            // Use reflection to get the style property
+            final dynamic widget = child;
+            if (widget.style != null && widget.style is FlyStyle) {
+              final FlyStyle style = widget.style;
+              if (FlyFlexUtils.hasFlexProperties(style)) {
+                return FlyFlexUtils.apply(context, style, child);
+              }
+            }
+          }
+        } catch (e) {
+          // If reflection fails, just return the child as-is
+        }
+      }
+      return child;
+    }).toList();
   }
 
   /// Build a Column widget with layout properties from FlyStyle
@@ -157,11 +162,14 @@ class FlyLayoutUtils {
       verticalDirection = style.reverse == true ? VerticalDirection.up : VerticalDirection.down;
     }
     
+    // Apply flex properties to children first
+    final childrenWithFlex = applyFlexToChildren(context, children);
+    
     // Apply gap if specified
     final gap = resolveSpacing(context, style.gap);
     final childrenWithGap = gap > 0 
-        ? applyGap(children, gap)
-        : children;
+        ? applyGap(childrenWithFlex, gap)
+        : childrenWithFlex;
     
     return Column(
       mainAxisAlignment: mainAxisAlignment,
@@ -204,11 +212,14 @@ class FlyLayoutUtils {
       verticalDirection = VerticalDirection.down;
     }
     
+    // Apply flex properties to children first
+    final childrenWithFlex = applyFlexToChildren(context, children);
+    
     // Apply gap if specified
     final gap = resolveSpacing(context, style.gap);
     final childrenWithGap = gap > 0 
-        ? applyGap(children, gap)
-        : children;
+        ? applyGap(childrenWithFlex, gap)
+        : childrenWithFlex;
     
     return Row(
       mainAxisAlignment: mainAxisAlignment,
