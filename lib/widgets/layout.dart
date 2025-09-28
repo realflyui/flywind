@@ -30,6 +30,8 @@ class FlyLayout extends StatelessWidget with FlyLayoutUtilities<FlyLayout> {
         return FlyLayoutUtils.buildColumn(context, _style, children);
       case 'row':
         return FlyLayoutUtils.buildRow(context, _style, children);
+      case 'wrap':
+        return FlyLayoutUtils.buildWrap(context, _style, children);
       default:
         return FlyLayoutUtils.buildColumn(context, _style, children);
     }

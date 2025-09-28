@@ -70,6 +70,7 @@ class FlyStyle {
     this.inline,
     this.col,
     this.row,
+    this.wrap,
     this.flex,
     this.grow,
     this.shrink,
@@ -131,6 +132,7 @@ class FlyStyle {
   final dynamic inline; // Inline layout - can be bool
   final dynamic col; // Column Flutter API parameters - can be ColParams
   final dynamic row; // Row Flutter API parameters - can be RowParams
+  final dynamic wrap; // Wrap Flutter API parameters - can be WrapParams
   final dynamic flex; // Flex value - can be int (1-12) or String ('auto', 'initial', 'none')
   final dynamic grow; // Flex grow - can be int (0-2)
   final dynamic shrink; // Flex shrink - can be int (0-1)
@@ -193,6 +195,7 @@ class FlyStyle {
     dynamic inline,
     dynamic col,
     dynamic row,
+    dynamic wrap,
     dynamic flex,
     dynamic grow,
     dynamic shrink,
@@ -254,6 +257,7 @@ class FlyStyle {
       inline: inline ?? this.inline,
       col: col ?? this.col,
       row: row ?? this.row,
+      wrap: wrap ?? this.wrap,
       flex: flex ?? this.flex,
       grow: grow ?? this.grow,
       shrink: shrink ?? this.shrink,
@@ -363,7 +367,8 @@ class FlyStyle {
       reverse != null ||
       inline != null ||
       col != null ||
-      row != null;
+      row != null ||
+      wrap != null;
 
   /// Check if any flex properties are set
   bool get hasFlexProperties =>

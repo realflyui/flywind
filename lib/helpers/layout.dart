@@ -42,6 +42,31 @@ class RowParams {
   final VerticalDirection? verticalDirection;
 }
 
+/// Parameters for Wrap widget direct Flutter API access
+class WrapParams {
+  const WrapParams({
+    this.direction,
+    this.alignment,
+    this.spacing,
+    this.runAlignment,
+    this.runSpacing,
+    this.crossAxisAlignment,
+    this.textDirection,
+    this.verticalDirection,
+    this.clipBehavior,
+  });
+
+  final Axis? direction;
+  final WrapAlignment? alignment;
+  final double? spacing;
+  final WrapAlignment? runAlignment;
+  final double? runSpacing;
+  final WrapCrossAlignment? crossAxisAlignment;
+  final TextDirection? textDirection;
+  final VerticalDirection? verticalDirection;
+  final Clip? clipBehavior;
+}
+
 /// Utility class for handling Tailwind-like layout logic
 class FlyLayoutUtils {
   /// Resolve MainAxisAlignment from string
@@ -81,6 +106,7 @@ class FlyLayoutUtils {
         return CrossAxisAlignment.start;
     }
   }
+
 
   /// Resolve spacing value from string token
   static double resolveSpacing(BuildContext context, String? value) {
@@ -231,6 +257,65 @@ class FlyLayoutUtils {
       children: childrenWithGap,
     );
   }
+
+  /// Build a Wrap widget with layout properties from FlyStyle
+  static Widget buildWrap(BuildContext context, FlyStyle style, List<Widget> children) {
+    // Check if direct Flutter API parameters are provided
+    final wrapParams = style.wrap as WrapParams?;
+    
+    Axis direction;
+    WrapAlignment alignment;
+    double spacing;
+    WrapAlignment runAlignment;
+    double runSpacing;
+    WrapCrossAlignment crossAxisAlignment;
+    TextDirection? textDirection;
+    VerticalDirection verticalDirection;
+    Clip clipBehavior;
+    
+    if (wrapParams != null) {
+      // Use direct Flutter API parameters
+      direction = wrapParams.direction ?? Axis.horizontal;
+      alignment = wrapParams.alignment ?? WrapAlignment.start;
+      spacing = wrapParams.spacing ?? resolveSpacing(context, style.gap);
+      runAlignment = wrapParams.runAlignment ?? WrapAlignment.start;
+      runSpacing = wrapParams.runSpacing ?? 0.0;
+      crossAxisAlignment = wrapParams.crossAxisAlignment ?? WrapCrossAlignment.start;
+      textDirection = wrapParams.textDirection;
+      verticalDirection = wrapParams.verticalDirection ?? (style.reverse == true ? VerticalDirection.up : VerticalDirection.down);
+      clipBehavior = wrapParams.clipBehavior ?? Clip.none;
+    } else {
+      // Use utility method parameters - only supported properties
+      direction = Axis.horizontal;
+      alignment = WrapAlignment.start;
+      spacing = resolveSpacing(context, style.gap);
+      runAlignment = WrapAlignment.start;
+      runSpacing = 0.0;
+      crossAxisAlignment = WrapCrossAlignment.start;
+      textDirection = null;
+      verticalDirection = style.reverse == true ? VerticalDirection.up : VerticalDirection.down;
+      clipBehavior = Clip.none;
+    }
+    
+    // Apply flex properties to children first
+    final childrenWithFlex = applyFlexToChildren(context, children);
+    
+    // Note: For Wrap, we don't apply gap using SizedBox like Column/Row
+    // The spacing is handled directly by the Wrap widget's spacing parameter
+    
+    return Wrap(
+      direction: direction,
+      alignment: alignment,
+      spacing: spacing,
+      runAlignment: runAlignment,
+      runSpacing: runSpacing,
+      crossAxisAlignment: crossAxisAlignment,
+      textDirection: textDirection,
+      verticalDirection: verticalDirection,
+      clipBehavior: clipBehavior,
+      children: childrenWithFlex,
+    );
+  }
 }
 
 /// Mixin that provides Tailwind-like layout methods for any widget
@@ -339,4 +424,47 @@ mixin FlyLayoutUtilities<T> {
   T inline() {
     return copyWith(style.copyWith(inline: true));
   }
+
+  /// Set layout type to wrap with optional direct Flutter API access
+  T wrap({
+    Axis? direction,
+    WrapAlignment? alignment,
+    double? spacing,
+    WrapAlignment? runAlignment,
+    double? runSpacing,
+    WrapCrossAlignment? crossAxisAlignment,
+    TextDirection? textDirection,
+    VerticalDirection? verticalDirection,
+    Clip? clipBehavior,
+  }) {
+    if (direction != null || 
+        alignment != null || 
+        spacing != null || 
+        runAlignment != null || 
+        runSpacing != null || 
+        crossAxisAlignment != null || 
+        textDirection != null || 
+        verticalDirection != null || 
+        clipBehavior != null) {
+      // Use direct Flutter API access
+      return copyWith(style.copyWith(
+        layoutType: 'wrap',
+        wrap: WrapParams(
+          direction: direction,
+          alignment: alignment,
+          spacing: spacing,
+          runAlignment: runAlignment,
+          runSpacing: runSpacing,
+          crossAxisAlignment: crossAxisAlignment,
+          textDirection: textDirection,
+          verticalDirection: verticalDirection,
+          clipBehavior: clipBehavior,
+        ),
+      ));
+    } else {
+      // Use utility method (no parameters)
+      return copyWith(style.copyWith(layoutType: 'wrap'));
+    }
+  }
+
 }
