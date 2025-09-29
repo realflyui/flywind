@@ -24,10 +24,32 @@ class FlyContainer extends StatelessWidget
   const FlyContainer({
     super.key,
     required this.child,
+    this.alignment,
+    this.padding,
+    this.margin,
+    this.decoration,
+    this.foregroundDecoration,
+    this.width,
+    this.height,
+    this.constraints,
+    this.transform,
+    this.transformAlignment,
+    this.clipBehavior,
     FlyStyle style = const FlyStyle(),
   }) : _style = style;
 
   final Widget child;
+  final AlignmentGeometry? alignment;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
+  final Decoration? decoration;
+  final Decoration? foregroundDecoration;
+  final double? width;
+  final double? height;
+  final BoxConstraints? constraints;
+  final Matrix4? transform;
+  final AlignmentGeometry? transformAlignment;
+  final Clip? clipBehavior;
   final FlyStyle _style;
 
   @override
@@ -35,11 +57,55 @@ class FlyContainer extends StatelessWidget
 
   @override
   FlyContainer Function(FlyStyle newStyle) get copyWith =>
-      (newStyle) => FlyContainer(style: newStyle, child: child);
+      (newStyle) => FlyContainer(
+        key: key,
+        alignment: alignment,
+        padding: padding,
+        margin: margin,
+        decoration: decoration,
+        foregroundDecoration: foregroundDecoration,
+        width: width,
+        height: height,
+        constraints: constraints,
+        transform: transform,
+        transformAlignment: transformAlignment,
+        clipBehavior: clipBehavior,
+        style: newStyle,
+        child: child,
+      );
 
   @override
   Widget build(BuildContext context) {
-    // Apply all style utilities directly to a single Container
+    // If direct properties are provided, use them with a simple Container
+    if (alignment != null ||
+        padding != null ||
+        margin != null ||
+        decoration != null ||
+        foregroundDecoration != null ||
+        width != null ||
+        height != null ||
+        constraints != null ||
+        transform != null ||
+        transformAlignment != null ||
+        clipBehavior != null) {
+      return Container(
+        key: key,
+        alignment: alignment,
+        padding: padding,
+        margin: margin,
+        decoration: decoration,
+        foregroundDecoration: foregroundDecoration,
+        width: width,
+        height: height,
+        constraints: constraints,
+        transform: transform,
+        transformAlignment: transformAlignment,
+        clipBehavior: clipBehavior ?? Clip.none,
+        child: child,
+      );
+    }
+
+    // Otherwise, apply all style utilities directly to a single Container
     return _buildStyledContainer(context);
   }
 
@@ -134,6 +200,7 @@ class FlyContainer extends StatelessWidget
       border: border,
       borderRadius: borderRadius != BorderRadius.zero ? borderRadius : null,
     );
+
     return Container(decoration: decoration, child: child);
   }
 }
