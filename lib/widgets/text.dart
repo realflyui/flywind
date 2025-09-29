@@ -5,7 +5,6 @@ import '../helpers/flex.dart';
 import '../helpers/margin.dart';
 import '../helpers/padding.dart';
 import '../helpers/position.dart';
-import '../helpers/rounded.dart';
 import '../helpers/style.dart';
 import '../helpers/text.dart';
 import '../helpers/tracking.dart';
@@ -16,7 +15,6 @@ class FlyText extends StatelessWidget
         FlyPadding<FlyText>,
         FlyMargin<FlyText>,
         FlyColor<FlyText>,
-        FlyRounded<FlyText>,
         FlyTextHelper<FlyText>,
         FlyTracking<FlyText>,
         FlyFlex<FlyText>,

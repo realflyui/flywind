@@ -84,7 +84,6 @@ class FlywindApp extends StatelessWidget {
                     .weight('bold')
                     .p('s3')
                     .bg('purple50')
-                    .rounded('sm')
                     .mb('s6'),
 
                 // ========================================
@@ -840,36 +839,20 @@ class FlywindApp extends StatelessWidget {
                 // Basic Wrap
                 FlyContainer(
                   child: FlyLayout([
-                    FlyText(
-                      'Tag 1',
-                    ).color('white').p('s2').bg('blue500').rounded('sm'),
-                    FlyText(
-                      'Tag 2',
-                    ).color('white').p('s2').bg('green500').rounded('sm'),
-                    FlyText(
-                      'Tag 3',
-                    ).color('white').p('s2').bg('purple500').rounded('sm'),
-                    FlyText(
-                      'Tag 4',
-                    ).color('white').p('s2').bg('orange500').rounded('sm'),
-                    FlyText(
-                      'Tag 5',
-                    ).color('white').p('s2').bg('red500').rounded('sm'),
+                    FlyText('Tag 1').color('white').p('s2').bg('blue500'),
+                    FlyText('Tag 2').color('white').p('s2').bg('green500'),
+                    FlyText('Tag 3').color('white').p('s2').bg('purple500'),
+                    FlyText('Tag 4').color('white').p('s2').bg('orange500'),
+                    FlyText('Tag 5').color('white').p('s2').bg('red500'),
                   ]).wrap().gap('s2'),
                 ).bg('gray100').rounded('md').p('s4').mb('s4'),
 
                 // Wrap with reverse
                 FlyContainer(
                   child: FlyLayout([
-                    FlyText(
-                      'Tag 1',
-                    ).color('white').p('s2').bg('blue500').rounded('sm'),
-                    FlyText(
-                      'Tag 2',
-                    ).color('white').p('s2').bg('green500').rounded('sm'),
-                    FlyText(
-                      'Tag 3',
-                    ).color('white').p('s2').bg('purple500').rounded('sm'),
+                    FlyText('Tag 1').color('white').p('s2').bg('blue500'),
+                    FlyText('Tag 2').color('white').p('s2').bg('green500'),
+                    FlyText('Tag 3').color('white').p('s2').bg('purple500'),
                   ]).wrap().reverse().gap('s2'),
                 ).bg('gray100').rounded('md').p('s4').mb('s4'),
 
