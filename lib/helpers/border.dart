@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/material.dart';
+
+import '../core/theme.dart';
+import '../tokens/color.dart';
+import '../tokens/spacing.dart';
+import 'rounded.dart';
 import 'style.dart';
 import 'value.dart';
-import '../core/theme.dart';
-import '../tokens/spacing.dart';
-import '../tokens/color.dart';
-import 'rounded.dart';
 
 /// Utility class for handling Tailwind-like border logic
 class FlyBorderUtils {
@@ -230,52 +231,52 @@ class FlyBorderUtils {
 
 /// Mixin that provides Tailwind-like border methods for any widget
 mixin FlyBorder<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set uniform border width - accepts int, double, or String (token name/unit)
   T border(dynamic value) {
-    return copyWith(style.copyWith(border: value));
+    return copyWith(flyStyle.copyWith(border: value));
   }
 
   /// Set top border width - accepts int, double, or String (token name/unit)
   T borderT(dynamic value) {
-    return copyWith(style.copyWith(borderT: value));
+    return copyWith(flyStyle.copyWith(borderT: value));
   }
 
   /// Set right border width - accepts int, double, or String (token name/unit)
   T borderR(dynamic value) {
-    return copyWith(style.copyWith(borderR: value));
+    return copyWith(flyStyle.copyWith(borderR: value));
   }
 
   /// Set bottom border width - accepts int, double, or String (token name/unit)
   T borderB(dynamic value) {
-    return copyWith(style.copyWith(borderB: value));
+    return copyWith(flyStyle.copyWith(borderB: value));
   }
 
   /// Set left border width - accepts int, double, or String (token name/unit)
   T borderL(dynamic value) {
-    return copyWith(style.copyWith(borderL: value));
+    return copyWith(flyStyle.copyWith(borderL: value));
   }
 
   /// Set border color - accepts Color object or String (token name/hex)
   T borderColor(dynamic value) {
-    return copyWith(style.copyWith(borderColor: value));
+    return copyWith(flyStyle.copyWith(borderColor: value));
   }
 
   /// Set border style - accepts String ('solid', 'dashed', 'dotted', 'none', 'hidden')
   T borderStyle(String value) {
-    return copyWith(style.copyWith(borderStyle: value));
+    return copyWith(flyStyle.copyWith(borderStyle: value));
   }
 
   /// Resolves border from FlyStyle and FlyTheme into Border
   Border resolveBorder(BuildContext context) {
-    return FlyBorderUtils.resolve(context, style);
+    return FlyBorderUtils.resolve(context, flyStyle);
   }
 
   /// Applies border styling to a widget using the resolved Border
   Widget applyBorder(BuildContext context, Widget child) {
-    return FlyBorderUtils.apply(context, style, child);
+    return FlyBorderUtils.apply(context, flyStyle, child);
   }
 }

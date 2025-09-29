@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
+import '../core/theme.dart';
 import 'style.dart';
 import 'value.dart';
-import '../core/theme.dart';
 
 /// Utility class for handling Tailwind-like flex logic
 class FlyFlexUtils {
@@ -123,41 +124,41 @@ class FlyFlexUtils {
 
 /// Mixin that provides Tailwind-like flex methods for any widget
 mixin FlyFlex<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set flex value - accepts int (1-12) or String ('auto', 'initial', 'none')
   /// This method can be chained with other flex methods, with later calls overriding earlier ones
   T flex(dynamic value) {
-    return copyWith(style.copyWith(flex: value));
+    return copyWith(flyStyle.copyWith(flex: value));
   }
 
   /// Set flex grow - accepts int (0-2)
   /// This method can be chained with other flex methods, with later calls overriding earlier ones
   T grow(int value) {
-    return copyWith(style.copyWith(grow: value));
+    return copyWith(flyStyle.copyWith(grow: value));
   }
 
   /// Set flex shrink - accepts int (0-1)
   /// This method can be chained with other flex methods, with later calls overriding earlier ones
   T shrink(int value) {
-    return copyWith(style.copyWith(shrink: value));
+    return copyWith(flyStyle.copyWith(shrink: value));
   }
 
   /// Set flex basis - accepts String ('s32', 's40', 's48', etc.)
   /// This method can be chained with other flex methods, with later calls overriding earlier ones
   T basis(String value) {
-    return copyWith(style.copyWith(basis: value));
+    return copyWith(flyStyle.copyWith(basis: value));
   }
 
   /// Check if any flex properties are set
   bool get hasFlexProperties {
-    return FlyFlexUtils.hasFlexProperties(style);
+    return FlyFlexUtils.hasFlexProperties(flyStyle);
   }
 
   /// Apply flex properties to a widget
   Widget applyFlex(BuildContext context, Widget child) {
-    return FlyFlexUtils.apply(context, style, child);
+    return FlyFlexUtils.apply(context, flyStyle, child);
   }
 }

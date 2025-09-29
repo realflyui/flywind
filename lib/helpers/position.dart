@@ -173,52 +173,52 @@ class FlyPositionUtils {
 
 /// Mixin that provides Tailwind-like position methods for any widget
 mixin FlyPosition<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set top position - accepts int, double, or String (token name like 's2', 's4', etc.)
   T top(dynamic value) {
-    return copyWith(style.copyWith(top: value));
+    return copyWith(flyStyle.copyWith(top: value));
   }
 
   /// Set right position - accepts int, double, or String (token name like 's2', 's4', etc.)
   T right(dynamic value) {
-    return copyWith(style.copyWith(right: value));
+    return copyWith(flyStyle.copyWith(right: value));
   }
 
   /// Set bottom position - accepts int, double, or String (token name like 's2', 's4', etc.)
   T bottom(dynamic value) {
-    return copyWith(style.copyWith(bottom: value));
+    return copyWith(flyStyle.copyWith(bottom: value));
   }
 
   /// Set left position - accepts int, double, or String (token name like 's2', 's4', etc.)
   T left(dynamic value) {
-    return copyWith(style.copyWith(left: value));
+    return copyWith(flyStyle.copyWith(left: value));
   }
 
   /// Set inset (all sides) - accepts int, double, or String (token name like 's2', 's4', etc.)
   T inset(dynamic value) {
-    return copyWith(style.copyWith(inset: value));
+    return copyWith(flyStyle.copyWith(inset: value));
   }
 
   /// Set insetX (left and right) - accepts int, double, or String (token name like 's2', 's4', etc.)
   T insetX(dynamic value) {
-    return copyWith(style.copyWith(insetX: value));
+    return copyWith(flyStyle.copyWith(insetX: value));
   }
 
   /// Set insetY (top and bottom) - accepts int, double, or String (token name like 's2', 's4', etc.)
   T insetY(dynamic value) {
-    return copyWith(style.copyWith(insetY: value));
+    return copyWith(flyStyle.copyWith(insetY: value));
   }
 
   /// Check if any position properties are set
   bool get hasPositionProperties {
-    return FlyPositionUtils.hasPositionProperties(style);
+    return FlyPositionUtils.hasPositionProperties(flyStyle);
   }
 
   /// Apply position properties to a widget
   Widget applyPosition(BuildContext context, Widget child) {
-    return FlyPositionUtils.apply(context, style, child);
+    return FlyPositionUtils.apply(context, flyStyle, child);
   }
 }

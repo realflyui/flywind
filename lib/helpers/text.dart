@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'style.dart';
+
 import '../core/theme.dart';
-import 'leading.dart';
-import 'font_weight.dart';
-import 'tracking.dart';
 import 'font.dart';
+import 'font_weight.dart';
+import 'leading.dart';
+import 'style.dart';
+import 'tracking.dart';
 
 /// Utility class for handling Tailwind-like text style logic
 class FlyTextUtils {
@@ -212,64 +213,64 @@ class FlyTextUtils {
 
 /// Mixin that provides Tailwind-like text style methods for any widget
 mixin FlyTextHelper<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set text style - accepts String (token name like 'sm', 'base', 'lg', etc.) or TextStyle
   /// Pass null to remove all text styling and use Flutter's default text style
   T text(dynamic value) {
-    return copyWith(style.copyWith(text: value));
+    return copyWith(flyStyle.copyWith(text: value));
   }
 
   /// Set text alignment - accepts String ('left', 'right', 'center', 'justify', 'start', 'end') or TextAlign
   T align(dynamic value) {
-    return copyWith(style.copyWith(textAlign: value));
+    return copyWith(flyStyle.copyWith(textAlign: value));
   }
 
   /// Transform text to uppercase
   T uppercase() {
-    return copyWith(style.copyWith(textTransform: 'uppercase'));
+    return copyWith(flyStyle.copyWith(textTransform: 'uppercase'));
   }
 
   /// Transform text to lowercase
   T lowercase() {
-    return copyWith(style.copyWith(textTransform: 'lowercase'));
+    return copyWith(flyStyle.copyWith(textTransform: 'lowercase'));
   }
 
   /// Transform text to capitalize first letter of each word
   T capitalize() {
-    return copyWith(style.copyWith(textTransform: 'capitalize'));
+    return copyWith(flyStyle.copyWith(textTransform: 'capitalize'));
   }
 
   /// Set line height - accepts int, double, or String (token name like 'tight', 'normal', 'relaxed')
   T leading(dynamic value) {
-    return copyWith(style.copyWith(leading: value));
+    return copyWith(flyStyle.copyWith(leading: value));
   }
 
   /// Add underline decoration to text
   T underline() {
-    return copyWith(style.copyWith(textDecoration: 'underline'));
+    return copyWith(flyStyle.copyWith(textDecoration: 'underline'));
   }
 
   /// Add line-through decoration to text
   T lineThrough() {
-    return copyWith(style.copyWith(textDecoration: 'line-through'));
+    return copyWith(flyStyle.copyWith(textDecoration: 'line-through'));
   }
 
   /// Add overline decoration to text
   T overline() {
-    return copyWith(style.copyWith(textDecoration: 'overline'));
+    return copyWith(flyStyle.copyWith(textDecoration: 'overline'));
   }
 
   /// Remove text decoration
   T noDecoration() {
-    return copyWith(style.copyWith(textDecoration: 'none'));
+    return copyWith(flyStyle.copyWith(textDecoration: 'none'));
   }
 
   /// Set font weight - accepts String ('thin', 'light', 'normal', 'medium', 'bold', etc.) or FontWeight
   T weight(dynamic value) {
-    return copyWith(style.copyWith(fontWeight: value));
+    return copyWith(flyStyle.copyWith(fontWeight: value));
   }
 
   /// Set font family - accepts:
@@ -277,6 +278,6 @@ mixin FlyTextHelper<T> {
   /// - List<String> full stack
   /// - TextStyle (uses its fontFamily and fontFamilyFallback)
   T font(dynamic value) {
-    return copyWith(style.copyWith(font: value));
+    return copyWith(flyStyle.copyWith(font: value));
   }
 }

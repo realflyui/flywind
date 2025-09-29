@@ -12,7 +12,7 @@ class FlyLayout extends StatelessWidget with FlyLayoutUtilities<FlyLayout> {
   final FlyStyle _style;
 
   @override
-  FlyStyle get style => _style;
+  FlyStyle get flyStyle => _style;
 
   @override
   FlyLayout Function(FlyStyle newStyle) get copyWith =>

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'style.dart';
-import 'value.dart';
+
 import '../core/theme.dart';
 import '../tokens/radius.dart';
+import 'style.dart';
+import 'value.dart';
 
 /// Utility class for handling Tailwind-like rounded logic
 class FlyRoundedUtils {
@@ -84,62 +85,62 @@ class FlyRoundedUtils {
 
 /// Mixin that provides Tailwind-like rounded methods for any widget
 mixin FlyRounded<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set uniform rounded styling - accepts int, double, or String (token name/unit)
   T rounded(dynamic value) {
-    return copyWith(style.copyWith(rounded: value));
+    return copyWith(flyStyle.copyWith(rounded: value));
   }
 
   /// Set top rounded styling (top-left + top-right) - accepts int, double, or String (token name/unit)
   T roundedT(dynamic value) {
-    return copyWith(style.copyWith(roundedT: value));
+    return copyWith(flyStyle.copyWith(roundedT: value));
   }
 
   /// Set right rounded styling (top-right + bottom-right) - accepts int, double, or String (token name/unit)
   T roundedR(dynamic value) {
-    return copyWith(style.copyWith(roundedR: value));
+    return copyWith(flyStyle.copyWith(roundedR: value));
   }
 
   /// Set bottom rounded styling (bottom-left + bottom-right) - accepts int, double, or String (token name/unit)
   T roundedB(dynamic value) {
-    return copyWith(style.copyWith(roundedB: value));
+    return copyWith(flyStyle.copyWith(roundedB: value));
   }
 
   /// Set left rounded styling (top-left + bottom-left) - accepts int, double, or String (token name/unit)
   T roundedL(dynamic value) {
-    return copyWith(style.copyWith(roundedL: value));
+    return copyWith(flyStyle.copyWith(roundedL: value));
   }
 
   /// Set top-left rounded styling - accepts int, double, or String (token name/unit)
   T roundedTl(dynamic value) {
-    return copyWith(style.copyWith(roundedTl: value));
+    return copyWith(flyStyle.copyWith(roundedTl: value));
   }
 
   /// Set top-right rounded styling - accepts int, double, or String (token name/unit)
   T roundedTr(dynamic value) {
-    return copyWith(style.copyWith(roundedTr: value));
+    return copyWith(flyStyle.copyWith(roundedTr: value));
   }
 
   /// Set bottom-left rounded styling - accepts int, double, or String (token name/unit)
   T roundedBl(dynamic value) {
-    return copyWith(style.copyWith(roundedBl: value));
+    return copyWith(flyStyle.copyWith(roundedBl: value));
   }
 
   /// Set bottom-right rounded styling - accepts int, double, or String (token name/unit)
   T roundedBr(dynamic value) {
-    return copyWith(style.copyWith(roundedBr: value));
+    return copyWith(flyStyle.copyWith(roundedBr: value));
   }
 
   /// Resolves rounded styling from FlyStyle and FlyConfig into BorderRadius
   BorderRadius resolveRounded(BuildContext context) {
-    return FlyRoundedUtils.resolve(context, style);
+    return FlyRoundedUtils.resolve(context, flyStyle);
   }
 
   /// Applies rounded styling to a widget using the resolved BorderRadius
   Widget applyRounded(BuildContext context, Widget child) {
-    return FlyRoundedUtils.apply(context, style, child);
+    return FlyRoundedUtils.apply(context, flyStyle, child);
   }
 }

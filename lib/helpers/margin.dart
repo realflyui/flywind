@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'style.dart';
-import 'value.dart';
+
 import '../core/theme.dart';
 import '../tokens/spacing.dart';
+import 'style.dart';
+import 'value.dart';
 
 /// Utility class for handling Tailwind-like margin logic
 class FlyMarginUtils {
@@ -52,52 +53,52 @@ class FlyMarginUtils {
 
 /// Mixin that provides Tailwind-like margin methods for any widget
 mixin FlyMargin<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set uniform margin - accepts int, double, or String (token name/unit)
   T m(dynamic value) {
-    return copyWith(style.copyWith(m: value));
+    return copyWith(flyStyle.copyWith(m: value));
   }
 
   /// Set horizontal margin (left + right) - accepts int, double, or String (token name/unit)
   T mx(dynamic value) {
-    return copyWith(style.copyWith(mx: value));
+    return copyWith(flyStyle.copyWith(mx: value));
   }
 
   /// Set vertical margin (top + bottom) - accepts int, double, or String (token name/unit)
   T my(dynamic value) {
-    return copyWith(style.copyWith(my: value));
+    return copyWith(flyStyle.copyWith(my: value));
   }
 
   /// Set top margin - accepts int, double, or String (token name/unit)
   T mt(dynamic value) {
-    return copyWith(style.copyWith(mt: value));
+    return copyWith(flyStyle.copyWith(mt: value));
   }
 
   /// Set right margin - accepts int, double, or String (token name/unit)
   T mr(dynamic value) {
-    return copyWith(style.copyWith(mr: value));
+    return copyWith(flyStyle.copyWith(mr: value));
   }
 
   /// Set bottom margin - accepts int, double, or String (token name/unit)
   T mb(dynamic value) {
-    return copyWith(style.copyWith(mb: value));
+    return copyWith(flyStyle.copyWith(mb: value));
   }
 
   /// Set left margin - accepts int, double, or String (token name/unit)
   T ml(dynamic value) {
-    return copyWith(style.copyWith(ml: value));
+    return copyWith(flyStyle.copyWith(ml: value));
   }
 
   /// Resolves margin from FlyStyle and FlyTheme into EdgeInsets
   EdgeInsets resolveMargin(BuildContext context) {
-    return FlyMarginUtils.resolve(context, style);
+    return FlyMarginUtils.resolve(context, flyStyle);
   }
 
   /// Applies margin to a widget using the resolved EdgeInsets
   Widget applyMargin(BuildContext context, Widget child) {
-    return FlyMarginUtils.apply(context, style, child);
+    return FlyMarginUtils.apply(context, flyStyle, child);
   }
 }

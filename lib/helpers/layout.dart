@@ -159,10 +159,10 @@ class FlyLayoutUtils {
           // Check if it's a FlyText or FlyContainer with flex properties
           if (child.runtimeType.toString().contains('FlyText') ||
               child.runtimeType.toString().contains('FlyContainer')) {
-            // Use reflection to get the style property
+            // Use reflection to get the flyStyle property
             final dynamic widget = child;
-            if (widget.style != null && widget.style is FlyStyle) {
-              final FlyStyle style = widget.style;
+            if (widget.flyStyle != null && widget.flyStyle is FlyStyle) {
+              final FlyStyle style = widget.flyStyle;
               if (FlyFlexUtils.hasFlexProperties(style)) {
                 return FlyFlexUtils.apply(context, style, child);
               }
@@ -189,10 +189,10 @@ class FlyLayoutUtils {
           // Check if it's a FlyText or FlyContainer with position properties
           if (child.runtimeType.toString().contains('FlyText') ||
               child.runtimeType.toString().contains('FlyContainer')) {
-            // Use reflection to get the style property
+            // Use reflection to get the flyStyle property
             final dynamic widget = child;
-            if (widget.style != null && widget.style is FlyStyle) {
-              final FlyStyle style = widget.style;
+            if (widget.flyStyle != null && widget.flyStyle is FlyStyle) {
+              final FlyStyle style = widget.flyStyle;
               if (FlyPositionUtils.hasPositionProperties(style)) {
                 return FlyPositionUtils.apply(context, style, child);
               }
@@ -458,7 +458,7 @@ class FlyLayoutUtils {
 
 /// Mixin that provides Tailwind-like layout methods for any widget
 mixin FlyLayoutUtilities<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
@@ -479,7 +479,7 @@ mixin FlyLayoutUtilities<T> {
         verticalDirection != null) {
       // Use direct Flutter API access
       return copyWith(
-        style.copyWith(
+        flyStyle.copyWith(
           layoutType: 'col',
           col: ColParams(
             mainAxisAlignment: mainAxisAlignment,
@@ -493,7 +493,7 @@ mixin FlyLayoutUtilities<T> {
       );
     } else {
       // Use utility method (no parameters)
-      return copyWith(style.copyWith(layoutType: 'col'));
+      return copyWith(flyStyle.copyWith(layoutType: 'col'));
     }
   }
 
@@ -514,7 +514,7 @@ mixin FlyLayoutUtilities<T> {
         verticalDirection != null) {
       // Use direct Flutter API access
       return copyWith(
-        style.copyWith(
+        flyStyle.copyWith(
           layoutType: 'row',
           row: RowParams(
             mainAxisAlignment: mainAxisAlignment,
@@ -528,43 +528,43 @@ mixin FlyLayoutUtilities<T> {
       );
     } else {
       // Use utility method (no parameters)
-      return copyWith(style.copyWith(layoutType: 'row'));
+      return copyWith(flyStyle.copyWith(layoutType: 'row'));
     }
   }
 
   /// Set cross-axis alignment - accepts String ('start', 'end', 'center', 'stretch', 'baseline')
   T items(String value) {
-    return copyWith(style.copyWith(items: value));
+    return copyWith(flyStyle.copyWith(items: value));
   }
 
   /// Set main-axis alignment - accepts String ('start', 'end', 'center', 'between', 'around', 'evenly')
   T justify(String value) {
-    return copyWith(style.copyWith(justify: value));
+    return copyWith(flyStyle.copyWith(justify: value));
   }
 
   /// Set gap spacing - accepts String ('s0' to 's96', 'px')
   T gap(String value) {
-    return copyWith(style.copyWith(gap: value));
+    return copyWith(flyStyle.copyWith(gap: value));
   }
 
   /// Set horizontal gap spacing - accepts String ('s0' to 's96', 'px')
   T gapX(String value) {
-    return copyWith(style.copyWith(gapX: value));
+    return copyWith(flyStyle.copyWith(gapX: value));
   }
 
   /// Set vertical gap spacing - accepts String ('s0' to 's96', 'px')
   T gapY(String value) {
-    return copyWith(style.copyWith(gapY: value));
+    return copyWith(flyStyle.copyWith(gapY: value));
   }
 
   /// Set reverse direction - accepts bool
   T reverse() {
-    return copyWith(style.copyWith(reverse: true));
+    return copyWith(flyStyle.copyWith(reverse: true));
   }
 
   /// Set inline layout - accepts bool
   T inline() {
-    return copyWith(style.copyWith(inline: true));
+    return copyWith(flyStyle.copyWith(inline: true));
   }
 
   /// Set layout type to wrap with optional direct Flutter API access
@@ -590,7 +590,7 @@ mixin FlyLayoutUtilities<T> {
         clipBehavior != null) {
       // Use direct Flutter API access
       return copyWith(
-        style.copyWith(
+        flyStyle.copyWith(
           layoutType: 'wrap',
           wrap: WrapParams(
             direction: direction,
@@ -607,7 +607,7 @@ mixin FlyLayoutUtilities<T> {
       );
     } else {
       // Use utility method (no parameters)
-      return copyWith(style.copyWith(layoutType: 'wrap'));
+      return copyWith(flyStyle.copyWith(layoutType: 'wrap'));
     }
   }
 
@@ -624,7 +624,7 @@ mixin FlyLayoutUtilities<T> {
         clipBehavior != null) {
       // Use direct Flutter API access
       return copyWith(
-        style.copyWith(
+        flyStyle.copyWith(
           layoutType: 'stack',
           stack: StackParams(
             alignment: alignment,
@@ -636,7 +636,7 @@ mixin FlyLayoutUtilities<T> {
       );
     } else {
       // Use utility method (no parameters)
-      return copyWith(style.copyWith(layoutType: 'stack'));
+      return copyWith(flyStyle.copyWith(layoutType: 'stack'));
     }
   }
 }

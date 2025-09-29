@@ -6,6 +6,7 @@ import '../helpers/margin.dart';
 import '../helpers/padding.dart';
 import '../helpers/position.dart';
 import '../helpers/style.dart';
+import '../helpers/style_applier.dart';
 import '../helpers/text.dart';
 import '../helpers/tracking.dart';
 
@@ -22,7 +23,7 @@ class FlyText extends StatelessWidget
   FlyText(
     this.data, {
     super.key,
-    this.textStyle, // TODO: this should be style but conflicts with FlyStyle
+    this.style,
     this.textAlign,
     this.textDirection,
     this.locale,
@@ -53,7 +54,7 @@ class FlyText extends StatelessWidget
   }
 
   final String data;
-  final TextStyle? textStyle;
+  final TextStyle? style;
   final TextAlign? textAlign;
   final TextDirection? textDirection;
   final Locale? locale;
@@ -67,14 +68,14 @@ class FlyText extends StatelessWidget
   final FlyStyle _flyStyle;
 
   @override
-  FlyStyle get style => _flyStyle;
+  FlyStyle get flyStyle => _flyStyle;
 
   @override
   FlyText Function(FlyStyle newStyle) get copyWith =>
       (newStyle) => FlyText(
         data,
         key: key,
-        textStyle: textStyle,
+        style: style,
         textAlign: textAlign,
         textDirection: textDirection,
         locale: locale,
@@ -90,36 +91,74 @@ class FlyText extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    // If direct properties are provided, use them with a simple Text widget
-    if (textStyle != null ||
-        textAlign != null ||
-        textDirection != null ||
-        locale != null ||
-        softWrap != null ||
-        overflow != null ||
-        textScaler != null ||
-        maxLines != null ||
-        semanticsLabel != null ||
-        textWidthBasis != null ||
-        textHeightBehavior != null) {
-      return Text(
-        data,
-        key: key,
-        style: textStyle,
-        textAlign: textAlign,
-        textDirection: textDirection,
-        locale: locale,
-        softWrap: softWrap,
-        overflow: overflow,
-        textScaler: textScaler,
-        maxLines: maxLines,
-        semanticsLabel: semanticsLabel,
-        textWidthBasis: textWidthBasis,
-        textHeightBehavior: textHeightBehavior,
+    // Always resolve the text properties first
+    final resolvedStyle = _buildResolvedTextStyle(context);
+    final resolvedTextAlign = textAlign ?? _buildResolvedTextAlign();
+    final resolvedText = _buildResolvedText();
+
+    // Create Text with resolved properties
+    Widget textWidget = Text(
+      resolvedText,
+      key: key,
+      style: resolvedStyle,
+      textAlign: resolvedTextAlign,
+      textDirection: textDirection,
+      locale: locale,
+      softWrap: softWrap,
+      overflow: overflow,
+      textScaler: textScaler,
+      maxLines: maxLines,
+      semanticsLabel: semanticsLabel,
+      textWidthBasis: textWidthBasis,
+      textHeightBehavior: textHeightBehavior,
+    );
+
+    // Always apply other utilities (padding, margin, etc.) if any are set
+    if (_flyStyle.hasPadding ||
+        _flyStyle.hasMargin ||
+        _flyStyle.hasBorderRadius) {
+      return FlyStyleApplier.apply(context, _flyStyle, textWidget);
+    }
+
+    // If no utilities are set, return the Text directly
+    return textWidget;
+  }
+
+  /// Build resolved text style from FlyStyle utilities
+  TextStyle _buildResolvedTextStyle(BuildContext context) {
+    // Start with direct style if provided, otherwise use styled text style
+    TextStyle finalStyle =
+        style ??
+        (FlyTextUtils.resolve(context, _flyStyle) ?? const TextStyle());
+
+    // Apply text-related utilities (font, weight, leading, tracking, etc.)
+    finalStyle = FlyTextUtils.applyToTextStyle(context, _flyStyle, finalStyle);
+
+    // Apply color if set (this will override the color from the text style token or direct style)
+    if (_flyStyle.color != null) {
+      finalStyle = FlyColorUtils.applyToTextStyle(
+        context,
+        _flyStyle,
+        finalStyle,
       );
     }
 
-    // Otherwise, apply all style utilities using FlyStyle.apply()
-    return _flyStyle.apply(context, Text(data));
+    return finalStyle;
+  }
+
+  /// Build resolved text alignment from FlyStyle utilities
+  TextAlign? _buildResolvedTextAlign() {
+    if (_flyStyle.textAlign != null) {
+      return FlyTextUtils.resolveTextAlign(_flyStyle.textAlign);
+    }
+    return null;
+  }
+
+  /// Build resolved text with transformations applied
+  String _buildResolvedText() {
+    if (_flyStyle.textTransform != null) {
+      return FlyTextUtils.transformText(data, _flyStyle.textTransform);
+    }
+    return data;
   }
 }

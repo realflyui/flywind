@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
+import '../core/theme.dart';
 import 'style.dart';
 import 'value.dart';
-import '../core/theme.dart';
 
 /// Utility class for handling Tailwind-like color logic
 class FlyColorUtils {
@@ -40,17 +41,17 @@ class FlyColorUtils {
 
 /// Mixin that provides Tailwind-like color methods for any widget
 mixin FlyColor<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set text color - accepts Color object or String (token name/hex)
   T color(dynamic value) {
-    return copyWith(style.copyWith(color: value));
+    return copyWith(flyStyle.copyWith(color: value));
   }
 
   /// Set background color - accepts Color object or String (token name/hex)
   T bg(dynamic value) {
-    return copyWith(style.copyWith(color: value));
+    return copyWith(flyStyle.copyWith(color: value));
   }
 }

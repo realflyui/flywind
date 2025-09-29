@@ -48,22 +48,22 @@ class FlyLeadingUtils {
 
 /// Mixin that provides Tailwind-like leading methods for any widget
 mixin FlyLeading<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set line height - accepts int, double, or String (token name like 'tight', 'normal', 'relaxed')
   T leading(dynamic value) {
-    return copyWith(style.copyWith(leading: value));
+    return copyWith(flyStyle.copyWith(leading: value));
   }
 
   /// Resolves leading styling from FlyStyle and FlyThemeData into double
   double? resolveLeading(BuildContext context) {
-    return FlyLeadingUtils.resolve(context, style);
+    return FlyLeadingUtils.resolve(context, flyStyle);
   }
 
   /// Applies leading styling to a TextStyle using the resolved value
   TextStyle applyLeading(BuildContext context, TextStyle? baseStyle) {
-    return FlyLeadingUtils.applyToTextStyle(context, style, baseStyle);
+    return FlyLeadingUtils.applyToTextStyle(context, flyStyle, baseStyle);
   }
 }

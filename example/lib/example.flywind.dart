@@ -273,7 +273,40 @@ class FlywindApp extends StatelessWidget {
                 ).bg('blue50').rounded('lg').mb('s2'),
                 FlyContainer(
                   child: FlyIcon(Icons.settings).color('gray500').p('s2'),
-                ).bg('gray50').rounded('sm').m('s2').mb('s4'),
+                ).bg('gray50').rounded('sm').m('s2').mb('s2'),
+
+                // Hybrid Mode Test (direct size + styled color + styled padding)
+                FlyContainer(
+                  child: FlyIcon(
+                    Icons.star,
+                    iconSize: 24,
+                  ).color('red500').p('s4'),
+                ).bg('red50').rounded('sm').mb('s2'),
+
+                // Hybrid Mode Test for Text (direct style + styled color + styled padding)
+                FlyContainer(
+                  child: FlyText(
+                    'Hybrid Text',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ).color('blue500').p('s3'),
+                ).bg('blue50').rounded('sm').mb('s2'),
+
+                // Another Hybrid Mode Test for Text (direct fontSize + styled color + styled padding)
+                FlyContainer(
+                  child: FlyText(
+                    'Hello',
+                    style: TextStyle(fontSize: 18),
+                  ).color('blue500').p('s3'),
+                ).bg('blue50').rounded('sm').mb('s2'),
+
+                // Hybrid Mode Test for Container (direct decoration + styled padding + styled margin)
+                FlyContainer(
+                  decoration: BoxDecoration(
+                    color: Colors.purple,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: FlyText('Hybrid Container').color('white').p('s2'),
+                ).p('s4').m('s2').mb('s4'),
 
                 // Icon Layout Examples
                 _buildSubsectionHeader('Icon Layout'),

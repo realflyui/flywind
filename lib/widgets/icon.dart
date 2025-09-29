@@ -7,6 +7,7 @@ import '../helpers/padding.dart';
 import '../helpers/position.dart';
 import '../helpers/size.dart';
 import '../helpers/style.dart';
+import '../helpers/style_applier.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for icons
 class FlyIcon extends StatelessWidget
@@ -43,7 +44,7 @@ class FlyIcon extends StatelessWidget
   final FlyStyle _flyStyle;
 
   @override
-  FlyStyle get style => _flyStyle;
+  FlyStyle get flyStyle => _flyStyle;
 
   @override
   FlyIcon Function(FlyStyle newStyle) get copyWith =>
@@ -59,22 +60,32 @@ class FlyIcon extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    // If direct properties are provided, use them with a simple Icon widget
-    if (iconSize != null ||
-        iconColor != null ||
-        semanticLabel != null ||
-        textDirection != null) {
-      return Icon(
-        icon,
-        key: key,
-        size: iconSize,
-        color: iconColor,
-        semanticLabel: semanticLabel,
-        textDirection: textDirection,
-      );
+    // Always resolve the icon properties first
+    final resolvedSize =
+        iconSize ??
+        FlySizeUtils.resolveWidth(context, _flyStyle) ??
+        FlySizeUtils.resolveHeight(context, _flyStyle);
+
+    final resolvedColor =
+        iconColor ?? FlyColorUtils.resolve(context, _flyStyle);
+
+    // Create Icon with resolved properties
+    Widget iconWidget = Icon(
+      icon,
+      size: resolvedSize,
+      color: resolvedColor,
+      semanticLabel: semanticLabel,
+      textDirection: textDirection,
+    );
+
+    // Always apply other utilities (padding, margin, etc.) if any are set
+    if (_flyStyle.hasPadding ||
+        _flyStyle.hasMargin ||
+        _flyStyle.hasBorderRadius) {
+      return FlyStyleApplier.apply(context, _flyStyle, iconWidget);
     }
 
-    // Otherwise, apply all style utilities using FlyStyle.apply()
-    return _flyStyle.apply(context, Icon(icon));
+    // If no utilities are set, return the Icon directly
+    return iconWidget;
   }
 }

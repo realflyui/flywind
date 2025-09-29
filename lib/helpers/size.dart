@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'style.dart';
-import 'value.dart';
+
 import '../core/theme.dart';
 import '../tokens/spacing.dart';
+import 'style.dart';
+import 'value.dart';
 
 /// Utility class for handling Tailwind-like size logic
 class FlySizeUtils {
@@ -130,72 +131,72 @@ class FlySizeUtils {
 
 /// Mixin that provides Tailwind-like size methods for any widget
 mixin FlySize<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set height - accepts int, double, or String (token name/unit)
   T h(dynamic value) {
-    return copyWith(style.copyWith(h: value));
+    return copyWith(flyStyle.copyWith(h: value));
   }
 
   /// Set width - accepts int, double, or String (token name/unit)
   T w(dynamic value) {
-    return copyWith(style.copyWith(w: value));
+    return copyWith(flyStyle.copyWith(w: value));
   }
 
   /// Set max height - accepts int, double, or String (token name/unit)
   T maxH(dynamic value) {
-    return copyWith(style.copyWith(maxH: value));
+    return copyWith(flyStyle.copyWith(maxH: value));
   }
 
   /// Set max width - accepts int, double, or String (token name/unit)
   T maxW(dynamic value) {
-    return copyWith(style.copyWith(maxW: value));
+    return copyWith(flyStyle.copyWith(maxW: value));
   }
 
   /// Set min height - accepts int, double, or String (token name/unit)
   T minH(dynamic value) {
-    return copyWith(style.copyWith(minH: value));
+    return copyWith(flyStyle.copyWith(minH: value));
   }
 
   /// Set min width - accepts int, double, or String (token name/unit)
   T minW(dynamic value) {
-    return copyWith(style.copyWith(minW: value));
+    return copyWith(flyStyle.copyWith(minW: value));
   }
 
   /// Resolves height from FlyStyle and FlyTheme into double
   double? resolveHeight(BuildContext context) {
-    return FlySizeUtils.resolveHeight(context, style);
+    return FlySizeUtils.resolveHeight(context, flyStyle);
   }
 
   /// Resolves width from FlyStyle and FlyTheme into double
   double? resolveWidth(BuildContext context) {
-    return FlySizeUtils.resolveWidth(context, style);
+    return FlySizeUtils.resolveWidth(context, flyStyle);
   }
 
   /// Resolves max height from FlyStyle and FlyTheme into double
   double? resolveMaxHeight(BuildContext context) {
-    return FlySizeUtils.resolveMaxHeight(context, style);
+    return FlySizeUtils.resolveMaxHeight(context, flyStyle);
   }
 
   /// Resolves max width from FlyStyle and FlyTheme into double
   double? resolveMaxWidth(BuildContext context) {
-    return FlySizeUtils.resolveMaxWidth(context, style);
+    return FlySizeUtils.resolveMaxWidth(context, flyStyle);
   }
 
   /// Resolves min height from FlyStyle and FlyTheme into double
   double? resolveMinHeight(BuildContext context) {
-    return FlySizeUtils.resolveMinHeight(context, style);
+    return FlySizeUtils.resolveMinHeight(context, flyStyle);
   }
 
   /// Resolves min width from FlyStyle and FlyTheme into double
   double? resolveMinWidth(BuildContext context) {
-    return FlySizeUtils.resolveMinWidth(context, style);
+    return FlySizeUtils.resolveMinWidth(context, flyStyle);
   }
 
   /// Applies size constraints to a widget using the resolved values
   Widget applySize(BuildContext context, Widget child) {
-    return FlySizeUtils.apply(context, style, child);
+    return FlySizeUtils.apply(context, flyStyle, child);
   }
 }

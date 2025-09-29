@@ -46,22 +46,22 @@ class FlyTrackingUtils {
 
 /// Mixin that provides Tailwind-like tracking methods for any widget
 mixin FlyTracking<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
   /// Set letter spacing - accepts int, double, or String (token name like 'tight', 'normal', 'wide')
   T tracking(dynamic value) {
-    return copyWith(style.copyWith(tracking: value));
+    return copyWith(flyStyle.copyWith(tracking: value));
   }
 
   /// Resolves tracking styling from FlyStyle and FlyThemeData into double
   double? resolveTracking(BuildContext context) {
-    return FlyTrackingUtils.resolve(context, style);
+    return FlyTrackingUtils.resolve(context, flyStyle);
   }
 
   /// Applies tracking styling to a TextStyle using the resolved value
   TextStyle applyTracking(BuildContext context, TextStyle? baseStyle) {
-    return FlyTrackingUtils.applyToTextStyle(context, style, baseStyle);
+    return FlyTrackingUtils.applyToTextStyle(context, flyStyle, baseStyle);
   }
 }
