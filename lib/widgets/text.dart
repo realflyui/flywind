@@ -19,8 +19,22 @@ class FlyText extends StatelessWidget
         FlyTracking<FlyText>,
         FlyFlex<FlyText>,
         FlyPosition<FlyText> {
-  FlyText(this.data, {style = const FlyStyle(), super.key})
-    : _style = _buildStyleWithDefaults(style);
+  FlyText(
+    this.data, {
+    super.key,
+    this.textStyle, // TODO: this should be style but conflicts with FlyStyle
+    this.textAlign,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
+    this.overflow,
+    this.textScaler,
+    this.maxLines,
+    this.semanticsLabel,
+    this.textWidthBasis,
+    this.textHeightBehavior,
+    FlyStyle flyStyle = const FlyStyle(),
+  }) : _flyStyle = _buildStyleWithDefaults(flyStyle);
 
   static FlyStyle _buildStyleWithDefaults(FlyStyle style) {
     return style.copyWith(
@@ -39,21 +53,73 @@ class FlyText extends StatelessWidget
   }
 
   final String data;
-  final FlyStyle _style;
+  final TextStyle? textStyle;
+  final TextAlign? textAlign;
+  final TextDirection? textDirection;
+  final Locale? locale;
+  final bool? softWrap;
+  final TextOverflow? overflow;
+  final TextScaler? textScaler;
+  final int? maxLines;
+  final String? semanticsLabel;
+  final TextWidthBasis? textWidthBasis;
+  final TextHeightBehavior? textHeightBehavior;
+  final FlyStyle _flyStyle;
 
   @override
-  FlyStyle get style => _style;
+  FlyStyle get style => _flyStyle;
 
   @override
   FlyText Function(FlyStyle newStyle) get copyWith =>
-      (newStyle) => FlyText(data, style: newStyle);
+      (newStyle) => FlyText(
+        data,
+        key: key,
+        textStyle: textStyle,
+        textAlign: textAlign,
+        textDirection: textDirection,
+        locale: locale,
+        softWrap: softWrap,
+        overflow: overflow,
+        textScaler: textScaler,
+        maxLines: maxLines,
+        semanticsLabel: semanticsLabel,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+        flyStyle: newStyle,
+      );
 
   @override
   Widget build(BuildContext context) {
-    // Create the base Text widget
-    Widget textWidget = Text(data);
+    // If direct properties are provided, use them with a simple Text widget
+    if (textStyle != null ||
+        textAlign != null ||
+        textDirection != null ||
+        locale != null ||
+        softWrap != null ||
+        overflow != null ||
+        textScaler != null ||
+        maxLines != null ||
+        semanticsLabel != null ||
+        textWidthBasis != null ||
+        textHeightBehavior != null) {
+      return Text(
+        data,
+        key: key,
+        style: textStyle,
+        textAlign: textAlign,
+        textDirection: textDirection,
+        locale: locale,
+        softWrap: softWrap,
+        overflow: overflow,
+        textScaler: textScaler,
+        maxLines: maxLines,
+        semanticsLabel: semanticsLabel,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+      );
+    }
 
-    // Apply all style utilities (color, padding, etc.) using FlyStyle.apply()
-    return _style.apply(context, textWidget);
+    // Otherwise, apply all style utilities using FlyStyle.apply()
+    return _flyStyle.apply(context, Text(data));
   }
 }
