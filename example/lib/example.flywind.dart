@@ -233,7 +233,76 @@ class FlywindApp extends StatelessWidget {
                 ).tracking('0.1em').color('pink600').mb('s6'),
 
                 // ========================================
-                // 3. CONTAINER UTILITIES
+                // 3. ICON UTILITIES
+                // ========================================
+                _buildSectionHeader('Icon Utilities'),
+
+                // Basic Icon Examples
+                _buildSubsectionHeader('Basic Icons'),
+                FlyIcon(Icons.star).color('yellow500').mb('s2'),
+                FlyIcon(Icons.favorite).color('red500').mb('s2'),
+                FlyIcon(Icons.home).color('blue500').mb('s2'),
+                FlyIcon(Icons.settings).color('gray500').mb('s4'),
+
+                // Icon Sizes
+                _buildSubsectionHeader('Icon Sizes'),
+                FlyIcon(Icons.star).w('s4').color('yellow500').mb('s2'),
+                FlyIcon(Icons.star).w('s6').color('yellow500').mb('s2'),
+                FlyIcon(Icons.star).w('s8').color('yellow500').mb('s2'),
+                FlyIcon(Icons.star).w('s10').color('yellow500').mb('s2'),
+                FlyIcon(Icons.star).w('s12').color('yellow500').mb('s4'),
+
+                // Icon Colors
+                _buildSubsectionHeader('Icon Colors'),
+                FlyIcon(Icons.circle).color('red500').mb('s2'),
+                FlyIcon(Icons.circle).color('green500').mb('s2'),
+                FlyIcon(Icons.circle).color('blue500').mb('s2'),
+                FlyIcon(Icons.circle).color('purple500').mb('s2'),
+                FlyIcon(Icons.circle).color('orange500').mb('s4'),
+
+                // Icon with Padding and Margin
+                _buildSubsectionHeader('Icon with Spacing'),
+                FlyContainer(
+                  child: FlyIcon(Icons.star).color('yellow500').p('s2'),
+                ).bg('yellow50').rounded('sm').mb('s2'),
+                FlyContainer(
+                  child: FlyIcon(Icons.favorite).color('red500').p('s3'),
+                ).bg('red50').rounded('md').mb('s2'),
+                FlyContainer(
+                  child: FlyIcon(Icons.home).color('blue500').p('s4'),
+                ).bg('blue50').rounded('lg').mb('s2'),
+                FlyContainer(
+                  child: FlyIcon(Icons.settings).color('gray500').p('s2'),
+                ).bg('gray50').rounded('sm').m('s2').mb('s4'),
+
+                // Icon Layout Examples
+                _buildSubsectionHeader('Icon Layout'),
+                FlyContainer(
+                  child: FlyLayout([
+                    FlyIcon(Icons.star).color('yellow500').flex('none'),
+                    FlyText('Star Rating').color('gray700').flex('auto'),
+                    FlyIcon(Icons.arrow_forward).color('gray400').flex('none'),
+                  ]).row().items('center').gap('s2'),
+                ).mb('s2'),
+
+                FlyContainer(
+                  child: FlyLayout([
+                    FlyIcon(Icons.notifications).color('blue500').flex('none'),
+                    FlyText('Notifications').color('gray700').flex('auto'),
+                    FlyIcon(Icons.badge).color('green500').flex('none'),
+                  ]).row().items('center').gap('s2'),
+                ).mb('s2'),
+
+                FlyContainer(
+                  child: FlyLayout([
+                    FlyIcon(Icons.person).color('purple500').flex('none'),
+                    FlyText('Profile').color('gray700').flex('auto'),
+                    FlyIcon(Icons.edit).color('orange500').flex('none'),
+                  ]).row().items('center').gap('s2'),
+                ).mb('s4'),
+
+                // ========================================
+                // 4. CONTAINER UTILITIES
                 // ========================================
                 _buildSectionHeader('Container Utilities'),
 
@@ -496,7 +565,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s6'),
 
                 // ========================================
-                // 4. ADVANCED SYNTAX
+                // 5. ADVANCED SYNTAX
                 // ========================================
                 _buildSectionHeader('Advanced Syntax'),
 
@@ -633,7 +702,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s6'),
 
                 // ========================================
-                // 5. LAYOUT UTILITIES
+                // 6. LAYOUT UTILITIES
                 // ========================================
                 _buildSectionHeader('Layout Utilities'),
 
@@ -715,7 +784,7 @@ class FlywindApp extends StatelessWidget {
                 ).bg('red500').rounded('md').p('s4').mb('s4'),
 
                 // ========================================
-                // 6. FLEX UTILITIES
+                // 7. FLEX UTILITIES
                 // ========================================
                 _buildSectionHeader('Flex Utilities'),
 

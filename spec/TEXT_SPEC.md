@@ -28,7 +28,7 @@ FlyText('Hello World')
 
 | Flywind Helper | Tailwind Class | Flutter Widget | Description |
 |---|---|---|---|
-| `.text(<flyValue>)` | `.text-*` | `TextStyle` | Text style (fontSize + height) |
+| `.text(<flyValue>)` | `.text-*` | `TextStyle` | Text style (fontSize + height) - accepts String tokens or TextStyle objects |
 | `.color(<flyValue>)` | `.text-*` | `TextStyle(color:)` | Text color |
 | `.weight(<flyValue>)` | `.font-*` | `TextStyle(fontWeight:)` | Font weight |
 | `.font(<flyValue>)` | `.font-*` | `TextStyle(fontFamily:)` | Font family |
@@ -46,6 +46,22 @@ FlyText('Hello World')
 | `.m(<flyValue>)` | `.m-*` | `FlyMargin` | Margin |
 | `.flex(<flyValue>)` | `.flex-*` | `FlyFlex` | Flex |
 | `.top(<flyValue>)` | `.top-*` | `FlyPosition` | Position |
+
+### Text Styling Behavior
+
+**Key Difference from Containers**: Text widgets use direct `TextStyle` application instead of wrapper widgets.
+
+- **Color utilities** → Applied directly to `TextStyle(color:)`
+- **Text utilities** → Applied directly to `TextStyle` properties
+- **No wrappers** → Direct `Text` widget styling (no Container/SizedBox)
+
+```dart
+// Text styling (uses TextStyle directly)
+FlyText('Hello').color('blue600').weight('bold')  // → Text('Hello', style: TextStyle(color: blue, fontWeight: bold))
+
+// Container styling (uses wrapper widgets)
+FlyContainer(child: Text('Hello')).bg('gray100').p('s4')  // → Container(decoration: BoxDecoration(color: gray), padding: EdgeInsets.all(16), child: Text('Hello'))
+```
 
 ## Not Implemented
 
@@ -113,6 +129,21 @@ FlyText(
   .leading('tight')
   .tracking('wide')
   .underline();
+
+// Using TextStyle objects directly
+FlyText('Custom Style')
+  .text(TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: Colors.blue,
+    letterSpacing: 1.2,
+  ));
+
+// Mixed TextStyle with utilities
+FlyText('Mixed Approach')
+  .text(TextStyle(fontSize: 18, fontWeight: FontWeight.w600))
+  .color('red500')
+  .leading('tight');
 ```
 
 ## Default Values

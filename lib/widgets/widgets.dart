@@ -8,6 +8,7 @@
 // - [FlyText] - Text widget with utility styling
 // - [FlyContainer] - Container widget with utility styling
 // - [FlyLayout] - Layout widget with col/row utilities
+// - [FlyIcon] - Icon widget with utility styling
 //
 // ## Usage
 //
@@ -46,8 +47,17 @@
 //   .justify('between')
 //   .items('center')
 //   .gap('s2');
+//
+// // Icon with utilities
+// FlyIcon(Icons.star)
+//   .color('yellow500')
+//   .w('s6')
+//   .h('s6')
+//   .p('s2')
+//   .m('s1');
 // ```
 
 export 'container.dart';
+export 'icon.dart';
 export 'layout.dart';
 export 'text.dart';

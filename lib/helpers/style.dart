@@ -4,6 +4,7 @@ import 'color.dart';
 import 'margin.dart';
 import 'padding.dart';
 import 'rounded.dart';
+import 'size.dart';
 import 'text.dart';
 
 /// Internal style storage for FlyText widget
@@ -347,6 +348,10 @@ class FlyStyle {
     if (child is Text) {
       result = _applyTextStyleDirect(context, child);
     }
+    // For icon widgets, we need to apply size and color directly
+    else if (child is Icon) {
+      result = _applyIconStyleDirect(context, child);
+    }
 
     // 1. Padding (applied to the content)
     if (hasPadding) {
@@ -354,7 +359,7 @@ class FlyStyle {
     }
 
     // 2. Background Color (for non-text widgets or containers)
-    if (color != null && child is! Text) {
+    if (color != null && child is! Text && child is! Icon) {
       result = _applyBackgroundColor(context, result);
     }
 
@@ -493,6 +498,34 @@ class FlyStyle {
       semanticsLabel: textWidget.semanticsLabel,
       textWidthBasis: textWidget.textWidthBasis,
       textHeightBehavior: textWidget.textHeightBehavior,
+    );
+  }
+
+  /// Apply icon style directly to an Icon widget
+  Widget _applyIconStyleDirect(BuildContext context, Icon iconWidget) {
+    // Start with the existing icon widget properties
+    double? finalSize = iconWidget.size;
+    Color? finalColor = iconWidget.color;
+
+    // Apply size utilities if set
+    if (w != null || h != null) {
+      // For icons, we use the width value if available, otherwise height (icons are square)
+      finalSize =
+          FlySizeUtils.resolveWidth(context, this) ??
+          FlySizeUtils.resolveHeight(context, this);
+    }
+
+    // Apply color if set
+    if (color != null) {
+      finalColor = FlyColorUtils.resolve(context, this);
+    }
+
+    return Icon(
+      iconWidget.icon,
+      size: finalSize,
+      color: finalColor,
+      semanticLabel: iconWidget.semanticLabel,
+      textDirection: iconWidget.textDirection,
     );
   }
 
