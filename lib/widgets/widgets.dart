@@ -6,8 +6,9 @@
 // ## Available Widgets
 //
 // - [FlyText] - Text widget with utility styling
-// - [FlyContainer] - Container widget with utility styling
-// - [FlyLayout] - Layout widget with col/row utilities
+// - [FlyBox] - Unified container and layout widget (recommended)
+// - [FlyContainer] - Container widget with utility styling (legacy)
+// - [FlyLayout] - Layout widget with col/row utilities (legacy)
 // - [FlyIcon] - Icon widget with utility styling
 //
 // ## Usage
@@ -21,28 +22,32 @@
 //   .px('16')
 //   .py('8');
 //
-// // Container with utilities
-// FlyContainer(
+// // Container mode
+// FlyBox(
 //   child: FlyText('Content'),
 // ).bg('gray100').p('16');
 //
-// // Layout with utilities
-// FlyLayout([
-//   FlyText('Header'),
-//   FlyText('Content'),
-//   FlyText('Footer'),
-// ])
+// // Layout mode - Column
+// FlyBox(
+//   children: [
+//     FlyText('Header'),
+//     FlyText('Content'),
+//     FlyText('Footer'),
+//   ],
+// )
 //   .col()
 //   .items('center')
 //   .justify('between')
 //   .gap('s4');
 //
-// // Row layout
-// FlyLayout([
-//   FlyText('Left'),
-//   FlyText('Center'),
-//   FlyText('Right'),
-// ])
+// // Layout mode - Row
+// FlyBox(
+//   children: [
+//     FlyText('Left'),
+//     FlyText('Center'),
+//     FlyText('Right'),
+//   ],
+// )
 //   .row()
 //   .justify('between')
 //   .items('center')
@@ -57,6 +62,7 @@
 //   .m('s1');
 // ```
 
+export 'box.dart';
 export 'container.dart';
 export 'icon.dart';
 export 'layout.dart';
