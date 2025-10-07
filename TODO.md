@@ -6,6 +6,7 @@
 * think about style_applier again. 
 * maybe helpers should be renamed to mixins
 * Make FlywindColors
+* Add IntinsicWidth as some sort of "container" 
 
 * Maybe: 
 
@@ -27,3 +28,4 @@ Preserving User Values
 
 The beauty of this pattern is that it preserves user-provided values:
 FlyText('Hello World', flyStyle: FlyStyle(color: 'red500'))
+
