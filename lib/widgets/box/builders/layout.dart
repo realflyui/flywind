@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/style.dart';
-import '../../../helpers/layout.dart';
+import '../../../mixins/layout.dart';
 
 /// Handles layout building for FlyBox widgets
 class BoxLayout {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 // TODO: circular dependency?
-import '../helpers/margin.dart';
-import '../helpers/padding.dart';
-import '../helpers/rounded.dart';
+import '../mixins/margin.dart';
+import '../mixins/padding.dart';
+import '../mixins/rounded.dart';
 import 'style.dart';
 
 /// Service for applying FlyWind utilities to widgets

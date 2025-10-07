@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../core/style.dart';
 import '../core/style_applier.dart';
 import '../core/style_context.dart';
-import '../helpers/color.dart';
-import '../helpers/flex.dart';
-import '../helpers/margin.dart';
-import '../helpers/padding.dart';
-import '../helpers/position.dart';
-import '../helpers/size.dart';
-import '../helpers/text_color.dart';
+import '../mixins/color.dart';
+import '../mixins/flex.dart';
+import '../mixins/margin.dart';
+import '../mixins/padding.dart';
+import '../mixins/position.dart';
+import '../mixins/size.dart';
+import '../mixins/text_color.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for icons
 class FlyIcon extends StatelessWidget

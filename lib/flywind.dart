@@ -1,9 +1,9 @@
-library flywind;
+library;
 
 // Core exports
 export 'core/core.dart';
 export 'widgets/widgets.dart';
-export 'helpers/helpers.dart';
+export 'mixins/helpers.dart';
 export 'tokens/tokens.dart';
 
 // Auto-generation hook

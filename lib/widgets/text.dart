@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../core/style.dart';
 import '../core/style_applier.dart';
 import '../core/style_context.dart';
-import '../helpers/color.dart';
-import '../helpers/flex.dart';
-import '../helpers/margin.dart';
-import '../helpers/padding.dart';
-import '../helpers/position.dart';
-import '../helpers/text.dart';
-import '../helpers/text_color.dart';
-import '../helpers/tracking.dart';
+import '../mixins/color.dart';
+import '../mixins/flex.dart';
+import '../mixins/margin.dart';
+import '../mixins/padding.dart';
+import '../mixins/position.dart';
+import '../mixins/text.dart';
+import '../mixins/text_color.dart';
+import '../mixins/tracking.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for text
 class FlyText extends StatelessWidget

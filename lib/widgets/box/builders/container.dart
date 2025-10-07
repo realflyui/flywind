@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/style.dart';
 import '../../../core/style_applier.dart';
-import '../../../helpers/border.dart';
+import '../../../mixins/border.dart';
 import '../resolvers/alignment.dart';
 import '../resolvers/property.dart';
 import 'border.dart';

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../core/style.dart';
 import '../../../core/style_applier.dart';
-import '../../../helpers/border.dart';
-import '../../../helpers/color.dart';
-import '../../../helpers/margin.dart';
-import '../../../helpers/padding.dart';
-import '../../../helpers/rounded.dart';
-import '../../../helpers/size.dart';
+import '../../../mixins/border.dart';
+import '../../../mixins/color.dart';
+import '../../../mixins/margin.dart';
+import '../../../mixins/padding.dart';
+import '../../../mixins/rounded.dart';
+import '../../../mixins/size.dart';
 
 /// Handles property resolution for FlyBox widgets
 class BoxProperty {
