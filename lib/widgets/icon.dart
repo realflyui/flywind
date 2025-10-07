@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../core/style.dart';
+import '../core/style_applier.dart';
+import '../core/style_context.dart';
 import '../helpers/color.dart';
 import '../helpers/flex.dart';
 import '../helpers/margin.dart';
 import '../helpers/padding.dart';
 import '../helpers/position.dart';
 import '../helpers/size.dart';
-import '../helpers/style.dart';
-import '../helpers/style_applier.dart';
 import '../helpers/text_color.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for icons
@@ -27,11 +28,23 @@ class FlyIcon extends StatelessWidget
     this.semanticLabel, // Direct semantic label
     this.textDirection, // Direct text direction
     FlyStyle flyStyle = const FlyStyle(),
-  }) : _flyStyle = _buildStyleWithDefaults(flyStyle);
+  }) : _flyStyle = flyStyle; // Don't apply defaults in constructor
 
-  static FlyStyle _buildStyleWithDefaults(FlyStyle style) {
+  /// Build style with inherited context applied
+  static FlyStyle _buildStyleWithInheritance(
+    FlyStyle style,
+    BuildContext context,
+  ) {
+    // Look up inherited style from FlyStyleContext
+    final inheritedStyle = FlyStyleContext.of(context);
+
     return style.copyWith(
-      color: style.color ?? 'gray900', // Default icon color (Tailwind-like)
+      // Priority: explicit style → inherited context style → widget default
+      // Only inherit color for icons
+      color:
+          style.color ??
+          inheritedStyle?.color ??
+          'gray900', // Default icon color (Tailwind-like)
       w: style.w ?? 's6', // Default icon size (24px)
       h: style.h ?? 's6', // Default icon size (24px)
     );
@@ -66,7 +79,8 @@ class FlyIcon extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    final mergedStyle = getDefaultStyle(_flyStyle);
+    // Apply inheritance and defaults in one step
+    final mergedStyle = _buildStyleWithInheritance(_flyStyle, context);
 
     // Always resolve the icon properties first
     final resolvedSize =

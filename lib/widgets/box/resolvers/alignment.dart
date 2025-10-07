@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../helpers/style.dart';
+import '../../../core/style.dart';
 
 // TODO: double check how this compares with actual layout alignment and utilities
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../core/style.dart';
 import '../core/theme.dart';
 import '../tokens/radius.dart';
-import 'style.dart';
 import 'value.dart';
 
 /// Utility class for handling Tailwind-like rounded logic

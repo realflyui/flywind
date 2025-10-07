@@ -234,3 +234,101 @@ FlyBox(
 ```
 
 So yes, `FlyBox` has the same comprehensive direct Flutter API support as `FlyContainer` did, plus additional layout APIs! 🚀
+
+## Style Inheritance System
+
+`FlyBox` implements a CSS-like inheritance system where text properties can be inherited by child widgets (`FlyText` and `FlyIcon`) without explicit prop drilling.
+
+### How It Works
+
+1. **Context Creation**: `FlyBox` creates a `FlyStyleContext` only when it has text properties (color, font, weight, etc.)
+2. **Text Lookup**: `FlyText` and `FlyIcon` widgets walk up the widget tree to find the nearest `FlyStyleContext`
+3. **Property Inheritance**: Child widgets inherit text properties with priority: explicit style → inherited context → widget defaults
+
+### Inheritance Rules
+
+| Widget Type | Inherits | Doesn't Inherit |
+|-------------|----------|-----------------|
+| `FlyText` | color, font, fontWeight, text, leading, tracking, textAlign, textTransform, textDecoration | layout properties (padding, margin, background, etc.) |
+| `FlyIcon` | color only | all other properties |
+
+### Examples
+
+#### Basic Inheritance
+```dart
+FlyBox(
+  children: [
+    FlyText('Inherited Text'), // Gets blue400 and serif font
+    FlyText('Override Color').color('red200'), // Gets serif font, overrides color
+    FlyIcon(Icons.star), // Gets blue400 color
+  ],
+)
+  .color('blue400') // Sets context color
+  .font('serif') // Sets context font
+  .weight('bold') // Sets context font weight
+  .mb('s4');
+```
+
+#### Nested Inheritance
+```dart
+FlyBox(
+  children: [
+    FlyText('Outer text'), // Inherits red500, serif, bold
+    FlyBox(
+      children: [
+        FlyText('Inner text'), // Inherits red500, serif, bold (from outer)
+        FlyIcon(Icons.star), // Inherits red500 (from outer)
+      ],
+    )
+      .bg('blue500') // Layout property - no context created
+      .p('s4')
+      .mb('s2'),
+    FlyText('Back to outer'), // Inherits red500, serif, bold
+  ],
+)
+  .color('red500') // Text property - creates context
+  .font('serif') // Text property - creates context
+  .weight('bold') // Text property - creates context
+  .mb('s4');
+```
+
+#### Mixed Properties
+```dart
+FlyBox(
+  children: [
+    FlyText('Mixed box text'), // Inherits green500, mono
+  ],
+)
+  .color('green500') // Text property - creates context
+  .font('mono') // Text property - creates context
+  .bg('yellow500') // Layout property - doesn't interfere
+  .p('s4')
+  .mb('s4');
+```
+
+### Context Creation Rules
+
+| Box Properties | Creates Context? | Reason |
+|----------------|------------------|---------|
+| `.color('red')` | ✅ Yes | Text property |
+| `.font('serif')` | ✅ Yes | Text property |
+| `.weight('bold')` | ✅ Yes | Text property |
+| `.bg('blue')` | ❌ No | Layout property |
+| `.p('s4')` | ❌ No | Layout property |
+| `.color('red').bg('blue')` | ✅ Yes | Has text properties |
+| `.bg('blue').p('s4')` | ❌ No | Only layout properties |
+
+### Performance Benefits
+
+- **Conditional Context**: Only boxes with text properties create context
+- **Lazy Evaluation**: Text widgets only do inheritance work when needed
+- **Clean Separation**: Layout properties don't interfere with text inheritance
+- **Efficient Lookup**: `InheritedWidget.of()` is O(1) and highly optimized by Flutter
+
+### Design Philosophy
+
+This inheritance system follows CSS principles:
+- **Cascading**: Styles cascade down the widget tree
+- **Inheritance**: Text properties are inherited by default
+- **Specificity**: Explicit styles override inherited styles
+- **Separation**: Layout and text concerns are separated

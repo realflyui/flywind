@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../core/style.dart';
+import '../core/style_applier.dart';
+import '../core/style_context.dart';
 import '../helpers/color.dart';
 import '../helpers/flex.dart';
 import '../helpers/margin.dart';
 import '../helpers/padding.dart';
 import '../helpers/position.dart';
-import '../helpers/style.dart';
-import '../helpers/style_applier.dart';
 import '../helpers/text.dart';
 import '../helpers/text_color.dart';
 import '../helpers/tracking.dart';
@@ -36,21 +37,52 @@ class FlyText extends StatelessWidget
     this.textWidthBasis,
     this.textHeightBehavior,
     FlyStyle flyStyle = const FlyStyle(),
-  }) : _flyStyle = _buildStyleWithDefaults(flyStyle);
+  }) : _flyStyle = flyStyle; // Don't apply defaults in constructor
 
-  static FlyStyle _buildStyleWithDefaults(FlyStyle style) {
+  /// Build style with inherited context applied
+  static FlyStyle _buildStyleWithInheritance(
+    FlyStyle style,
+    BuildContext context,
+  ) {
+    // Look up inherited style from FlyStyleContext
+    final inheritedStyle = FlyStyleContext.of(context);
+
     return style.copyWith(
-      text: style.text ?? 'base', // Default to base text style
-      color: style.color ?? 'gray900', // Default text color (Tailwind-like)
-      leading: style.leading ?? 'normal', // Default line height (Tailwind-like)
-      textAlign: style.textAlign ?? 'left', // Default to left alignment
-      font: style.font ?? 'sans', // Default to sans font
-      fontWeight: style.fontWeight ?? 'normal', // Default to normal weight
-      tracking: style.tracking ?? 'normal', // Default to normal letter spacing
+      // Priority: explicit style → inherited context style → widget default
+      text:
+          style.text ??
+          inheritedStyle?.text ??
+          'base', // Default to base text style
+      color:
+          style.color ??
+          inheritedStyle?.color ??
+          'gray900', // Default text color (Tailwind-like)
+      leading:
+          style.leading ??
+          inheritedStyle?.leading ??
+          'normal', // Default line height (Tailwind-like)
+      textAlign:
+          style.textAlign ??
+          inheritedStyle?.textAlign ??
+          'left', // Default to left alignment
+      font:
+          style.font ?? inheritedStyle?.font ?? 'sans', // Default to sans font
+      fontWeight:
+          style.fontWeight ??
+          inheritedStyle?.fontWeight ??
+          'normal', // Default to normal weight
+      tracking:
+          style.tracking ??
+          inheritedStyle?.tracking ??
+          'normal', // Default to normal letter spacing
       textTransform:
-          style.textTransform ?? 'none', // Default to no transformation
+          style.textTransform ??
+          inheritedStyle?.textTransform ??
+          'none', // Default to no transformation
       textDecoration:
-          style.textDecoration ?? 'none', // Default to no decoration
+          style.textDecoration ??
+          inheritedStyle?.textDecoration ??
+          'none', // Default to no decoration
     );
   }
 
@@ -97,7 +129,8 @@ class FlyText extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    final mergedStyle = getDefaultStyle(_flyStyle);
+    // Apply inheritance and defaults in one step
+    final mergedStyle = _buildStyleWithInheritance(_flyStyle, context);
 
     // Always resolve the text properties first
     final resolvedTextStyle = _buildResolvedTextStyle(context, mergedStyle);

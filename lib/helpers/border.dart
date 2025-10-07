@@ -1,11 +1,11 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
+import '../core/style.dart';
 import '../core/theme.dart';
 import '../tokens/color.dart';
 import '../tokens/spacing.dart';
 import 'rounded.dart';
-import 'style.dart';
 import 'value.dart';
 
 /// Utility class for handling Tailwind-like border logic

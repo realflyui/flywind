@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../core/style.dart';
 import '../core/theme.dart';
 import 'flex.dart';
 import 'position.dart';
-import 'style.dart';
 import 'value.dart';
 
 /// Parameters for Column widget direct Flutter API access

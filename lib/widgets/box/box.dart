@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../core/style.dart';
+import '../../core/style_applier.dart';
+import '../../core/style_context.dart';
 import '../../helpers/border.dart';
 import '../../helpers/color.dart';
 import '../../helpers/flex.dart';
@@ -9,8 +12,9 @@ import '../../helpers/padding.dart';
 import '../../helpers/position.dart';
 import '../../helpers/rounded.dart';
 import '../../helpers/size.dart';
-import '../../helpers/style.dart';
-import '../../helpers/style_applier.dart';
+import '../../helpers/text.dart';
+import '../../helpers/text_color.dart';
+import '../../helpers/tracking.dart';
 import 'builders/container.dart';
 import 'builders/layout.dart';
 
@@ -31,7 +35,10 @@ class FlyBox extends StatelessWidget
         FlySize<FlyBox>,
         FlyFlex<FlyBox>,
         FlyPosition<FlyBox>,
-        FlyLayoutUtilities<FlyBox> {
+        FlyLayoutUtilities<FlyBox>,
+        FlyTextColor<FlyBox>,
+        FlyTextHelper<FlyBox>,
+        FlyTracking<FlyBox> {
   FlyBox({
     super.key,
     this.child,
@@ -48,14 +55,7 @@ class FlyBox extends StatelessWidget
     this.transformAlignment,
     this.clipBehavior,
     FlyStyle flyStyle = const FlyStyle(),
-  }) : _flyStyle = _buildStyleWithDefaults(flyStyle);
-
-  static FlyStyle _buildStyleWithDefaults(FlyStyle style) {
-    return style.copyWith(
-      // No default values - let it be transparent by default
-      // Users can explicitly set background color, padding, etc.
-    );
-  }
+  }) : _flyStyle = flyStyle;
 
   // Container-specific properties
   final Widget? child;
@@ -113,10 +113,12 @@ class FlyBox extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    // Apply defaults for widget rendering
     final mergedStyle = getDefaultStyle(_flyStyle);
 
+    Widget result;
     if (_isContainer) {
-      return BoxContainer.build(
+      result = BoxContainer.build(
         context,
         child!,
         mergedStyle,
@@ -156,7 +158,7 @@ class FlyBox extends StatelessWidget
         final layoutWidget = BoxLayout.build(context, children!, mergedStyle);
 
         // Wrap layout in container
-        return BoxContainer.build(
+        result = BoxContainer.build(
           context,
           layoutWidget, // Use layout as the "child"
           mergedStyle,
@@ -174,11 +176,11 @@ class FlyBox extends StatelessWidget
           clipBehavior,
         );
       } else {
-        return BoxLayout.build(context, children!, _flyStyle);
+        result = BoxLayout.build(context, children!, mergedStyle);
       }
     } else {
       // Fallback: render as empty container
-      return BoxContainer.build(
+      result = BoxContainer.build(
         context,
         null, // No child
         mergedStyle,
@@ -195,6 +197,13 @@ class FlyBox extends StatelessWidget
         transformAlignment,
         clipBehavior,
       );
+    }
+
+    // Only create context if there are text properties to inherit
+    if (_flyStyle.hasTextProperties) {
+      return FlyStyleContext(style: _flyStyle, child: result);
+    } else {
+      return result;
     }
   }
 }

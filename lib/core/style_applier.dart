@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'margin.dart';
-import 'padding.dart';
-import 'rounded.dart';
+// TODO: circular dependency?
+import '../helpers/margin.dart';
+import '../helpers/padding.dart';
+import '../helpers/rounded.dart';
 import 'style.dart';
 
 /// Service for applying FlyWind utilities to widgets
@@ -128,4 +129,17 @@ extension FlyStyleChecks on FlyStyle {
       inset != null ||
       insetX != null ||
       insetY != null;
+
+  /// Check if this style has any text properties that could be inherited
+  bool get hasTextProperties {
+    return color != null ||
+        text != null ||
+        font != null ||
+        fontWeight != null ||
+        leading != null ||
+        tracking != null ||
+        textAlign != null ||
+        textTransform != null ||
+        textDecoration != null;
+  }
 }

@@ -854,7 +854,141 @@ class FlywindApp extends StatelessWidget {
                     .mb('s4'),
 
                 // ========================================
-                // 6. FLEX UTILITIES
+                // 6. STYLE INHERITANCE
+                // ========================================
+                _buildSectionHeader('Style Inheritance'),
+
+                // Basic Inheritance Examples
+                _buildSubsectionHeader('Basic Inheritance'),
+
+                // Text inheritance from Box
+                FlyBox(
+                      children: [
+                        FlyText(
+                          'Inherited Text',
+                        ), // Should inherit blue400 and serif font
+                        FlyText('Override Color').color(
+                          'red200',
+                        ), // Should inherit serif font but override color
+                        FlyIcon(Icons.star), // Should inherit blue400 color
+                      ],
+                    )
+                    .color('blue400') // Sets context color
+                    .font('serif') // Sets context font
+                    .weight('bold') // Sets context font weight
+                    .mb('s4'),
+
+                // Icon inheritance only
+                FlyBox(
+                      children: [
+                        FlyIcon(Icons.home), // Inherits color
+                        FlyIcon(Icons.settings), // Inherits color
+                        FlyIcon(
+                          Icons.person,
+                        ).color('green500'), // Overrides color
+                      ],
+                    )
+                    .color('purple500') // Sets context color
+                    .mb('s4'),
+
+                // Mixed text properties inheritance
+                FlyBox(
+                      children: [
+                        FlyText(
+                          'All Inherited',
+                        ), // Inherits all text properties
+                        FlyText('Partial Override')
+                            .color('orange500')
+                            .weight(
+                              'normal',
+                            ), // Inherits font, overrides color and weight
+                        FlyText('Custom Style')
+                            .text('lg')
+                            .font(
+                              'mono',
+                            ), // Inherits color and weight, overrides text and font
+                      ],
+                    )
+                    .color('indigo600') // Sets context color
+                    .font('sans') // Sets context font
+                    .weight('bold') // Sets context font weight
+                    .text('base') // Sets context text style
+                    .mb('s4'),
+
+                // Nested inheritance
+                _buildSubsectionHeader('Nested Inheritance'),
+
+                FlyBox(
+                      children: [
+                        FlyText('Outer Box Text'), // Inherits from outer box
+                        FlyBox(
+                              children: [
+                                FlyText(
+                                  'Inner Box Text',
+                                ), // Inherits from inner box (overrides outer)
+                                FlyText('Override Inner').color(
+                                  'yellow500',
+                                ), // Overrides inner box color
+                                FlyIcon(Icons.star), // Inherits from inner box
+                              ],
+                            )
+                            .color('green500') // Inner box color
+                            .font('mono') // Inner box font
+                            .weight('light') // Inner box weight
+                            .mb('s2'),
+                        FlyText(
+                          'Back to Outer',
+                        ), // Back to outer box inheritance
+                      ],
+                    )
+                    .color('red500') // Outer box color
+                    .font('serif') // Outer box font
+                    .weight('bold') // Outer box weight
+                    .mb('s4'),
+
+                // Layout with inherited styles
+                _buildSubsectionHeader('Layout with Inherited Styles'),
+
+                FlyBox(
+                      children: [
+                        FlyText('Header')
+                            .text('lg')
+                            .weight(
+                              'bold',
+                            ), // Inherits color, overrides text and weight
+                        FlyText('Subtitle')
+                            .text('sm')
+                            .color(
+                              'gray600',
+                            ), // Inherits font, overrides text and color
+                        FlyBox(
+                              children: [
+                                FlyIcon(Icons.star), // Inherits color
+                                FlyText('Rating').color(
+                                  'white',
+                                ), // Inherits font, overrides color
+                              ],
+                            )
+                            .row()
+                            .items('center')
+                            .gap('s2')
+                            .bg('blue500')
+                            .rounded('sm')
+                            .p('s2'),
+                      ],
+                    )
+                    .col()
+                    .gap('s2')
+                    .color('blue600') // Context color
+                    .font('sans') // Context font
+                    .weight('medium') // Context weight
+                    .bg('blue50')
+                    .rounded('md')
+                    .p('s4')
+                    .mb('s4'),
+
+                // ========================================
+                // 7. FLEX UTILITIES
                 // ========================================
                 _buildSectionHeader('Flex Utilities'),
 

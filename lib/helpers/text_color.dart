@@ -1,4 +1,4 @@
-import 'style.dart';
+import '../core/style.dart';
 
 /// Mixin that provides text color methods for text widgets
 mixin FlyTextColor<T> {

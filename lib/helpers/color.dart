@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../core/style.dart';
 import '../core/theme.dart';
-import 'style.dart';
 import 'value.dart';
 
 /// Utility class for handling Tailwind-like color logic

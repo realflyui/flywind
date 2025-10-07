@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/style.dart';
 import '../../../helpers/border.dart';
-import '../../../helpers/style.dart';
 import '../resolvers/property.dart';
 
 /// Handles custom border building for FlyBox widgets
