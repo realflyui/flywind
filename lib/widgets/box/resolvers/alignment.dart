@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../helpers/style.dart';
 
+// TODO: double check how this compares with actual layout alignment and utilities
+
 /// Handles alignment resolution for FlyBox widgets
 class BoxAlignment {
   /// Resolve alignment from layout utilities (justify and items)

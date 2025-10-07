@@ -23,6 +23,7 @@ class FlyStyle {
     this.mb,
     this.mt,
     this.color,
+    this.bg,
     this.rounded,
     this.roundedT,
     this.roundedR,
@@ -96,7 +97,8 @@ class FlyStyle {
   final dynamic mr; // Right margin - can be int, double, String
   final dynamic mb; // Bottom margin - can be int, double, String
   final dynamic mt; // Top margin - can be int, double, String
-  final dynamic color; // Color - can be Color, String
+  final dynamic color; // Text/Icon color - can be Color, String
+  final dynamic bg; // Background color - can be Color, String
   final dynamic
   rounded; // Uniform border radius (all corners) - can be int, double, String
   final dynamic
@@ -204,6 +206,7 @@ class FlyStyle {
     dynamic mb,
     dynamic mt,
     dynamic color,
+    dynamic bg,
     dynamic rounded,
     dynamic roundedT,
     dynamic roundedR,
@@ -274,6 +277,7 @@ class FlyStyle {
       mb: mb ?? this.mb,
       mt: mt ?? this.mt,
       color: color ?? this.color,
+      bg: bg ?? this.bg,
       rounded: rounded ?? this.rounded,
       roundedT: roundedT ?? this.roundedT,
       roundedR: roundedR ?? this.roundedR,

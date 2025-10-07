@@ -79,6 +79,11 @@ class FlyBox extends StatelessWidget
   @override
   FlyStyle get flyStyle => _flyStyle;
 
+  /// Override this to provide component-specific default styles
+  /// The incoming flyStyle will be merged with these defaults
+  @protected
+  FlyStyle getDefaultStyle(FlyStyle incomingStyle) => incomingStyle;
+
   @override
   FlyBox Function(FlyStyle newStyle) get copyWith => (newStyle) {
     return FlyBox(
@@ -108,11 +113,13 @@ class FlyBox extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final mergedStyle = getDefaultStyle(_flyStyle);
+
     if (_isContainer) {
       return BoxContainer.build(
         context,
         child!,
-        _flyStyle,
+        mergedStyle,
         key,
         alignment,
         padding,
@@ -128,12 +135,12 @@ class FlyBox extends StatelessWidget
       );
     } else if (_isLayout) {
       // Check if we need container properties
-      if (_flyStyle.color != null ||
-          _flyStyle.hasBorderRadius ||
-          _flyStyle.hasBorder ||
-          _flyStyle.hasPadding ||
-          _flyStyle.hasMargin ||
-          _flyStyle.hasSize ||
+      if (mergedStyle.bg != null ||
+          mergedStyle.hasBorderRadius ||
+          mergedStyle.hasBorder ||
+          mergedStyle.hasPadding ||
+          mergedStyle.hasMargin ||
+          mergedStyle.hasSize ||
           alignment != null ||
           padding != null ||
           margin != null ||
@@ -145,14 +152,14 @@ class FlyBox extends StatelessWidget
           transform != null ||
           transformAlignment != null ||
           clipBehavior != null) {
-        // Build the layout widget
-        final layoutWidget = BoxLayout.build(context, children!, _flyStyle);
+        // Build the layout widget with styled children
+        final layoutWidget = BoxLayout.build(context, children!, mergedStyle);
 
         // Wrap layout in container
         return BoxContainer.build(
           context,
           layoutWidget, // Use layout as the "child"
-          _flyStyle,
+          mergedStyle,
           key,
           alignment,
           padding,
@@ -174,7 +181,7 @@ class FlyBox extends StatelessWidget
       return BoxContainer.build(
         context,
         null, // No child
-        _flyStyle,
+        mergedStyle,
         key,
         alignment,
         padding,

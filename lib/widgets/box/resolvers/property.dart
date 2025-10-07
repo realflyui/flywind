@@ -38,8 +38,11 @@ class BoxProperty {
     BuildContext context,
     FlyStyle flyStyle,
   ) {
-    final backgroundColor = flyStyle.color != null
-        ? FlyColorUtils.applyToContainer(context, flyStyle)
+    final backgroundColor = flyStyle.bg != null
+        ? FlyColorUtils.applyToContainer(
+            context,
+            flyStyle.copyWith(color: flyStyle.bg),
+          )
         : null;
 
     final borderRadius = flyStyle.hasBorderRadius
@@ -79,8 +82,11 @@ class BoxProperty {
     BuildContext context,
     FlyStyle flyStyle,
   ) {
-    return flyStyle.color != null
-        ? FlyColorUtils.applyToContainer(context, flyStyle)
+    return flyStyle.bg != null
+        ? FlyColorUtils.applyToContainer(
+            context,
+            flyStyle.copyWith(color: flyStyle.bg),
+          )
         : null;
   }
 

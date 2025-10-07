@@ -52,6 +52,6 @@ mixin FlyColor<T> {
 
   /// Set background color - accepts Color object or String (token name/hex)
   T bg(dynamic value) {
-    return copyWith(flyStyle.copyWith(color: value));
+    return copyWith(flyStyle.copyWith(bg: value));
   }
 }

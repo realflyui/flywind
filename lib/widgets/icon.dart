@@ -8,13 +8,14 @@ import '../helpers/position.dart';
 import '../helpers/size.dart';
 import '../helpers/style.dart';
 import '../helpers/style_applier.dart';
+import '../helpers/text_color.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for icons
 class FlyIcon extends StatelessWidget
     with
         FlyPadding<FlyIcon>,
         FlyMargin<FlyIcon>,
-        FlyColor<FlyIcon>,
+        FlyTextColor<FlyIcon>,
         FlySize<FlyIcon>,
         FlyFlex<FlyIcon>,
         FlyPosition<FlyIcon> {
@@ -46,6 +47,11 @@ class FlyIcon extends StatelessWidget
   @override
   FlyStyle get flyStyle => _flyStyle;
 
+  /// Override this to provide component-specific default styles
+  /// The incoming flyStyle will be merged with these defaults
+  @protected
+  FlyStyle getDefaultStyle(FlyStyle incomingStyle) => incomingStyle;
+
   @override
   FlyIcon Function(FlyStyle newStyle) get copyWith =>
       (newStyle) => FlyIcon(
@@ -60,14 +66,16 @@ class FlyIcon extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final mergedStyle = getDefaultStyle(_flyStyle);
+
     // Always resolve the icon properties first
     final resolvedSize =
         iconSize ??
-        FlySizeUtils.resolveWidth(context, _flyStyle) ??
-        FlySizeUtils.resolveHeight(context, _flyStyle);
+        FlySizeUtils.resolveWidth(context, mergedStyle) ??
+        FlySizeUtils.resolveHeight(context, mergedStyle);
 
     final resolvedColor =
-        iconColor ?? FlyColorUtils.resolve(context, _flyStyle);
+        iconColor ?? FlyColorUtils.resolve(context, mergedStyle);
 
     // Create Icon with resolved properties
     Widget iconWidget = Icon(
@@ -79,10 +87,10 @@ class FlyIcon extends StatelessWidget
     );
 
     // Always apply other utilities (padding, margin, etc.) if any are set
-    if (_flyStyle.hasPadding ||
-        _flyStyle.hasMargin ||
-        _flyStyle.hasBorderRadius) {
-      return FlyStyleApplier.apply(context, _flyStyle, iconWidget);
+    if (mergedStyle.hasPadding ||
+        mergedStyle.hasMargin ||
+        mergedStyle.hasBorderRadius) {
+      return FlyStyleApplier.apply(context, mergedStyle, iconWidget);
     }
 
     // If no utilities are set, return the Icon directly

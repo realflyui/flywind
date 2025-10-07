@@ -78,13 +78,11 @@ class FlywindApp extends StatelessWidget {
                 ).bg('green500').rounded('md').p('s5').mb('s4'),
 
                 // Utility chaining
-                FlyText('Chained utilities')
-                    .color('purple600')
-                    .text('base')
-                    .weight('bold')
-                    .p('s3')
-                    .bg('purple50')
-                    .mb('s6'),
+                FlyBox(
+                  child: FlyText(
+                    'Chained utilities',
+                  ).color('purple600').text('base').weight('bold').p('s3'),
+                ).bg('purple50').mb('s6'),
 
                 // ========================================
                 // 2. TEXT UTILITIES
@@ -128,7 +126,7 @@ class FlywindApp extends StatelessWidget {
                 FlyBox(
                       child: FlyText(
                         'Left Aligned',
-                      ).align('left').color('blue600').p('s2'),
+                      ).align('left').color('blue600').p('s3'),
                     )
                     .w('s80')
                     .border(1)
@@ -335,7 +333,7 @@ class FlywindApp extends StatelessWidget {
                 ).row().items('center').gap('s2').mb('s4'),
 
                 // ========================================
-                // 4. CONTAINER UTILITIES
+                // 3. CONTAINER UTILITIES
                 // ========================================
                 _buildSectionHeader('Container Utilities'),
 
@@ -596,7 +594,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s6'),
 
                 // ========================================
-                // 5. ADVANCED SYNTAX
+                // 4. ADVANCED SYNTAX
                 // ========================================
                 _buildSectionHeader('Advanced Syntax'),
 
@@ -733,7 +731,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s6'),
 
                 // ========================================
-                // 6. LAYOUT UTILITIES
+                // 5. LAYOUT UTILITIES
                 // ========================================
                 _buildSectionHeader('Layout Utilities'),
 
@@ -856,7 +854,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s4'),
 
                 // ========================================
-                // 7. FLEX UTILITIES
+                // 6. FLEX UTILITIES
                 // ========================================
                 _buildSectionHeader('Flex Utilities'),
 
@@ -980,20 +978,36 @@ class FlywindApp extends StatelessWidget {
                 // Basic Wrap
                 FlyBox(
                   children: [
-                    FlyText('Tag 1').color('white').p('s2').bg('blue500'),
-                    FlyText('Tag 2').color('white').p('s2').bg('green500'),
-                    FlyText('Tag 3').color('white').p('s2').bg('purple500'),
-                    FlyText('Tag 4').color('white').p('s2').bg('orange500'),
-                    FlyText('Tag 5').color('white').p('s2').bg('red500'),
+                    FlyBox(
+                      child: FlyText('Tag 1').color('white').p('s2'),
+                    ).bg('blue500'),
+                    FlyBox(
+                      child: FlyText('Tag 2').color('white').p('s2'),
+                    ).bg('green500'),
+                    FlyBox(
+                      child: FlyText('Tag 3').color('white').p('s2'),
+                    ).bg('purple500'),
+                    FlyBox(
+                      child: FlyText('Tag 4').color('white').p('s2'),
+                    ).bg('orange500'),
+                    FlyBox(
+                      child: FlyText('Tag 5').color('white').p('s2'),
+                    ).bg('red500'),
                   ],
                 ).wrap().gap('s2').bg('gray100').rounded('md').p('s4').mb('s4'),
 
                 // Wrap with reverse
                 FlyBox(
                       children: [
-                        FlyText('Tag 1').color('white').p('s2').bg('blue500'),
-                        FlyText('Tag 2').color('white').p('s2').bg('green500'),
-                        FlyText('Tag 3').color('white').p('s2').bg('purple500'),
+                        FlyBox(
+                          child: FlyText('Tag 1').color('white').p('s2'),
+                        ).bg('blue500'),
+                        FlyBox(
+                          child: FlyText('Tag 2').color('white').p('s2'),
+                        ).bg('green500'),
+                        FlyBox(
+                          child: FlyText('Tag 3').color('white').p('s2'),
+                        ).bg('purple500'),
                       ],
                     )
                     .wrap()

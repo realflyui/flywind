@@ -8,6 +8,7 @@ import '../helpers/position.dart';
 import '../helpers/style.dart';
 import '../helpers/style_applier.dart';
 import '../helpers/text.dart';
+import '../helpers/text_color.dart';
 import '../helpers/tracking.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for text
@@ -15,7 +16,7 @@ class FlyText extends StatelessWidget
     with
         FlyPadding<FlyText>,
         FlyMargin<FlyText>,
-        FlyColor<FlyText>,
+        FlyTextColor<FlyText>,
         FlyTextHelper<FlyText>,
         FlyTracking<FlyText>,
         FlyFlex<FlyText>,
@@ -70,6 +71,11 @@ class FlyText extends StatelessWidget
   @override
   FlyStyle get flyStyle => _flyStyle;
 
+  /// Override this to provide component-specific default styles
+  /// The incoming flyStyle will be merged with these defaults
+  @protected
+  FlyStyle getDefaultStyle(FlyStyle incomingStyle) => incomingStyle;
+
   @override
   FlyText Function(FlyStyle newStyle) get copyWith =>
       (newStyle) => FlyText(
@@ -91,16 +97,18 @@ class FlyText extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final mergedStyle = getDefaultStyle(_flyStyle);
+
     // Always resolve the text properties first
-    final resolvedStyle = _buildResolvedTextStyle(context);
-    final resolvedTextAlign = textAlign ?? _buildResolvedTextAlign();
-    final resolvedText = _buildResolvedText();
+    final resolvedTextStyle = _buildResolvedTextStyle(context, mergedStyle);
+    final resolvedTextAlign = textAlign ?? _buildResolvedTextAlign(mergedStyle);
+    final resolvedText = _buildResolvedText(mergedStyle);
 
     // Create Text with resolved properties
     Widget textWidget = Text(
       resolvedText,
       key: key,
-      style: resolvedStyle,
+      style: resolvedTextStyle,
       textAlign: resolvedTextAlign,
       textDirection: textDirection,
       locale: locale,
@@ -114,10 +122,10 @@ class FlyText extends StatelessWidget
     );
 
     // Always apply other utilities (padding, margin, etc.) if any are set
-    if (_flyStyle.hasPadding ||
-        _flyStyle.hasMargin ||
-        _flyStyle.hasBorderRadius) {
-      return FlyStyleApplier.apply(context, _flyStyle, textWidget);
+    if (mergedStyle.hasPadding ||
+        mergedStyle.hasMargin ||
+        mergedStyle.hasBorderRadius) {
+      return FlyStyleApplier.apply(context, mergedStyle, textWidget);
     }
 
     // If no utilities are set, return the Text directly
@@ -125,20 +133,27 @@ class FlyText extends StatelessWidget
   }
 
   /// Build resolved text style from FlyStyle utilities
-  TextStyle _buildResolvedTextStyle(BuildContext context) {
+  TextStyle _buildResolvedTextStyle(
+    BuildContext context,
+    FlyStyle mergedStyle,
+  ) {
     // Start with direct style if provided, otherwise use styled text style
     TextStyle finalStyle =
         style ??
-        (FlyTextUtils.resolve(context, _flyStyle) ?? const TextStyle());
+        (FlyTextUtils.resolve(context, mergedStyle) ?? const TextStyle());
 
     // Apply text-related utilities (font, weight, leading, tracking, etc.)
-    finalStyle = FlyTextUtils.applyToTextStyle(context, _flyStyle, finalStyle);
+    finalStyle = FlyTextUtils.applyToTextStyle(
+      context,
+      mergedStyle,
+      finalStyle,
+    );
 
     // Apply color if set (this will override the color from the text style token or direct style)
-    if (_flyStyle.color != null) {
+    if (mergedStyle.color != null) {
       finalStyle = FlyColorUtils.applyToTextStyle(
         context,
-        _flyStyle,
+        mergedStyle,
         finalStyle,
       );
     }
@@ -147,17 +162,17 @@ class FlyText extends StatelessWidget
   }
 
   /// Build resolved text alignment from FlyStyle utilities
-  TextAlign? _buildResolvedTextAlign() {
-    if (_flyStyle.textAlign != null) {
-      return FlyTextUtils.resolveTextAlign(_flyStyle.textAlign);
+  TextAlign? _buildResolvedTextAlign(FlyStyle mergedStyle) {
+    if (mergedStyle.textAlign != null) {
+      return FlyTextUtils.resolveTextAlign(mergedStyle.textAlign);
     }
     return null;
   }
 
   /// Build resolved text with transformations applied
-  String _buildResolvedText() {
-    if (_flyStyle.textTransform != null) {
-      return FlyTextUtils.transformText(data, _flyStyle.textTransform);
+  String _buildResolvedText(FlyStyle mergedStyle) {
+    if (mergedStyle.textTransform != null) {
+      return FlyTextUtils.transformText(data, mergedStyle.textTransform);
     }
     return data;
   }
