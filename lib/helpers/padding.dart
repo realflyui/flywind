@@ -1,22 +1,40 @@
 import 'package:flutter/material.dart';
+
+import '../core/theme.dart';
+import '../tokens/spacing.dart';
 import 'style.dart';
-import 'spacing.dart';
+import 'value.dart';
 
 /// Utility class for handling Tailwind-like padding logic
 class FlyPaddingUtils {
   /// Resolves padding from FlyStyle and FlyTheme into EdgeInsets
   static EdgeInsets resolve(BuildContext context, FlyStyle style) {
-    return FlySpacingUtils.resolve(
-      context,
-      style,
-      getUniform: (s) => s.p,
-      getX: (s) => s.px,
-      getY: (s) => s.py,
-      getLeft: (s) => s.pl,
-      getRight: (s) => s.pr,
-      getTop: (s) => s.pt,
-      getBottom: (s) => s.pb,
-    );
+    try {
+      final spacing = FlyTheme.of(context).spacing;
+
+      return EdgeInsets.only(
+        left: _resolveValue(style.pl ?? style.px ?? style.p, context, spacing),
+        right: _resolveValue(style.pr ?? style.px ?? style.p, context, spacing),
+        top: _resolveValue(style.pt ?? style.py ?? style.p, context, spacing),
+        bottom: _resolveValue(
+          style.pb ?? style.py ?? style.p,
+          context,
+          spacing,
+        ),
+      );
+    } catch (e) {
+      throw ArgumentError('Failed to resolve padding: $e');
+    }
+  }
+
+  /// Resolves a dynamic value to double using the numeric value resolver
+  static double _resolveValue(
+    dynamic value,
+    BuildContext context,
+    FlySpacingToken tokens,
+  ) {
+    if (value == null) return 0;
+    return FlyValue.resolveDouble(value, context, tokens);
   }
 
   /// Applies padding to a widget using the resolved EdgeInsets
@@ -35,52 +53,52 @@ class FlyPaddingUtils {
 
 /// Mixin that provides Tailwind-like padding methods for any widget
 mixin FlyPadding<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
-  /// Set uniform padding using string values (e.g., "10", "100px", "1rem")
-  T p(String value) {
-    return copyWith(style.copyWith(p: value));
+  /// Set uniform padding - accepts int, double, or String (token name/unit)
+  T p(dynamic value) {
+    return copyWith(flyStyle.copyWith(p: value));
   }
 
-  /// Set horizontal padding (left + right) using string values
-  T px(String value) {
-    return copyWith(style.copyWith(px: value));
+  /// Set horizontal padding (left + right) - accepts int, double, or String (token name/unit)
+  T px(dynamic value) {
+    return copyWith(flyStyle.copyWith(px: value));
   }
 
-  /// Set vertical padding (top + bottom) using string values
-  T py(String value) {
-    return copyWith(style.copyWith(py: value));
+  /// Set vertical padding (top + bottom) - accepts int, double, or String (token name/unit)
+  T py(dynamic value) {
+    return copyWith(flyStyle.copyWith(py: value));
   }
 
-  /// Set top padding using string values
-  T pt(String value) {
-    return copyWith(style.copyWith(pt: value));
+  /// Set top padding - accepts int, double, or String (token name/unit)
+  T pt(dynamic value) {
+    return copyWith(flyStyle.copyWith(pt: value));
   }
 
-  /// Set right padding using string values
-  T pr(String value) {
-    return copyWith(style.copyWith(pr: value));
+  /// Set right padding - accepts int, double, or String (token name/unit)
+  T pr(dynamic value) {
+    return copyWith(flyStyle.copyWith(pr: value));
   }
 
-  /// Set bottom padding using string values
-  T pb(String value) {
-    return copyWith(style.copyWith(pb: value));
+  /// Set bottom padding - accepts int, double, or String (token name/unit)
+  T pb(dynamic value) {
+    return copyWith(flyStyle.copyWith(pb: value));
   }
 
-  /// Set left padding using string values
-  T pl(String value) {
-    return copyWith(style.copyWith(pl: value));
+  /// Set left padding - accepts int, double, or String (token name/unit)
+  T pl(dynamic value) {
+    return copyWith(flyStyle.copyWith(pl: value));
   }
 
   /// Resolves padding from FlyStyle and FlyTheme into EdgeInsets
   EdgeInsets resolvePadding(BuildContext context) {
-    return FlyPaddingUtils.resolve(context, style);
+    return FlyPaddingUtils.resolve(context, flyStyle);
   }
 
   /// Applies padding to a widget using the resolved EdgeInsets
   Widget applyPadding(BuildContext context, Widget child) {
-    return FlyPaddingUtils.apply(context, style, child);
+    return FlyPaddingUtils.apply(context, flyStyle, child);
   }
 }

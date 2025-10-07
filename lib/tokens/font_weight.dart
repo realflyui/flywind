@@ -1,0 +1,222 @@
+// GENERATED FILE - DO NOT EDIT MANUALLY
+// To regenerate, run: dart cli/generate_defaults.dart
+
+import 'package:flutter/material.dart';
+import '../core/token.dart';
+
+/// Font weight values
+class FlyFontWeightToken implements FlyToken<FontWeight> {
+  const FlyFontWeightToken({
+    required this.thin,
+    required this.extralight,
+    required this.light,
+    required this.normal,
+    required this.medium,
+    required this.semibold,
+    required this.bold,
+    required this.extrabold,
+    required this.black,
+    this.extras = const {},
+  });
+
+  /// thin Font weight values
+  final FontWeight thin;
+
+  /// extralight Font weight values
+  final FontWeight extralight;
+
+  /// light Font weight values
+  final FontWeight light;
+
+  /// normal Font weight values
+  final FontWeight normal;
+
+  /// medium Font weight values
+  final FontWeight medium;
+
+  /// semibold Font weight values
+  final FontWeight semibold;
+
+  /// bold Font weight values
+  final FontWeight bold;
+
+  /// extrabold Font weight values
+  final FontWeight extrabold;
+
+  /// black Font weight values
+  final FontWeight black;
+
+  /// Additional custom values
+  final Map<String, FontWeight> extras;
+
+  /// All values in a single map for easier iteration
+  Map<String, FontWeight> get _allValues => {
+    'thin': thin,
+    'extralight': extralight,
+    'light': light,
+    'normal': normal,
+    'medium': medium,
+    'semibold': semibold,
+    'bold': bold,
+    'extrabold': extrabold,
+    'black': black,
+    ...extras,
+  };
+
+  /// Access value by key (canonical or extra)
+  @override
+  FontWeight? operator [](String key) => _allValues[key];
+
+  /// Get all available keys (canonical + extras)
+  @override
+  Iterable<String> get keys => _allValues.keys;
+
+  /// Put a new value for the given key
+  @override
+  FlyFontWeightToken put(String key, FontWeight value) {
+    switch (key) {
+      case 'thin':
+        return copyWith(thin: value);
+      case 'extralight':
+        return copyWith(extralight: value);
+      case 'light':
+        return copyWith(light: value);
+      case 'normal':
+        return copyWith(normal: value);
+      case 'medium':
+        return copyWith(medium: value);
+      case 'semibold':
+        return copyWith(semibold: value);
+      case 'bold':
+        return copyWith(bold: value);
+      case 'extrabold':
+        return copyWith(extrabold: value);
+      case 'black':
+        return copyWith(black: value);
+      default:
+        final newExtras = Map<String, FontWeight>.from(extras);
+        newExtras[key] = value;
+        return copyWith(extras: newExtras);
+    }
+  }
+
+  /// Merge another token into this one (right side wins)
+  @override
+  FlyFontWeightToken merge(FlyToken<FontWeight> other) {
+    if (other is! FlyFontWeightToken) return this;
+
+    return copyWith(
+      thin: other.thin,
+      extralight: other.extralight,
+      light: other.light,
+      normal: other.normal,
+      medium: other.medium,
+      semibold: other.semibold,
+      bold: other.bold,
+      extrabold: other.extrabold,
+      black: other.black,
+      extras: {...extras, ...other.extras},
+    );
+  }
+
+  /// Create a copy with updated values
+  FlyFontWeightToken copyWith({
+    FontWeight? thin,
+    FontWeight? extralight,
+    FontWeight? light,
+    FontWeight? normal,
+    FontWeight? medium,
+    FontWeight? semibold,
+    FontWeight? bold,
+    FontWeight? extrabold,
+    FontWeight? black,
+    Map<String, FontWeight>? extras,
+  }) {
+    return FlyFontWeightToken(
+      thin: thin ?? this.thin,
+      extralight: extralight ?? this.extralight,
+      light: light ?? this.light,
+      normal: normal ?? this.normal,
+      medium: medium ?? this.medium,
+      semibold: semibold ?? this.semibold,
+      bold: bold ?? this.bold,
+      extrabold: extrabold ?? this.extrabold,
+      black: black ?? this.black,
+      extras: extras ?? this.extras,
+    );
+  }
+
+  /// Linear interpolation between two tokens
+  FlyFontWeightToken lerp(FlyFontWeightToken other, double t) {
+    final result = <String, FontWeight>{};
+    final allKeys = {..._allValues.keys, ...other._allValues.keys};
+
+    for (final key in allKeys) {
+      final valueA = _allValues[key];
+      final valueB = other._allValues[key];
+      if (valueA != null && valueB != null) {
+        final weightA = valueA.index;
+        final weightB = valueB.index;
+        final interpolatedIndex = (weightA + (weightB - weightA) * t).round();
+        result[key] = FontWeight
+            .values[interpolatedIndex.clamp(0, FontWeight.values.length - 1)];
+      } else if (valueA != null) {
+        result[key] = valueA;
+      } else if (valueB != null) {
+        result[key] = valueB;
+      }
+    }
+
+    return FlyFontWeightToken(
+      thin: result['thin']!,
+      extralight: result['extralight']!,
+      light: result['light']!,
+      normal: result['normal']!,
+      medium: result['medium']!,
+      semibold: result['semibold']!,
+      bold: result['bold']!,
+      extrabold: result['extrabold']!,
+      black: result['black']!,
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) => ![
+            'thin',
+            'extralight',
+            'light',
+            'normal',
+            'medium',
+            'semibold',
+            'bold',
+            'extrabold',
+            'black',
+          ].contains(e.key),
+        ),
+      ),
+    );
+  }
+
+  /// Create default values
+  static FlyFontWeightToken defaultFontWeight() {
+    return const FlyFontWeightToken(
+      thin: FontWeight.w100,
+      extralight: FontWeight.w200,
+      light: FontWeight.w300,
+      normal: FontWeight.w400,
+      medium: FontWeight.w500,
+      semibold: FontWeight.w600,
+      bold: FontWeight.w700,
+      extrabold: FontWeight.w800,
+      black: FontWeight.w900,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is FlyFontWeightToken &&
+        _allValues.toString() == other._allValues.toString();
+  }
+
+  @override
+  int get hashCode => _allValues.hashCode;
+}

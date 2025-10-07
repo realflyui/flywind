@@ -1,0 +1,3273 @@
+// GENERATED FILE - DO NOT EDIT MANUALLY
+// To regenerate, run: dart cli/generate_defaults.dart
+
+import 'package:flutter/material.dart';
+import '../core/token.dart';
+
+/// Color values from Tailwind CSS theme
+class FlyColorToken implements FlyToken<Color> {
+  const FlyColorToken({
+    required this.red50,
+    required this.red100,
+    required this.red200,
+    required this.red300,
+    required this.red400,
+    required this.red500,
+    required this.red600,
+    required this.red700,
+    required this.red800,
+    required this.red900,
+    required this.red950,
+    required this.orange50,
+    required this.orange100,
+    required this.orange200,
+    required this.orange300,
+    required this.orange400,
+    required this.orange500,
+    required this.orange600,
+    required this.orange700,
+    required this.orange800,
+    required this.orange900,
+    required this.orange950,
+    required this.amber50,
+    required this.amber100,
+    required this.amber200,
+    required this.amber300,
+    required this.amber400,
+    required this.amber500,
+    required this.amber600,
+    required this.amber700,
+    required this.amber800,
+    required this.amber900,
+    required this.amber950,
+    required this.yellow50,
+    required this.yellow100,
+    required this.yellow200,
+    required this.yellow300,
+    required this.yellow400,
+    required this.yellow500,
+    required this.yellow600,
+    required this.yellow700,
+    required this.yellow800,
+    required this.yellow900,
+    required this.yellow950,
+    required this.lime50,
+    required this.lime100,
+    required this.lime200,
+    required this.lime300,
+    required this.lime400,
+    required this.lime500,
+    required this.lime600,
+    required this.lime700,
+    required this.lime800,
+    required this.lime900,
+    required this.lime950,
+    required this.green50,
+    required this.green100,
+    required this.green200,
+    required this.green300,
+    required this.green400,
+    required this.green500,
+    required this.green600,
+    required this.green700,
+    required this.green800,
+    required this.green900,
+    required this.green950,
+    required this.emerald50,
+    required this.emerald100,
+    required this.emerald200,
+    required this.emerald300,
+    required this.emerald400,
+    required this.emerald500,
+    required this.emerald600,
+    required this.emerald700,
+    required this.emerald800,
+    required this.emerald900,
+    required this.emerald950,
+    required this.teal50,
+    required this.teal100,
+    required this.teal200,
+    required this.teal300,
+    required this.teal400,
+    required this.teal500,
+    required this.teal600,
+    required this.teal700,
+    required this.teal800,
+    required this.teal900,
+    required this.teal950,
+    required this.cyan50,
+    required this.cyan100,
+    required this.cyan200,
+    required this.cyan300,
+    required this.cyan400,
+    required this.cyan500,
+    required this.cyan600,
+    required this.cyan700,
+    required this.cyan800,
+    required this.cyan900,
+    required this.cyan950,
+    required this.sky50,
+    required this.sky100,
+    required this.sky200,
+    required this.sky300,
+    required this.sky400,
+    required this.sky500,
+    required this.sky600,
+    required this.sky700,
+    required this.sky800,
+    required this.sky900,
+    required this.sky950,
+    required this.blue50,
+    required this.blue100,
+    required this.blue200,
+    required this.blue300,
+    required this.blue400,
+    required this.blue500,
+    required this.blue600,
+    required this.blue700,
+    required this.blue800,
+    required this.blue900,
+    required this.blue950,
+    required this.indigo50,
+    required this.indigo100,
+    required this.indigo200,
+    required this.indigo300,
+    required this.indigo400,
+    required this.indigo500,
+    required this.indigo600,
+    required this.indigo700,
+    required this.indigo800,
+    required this.indigo900,
+    required this.indigo950,
+    required this.violet50,
+    required this.violet100,
+    required this.violet200,
+    required this.violet300,
+    required this.violet400,
+    required this.violet500,
+    required this.violet600,
+    required this.violet700,
+    required this.violet800,
+    required this.violet900,
+    required this.violet950,
+    required this.purple50,
+    required this.purple100,
+    required this.purple200,
+    required this.purple300,
+    required this.purple400,
+    required this.purple500,
+    required this.purple600,
+    required this.purple700,
+    required this.purple800,
+    required this.purple900,
+    required this.purple950,
+    required this.fuchsia50,
+    required this.fuchsia100,
+    required this.fuchsia200,
+    required this.fuchsia300,
+    required this.fuchsia400,
+    required this.fuchsia500,
+    required this.fuchsia600,
+    required this.fuchsia700,
+    required this.fuchsia800,
+    required this.fuchsia900,
+    required this.fuchsia950,
+    required this.pink50,
+    required this.pink100,
+    required this.pink200,
+    required this.pink300,
+    required this.pink400,
+    required this.pink500,
+    required this.pink600,
+    required this.pink700,
+    required this.pink800,
+    required this.pink900,
+    required this.pink950,
+    required this.rose50,
+    required this.rose100,
+    required this.rose200,
+    required this.rose300,
+    required this.rose400,
+    required this.rose500,
+    required this.rose600,
+    required this.rose700,
+    required this.rose800,
+    required this.rose900,
+    required this.rose950,
+    required this.slate50,
+    required this.slate100,
+    required this.slate200,
+    required this.slate300,
+    required this.slate400,
+    required this.slate500,
+    required this.slate600,
+    required this.slate700,
+    required this.slate800,
+    required this.slate900,
+    required this.slate950,
+    required this.gray50,
+    required this.gray100,
+    required this.gray200,
+    required this.gray300,
+    required this.gray400,
+    required this.gray500,
+    required this.gray600,
+    required this.gray700,
+    required this.gray800,
+    required this.gray900,
+    required this.gray950,
+    required this.zinc50,
+    required this.zinc100,
+    required this.zinc200,
+    required this.zinc300,
+    required this.zinc400,
+    required this.zinc500,
+    required this.zinc600,
+    required this.zinc700,
+    required this.zinc800,
+    required this.zinc900,
+    required this.zinc950,
+    required this.neutral50,
+    required this.neutral100,
+    required this.neutral200,
+    required this.neutral300,
+    required this.neutral400,
+    required this.neutral500,
+    required this.neutral600,
+    required this.neutral700,
+    required this.neutral800,
+    required this.neutral900,
+    required this.neutral950,
+    required this.stone50,
+    required this.stone100,
+    required this.stone200,
+    required this.stone300,
+    required this.stone400,
+    required this.stone500,
+    required this.stone600,
+    required this.stone700,
+    required this.stone800,
+    required this.stone900,
+    required this.stone950,
+    required this.black,
+    required this.white,
+    this.extras = const {},
+  });
+
+  /// red50 Color values from Tailwind CSS theme
+  final Color red50;
+
+  /// red100 Color values from Tailwind CSS theme
+  final Color red100;
+
+  /// red200 Color values from Tailwind CSS theme
+  final Color red200;
+
+  /// red300 Color values from Tailwind CSS theme
+  final Color red300;
+
+  /// red400 Color values from Tailwind CSS theme
+  final Color red400;
+
+  /// red500 Color values from Tailwind CSS theme
+  final Color red500;
+
+  /// red600 Color values from Tailwind CSS theme
+  final Color red600;
+
+  /// red700 Color values from Tailwind CSS theme
+  final Color red700;
+
+  /// red800 Color values from Tailwind CSS theme
+  final Color red800;
+
+  /// red900 Color values from Tailwind CSS theme
+  final Color red900;
+
+  /// red950 Color values from Tailwind CSS theme
+  final Color red950;
+
+  /// orange50 Color values from Tailwind CSS theme
+  final Color orange50;
+
+  /// orange100 Color values from Tailwind CSS theme
+  final Color orange100;
+
+  /// orange200 Color values from Tailwind CSS theme
+  final Color orange200;
+
+  /// orange300 Color values from Tailwind CSS theme
+  final Color orange300;
+
+  /// orange400 Color values from Tailwind CSS theme
+  final Color orange400;
+
+  /// orange500 Color values from Tailwind CSS theme
+  final Color orange500;
+
+  /// orange600 Color values from Tailwind CSS theme
+  final Color orange600;
+
+  /// orange700 Color values from Tailwind CSS theme
+  final Color orange700;
+
+  /// orange800 Color values from Tailwind CSS theme
+  final Color orange800;
+
+  /// orange900 Color values from Tailwind CSS theme
+  final Color orange900;
+
+  /// orange950 Color values from Tailwind CSS theme
+  final Color orange950;
+
+  /// amber50 Color values from Tailwind CSS theme
+  final Color amber50;
+
+  /// amber100 Color values from Tailwind CSS theme
+  final Color amber100;
+
+  /// amber200 Color values from Tailwind CSS theme
+  final Color amber200;
+
+  /// amber300 Color values from Tailwind CSS theme
+  final Color amber300;
+
+  /// amber400 Color values from Tailwind CSS theme
+  final Color amber400;
+
+  /// amber500 Color values from Tailwind CSS theme
+  final Color amber500;
+
+  /// amber600 Color values from Tailwind CSS theme
+  final Color amber600;
+
+  /// amber700 Color values from Tailwind CSS theme
+  final Color amber700;
+
+  /// amber800 Color values from Tailwind CSS theme
+  final Color amber800;
+
+  /// amber900 Color values from Tailwind CSS theme
+  final Color amber900;
+
+  /// amber950 Color values from Tailwind CSS theme
+  final Color amber950;
+
+  /// yellow50 Color values from Tailwind CSS theme
+  final Color yellow50;
+
+  /// yellow100 Color values from Tailwind CSS theme
+  final Color yellow100;
+
+  /// yellow200 Color values from Tailwind CSS theme
+  final Color yellow200;
+
+  /// yellow300 Color values from Tailwind CSS theme
+  final Color yellow300;
+
+  /// yellow400 Color values from Tailwind CSS theme
+  final Color yellow400;
+
+  /// yellow500 Color values from Tailwind CSS theme
+  final Color yellow500;
+
+  /// yellow600 Color values from Tailwind CSS theme
+  final Color yellow600;
+
+  /// yellow700 Color values from Tailwind CSS theme
+  final Color yellow700;
+
+  /// yellow800 Color values from Tailwind CSS theme
+  final Color yellow800;
+
+  /// yellow900 Color values from Tailwind CSS theme
+  final Color yellow900;
+
+  /// yellow950 Color values from Tailwind CSS theme
+  final Color yellow950;
+
+  /// lime50 Color values from Tailwind CSS theme
+  final Color lime50;
+
+  /// lime100 Color values from Tailwind CSS theme
+  final Color lime100;
+
+  /// lime200 Color values from Tailwind CSS theme
+  final Color lime200;
+
+  /// lime300 Color values from Tailwind CSS theme
+  final Color lime300;
+
+  /// lime400 Color values from Tailwind CSS theme
+  final Color lime400;
+
+  /// lime500 Color values from Tailwind CSS theme
+  final Color lime500;
+
+  /// lime600 Color values from Tailwind CSS theme
+  final Color lime600;
+
+  /// lime700 Color values from Tailwind CSS theme
+  final Color lime700;
+
+  /// lime800 Color values from Tailwind CSS theme
+  final Color lime800;
+
+  /// lime900 Color values from Tailwind CSS theme
+  final Color lime900;
+
+  /// lime950 Color values from Tailwind CSS theme
+  final Color lime950;
+
+  /// green50 Color values from Tailwind CSS theme
+  final Color green50;
+
+  /// green100 Color values from Tailwind CSS theme
+  final Color green100;
+
+  /// green200 Color values from Tailwind CSS theme
+  final Color green200;
+
+  /// green300 Color values from Tailwind CSS theme
+  final Color green300;
+
+  /// green400 Color values from Tailwind CSS theme
+  final Color green400;
+
+  /// green500 Color values from Tailwind CSS theme
+  final Color green500;
+
+  /// green600 Color values from Tailwind CSS theme
+  final Color green600;
+
+  /// green700 Color values from Tailwind CSS theme
+  final Color green700;
+
+  /// green800 Color values from Tailwind CSS theme
+  final Color green800;
+
+  /// green900 Color values from Tailwind CSS theme
+  final Color green900;
+
+  /// green950 Color values from Tailwind CSS theme
+  final Color green950;
+
+  /// emerald50 Color values from Tailwind CSS theme
+  final Color emerald50;
+
+  /// emerald100 Color values from Tailwind CSS theme
+  final Color emerald100;
+
+  /// emerald200 Color values from Tailwind CSS theme
+  final Color emerald200;
+
+  /// emerald300 Color values from Tailwind CSS theme
+  final Color emerald300;
+
+  /// emerald400 Color values from Tailwind CSS theme
+  final Color emerald400;
+
+  /// emerald500 Color values from Tailwind CSS theme
+  final Color emerald500;
+
+  /// emerald600 Color values from Tailwind CSS theme
+  final Color emerald600;
+
+  /// emerald700 Color values from Tailwind CSS theme
+  final Color emerald700;
+
+  /// emerald800 Color values from Tailwind CSS theme
+  final Color emerald800;
+
+  /// emerald900 Color values from Tailwind CSS theme
+  final Color emerald900;
+
+  /// emerald950 Color values from Tailwind CSS theme
+  final Color emerald950;
+
+  /// teal50 Color values from Tailwind CSS theme
+  final Color teal50;
+
+  /// teal100 Color values from Tailwind CSS theme
+  final Color teal100;
+
+  /// teal200 Color values from Tailwind CSS theme
+  final Color teal200;
+
+  /// teal300 Color values from Tailwind CSS theme
+  final Color teal300;
+
+  /// teal400 Color values from Tailwind CSS theme
+  final Color teal400;
+
+  /// teal500 Color values from Tailwind CSS theme
+  final Color teal500;
+
+  /// teal600 Color values from Tailwind CSS theme
+  final Color teal600;
+
+  /// teal700 Color values from Tailwind CSS theme
+  final Color teal700;
+
+  /// teal800 Color values from Tailwind CSS theme
+  final Color teal800;
+
+  /// teal900 Color values from Tailwind CSS theme
+  final Color teal900;
+
+  /// teal950 Color values from Tailwind CSS theme
+  final Color teal950;
+
+  /// cyan50 Color values from Tailwind CSS theme
+  final Color cyan50;
+
+  /// cyan100 Color values from Tailwind CSS theme
+  final Color cyan100;
+
+  /// cyan200 Color values from Tailwind CSS theme
+  final Color cyan200;
+
+  /// cyan300 Color values from Tailwind CSS theme
+  final Color cyan300;
+
+  /// cyan400 Color values from Tailwind CSS theme
+  final Color cyan400;
+
+  /// cyan500 Color values from Tailwind CSS theme
+  final Color cyan500;
+
+  /// cyan600 Color values from Tailwind CSS theme
+  final Color cyan600;
+
+  /// cyan700 Color values from Tailwind CSS theme
+  final Color cyan700;
+
+  /// cyan800 Color values from Tailwind CSS theme
+  final Color cyan800;
+
+  /// cyan900 Color values from Tailwind CSS theme
+  final Color cyan900;
+
+  /// cyan950 Color values from Tailwind CSS theme
+  final Color cyan950;
+
+  /// sky50 Color values from Tailwind CSS theme
+  final Color sky50;
+
+  /// sky100 Color values from Tailwind CSS theme
+  final Color sky100;
+
+  /// sky200 Color values from Tailwind CSS theme
+  final Color sky200;
+
+  /// sky300 Color values from Tailwind CSS theme
+  final Color sky300;
+
+  /// sky400 Color values from Tailwind CSS theme
+  final Color sky400;
+
+  /// sky500 Color values from Tailwind CSS theme
+  final Color sky500;
+
+  /// sky600 Color values from Tailwind CSS theme
+  final Color sky600;
+
+  /// sky700 Color values from Tailwind CSS theme
+  final Color sky700;
+
+  /// sky800 Color values from Tailwind CSS theme
+  final Color sky800;
+
+  /// sky900 Color values from Tailwind CSS theme
+  final Color sky900;
+
+  /// sky950 Color values from Tailwind CSS theme
+  final Color sky950;
+
+  /// blue50 Color values from Tailwind CSS theme
+  final Color blue50;
+
+  /// blue100 Color values from Tailwind CSS theme
+  final Color blue100;
+
+  /// blue200 Color values from Tailwind CSS theme
+  final Color blue200;
+
+  /// blue300 Color values from Tailwind CSS theme
+  final Color blue300;
+
+  /// blue400 Color values from Tailwind CSS theme
+  final Color blue400;
+
+  /// blue500 Color values from Tailwind CSS theme
+  final Color blue500;
+
+  /// blue600 Color values from Tailwind CSS theme
+  final Color blue600;
+
+  /// blue700 Color values from Tailwind CSS theme
+  final Color blue700;
+
+  /// blue800 Color values from Tailwind CSS theme
+  final Color blue800;
+
+  /// blue900 Color values from Tailwind CSS theme
+  final Color blue900;
+
+  /// blue950 Color values from Tailwind CSS theme
+  final Color blue950;
+
+  /// indigo50 Color values from Tailwind CSS theme
+  final Color indigo50;
+
+  /// indigo100 Color values from Tailwind CSS theme
+  final Color indigo100;
+
+  /// indigo200 Color values from Tailwind CSS theme
+  final Color indigo200;
+
+  /// indigo300 Color values from Tailwind CSS theme
+  final Color indigo300;
+
+  /// indigo400 Color values from Tailwind CSS theme
+  final Color indigo400;
+
+  /// indigo500 Color values from Tailwind CSS theme
+  final Color indigo500;
+
+  /// indigo600 Color values from Tailwind CSS theme
+  final Color indigo600;
+
+  /// indigo700 Color values from Tailwind CSS theme
+  final Color indigo700;
+
+  /// indigo800 Color values from Tailwind CSS theme
+  final Color indigo800;
+
+  /// indigo900 Color values from Tailwind CSS theme
+  final Color indigo900;
+
+  /// indigo950 Color values from Tailwind CSS theme
+  final Color indigo950;
+
+  /// violet50 Color values from Tailwind CSS theme
+  final Color violet50;
+
+  /// violet100 Color values from Tailwind CSS theme
+  final Color violet100;
+
+  /// violet200 Color values from Tailwind CSS theme
+  final Color violet200;
+
+  /// violet300 Color values from Tailwind CSS theme
+  final Color violet300;
+
+  /// violet400 Color values from Tailwind CSS theme
+  final Color violet400;
+
+  /// violet500 Color values from Tailwind CSS theme
+  final Color violet500;
+
+  /// violet600 Color values from Tailwind CSS theme
+  final Color violet600;
+
+  /// violet700 Color values from Tailwind CSS theme
+  final Color violet700;
+
+  /// violet800 Color values from Tailwind CSS theme
+  final Color violet800;
+
+  /// violet900 Color values from Tailwind CSS theme
+  final Color violet900;
+
+  /// violet950 Color values from Tailwind CSS theme
+  final Color violet950;
+
+  /// purple50 Color values from Tailwind CSS theme
+  final Color purple50;
+
+  /// purple100 Color values from Tailwind CSS theme
+  final Color purple100;
+
+  /// purple200 Color values from Tailwind CSS theme
+  final Color purple200;
+
+  /// purple300 Color values from Tailwind CSS theme
+  final Color purple300;
+
+  /// purple400 Color values from Tailwind CSS theme
+  final Color purple400;
+
+  /// purple500 Color values from Tailwind CSS theme
+  final Color purple500;
+
+  /// purple600 Color values from Tailwind CSS theme
+  final Color purple600;
+
+  /// purple700 Color values from Tailwind CSS theme
+  final Color purple700;
+
+  /// purple800 Color values from Tailwind CSS theme
+  final Color purple800;
+
+  /// purple900 Color values from Tailwind CSS theme
+  final Color purple900;
+
+  /// purple950 Color values from Tailwind CSS theme
+  final Color purple950;
+
+  /// fuchsia50 Color values from Tailwind CSS theme
+  final Color fuchsia50;
+
+  /// fuchsia100 Color values from Tailwind CSS theme
+  final Color fuchsia100;
+
+  /// fuchsia200 Color values from Tailwind CSS theme
+  final Color fuchsia200;
+
+  /// fuchsia300 Color values from Tailwind CSS theme
+  final Color fuchsia300;
+
+  /// fuchsia400 Color values from Tailwind CSS theme
+  final Color fuchsia400;
+
+  /// fuchsia500 Color values from Tailwind CSS theme
+  final Color fuchsia500;
+
+  /// fuchsia600 Color values from Tailwind CSS theme
+  final Color fuchsia600;
+
+  /// fuchsia700 Color values from Tailwind CSS theme
+  final Color fuchsia700;
+
+  /// fuchsia800 Color values from Tailwind CSS theme
+  final Color fuchsia800;
+
+  /// fuchsia900 Color values from Tailwind CSS theme
+  final Color fuchsia900;
+
+  /// fuchsia950 Color values from Tailwind CSS theme
+  final Color fuchsia950;
+
+  /// pink50 Color values from Tailwind CSS theme
+  final Color pink50;
+
+  /// pink100 Color values from Tailwind CSS theme
+  final Color pink100;
+
+  /// pink200 Color values from Tailwind CSS theme
+  final Color pink200;
+
+  /// pink300 Color values from Tailwind CSS theme
+  final Color pink300;
+
+  /// pink400 Color values from Tailwind CSS theme
+  final Color pink400;
+
+  /// pink500 Color values from Tailwind CSS theme
+  final Color pink500;
+
+  /// pink600 Color values from Tailwind CSS theme
+  final Color pink600;
+
+  /// pink700 Color values from Tailwind CSS theme
+  final Color pink700;
+
+  /// pink800 Color values from Tailwind CSS theme
+  final Color pink800;
+
+  /// pink900 Color values from Tailwind CSS theme
+  final Color pink900;
+
+  /// pink950 Color values from Tailwind CSS theme
+  final Color pink950;
+
+  /// rose50 Color values from Tailwind CSS theme
+  final Color rose50;
+
+  /// rose100 Color values from Tailwind CSS theme
+  final Color rose100;
+
+  /// rose200 Color values from Tailwind CSS theme
+  final Color rose200;
+
+  /// rose300 Color values from Tailwind CSS theme
+  final Color rose300;
+
+  /// rose400 Color values from Tailwind CSS theme
+  final Color rose400;
+
+  /// rose500 Color values from Tailwind CSS theme
+  final Color rose500;
+
+  /// rose600 Color values from Tailwind CSS theme
+  final Color rose600;
+
+  /// rose700 Color values from Tailwind CSS theme
+  final Color rose700;
+
+  /// rose800 Color values from Tailwind CSS theme
+  final Color rose800;
+
+  /// rose900 Color values from Tailwind CSS theme
+  final Color rose900;
+
+  /// rose950 Color values from Tailwind CSS theme
+  final Color rose950;
+
+  /// slate50 Color values from Tailwind CSS theme
+  final Color slate50;
+
+  /// slate100 Color values from Tailwind CSS theme
+  final Color slate100;
+
+  /// slate200 Color values from Tailwind CSS theme
+  final Color slate200;
+
+  /// slate300 Color values from Tailwind CSS theme
+  final Color slate300;
+
+  /// slate400 Color values from Tailwind CSS theme
+  final Color slate400;
+
+  /// slate500 Color values from Tailwind CSS theme
+  final Color slate500;
+
+  /// slate600 Color values from Tailwind CSS theme
+  final Color slate600;
+
+  /// slate700 Color values from Tailwind CSS theme
+  final Color slate700;
+
+  /// slate800 Color values from Tailwind CSS theme
+  final Color slate800;
+
+  /// slate900 Color values from Tailwind CSS theme
+  final Color slate900;
+
+  /// slate950 Color values from Tailwind CSS theme
+  final Color slate950;
+
+  /// gray50 Color values from Tailwind CSS theme
+  final Color gray50;
+
+  /// gray100 Color values from Tailwind CSS theme
+  final Color gray100;
+
+  /// gray200 Color values from Tailwind CSS theme
+  final Color gray200;
+
+  /// gray300 Color values from Tailwind CSS theme
+  final Color gray300;
+
+  /// gray400 Color values from Tailwind CSS theme
+  final Color gray400;
+
+  /// gray500 Color values from Tailwind CSS theme
+  final Color gray500;
+
+  /// gray600 Color values from Tailwind CSS theme
+  final Color gray600;
+
+  /// gray700 Color values from Tailwind CSS theme
+  final Color gray700;
+
+  /// gray800 Color values from Tailwind CSS theme
+  final Color gray800;
+
+  /// gray900 Color values from Tailwind CSS theme
+  final Color gray900;
+
+  /// gray950 Color values from Tailwind CSS theme
+  final Color gray950;
+
+  /// zinc50 Color values from Tailwind CSS theme
+  final Color zinc50;
+
+  /// zinc100 Color values from Tailwind CSS theme
+  final Color zinc100;
+
+  /// zinc200 Color values from Tailwind CSS theme
+  final Color zinc200;
+
+  /// zinc300 Color values from Tailwind CSS theme
+  final Color zinc300;
+
+  /// zinc400 Color values from Tailwind CSS theme
+  final Color zinc400;
+
+  /// zinc500 Color values from Tailwind CSS theme
+  final Color zinc500;
+
+  /// zinc600 Color values from Tailwind CSS theme
+  final Color zinc600;
+
+  /// zinc700 Color values from Tailwind CSS theme
+  final Color zinc700;
+
+  /// zinc800 Color values from Tailwind CSS theme
+  final Color zinc800;
+
+  /// zinc900 Color values from Tailwind CSS theme
+  final Color zinc900;
+
+  /// zinc950 Color values from Tailwind CSS theme
+  final Color zinc950;
+
+  /// neutral50 Color values from Tailwind CSS theme
+  final Color neutral50;
+
+  /// neutral100 Color values from Tailwind CSS theme
+  final Color neutral100;
+
+  /// neutral200 Color values from Tailwind CSS theme
+  final Color neutral200;
+
+  /// neutral300 Color values from Tailwind CSS theme
+  final Color neutral300;
+
+  /// neutral400 Color values from Tailwind CSS theme
+  final Color neutral400;
+
+  /// neutral500 Color values from Tailwind CSS theme
+  final Color neutral500;
+
+  /// neutral600 Color values from Tailwind CSS theme
+  final Color neutral600;
+
+  /// neutral700 Color values from Tailwind CSS theme
+  final Color neutral700;
+
+  /// neutral800 Color values from Tailwind CSS theme
+  final Color neutral800;
+
+  /// neutral900 Color values from Tailwind CSS theme
+  final Color neutral900;
+
+  /// neutral950 Color values from Tailwind CSS theme
+  final Color neutral950;
+
+  /// stone50 Color values from Tailwind CSS theme
+  final Color stone50;
+
+  /// stone100 Color values from Tailwind CSS theme
+  final Color stone100;
+
+  /// stone200 Color values from Tailwind CSS theme
+  final Color stone200;
+
+  /// stone300 Color values from Tailwind CSS theme
+  final Color stone300;
+
+  /// stone400 Color values from Tailwind CSS theme
+  final Color stone400;
+
+  /// stone500 Color values from Tailwind CSS theme
+  final Color stone500;
+
+  /// stone600 Color values from Tailwind CSS theme
+  final Color stone600;
+
+  /// stone700 Color values from Tailwind CSS theme
+  final Color stone700;
+
+  /// stone800 Color values from Tailwind CSS theme
+  final Color stone800;
+
+  /// stone900 Color values from Tailwind CSS theme
+  final Color stone900;
+
+  /// stone950 Color values from Tailwind CSS theme
+  final Color stone950;
+
+  /// black Color values from Tailwind CSS theme
+  final Color black;
+
+  /// white Color values from Tailwind CSS theme
+  final Color white;
+
+  /// Additional custom values
+  final Map<String, Color> extras;
+
+  /// All values in a single map for easier iteration
+  Map<String, Color> get _allValues => {
+    'red50': red50,
+    'red100': red100,
+    'red200': red200,
+    'red300': red300,
+    'red400': red400,
+    'red500': red500,
+    'red600': red600,
+    'red700': red700,
+    'red800': red800,
+    'red900': red900,
+    'red950': red950,
+    'orange50': orange50,
+    'orange100': orange100,
+    'orange200': orange200,
+    'orange300': orange300,
+    'orange400': orange400,
+    'orange500': orange500,
+    'orange600': orange600,
+    'orange700': orange700,
+    'orange800': orange800,
+    'orange900': orange900,
+    'orange950': orange950,
+    'amber50': amber50,
+    'amber100': amber100,
+    'amber200': amber200,
+    'amber300': amber300,
+    'amber400': amber400,
+    'amber500': amber500,
+    'amber600': amber600,
+    'amber700': amber700,
+    'amber800': amber800,
+    'amber900': amber900,
+    'amber950': amber950,
+    'yellow50': yellow50,
+    'yellow100': yellow100,
+    'yellow200': yellow200,
+    'yellow300': yellow300,
+    'yellow400': yellow400,
+    'yellow500': yellow500,
+    'yellow600': yellow600,
+    'yellow700': yellow700,
+    'yellow800': yellow800,
+    'yellow900': yellow900,
+    'yellow950': yellow950,
+    'lime50': lime50,
+    'lime100': lime100,
+    'lime200': lime200,
+    'lime300': lime300,
+    'lime400': lime400,
+    'lime500': lime500,
+    'lime600': lime600,
+    'lime700': lime700,
+    'lime800': lime800,
+    'lime900': lime900,
+    'lime950': lime950,
+    'green50': green50,
+    'green100': green100,
+    'green200': green200,
+    'green300': green300,
+    'green400': green400,
+    'green500': green500,
+    'green600': green600,
+    'green700': green700,
+    'green800': green800,
+    'green900': green900,
+    'green950': green950,
+    'emerald50': emerald50,
+    'emerald100': emerald100,
+    'emerald200': emerald200,
+    'emerald300': emerald300,
+    'emerald400': emerald400,
+    'emerald500': emerald500,
+    'emerald600': emerald600,
+    'emerald700': emerald700,
+    'emerald800': emerald800,
+    'emerald900': emerald900,
+    'emerald950': emerald950,
+    'teal50': teal50,
+    'teal100': teal100,
+    'teal200': teal200,
+    'teal300': teal300,
+    'teal400': teal400,
+    'teal500': teal500,
+    'teal600': teal600,
+    'teal700': teal700,
+    'teal800': teal800,
+    'teal900': teal900,
+    'teal950': teal950,
+    'cyan50': cyan50,
+    'cyan100': cyan100,
+    'cyan200': cyan200,
+    'cyan300': cyan300,
+    'cyan400': cyan400,
+    'cyan500': cyan500,
+    'cyan600': cyan600,
+    'cyan700': cyan700,
+    'cyan800': cyan800,
+    'cyan900': cyan900,
+    'cyan950': cyan950,
+    'sky50': sky50,
+    'sky100': sky100,
+    'sky200': sky200,
+    'sky300': sky300,
+    'sky400': sky400,
+    'sky500': sky500,
+    'sky600': sky600,
+    'sky700': sky700,
+    'sky800': sky800,
+    'sky900': sky900,
+    'sky950': sky950,
+    'blue50': blue50,
+    'blue100': blue100,
+    'blue200': blue200,
+    'blue300': blue300,
+    'blue400': blue400,
+    'blue500': blue500,
+    'blue600': blue600,
+    'blue700': blue700,
+    'blue800': blue800,
+    'blue900': blue900,
+    'blue950': blue950,
+    'indigo50': indigo50,
+    'indigo100': indigo100,
+    'indigo200': indigo200,
+    'indigo300': indigo300,
+    'indigo400': indigo400,
+    'indigo500': indigo500,
+    'indigo600': indigo600,
+    'indigo700': indigo700,
+    'indigo800': indigo800,
+    'indigo900': indigo900,
+    'indigo950': indigo950,
+    'violet50': violet50,
+    'violet100': violet100,
+    'violet200': violet200,
+    'violet300': violet300,
+    'violet400': violet400,
+    'violet500': violet500,
+    'violet600': violet600,
+    'violet700': violet700,
+    'violet800': violet800,
+    'violet900': violet900,
+    'violet950': violet950,
+    'purple50': purple50,
+    'purple100': purple100,
+    'purple200': purple200,
+    'purple300': purple300,
+    'purple400': purple400,
+    'purple500': purple500,
+    'purple600': purple600,
+    'purple700': purple700,
+    'purple800': purple800,
+    'purple900': purple900,
+    'purple950': purple950,
+    'fuchsia50': fuchsia50,
+    'fuchsia100': fuchsia100,
+    'fuchsia200': fuchsia200,
+    'fuchsia300': fuchsia300,
+    'fuchsia400': fuchsia400,
+    'fuchsia500': fuchsia500,
+    'fuchsia600': fuchsia600,
+    'fuchsia700': fuchsia700,
+    'fuchsia800': fuchsia800,
+    'fuchsia900': fuchsia900,
+    'fuchsia950': fuchsia950,
+    'pink50': pink50,
+    'pink100': pink100,
+    'pink200': pink200,
+    'pink300': pink300,
+    'pink400': pink400,
+    'pink500': pink500,
+    'pink600': pink600,
+    'pink700': pink700,
+    'pink800': pink800,
+    'pink900': pink900,
+    'pink950': pink950,
+    'rose50': rose50,
+    'rose100': rose100,
+    'rose200': rose200,
+    'rose300': rose300,
+    'rose400': rose400,
+    'rose500': rose500,
+    'rose600': rose600,
+    'rose700': rose700,
+    'rose800': rose800,
+    'rose900': rose900,
+    'rose950': rose950,
+    'slate50': slate50,
+    'slate100': slate100,
+    'slate200': slate200,
+    'slate300': slate300,
+    'slate400': slate400,
+    'slate500': slate500,
+    'slate600': slate600,
+    'slate700': slate700,
+    'slate800': slate800,
+    'slate900': slate900,
+    'slate950': slate950,
+    'gray50': gray50,
+    'gray100': gray100,
+    'gray200': gray200,
+    'gray300': gray300,
+    'gray400': gray400,
+    'gray500': gray500,
+    'gray600': gray600,
+    'gray700': gray700,
+    'gray800': gray800,
+    'gray900': gray900,
+    'gray950': gray950,
+    'zinc50': zinc50,
+    'zinc100': zinc100,
+    'zinc200': zinc200,
+    'zinc300': zinc300,
+    'zinc400': zinc400,
+    'zinc500': zinc500,
+    'zinc600': zinc600,
+    'zinc700': zinc700,
+    'zinc800': zinc800,
+    'zinc900': zinc900,
+    'zinc950': zinc950,
+    'neutral50': neutral50,
+    'neutral100': neutral100,
+    'neutral200': neutral200,
+    'neutral300': neutral300,
+    'neutral400': neutral400,
+    'neutral500': neutral500,
+    'neutral600': neutral600,
+    'neutral700': neutral700,
+    'neutral800': neutral800,
+    'neutral900': neutral900,
+    'neutral950': neutral950,
+    'stone50': stone50,
+    'stone100': stone100,
+    'stone200': stone200,
+    'stone300': stone300,
+    'stone400': stone400,
+    'stone500': stone500,
+    'stone600': stone600,
+    'stone700': stone700,
+    'stone800': stone800,
+    'stone900': stone900,
+    'stone950': stone950,
+    'black': black,
+    'white': white,
+    ...extras,
+  };
+
+  /// Access value by key (canonical or extra)
+  @override
+  Color? operator [](String key) => _allValues[key];
+
+  /// Get all available keys (canonical + extras)
+  @override
+  Iterable<String> get keys => _allValues.keys;
+
+  /// Put a new value for the given key
+  @override
+  FlyColorToken put(String key, Color value) {
+    switch (key) {
+      case 'red50':
+        return copyWith(red50: value);
+      case 'red100':
+        return copyWith(red100: value);
+      case 'red200':
+        return copyWith(red200: value);
+      case 'red300':
+        return copyWith(red300: value);
+      case 'red400':
+        return copyWith(red400: value);
+      case 'red500':
+        return copyWith(red500: value);
+      case 'red600':
+        return copyWith(red600: value);
+      case 'red700':
+        return copyWith(red700: value);
+      case 'red800':
+        return copyWith(red800: value);
+      case 'red900':
+        return copyWith(red900: value);
+      case 'red950':
+        return copyWith(red950: value);
+      case 'orange50':
+        return copyWith(orange50: value);
+      case 'orange100':
+        return copyWith(orange100: value);
+      case 'orange200':
+        return copyWith(orange200: value);
+      case 'orange300':
+        return copyWith(orange300: value);
+      case 'orange400':
+        return copyWith(orange400: value);
+      case 'orange500':
+        return copyWith(orange500: value);
+      case 'orange600':
+        return copyWith(orange600: value);
+      case 'orange700':
+        return copyWith(orange700: value);
+      case 'orange800':
+        return copyWith(orange800: value);
+      case 'orange900':
+        return copyWith(orange900: value);
+      case 'orange950':
+        return copyWith(orange950: value);
+      case 'amber50':
+        return copyWith(amber50: value);
+      case 'amber100':
+        return copyWith(amber100: value);
+      case 'amber200':
+        return copyWith(amber200: value);
+      case 'amber300':
+        return copyWith(amber300: value);
+      case 'amber400':
+        return copyWith(amber400: value);
+      case 'amber500':
+        return copyWith(amber500: value);
+      case 'amber600':
+        return copyWith(amber600: value);
+      case 'amber700':
+        return copyWith(amber700: value);
+      case 'amber800':
+        return copyWith(amber800: value);
+      case 'amber900':
+        return copyWith(amber900: value);
+      case 'amber950':
+        return copyWith(amber950: value);
+      case 'yellow50':
+        return copyWith(yellow50: value);
+      case 'yellow100':
+        return copyWith(yellow100: value);
+      case 'yellow200':
+        return copyWith(yellow200: value);
+      case 'yellow300':
+        return copyWith(yellow300: value);
+      case 'yellow400':
+        return copyWith(yellow400: value);
+      case 'yellow500':
+        return copyWith(yellow500: value);
+      case 'yellow600':
+        return copyWith(yellow600: value);
+      case 'yellow700':
+        return copyWith(yellow700: value);
+      case 'yellow800':
+        return copyWith(yellow800: value);
+      case 'yellow900':
+        return copyWith(yellow900: value);
+      case 'yellow950':
+        return copyWith(yellow950: value);
+      case 'lime50':
+        return copyWith(lime50: value);
+      case 'lime100':
+        return copyWith(lime100: value);
+      case 'lime200':
+        return copyWith(lime200: value);
+      case 'lime300':
+        return copyWith(lime300: value);
+      case 'lime400':
+        return copyWith(lime400: value);
+      case 'lime500':
+        return copyWith(lime500: value);
+      case 'lime600':
+        return copyWith(lime600: value);
+      case 'lime700':
+        return copyWith(lime700: value);
+      case 'lime800':
+        return copyWith(lime800: value);
+      case 'lime900':
+        return copyWith(lime900: value);
+      case 'lime950':
+        return copyWith(lime950: value);
+      case 'green50':
+        return copyWith(green50: value);
+      case 'green100':
+        return copyWith(green100: value);
+      case 'green200':
+        return copyWith(green200: value);
+      case 'green300':
+        return copyWith(green300: value);
+      case 'green400':
+        return copyWith(green400: value);
+      case 'green500':
+        return copyWith(green500: value);
+      case 'green600':
+        return copyWith(green600: value);
+      case 'green700':
+        return copyWith(green700: value);
+      case 'green800':
+        return copyWith(green800: value);
+      case 'green900':
+        return copyWith(green900: value);
+      case 'green950':
+        return copyWith(green950: value);
+      case 'emerald50':
+        return copyWith(emerald50: value);
+      case 'emerald100':
+        return copyWith(emerald100: value);
+      case 'emerald200':
+        return copyWith(emerald200: value);
+      case 'emerald300':
+        return copyWith(emerald300: value);
+      case 'emerald400':
+        return copyWith(emerald400: value);
+      case 'emerald500':
+        return copyWith(emerald500: value);
+      case 'emerald600':
+        return copyWith(emerald600: value);
+      case 'emerald700':
+        return copyWith(emerald700: value);
+      case 'emerald800':
+        return copyWith(emerald800: value);
+      case 'emerald900':
+        return copyWith(emerald900: value);
+      case 'emerald950':
+        return copyWith(emerald950: value);
+      case 'teal50':
+        return copyWith(teal50: value);
+      case 'teal100':
+        return copyWith(teal100: value);
+      case 'teal200':
+        return copyWith(teal200: value);
+      case 'teal300':
+        return copyWith(teal300: value);
+      case 'teal400':
+        return copyWith(teal400: value);
+      case 'teal500':
+        return copyWith(teal500: value);
+      case 'teal600':
+        return copyWith(teal600: value);
+      case 'teal700':
+        return copyWith(teal700: value);
+      case 'teal800':
+        return copyWith(teal800: value);
+      case 'teal900':
+        return copyWith(teal900: value);
+      case 'teal950':
+        return copyWith(teal950: value);
+      case 'cyan50':
+        return copyWith(cyan50: value);
+      case 'cyan100':
+        return copyWith(cyan100: value);
+      case 'cyan200':
+        return copyWith(cyan200: value);
+      case 'cyan300':
+        return copyWith(cyan300: value);
+      case 'cyan400':
+        return copyWith(cyan400: value);
+      case 'cyan500':
+        return copyWith(cyan500: value);
+      case 'cyan600':
+        return copyWith(cyan600: value);
+      case 'cyan700':
+        return copyWith(cyan700: value);
+      case 'cyan800':
+        return copyWith(cyan800: value);
+      case 'cyan900':
+        return copyWith(cyan900: value);
+      case 'cyan950':
+        return copyWith(cyan950: value);
+      case 'sky50':
+        return copyWith(sky50: value);
+      case 'sky100':
+        return copyWith(sky100: value);
+      case 'sky200':
+        return copyWith(sky200: value);
+      case 'sky300':
+        return copyWith(sky300: value);
+      case 'sky400':
+        return copyWith(sky400: value);
+      case 'sky500':
+        return copyWith(sky500: value);
+      case 'sky600':
+        return copyWith(sky600: value);
+      case 'sky700':
+        return copyWith(sky700: value);
+      case 'sky800':
+        return copyWith(sky800: value);
+      case 'sky900':
+        return copyWith(sky900: value);
+      case 'sky950':
+        return copyWith(sky950: value);
+      case 'blue50':
+        return copyWith(blue50: value);
+      case 'blue100':
+        return copyWith(blue100: value);
+      case 'blue200':
+        return copyWith(blue200: value);
+      case 'blue300':
+        return copyWith(blue300: value);
+      case 'blue400':
+        return copyWith(blue400: value);
+      case 'blue500':
+        return copyWith(blue500: value);
+      case 'blue600':
+        return copyWith(blue600: value);
+      case 'blue700':
+        return copyWith(blue700: value);
+      case 'blue800':
+        return copyWith(blue800: value);
+      case 'blue900':
+        return copyWith(blue900: value);
+      case 'blue950':
+        return copyWith(blue950: value);
+      case 'indigo50':
+        return copyWith(indigo50: value);
+      case 'indigo100':
+        return copyWith(indigo100: value);
+      case 'indigo200':
+        return copyWith(indigo200: value);
+      case 'indigo300':
+        return copyWith(indigo300: value);
+      case 'indigo400':
+        return copyWith(indigo400: value);
+      case 'indigo500':
+        return copyWith(indigo500: value);
+      case 'indigo600':
+        return copyWith(indigo600: value);
+      case 'indigo700':
+        return copyWith(indigo700: value);
+      case 'indigo800':
+        return copyWith(indigo800: value);
+      case 'indigo900':
+        return copyWith(indigo900: value);
+      case 'indigo950':
+        return copyWith(indigo950: value);
+      case 'violet50':
+        return copyWith(violet50: value);
+      case 'violet100':
+        return copyWith(violet100: value);
+      case 'violet200':
+        return copyWith(violet200: value);
+      case 'violet300':
+        return copyWith(violet300: value);
+      case 'violet400':
+        return copyWith(violet400: value);
+      case 'violet500':
+        return copyWith(violet500: value);
+      case 'violet600':
+        return copyWith(violet600: value);
+      case 'violet700':
+        return copyWith(violet700: value);
+      case 'violet800':
+        return copyWith(violet800: value);
+      case 'violet900':
+        return copyWith(violet900: value);
+      case 'violet950':
+        return copyWith(violet950: value);
+      case 'purple50':
+        return copyWith(purple50: value);
+      case 'purple100':
+        return copyWith(purple100: value);
+      case 'purple200':
+        return copyWith(purple200: value);
+      case 'purple300':
+        return copyWith(purple300: value);
+      case 'purple400':
+        return copyWith(purple400: value);
+      case 'purple500':
+        return copyWith(purple500: value);
+      case 'purple600':
+        return copyWith(purple600: value);
+      case 'purple700':
+        return copyWith(purple700: value);
+      case 'purple800':
+        return copyWith(purple800: value);
+      case 'purple900':
+        return copyWith(purple900: value);
+      case 'purple950':
+        return copyWith(purple950: value);
+      case 'fuchsia50':
+        return copyWith(fuchsia50: value);
+      case 'fuchsia100':
+        return copyWith(fuchsia100: value);
+      case 'fuchsia200':
+        return copyWith(fuchsia200: value);
+      case 'fuchsia300':
+        return copyWith(fuchsia300: value);
+      case 'fuchsia400':
+        return copyWith(fuchsia400: value);
+      case 'fuchsia500':
+        return copyWith(fuchsia500: value);
+      case 'fuchsia600':
+        return copyWith(fuchsia600: value);
+      case 'fuchsia700':
+        return copyWith(fuchsia700: value);
+      case 'fuchsia800':
+        return copyWith(fuchsia800: value);
+      case 'fuchsia900':
+        return copyWith(fuchsia900: value);
+      case 'fuchsia950':
+        return copyWith(fuchsia950: value);
+      case 'pink50':
+        return copyWith(pink50: value);
+      case 'pink100':
+        return copyWith(pink100: value);
+      case 'pink200':
+        return copyWith(pink200: value);
+      case 'pink300':
+        return copyWith(pink300: value);
+      case 'pink400':
+        return copyWith(pink400: value);
+      case 'pink500':
+        return copyWith(pink500: value);
+      case 'pink600':
+        return copyWith(pink600: value);
+      case 'pink700':
+        return copyWith(pink700: value);
+      case 'pink800':
+        return copyWith(pink800: value);
+      case 'pink900':
+        return copyWith(pink900: value);
+      case 'pink950':
+        return copyWith(pink950: value);
+      case 'rose50':
+        return copyWith(rose50: value);
+      case 'rose100':
+        return copyWith(rose100: value);
+      case 'rose200':
+        return copyWith(rose200: value);
+      case 'rose300':
+        return copyWith(rose300: value);
+      case 'rose400':
+        return copyWith(rose400: value);
+      case 'rose500':
+        return copyWith(rose500: value);
+      case 'rose600':
+        return copyWith(rose600: value);
+      case 'rose700':
+        return copyWith(rose700: value);
+      case 'rose800':
+        return copyWith(rose800: value);
+      case 'rose900':
+        return copyWith(rose900: value);
+      case 'rose950':
+        return copyWith(rose950: value);
+      case 'slate50':
+        return copyWith(slate50: value);
+      case 'slate100':
+        return copyWith(slate100: value);
+      case 'slate200':
+        return copyWith(slate200: value);
+      case 'slate300':
+        return copyWith(slate300: value);
+      case 'slate400':
+        return copyWith(slate400: value);
+      case 'slate500':
+        return copyWith(slate500: value);
+      case 'slate600':
+        return copyWith(slate600: value);
+      case 'slate700':
+        return copyWith(slate700: value);
+      case 'slate800':
+        return copyWith(slate800: value);
+      case 'slate900':
+        return copyWith(slate900: value);
+      case 'slate950':
+        return copyWith(slate950: value);
+      case 'gray50':
+        return copyWith(gray50: value);
+      case 'gray100':
+        return copyWith(gray100: value);
+      case 'gray200':
+        return copyWith(gray200: value);
+      case 'gray300':
+        return copyWith(gray300: value);
+      case 'gray400':
+        return copyWith(gray400: value);
+      case 'gray500':
+        return copyWith(gray500: value);
+      case 'gray600':
+        return copyWith(gray600: value);
+      case 'gray700':
+        return copyWith(gray700: value);
+      case 'gray800':
+        return copyWith(gray800: value);
+      case 'gray900':
+        return copyWith(gray900: value);
+      case 'gray950':
+        return copyWith(gray950: value);
+      case 'zinc50':
+        return copyWith(zinc50: value);
+      case 'zinc100':
+        return copyWith(zinc100: value);
+      case 'zinc200':
+        return copyWith(zinc200: value);
+      case 'zinc300':
+        return copyWith(zinc300: value);
+      case 'zinc400':
+        return copyWith(zinc400: value);
+      case 'zinc500':
+        return copyWith(zinc500: value);
+      case 'zinc600':
+        return copyWith(zinc600: value);
+      case 'zinc700':
+        return copyWith(zinc700: value);
+      case 'zinc800':
+        return copyWith(zinc800: value);
+      case 'zinc900':
+        return copyWith(zinc900: value);
+      case 'zinc950':
+        return copyWith(zinc950: value);
+      case 'neutral50':
+        return copyWith(neutral50: value);
+      case 'neutral100':
+        return copyWith(neutral100: value);
+      case 'neutral200':
+        return copyWith(neutral200: value);
+      case 'neutral300':
+        return copyWith(neutral300: value);
+      case 'neutral400':
+        return copyWith(neutral400: value);
+      case 'neutral500':
+        return copyWith(neutral500: value);
+      case 'neutral600':
+        return copyWith(neutral600: value);
+      case 'neutral700':
+        return copyWith(neutral700: value);
+      case 'neutral800':
+        return copyWith(neutral800: value);
+      case 'neutral900':
+        return copyWith(neutral900: value);
+      case 'neutral950':
+        return copyWith(neutral950: value);
+      case 'stone50':
+        return copyWith(stone50: value);
+      case 'stone100':
+        return copyWith(stone100: value);
+      case 'stone200':
+        return copyWith(stone200: value);
+      case 'stone300':
+        return copyWith(stone300: value);
+      case 'stone400':
+        return copyWith(stone400: value);
+      case 'stone500':
+        return copyWith(stone500: value);
+      case 'stone600':
+        return copyWith(stone600: value);
+      case 'stone700':
+        return copyWith(stone700: value);
+      case 'stone800':
+        return copyWith(stone800: value);
+      case 'stone900':
+        return copyWith(stone900: value);
+      case 'stone950':
+        return copyWith(stone950: value);
+      case 'black':
+        return copyWith(black: value);
+      case 'white':
+        return copyWith(white: value);
+      default:
+        final newExtras = Map<String, Color>.from(extras);
+        newExtras[key] = value;
+        return copyWith(extras: newExtras);
+    }
+  }
+
+  /// Merge another token into this one (right side wins)
+  @override
+  FlyColorToken merge(FlyToken<Color> other) {
+    if (other is! FlyColorToken) return this;
+
+    return copyWith(
+      red50: other.red50,
+      red100: other.red100,
+      red200: other.red200,
+      red300: other.red300,
+      red400: other.red400,
+      red500: other.red500,
+      red600: other.red600,
+      red700: other.red700,
+      red800: other.red800,
+      red900: other.red900,
+      red950: other.red950,
+      orange50: other.orange50,
+      orange100: other.orange100,
+      orange200: other.orange200,
+      orange300: other.orange300,
+      orange400: other.orange400,
+      orange500: other.orange500,
+      orange600: other.orange600,
+      orange700: other.orange700,
+      orange800: other.orange800,
+      orange900: other.orange900,
+      orange950: other.orange950,
+      amber50: other.amber50,
+      amber100: other.amber100,
+      amber200: other.amber200,
+      amber300: other.amber300,
+      amber400: other.amber400,
+      amber500: other.amber500,
+      amber600: other.amber600,
+      amber700: other.amber700,
+      amber800: other.amber800,
+      amber900: other.amber900,
+      amber950: other.amber950,
+      yellow50: other.yellow50,
+      yellow100: other.yellow100,
+      yellow200: other.yellow200,
+      yellow300: other.yellow300,
+      yellow400: other.yellow400,
+      yellow500: other.yellow500,
+      yellow600: other.yellow600,
+      yellow700: other.yellow700,
+      yellow800: other.yellow800,
+      yellow900: other.yellow900,
+      yellow950: other.yellow950,
+      lime50: other.lime50,
+      lime100: other.lime100,
+      lime200: other.lime200,
+      lime300: other.lime300,
+      lime400: other.lime400,
+      lime500: other.lime500,
+      lime600: other.lime600,
+      lime700: other.lime700,
+      lime800: other.lime800,
+      lime900: other.lime900,
+      lime950: other.lime950,
+      green50: other.green50,
+      green100: other.green100,
+      green200: other.green200,
+      green300: other.green300,
+      green400: other.green400,
+      green500: other.green500,
+      green600: other.green600,
+      green700: other.green700,
+      green800: other.green800,
+      green900: other.green900,
+      green950: other.green950,
+      emerald50: other.emerald50,
+      emerald100: other.emerald100,
+      emerald200: other.emerald200,
+      emerald300: other.emerald300,
+      emerald400: other.emerald400,
+      emerald500: other.emerald500,
+      emerald600: other.emerald600,
+      emerald700: other.emerald700,
+      emerald800: other.emerald800,
+      emerald900: other.emerald900,
+      emerald950: other.emerald950,
+      teal50: other.teal50,
+      teal100: other.teal100,
+      teal200: other.teal200,
+      teal300: other.teal300,
+      teal400: other.teal400,
+      teal500: other.teal500,
+      teal600: other.teal600,
+      teal700: other.teal700,
+      teal800: other.teal800,
+      teal900: other.teal900,
+      teal950: other.teal950,
+      cyan50: other.cyan50,
+      cyan100: other.cyan100,
+      cyan200: other.cyan200,
+      cyan300: other.cyan300,
+      cyan400: other.cyan400,
+      cyan500: other.cyan500,
+      cyan600: other.cyan600,
+      cyan700: other.cyan700,
+      cyan800: other.cyan800,
+      cyan900: other.cyan900,
+      cyan950: other.cyan950,
+      sky50: other.sky50,
+      sky100: other.sky100,
+      sky200: other.sky200,
+      sky300: other.sky300,
+      sky400: other.sky400,
+      sky500: other.sky500,
+      sky600: other.sky600,
+      sky700: other.sky700,
+      sky800: other.sky800,
+      sky900: other.sky900,
+      sky950: other.sky950,
+      blue50: other.blue50,
+      blue100: other.blue100,
+      blue200: other.blue200,
+      blue300: other.blue300,
+      blue400: other.blue400,
+      blue500: other.blue500,
+      blue600: other.blue600,
+      blue700: other.blue700,
+      blue800: other.blue800,
+      blue900: other.blue900,
+      blue950: other.blue950,
+      indigo50: other.indigo50,
+      indigo100: other.indigo100,
+      indigo200: other.indigo200,
+      indigo300: other.indigo300,
+      indigo400: other.indigo400,
+      indigo500: other.indigo500,
+      indigo600: other.indigo600,
+      indigo700: other.indigo700,
+      indigo800: other.indigo800,
+      indigo900: other.indigo900,
+      indigo950: other.indigo950,
+      violet50: other.violet50,
+      violet100: other.violet100,
+      violet200: other.violet200,
+      violet300: other.violet300,
+      violet400: other.violet400,
+      violet500: other.violet500,
+      violet600: other.violet600,
+      violet700: other.violet700,
+      violet800: other.violet800,
+      violet900: other.violet900,
+      violet950: other.violet950,
+      purple50: other.purple50,
+      purple100: other.purple100,
+      purple200: other.purple200,
+      purple300: other.purple300,
+      purple400: other.purple400,
+      purple500: other.purple500,
+      purple600: other.purple600,
+      purple700: other.purple700,
+      purple800: other.purple800,
+      purple900: other.purple900,
+      purple950: other.purple950,
+      fuchsia50: other.fuchsia50,
+      fuchsia100: other.fuchsia100,
+      fuchsia200: other.fuchsia200,
+      fuchsia300: other.fuchsia300,
+      fuchsia400: other.fuchsia400,
+      fuchsia500: other.fuchsia500,
+      fuchsia600: other.fuchsia600,
+      fuchsia700: other.fuchsia700,
+      fuchsia800: other.fuchsia800,
+      fuchsia900: other.fuchsia900,
+      fuchsia950: other.fuchsia950,
+      pink50: other.pink50,
+      pink100: other.pink100,
+      pink200: other.pink200,
+      pink300: other.pink300,
+      pink400: other.pink400,
+      pink500: other.pink500,
+      pink600: other.pink600,
+      pink700: other.pink700,
+      pink800: other.pink800,
+      pink900: other.pink900,
+      pink950: other.pink950,
+      rose50: other.rose50,
+      rose100: other.rose100,
+      rose200: other.rose200,
+      rose300: other.rose300,
+      rose400: other.rose400,
+      rose500: other.rose500,
+      rose600: other.rose600,
+      rose700: other.rose700,
+      rose800: other.rose800,
+      rose900: other.rose900,
+      rose950: other.rose950,
+      slate50: other.slate50,
+      slate100: other.slate100,
+      slate200: other.slate200,
+      slate300: other.slate300,
+      slate400: other.slate400,
+      slate500: other.slate500,
+      slate600: other.slate600,
+      slate700: other.slate700,
+      slate800: other.slate800,
+      slate900: other.slate900,
+      slate950: other.slate950,
+      gray50: other.gray50,
+      gray100: other.gray100,
+      gray200: other.gray200,
+      gray300: other.gray300,
+      gray400: other.gray400,
+      gray500: other.gray500,
+      gray600: other.gray600,
+      gray700: other.gray700,
+      gray800: other.gray800,
+      gray900: other.gray900,
+      gray950: other.gray950,
+      zinc50: other.zinc50,
+      zinc100: other.zinc100,
+      zinc200: other.zinc200,
+      zinc300: other.zinc300,
+      zinc400: other.zinc400,
+      zinc500: other.zinc500,
+      zinc600: other.zinc600,
+      zinc700: other.zinc700,
+      zinc800: other.zinc800,
+      zinc900: other.zinc900,
+      zinc950: other.zinc950,
+      neutral50: other.neutral50,
+      neutral100: other.neutral100,
+      neutral200: other.neutral200,
+      neutral300: other.neutral300,
+      neutral400: other.neutral400,
+      neutral500: other.neutral500,
+      neutral600: other.neutral600,
+      neutral700: other.neutral700,
+      neutral800: other.neutral800,
+      neutral900: other.neutral900,
+      neutral950: other.neutral950,
+      stone50: other.stone50,
+      stone100: other.stone100,
+      stone200: other.stone200,
+      stone300: other.stone300,
+      stone400: other.stone400,
+      stone500: other.stone500,
+      stone600: other.stone600,
+      stone700: other.stone700,
+      stone800: other.stone800,
+      stone900: other.stone900,
+      stone950: other.stone950,
+      black: other.black,
+      white: other.white,
+      extras: {...extras, ...other.extras},
+    );
+  }
+
+  /// Create a copy with updated values
+  FlyColorToken copyWith({
+    Color? red50,
+    Color? red100,
+    Color? red200,
+    Color? red300,
+    Color? red400,
+    Color? red500,
+    Color? red600,
+    Color? red700,
+    Color? red800,
+    Color? red900,
+    Color? red950,
+    Color? orange50,
+    Color? orange100,
+    Color? orange200,
+    Color? orange300,
+    Color? orange400,
+    Color? orange500,
+    Color? orange600,
+    Color? orange700,
+    Color? orange800,
+    Color? orange900,
+    Color? orange950,
+    Color? amber50,
+    Color? amber100,
+    Color? amber200,
+    Color? amber300,
+    Color? amber400,
+    Color? amber500,
+    Color? amber600,
+    Color? amber700,
+    Color? amber800,
+    Color? amber900,
+    Color? amber950,
+    Color? yellow50,
+    Color? yellow100,
+    Color? yellow200,
+    Color? yellow300,
+    Color? yellow400,
+    Color? yellow500,
+    Color? yellow600,
+    Color? yellow700,
+    Color? yellow800,
+    Color? yellow900,
+    Color? yellow950,
+    Color? lime50,
+    Color? lime100,
+    Color? lime200,
+    Color? lime300,
+    Color? lime400,
+    Color? lime500,
+    Color? lime600,
+    Color? lime700,
+    Color? lime800,
+    Color? lime900,
+    Color? lime950,
+    Color? green50,
+    Color? green100,
+    Color? green200,
+    Color? green300,
+    Color? green400,
+    Color? green500,
+    Color? green600,
+    Color? green700,
+    Color? green800,
+    Color? green900,
+    Color? green950,
+    Color? emerald50,
+    Color? emerald100,
+    Color? emerald200,
+    Color? emerald300,
+    Color? emerald400,
+    Color? emerald500,
+    Color? emerald600,
+    Color? emerald700,
+    Color? emerald800,
+    Color? emerald900,
+    Color? emerald950,
+    Color? teal50,
+    Color? teal100,
+    Color? teal200,
+    Color? teal300,
+    Color? teal400,
+    Color? teal500,
+    Color? teal600,
+    Color? teal700,
+    Color? teal800,
+    Color? teal900,
+    Color? teal950,
+    Color? cyan50,
+    Color? cyan100,
+    Color? cyan200,
+    Color? cyan300,
+    Color? cyan400,
+    Color? cyan500,
+    Color? cyan600,
+    Color? cyan700,
+    Color? cyan800,
+    Color? cyan900,
+    Color? cyan950,
+    Color? sky50,
+    Color? sky100,
+    Color? sky200,
+    Color? sky300,
+    Color? sky400,
+    Color? sky500,
+    Color? sky600,
+    Color? sky700,
+    Color? sky800,
+    Color? sky900,
+    Color? sky950,
+    Color? blue50,
+    Color? blue100,
+    Color? blue200,
+    Color? blue300,
+    Color? blue400,
+    Color? blue500,
+    Color? blue600,
+    Color? blue700,
+    Color? blue800,
+    Color? blue900,
+    Color? blue950,
+    Color? indigo50,
+    Color? indigo100,
+    Color? indigo200,
+    Color? indigo300,
+    Color? indigo400,
+    Color? indigo500,
+    Color? indigo600,
+    Color? indigo700,
+    Color? indigo800,
+    Color? indigo900,
+    Color? indigo950,
+    Color? violet50,
+    Color? violet100,
+    Color? violet200,
+    Color? violet300,
+    Color? violet400,
+    Color? violet500,
+    Color? violet600,
+    Color? violet700,
+    Color? violet800,
+    Color? violet900,
+    Color? violet950,
+    Color? purple50,
+    Color? purple100,
+    Color? purple200,
+    Color? purple300,
+    Color? purple400,
+    Color? purple500,
+    Color? purple600,
+    Color? purple700,
+    Color? purple800,
+    Color? purple900,
+    Color? purple950,
+    Color? fuchsia50,
+    Color? fuchsia100,
+    Color? fuchsia200,
+    Color? fuchsia300,
+    Color? fuchsia400,
+    Color? fuchsia500,
+    Color? fuchsia600,
+    Color? fuchsia700,
+    Color? fuchsia800,
+    Color? fuchsia900,
+    Color? fuchsia950,
+    Color? pink50,
+    Color? pink100,
+    Color? pink200,
+    Color? pink300,
+    Color? pink400,
+    Color? pink500,
+    Color? pink600,
+    Color? pink700,
+    Color? pink800,
+    Color? pink900,
+    Color? pink950,
+    Color? rose50,
+    Color? rose100,
+    Color? rose200,
+    Color? rose300,
+    Color? rose400,
+    Color? rose500,
+    Color? rose600,
+    Color? rose700,
+    Color? rose800,
+    Color? rose900,
+    Color? rose950,
+    Color? slate50,
+    Color? slate100,
+    Color? slate200,
+    Color? slate300,
+    Color? slate400,
+    Color? slate500,
+    Color? slate600,
+    Color? slate700,
+    Color? slate800,
+    Color? slate900,
+    Color? slate950,
+    Color? gray50,
+    Color? gray100,
+    Color? gray200,
+    Color? gray300,
+    Color? gray400,
+    Color? gray500,
+    Color? gray600,
+    Color? gray700,
+    Color? gray800,
+    Color? gray900,
+    Color? gray950,
+    Color? zinc50,
+    Color? zinc100,
+    Color? zinc200,
+    Color? zinc300,
+    Color? zinc400,
+    Color? zinc500,
+    Color? zinc600,
+    Color? zinc700,
+    Color? zinc800,
+    Color? zinc900,
+    Color? zinc950,
+    Color? neutral50,
+    Color? neutral100,
+    Color? neutral200,
+    Color? neutral300,
+    Color? neutral400,
+    Color? neutral500,
+    Color? neutral600,
+    Color? neutral700,
+    Color? neutral800,
+    Color? neutral900,
+    Color? neutral950,
+    Color? stone50,
+    Color? stone100,
+    Color? stone200,
+    Color? stone300,
+    Color? stone400,
+    Color? stone500,
+    Color? stone600,
+    Color? stone700,
+    Color? stone800,
+    Color? stone900,
+    Color? stone950,
+    Color? black,
+    Color? white,
+    Map<String, Color>? extras,
+  }) {
+    return FlyColorToken(
+      red50: red50 ?? this.red50,
+      red100: red100 ?? this.red100,
+      red200: red200 ?? this.red200,
+      red300: red300 ?? this.red300,
+      red400: red400 ?? this.red400,
+      red500: red500 ?? this.red500,
+      red600: red600 ?? this.red600,
+      red700: red700 ?? this.red700,
+      red800: red800 ?? this.red800,
+      red900: red900 ?? this.red900,
+      red950: red950 ?? this.red950,
+      orange50: orange50 ?? this.orange50,
+      orange100: orange100 ?? this.orange100,
+      orange200: orange200 ?? this.orange200,
+      orange300: orange300 ?? this.orange300,
+      orange400: orange400 ?? this.orange400,
+      orange500: orange500 ?? this.orange500,
+      orange600: orange600 ?? this.orange600,
+      orange700: orange700 ?? this.orange700,
+      orange800: orange800 ?? this.orange800,
+      orange900: orange900 ?? this.orange900,
+      orange950: orange950 ?? this.orange950,
+      amber50: amber50 ?? this.amber50,
+      amber100: amber100 ?? this.amber100,
+      amber200: amber200 ?? this.amber200,
+      amber300: amber300 ?? this.amber300,
+      amber400: amber400 ?? this.amber400,
+      amber500: amber500 ?? this.amber500,
+      amber600: amber600 ?? this.amber600,
+      amber700: amber700 ?? this.amber700,
+      amber800: amber800 ?? this.amber800,
+      amber900: amber900 ?? this.amber900,
+      amber950: amber950 ?? this.amber950,
+      yellow50: yellow50 ?? this.yellow50,
+      yellow100: yellow100 ?? this.yellow100,
+      yellow200: yellow200 ?? this.yellow200,
+      yellow300: yellow300 ?? this.yellow300,
+      yellow400: yellow400 ?? this.yellow400,
+      yellow500: yellow500 ?? this.yellow500,
+      yellow600: yellow600 ?? this.yellow600,
+      yellow700: yellow700 ?? this.yellow700,
+      yellow800: yellow800 ?? this.yellow800,
+      yellow900: yellow900 ?? this.yellow900,
+      yellow950: yellow950 ?? this.yellow950,
+      lime50: lime50 ?? this.lime50,
+      lime100: lime100 ?? this.lime100,
+      lime200: lime200 ?? this.lime200,
+      lime300: lime300 ?? this.lime300,
+      lime400: lime400 ?? this.lime400,
+      lime500: lime500 ?? this.lime500,
+      lime600: lime600 ?? this.lime600,
+      lime700: lime700 ?? this.lime700,
+      lime800: lime800 ?? this.lime800,
+      lime900: lime900 ?? this.lime900,
+      lime950: lime950 ?? this.lime950,
+      green50: green50 ?? this.green50,
+      green100: green100 ?? this.green100,
+      green200: green200 ?? this.green200,
+      green300: green300 ?? this.green300,
+      green400: green400 ?? this.green400,
+      green500: green500 ?? this.green500,
+      green600: green600 ?? this.green600,
+      green700: green700 ?? this.green700,
+      green800: green800 ?? this.green800,
+      green900: green900 ?? this.green900,
+      green950: green950 ?? this.green950,
+      emerald50: emerald50 ?? this.emerald50,
+      emerald100: emerald100 ?? this.emerald100,
+      emerald200: emerald200 ?? this.emerald200,
+      emerald300: emerald300 ?? this.emerald300,
+      emerald400: emerald400 ?? this.emerald400,
+      emerald500: emerald500 ?? this.emerald500,
+      emerald600: emerald600 ?? this.emerald600,
+      emerald700: emerald700 ?? this.emerald700,
+      emerald800: emerald800 ?? this.emerald800,
+      emerald900: emerald900 ?? this.emerald900,
+      emerald950: emerald950 ?? this.emerald950,
+      teal50: teal50 ?? this.teal50,
+      teal100: teal100 ?? this.teal100,
+      teal200: teal200 ?? this.teal200,
+      teal300: teal300 ?? this.teal300,
+      teal400: teal400 ?? this.teal400,
+      teal500: teal500 ?? this.teal500,
+      teal600: teal600 ?? this.teal600,
+      teal700: teal700 ?? this.teal700,
+      teal800: teal800 ?? this.teal800,
+      teal900: teal900 ?? this.teal900,
+      teal950: teal950 ?? this.teal950,
+      cyan50: cyan50 ?? this.cyan50,
+      cyan100: cyan100 ?? this.cyan100,
+      cyan200: cyan200 ?? this.cyan200,
+      cyan300: cyan300 ?? this.cyan300,
+      cyan400: cyan400 ?? this.cyan400,
+      cyan500: cyan500 ?? this.cyan500,
+      cyan600: cyan600 ?? this.cyan600,
+      cyan700: cyan700 ?? this.cyan700,
+      cyan800: cyan800 ?? this.cyan800,
+      cyan900: cyan900 ?? this.cyan900,
+      cyan950: cyan950 ?? this.cyan950,
+      sky50: sky50 ?? this.sky50,
+      sky100: sky100 ?? this.sky100,
+      sky200: sky200 ?? this.sky200,
+      sky300: sky300 ?? this.sky300,
+      sky400: sky400 ?? this.sky400,
+      sky500: sky500 ?? this.sky500,
+      sky600: sky600 ?? this.sky600,
+      sky700: sky700 ?? this.sky700,
+      sky800: sky800 ?? this.sky800,
+      sky900: sky900 ?? this.sky900,
+      sky950: sky950 ?? this.sky950,
+      blue50: blue50 ?? this.blue50,
+      blue100: blue100 ?? this.blue100,
+      blue200: blue200 ?? this.blue200,
+      blue300: blue300 ?? this.blue300,
+      blue400: blue400 ?? this.blue400,
+      blue500: blue500 ?? this.blue500,
+      blue600: blue600 ?? this.blue600,
+      blue700: blue700 ?? this.blue700,
+      blue800: blue800 ?? this.blue800,
+      blue900: blue900 ?? this.blue900,
+      blue950: blue950 ?? this.blue950,
+      indigo50: indigo50 ?? this.indigo50,
+      indigo100: indigo100 ?? this.indigo100,
+      indigo200: indigo200 ?? this.indigo200,
+      indigo300: indigo300 ?? this.indigo300,
+      indigo400: indigo400 ?? this.indigo400,
+      indigo500: indigo500 ?? this.indigo500,
+      indigo600: indigo600 ?? this.indigo600,
+      indigo700: indigo700 ?? this.indigo700,
+      indigo800: indigo800 ?? this.indigo800,
+      indigo900: indigo900 ?? this.indigo900,
+      indigo950: indigo950 ?? this.indigo950,
+      violet50: violet50 ?? this.violet50,
+      violet100: violet100 ?? this.violet100,
+      violet200: violet200 ?? this.violet200,
+      violet300: violet300 ?? this.violet300,
+      violet400: violet400 ?? this.violet400,
+      violet500: violet500 ?? this.violet500,
+      violet600: violet600 ?? this.violet600,
+      violet700: violet700 ?? this.violet700,
+      violet800: violet800 ?? this.violet800,
+      violet900: violet900 ?? this.violet900,
+      violet950: violet950 ?? this.violet950,
+      purple50: purple50 ?? this.purple50,
+      purple100: purple100 ?? this.purple100,
+      purple200: purple200 ?? this.purple200,
+      purple300: purple300 ?? this.purple300,
+      purple400: purple400 ?? this.purple400,
+      purple500: purple500 ?? this.purple500,
+      purple600: purple600 ?? this.purple600,
+      purple700: purple700 ?? this.purple700,
+      purple800: purple800 ?? this.purple800,
+      purple900: purple900 ?? this.purple900,
+      purple950: purple950 ?? this.purple950,
+      fuchsia50: fuchsia50 ?? this.fuchsia50,
+      fuchsia100: fuchsia100 ?? this.fuchsia100,
+      fuchsia200: fuchsia200 ?? this.fuchsia200,
+      fuchsia300: fuchsia300 ?? this.fuchsia300,
+      fuchsia400: fuchsia400 ?? this.fuchsia400,
+      fuchsia500: fuchsia500 ?? this.fuchsia500,
+      fuchsia600: fuchsia600 ?? this.fuchsia600,
+      fuchsia700: fuchsia700 ?? this.fuchsia700,
+      fuchsia800: fuchsia800 ?? this.fuchsia800,
+      fuchsia900: fuchsia900 ?? this.fuchsia900,
+      fuchsia950: fuchsia950 ?? this.fuchsia950,
+      pink50: pink50 ?? this.pink50,
+      pink100: pink100 ?? this.pink100,
+      pink200: pink200 ?? this.pink200,
+      pink300: pink300 ?? this.pink300,
+      pink400: pink400 ?? this.pink400,
+      pink500: pink500 ?? this.pink500,
+      pink600: pink600 ?? this.pink600,
+      pink700: pink700 ?? this.pink700,
+      pink800: pink800 ?? this.pink800,
+      pink900: pink900 ?? this.pink900,
+      pink950: pink950 ?? this.pink950,
+      rose50: rose50 ?? this.rose50,
+      rose100: rose100 ?? this.rose100,
+      rose200: rose200 ?? this.rose200,
+      rose300: rose300 ?? this.rose300,
+      rose400: rose400 ?? this.rose400,
+      rose500: rose500 ?? this.rose500,
+      rose600: rose600 ?? this.rose600,
+      rose700: rose700 ?? this.rose700,
+      rose800: rose800 ?? this.rose800,
+      rose900: rose900 ?? this.rose900,
+      rose950: rose950 ?? this.rose950,
+      slate50: slate50 ?? this.slate50,
+      slate100: slate100 ?? this.slate100,
+      slate200: slate200 ?? this.slate200,
+      slate300: slate300 ?? this.slate300,
+      slate400: slate400 ?? this.slate400,
+      slate500: slate500 ?? this.slate500,
+      slate600: slate600 ?? this.slate600,
+      slate700: slate700 ?? this.slate700,
+      slate800: slate800 ?? this.slate800,
+      slate900: slate900 ?? this.slate900,
+      slate950: slate950 ?? this.slate950,
+      gray50: gray50 ?? this.gray50,
+      gray100: gray100 ?? this.gray100,
+      gray200: gray200 ?? this.gray200,
+      gray300: gray300 ?? this.gray300,
+      gray400: gray400 ?? this.gray400,
+      gray500: gray500 ?? this.gray500,
+      gray600: gray600 ?? this.gray600,
+      gray700: gray700 ?? this.gray700,
+      gray800: gray800 ?? this.gray800,
+      gray900: gray900 ?? this.gray900,
+      gray950: gray950 ?? this.gray950,
+      zinc50: zinc50 ?? this.zinc50,
+      zinc100: zinc100 ?? this.zinc100,
+      zinc200: zinc200 ?? this.zinc200,
+      zinc300: zinc300 ?? this.zinc300,
+      zinc400: zinc400 ?? this.zinc400,
+      zinc500: zinc500 ?? this.zinc500,
+      zinc600: zinc600 ?? this.zinc600,
+      zinc700: zinc700 ?? this.zinc700,
+      zinc800: zinc800 ?? this.zinc800,
+      zinc900: zinc900 ?? this.zinc900,
+      zinc950: zinc950 ?? this.zinc950,
+      neutral50: neutral50 ?? this.neutral50,
+      neutral100: neutral100 ?? this.neutral100,
+      neutral200: neutral200 ?? this.neutral200,
+      neutral300: neutral300 ?? this.neutral300,
+      neutral400: neutral400 ?? this.neutral400,
+      neutral500: neutral500 ?? this.neutral500,
+      neutral600: neutral600 ?? this.neutral600,
+      neutral700: neutral700 ?? this.neutral700,
+      neutral800: neutral800 ?? this.neutral800,
+      neutral900: neutral900 ?? this.neutral900,
+      neutral950: neutral950 ?? this.neutral950,
+      stone50: stone50 ?? this.stone50,
+      stone100: stone100 ?? this.stone100,
+      stone200: stone200 ?? this.stone200,
+      stone300: stone300 ?? this.stone300,
+      stone400: stone400 ?? this.stone400,
+      stone500: stone500 ?? this.stone500,
+      stone600: stone600 ?? this.stone600,
+      stone700: stone700 ?? this.stone700,
+      stone800: stone800 ?? this.stone800,
+      stone900: stone900 ?? this.stone900,
+      stone950: stone950 ?? this.stone950,
+      black: black ?? this.black,
+      white: white ?? this.white,
+      extras: extras ?? this.extras,
+    );
+  }
+
+  /// Linear interpolation between two tokens
+  FlyColorToken lerp(FlyColorToken other, double t) {
+    final result = <String, Color>{};
+    final allKeys = {..._allValues.keys, ...other._allValues.keys};
+
+    for (final key in allKeys) {
+      final valueA = _allValues[key];
+      final valueB = other._allValues[key];
+      if (valueA != null && valueB != null) {
+        result[key] = Color.lerp(valueA, valueB, t) ?? valueA;
+      } else if (valueA != null) {
+        result[key] = valueA;
+      } else if (valueB != null) {
+        result[key] = valueB;
+      }
+    }
+
+    return FlyColorToken(
+      red50: result['red50']!,
+      red100: result['red100']!,
+      red200: result['red200']!,
+      red300: result['red300']!,
+      red400: result['red400']!,
+      red500: result['red500']!,
+      red600: result['red600']!,
+      red700: result['red700']!,
+      red800: result['red800']!,
+      red900: result['red900']!,
+      red950: result['red950']!,
+      orange50: result['orange50']!,
+      orange100: result['orange100']!,
+      orange200: result['orange200']!,
+      orange300: result['orange300']!,
+      orange400: result['orange400']!,
+      orange500: result['orange500']!,
+      orange600: result['orange600']!,
+      orange700: result['orange700']!,
+      orange800: result['orange800']!,
+      orange900: result['orange900']!,
+      orange950: result['orange950']!,
+      amber50: result['amber50']!,
+      amber100: result['amber100']!,
+      amber200: result['amber200']!,
+      amber300: result['amber300']!,
+      amber400: result['amber400']!,
+      amber500: result['amber500']!,
+      amber600: result['amber600']!,
+      amber700: result['amber700']!,
+      amber800: result['amber800']!,
+      amber900: result['amber900']!,
+      amber950: result['amber950']!,
+      yellow50: result['yellow50']!,
+      yellow100: result['yellow100']!,
+      yellow200: result['yellow200']!,
+      yellow300: result['yellow300']!,
+      yellow400: result['yellow400']!,
+      yellow500: result['yellow500']!,
+      yellow600: result['yellow600']!,
+      yellow700: result['yellow700']!,
+      yellow800: result['yellow800']!,
+      yellow900: result['yellow900']!,
+      yellow950: result['yellow950']!,
+      lime50: result['lime50']!,
+      lime100: result['lime100']!,
+      lime200: result['lime200']!,
+      lime300: result['lime300']!,
+      lime400: result['lime400']!,
+      lime500: result['lime500']!,
+      lime600: result['lime600']!,
+      lime700: result['lime700']!,
+      lime800: result['lime800']!,
+      lime900: result['lime900']!,
+      lime950: result['lime950']!,
+      green50: result['green50']!,
+      green100: result['green100']!,
+      green200: result['green200']!,
+      green300: result['green300']!,
+      green400: result['green400']!,
+      green500: result['green500']!,
+      green600: result['green600']!,
+      green700: result['green700']!,
+      green800: result['green800']!,
+      green900: result['green900']!,
+      green950: result['green950']!,
+      emerald50: result['emerald50']!,
+      emerald100: result['emerald100']!,
+      emerald200: result['emerald200']!,
+      emerald300: result['emerald300']!,
+      emerald400: result['emerald400']!,
+      emerald500: result['emerald500']!,
+      emerald600: result['emerald600']!,
+      emerald700: result['emerald700']!,
+      emerald800: result['emerald800']!,
+      emerald900: result['emerald900']!,
+      emerald950: result['emerald950']!,
+      teal50: result['teal50']!,
+      teal100: result['teal100']!,
+      teal200: result['teal200']!,
+      teal300: result['teal300']!,
+      teal400: result['teal400']!,
+      teal500: result['teal500']!,
+      teal600: result['teal600']!,
+      teal700: result['teal700']!,
+      teal800: result['teal800']!,
+      teal900: result['teal900']!,
+      teal950: result['teal950']!,
+      cyan50: result['cyan50']!,
+      cyan100: result['cyan100']!,
+      cyan200: result['cyan200']!,
+      cyan300: result['cyan300']!,
+      cyan400: result['cyan400']!,
+      cyan500: result['cyan500']!,
+      cyan600: result['cyan600']!,
+      cyan700: result['cyan700']!,
+      cyan800: result['cyan800']!,
+      cyan900: result['cyan900']!,
+      cyan950: result['cyan950']!,
+      sky50: result['sky50']!,
+      sky100: result['sky100']!,
+      sky200: result['sky200']!,
+      sky300: result['sky300']!,
+      sky400: result['sky400']!,
+      sky500: result['sky500']!,
+      sky600: result['sky600']!,
+      sky700: result['sky700']!,
+      sky800: result['sky800']!,
+      sky900: result['sky900']!,
+      sky950: result['sky950']!,
+      blue50: result['blue50']!,
+      blue100: result['blue100']!,
+      blue200: result['blue200']!,
+      blue300: result['blue300']!,
+      blue400: result['blue400']!,
+      blue500: result['blue500']!,
+      blue600: result['blue600']!,
+      blue700: result['blue700']!,
+      blue800: result['blue800']!,
+      blue900: result['blue900']!,
+      blue950: result['blue950']!,
+      indigo50: result['indigo50']!,
+      indigo100: result['indigo100']!,
+      indigo200: result['indigo200']!,
+      indigo300: result['indigo300']!,
+      indigo400: result['indigo400']!,
+      indigo500: result['indigo500']!,
+      indigo600: result['indigo600']!,
+      indigo700: result['indigo700']!,
+      indigo800: result['indigo800']!,
+      indigo900: result['indigo900']!,
+      indigo950: result['indigo950']!,
+      violet50: result['violet50']!,
+      violet100: result['violet100']!,
+      violet200: result['violet200']!,
+      violet300: result['violet300']!,
+      violet400: result['violet400']!,
+      violet500: result['violet500']!,
+      violet600: result['violet600']!,
+      violet700: result['violet700']!,
+      violet800: result['violet800']!,
+      violet900: result['violet900']!,
+      violet950: result['violet950']!,
+      purple50: result['purple50']!,
+      purple100: result['purple100']!,
+      purple200: result['purple200']!,
+      purple300: result['purple300']!,
+      purple400: result['purple400']!,
+      purple500: result['purple500']!,
+      purple600: result['purple600']!,
+      purple700: result['purple700']!,
+      purple800: result['purple800']!,
+      purple900: result['purple900']!,
+      purple950: result['purple950']!,
+      fuchsia50: result['fuchsia50']!,
+      fuchsia100: result['fuchsia100']!,
+      fuchsia200: result['fuchsia200']!,
+      fuchsia300: result['fuchsia300']!,
+      fuchsia400: result['fuchsia400']!,
+      fuchsia500: result['fuchsia500']!,
+      fuchsia600: result['fuchsia600']!,
+      fuchsia700: result['fuchsia700']!,
+      fuchsia800: result['fuchsia800']!,
+      fuchsia900: result['fuchsia900']!,
+      fuchsia950: result['fuchsia950']!,
+      pink50: result['pink50']!,
+      pink100: result['pink100']!,
+      pink200: result['pink200']!,
+      pink300: result['pink300']!,
+      pink400: result['pink400']!,
+      pink500: result['pink500']!,
+      pink600: result['pink600']!,
+      pink700: result['pink700']!,
+      pink800: result['pink800']!,
+      pink900: result['pink900']!,
+      pink950: result['pink950']!,
+      rose50: result['rose50']!,
+      rose100: result['rose100']!,
+      rose200: result['rose200']!,
+      rose300: result['rose300']!,
+      rose400: result['rose400']!,
+      rose500: result['rose500']!,
+      rose600: result['rose600']!,
+      rose700: result['rose700']!,
+      rose800: result['rose800']!,
+      rose900: result['rose900']!,
+      rose950: result['rose950']!,
+      slate50: result['slate50']!,
+      slate100: result['slate100']!,
+      slate200: result['slate200']!,
+      slate300: result['slate300']!,
+      slate400: result['slate400']!,
+      slate500: result['slate500']!,
+      slate600: result['slate600']!,
+      slate700: result['slate700']!,
+      slate800: result['slate800']!,
+      slate900: result['slate900']!,
+      slate950: result['slate950']!,
+      gray50: result['gray50']!,
+      gray100: result['gray100']!,
+      gray200: result['gray200']!,
+      gray300: result['gray300']!,
+      gray400: result['gray400']!,
+      gray500: result['gray500']!,
+      gray600: result['gray600']!,
+      gray700: result['gray700']!,
+      gray800: result['gray800']!,
+      gray900: result['gray900']!,
+      gray950: result['gray950']!,
+      zinc50: result['zinc50']!,
+      zinc100: result['zinc100']!,
+      zinc200: result['zinc200']!,
+      zinc300: result['zinc300']!,
+      zinc400: result['zinc400']!,
+      zinc500: result['zinc500']!,
+      zinc600: result['zinc600']!,
+      zinc700: result['zinc700']!,
+      zinc800: result['zinc800']!,
+      zinc900: result['zinc900']!,
+      zinc950: result['zinc950']!,
+      neutral50: result['neutral50']!,
+      neutral100: result['neutral100']!,
+      neutral200: result['neutral200']!,
+      neutral300: result['neutral300']!,
+      neutral400: result['neutral400']!,
+      neutral500: result['neutral500']!,
+      neutral600: result['neutral600']!,
+      neutral700: result['neutral700']!,
+      neutral800: result['neutral800']!,
+      neutral900: result['neutral900']!,
+      neutral950: result['neutral950']!,
+      stone50: result['stone50']!,
+      stone100: result['stone100']!,
+      stone200: result['stone200']!,
+      stone300: result['stone300']!,
+      stone400: result['stone400']!,
+      stone500: result['stone500']!,
+      stone600: result['stone600']!,
+      stone700: result['stone700']!,
+      stone800: result['stone800']!,
+      stone900: result['stone900']!,
+      stone950: result['stone950']!,
+      black: result['black']!,
+      white: result['white']!,
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) => ![
+            'red50',
+            'red100',
+            'red200',
+            'red300',
+            'red400',
+            'red500',
+            'red600',
+            'red700',
+            'red800',
+            'red900',
+            'red950',
+            'orange50',
+            'orange100',
+            'orange200',
+            'orange300',
+            'orange400',
+            'orange500',
+            'orange600',
+            'orange700',
+            'orange800',
+            'orange900',
+            'orange950',
+            'amber50',
+            'amber100',
+            'amber200',
+            'amber300',
+            'amber400',
+            'amber500',
+            'amber600',
+            'amber700',
+            'amber800',
+            'amber900',
+            'amber950',
+            'yellow50',
+            'yellow100',
+            'yellow200',
+            'yellow300',
+            'yellow400',
+            'yellow500',
+            'yellow600',
+            'yellow700',
+            'yellow800',
+            'yellow900',
+            'yellow950',
+            'lime50',
+            'lime100',
+            'lime200',
+            'lime300',
+            'lime400',
+            'lime500',
+            'lime600',
+            'lime700',
+            'lime800',
+            'lime900',
+            'lime950',
+            'green50',
+            'green100',
+            'green200',
+            'green300',
+            'green400',
+            'green500',
+            'green600',
+            'green700',
+            'green800',
+            'green900',
+            'green950',
+            'emerald50',
+            'emerald100',
+            'emerald200',
+            'emerald300',
+            'emerald400',
+            'emerald500',
+            'emerald600',
+            'emerald700',
+            'emerald800',
+            'emerald900',
+            'emerald950',
+            'teal50',
+            'teal100',
+            'teal200',
+            'teal300',
+            'teal400',
+            'teal500',
+            'teal600',
+            'teal700',
+            'teal800',
+            'teal900',
+            'teal950',
+            'cyan50',
+            'cyan100',
+            'cyan200',
+            'cyan300',
+            'cyan400',
+            'cyan500',
+            'cyan600',
+            'cyan700',
+            'cyan800',
+            'cyan900',
+            'cyan950',
+            'sky50',
+            'sky100',
+            'sky200',
+            'sky300',
+            'sky400',
+            'sky500',
+            'sky600',
+            'sky700',
+            'sky800',
+            'sky900',
+            'sky950',
+            'blue50',
+            'blue100',
+            'blue200',
+            'blue300',
+            'blue400',
+            'blue500',
+            'blue600',
+            'blue700',
+            'blue800',
+            'blue900',
+            'blue950',
+            'indigo50',
+            'indigo100',
+            'indigo200',
+            'indigo300',
+            'indigo400',
+            'indigo500',
+            'indigo600',
+            'indigo700',
+            'indigo800',
+            'indigo900',
+            'indigo950',
+            'violet50',
+            'violet100',
+            'violet200',
+            'violet300',
+            'violet400',
+            'violet500',
+            'violet600',
+            'violet700',
+            'violet800',
+            'violet900',
+            'violet950',
+            'purple50',
+            'purple100',
+            'purple200',
+            'purple300',
+            'purple400',
+            'purple500',
+            'purple600',
+            'purple700',
+            'purple800',
+            'purple900',
+            'purple950',
+            'fuchsia50',
+            'fuchsia100',
+            'fuchsia200',
+            'fuchsia300',
+            'fuchsia400',
+            'fuchsia500',
+            'fuchsia600',
+            'fuchsia700',
+            'fuchsia800',
+            'fuchsia900',
+            'fuchsia950',
+            'pink50',
+            'pink100',
+            'pink200',
+            'pink300',
+            'pink400',
+            'pink500',
+            'pink600',
+            'pink700',
+            'pink800',
+            'pink900',
+            'pink950',
+            'rose50',
+            'rose100',
+            'rose200',
+            'rose300',
+            'rose400',
+            'rose500',
+            'rose600',
+            'rose700',
+            'rose800',
+            'rose900',
+            'rose950',
+            'slate50',
+            'slate100',
+            'slate200',
+            'slate300',
+            'slate400',
+            'slate500',
+            'slate600',
+            'slate700',
+            'slate800',
+            'slate900',
+            'slate950',
+            'gray50',
+            'gray100',
+            'gray200',
+            'gray300',
+            'gray400',
+            'gray500',
+            'gray600',
+            'gray700',
+            'gray800',
+            'gray900',
+            'gray950',
+            'zinc50',
+            'zinc100',
+            'zinc200',
+            'zinc300',
+            'zinc400',
+            'zinc500',
+            'zinc600',
+            'zinc700',
+            'zinc800',
+            'zinc900',
+            'zinc950',
+            'neutral50',
+            'neutral100',
+            'neutral200',
+            'neutral300',
+            'neutral400',
+            'neutral500',
+            'neutral600',
+            'neutral700',
+            'neutral800',
+            'neutral900',
+            'neutral950',
+            'stone50',
+            'stone100',
+            'stone200',
+            'stone300',
+            'stone400',
+            'stone500',
+            'stone600',
+            'stone700',
+            'stone800',
+            'stone900',
+            'stone950',
+            'black',
+            'white',
+          ].contains(e.key),
+        ),
+      ),
+    );
+  }
+
+  /// Create default values
+  static FlyColorToken defaultColor() {
+    return const FlyColorToken(
+      red50: Color(0xFFFEF2F2),
+      red100: Color(0xFFFFE2E2),
+      red200: Color(0xFFFFC9C9),
+      red300: Color(0xFFFFA2A2),
+      red400: Color(0xFFFF6467),
+      red500: Color(0xFFFB2C36),
+      red600: Color(0xFFE7000B),
+      red700: Color(0xFFC10007),
+      red800: Color(0xFF9F0712),
+      red900: Color(0xFF82181A),
+      red950: Color(0xFF460809),
+      orange50: Color(0xFFFFF7ED),
+      orange100: Color(0xFFFFEDD4),
+      orange200: Color(0xFFFFD6A7),
+      orange300: Color(0xFFFFB86A),
+      orange400: Color(0xFFFF8904),
+      orange500: Color(0xFFFF6900),
+      orange600: Color(0xFFF54900),
+      orange700: Color(0xFFCA3500),
+      orange800: Color(0xFF9F2D00),
+      orange900: Color(0xFF7E2A0C),
+      orange950: Color(0xFF441306),
+      amber50: Color(0xFFFFFBEB),
+      amber100: Color(0xFFFEF3C6),
+      amber200: Color(0xFFFEE685),
+      amber300: Color(0xFFFFD230),
+      amber400: Color(0xFFFFB900),
+      amber500: Color(0xFFFE9A00),
+      amber600: Color(0xFFE17100),
+      amber700: Color(0xFFBB4D00),
+      amber800: Color(0xFF973C00),
+      amber900: Color(0xFF7B3306),
+      amber950: Color(0xFF461901),
+      yellow50: Color(0xFFFEFCE8),
+      yellow100: Color(0xFFFEF9C2),
+      yellow200: Color(0xFFFFF085),
+      yellow300: Color(0xFFFFDF20),
+      yellow400: Color(0xFFFDC700),
+      yellow500: Color(0xFFF0B100),
+      yellow600: Color(0xFFD08700),
+      yellow700: Color(0xFFA65F00),
+      yellow800: Color(0xFF894B00),
+      yellow900: Color(0xFF733E0A),
+      yellow950: Color(0xFF432004),
+      lime50: Color(0xFFF7FEE7),
+      lime100: Color(0xFFECFCCA),
+      lime200: Color(0xFFD8F999),
+      lime300: Color(0xFFBBF451),
+      lime400: Color(0xFF9AE600),
+      lime500: Color(0xFF7CCF00),
+      lime600: Color(0xFF5EA500),
+      lime700: Color(0xFF497D00),
+      lime800: Color(0xFF3C6300),
+      lime900: Color(0xFF35530E),
+      lime950: Color(0xFF192E03),
+      green50: Color(0xFFF0FDF4),
+      green100: Color(0xFFDCFCE7),
+      green200: Color(0xFFB9F8CF),
+      green300: Color(0xFF7BF1A8),
+      green400: Color(0xFF05DF72),
+      green500: Color(0xFF00C950),
+      green600: Color(0xFF00A63E),
+      green700: Color(0xFF008236),
+      green800: Color(0xFF016630),
+      green900: Color(0xFF0D542B),
+      green950: Color(0xFF032E15),
+      emerald50: Color(0xFFECFDF5),
+      emerald100: Color(0xFFD0FAE5),
+      emerald200: Color(0xFFA4F4CF),
+      emerald300: Color(0xFF5EE9B5),
+      emerald400: Color(0xFF00D492),
+      emerald500: Color(0xFF00BC7D),
+      emerald600: Color(0xFF009966),
+      emerald700: Color(0xFF007A55),
+      emerald800: Color(0xFF006045),
+      emerald900: Color(0xFF004F3B),
+      emerald950: Color(0xFF002C22),
+      teal50: Color(0xFFF0FDFA),
+      teal100: Color(0xFFCBFBF1),
+      teal200: Color(0xFF96F7E4),
+      teal300: Color(0xFF46ECD5),
+      teal400: Color(0xFF00D5BE),
+      teal500: Color(0xFF00BBA7),
+      teal600: Color(0xFF009689),
+      teal700: Color(0xFF00786F),
+      teal800: Color(0xFF005F5A),
+      teal900: Color(0xFF0B4F4A),
+      teal950: Color(0xFF022F2E),
+      cyan50: Color(0xFFECFEFF),
+      cyan100: Color(0xFFCEFAFE),
+      cyan200: Color(0xFFA2F4FD),
+      cyan300: Color(0xFF53EAFD),
+      cyan400: Color(0xFF00D3F2),
+      cyan500: Color(0xFF00B8DB),
+      cyan600: Color(0xFF0092B8),
+      cyan700: Color(0xFF007595),
+      cyan800: Color(0xFF005F78),
+      cyan900: Color(0xFF104E64),
+      cyan950: Color(0xFF053345),
+      sky50: Color(0xFFF0F9FF),
+      sky100: Color(0xFFDFF2FE),
+      sky200: Color(0xFFB8E6FE),
+      sky300: Color(0xFF74D4FF),
+      sky400: Color(0xFF00BCFF),
+      sky500: Color(0xFF00A6F4),
+      sky600: Color(0xFF0084D1),
+      sky700: Color(0xFF0069A8),
+      sky800: Color(0xFF00598A),
+      sky900: Color(0xFF024A70),
+      sky950: Color(0xFF052F4A),
+      blue50: Color(0xFFEFF6FF),
+      blue100: Color(0xFFDBEAFE),
+      blue200: Color(0xFFBEDBFF),
+      blue300: Color(0xFF8EC5FF),
+      blue400: Color(0xFF51A2FF),
+      blue500: Color(0xFF2B7FFF),
+      blue600: Color(0xFF155DFC),
+      blue700: Color(0xFF1447E6),
+      blue800: Color(0xFF193CB8),
+      blue900: Color(0xFF1C398E),
+      blue950: Color(0xFF162456),
+      indigo50: Color(0xFFEEF2FF),
+      indigo100: Color(0xFFE0E7FF),
+      indigo200: Color(0xFFC6D2FF),
+      indigo300: Color(0xFFA3B3FF),
+      indigo400: Color(0xFF7C86FF),
+      indigo500: Color(0xFF615FFF),
+      indigo600: Color(0xFF4F39F6),
+      indigo700: Color(0xFF432DD7),
+      indigo800: Color(0xFF372AAC),
+      indigo900: Color(0xFF312C85),
+      indigo950: Color(0xFF1E1A4D),
+      violet50: Color(0xFFF5F3FF),
+      violet100: Color(0xFFEDE9FE),
+      violet200: Color(0xFFDDD6FF),
+      violet300: Color(0xFFC4B4FF),
+      violet400: Color(0xFFA684FF),
+      violet500: Color(0xFF8E51FF),
+      violet600: Color(0xFF7F22FE),
+      violet700: Color(0xFF7008E7),
+      violet800: Color(0xFF5D0EC0),
+      violet900: Color(0xFF4D179A),
+      violet950: Color(0xFF2F0D68),
+      purple50: Color(0xFFFAF5FF),
+      purple100: Color(0xFFF3E8FF),
+      purple200: Color(0xFFE9D4FF),
+      purple300: Color(0xFFDAB2FF),
+      purple400: Color(0xFFC27AFF),
+      purple500: Color(0xFFAD46FF),
+      purple600: Color(0xFF9810FA),
+      purple700: Color(0xFF8200DB),
+      purple800: Color(0xFF6E11B0),
+      purple900: Color(0xFF59168B),
+      purple950: Color(0xFF3C0366),
+      fuchsia50: Color(0xFFFDF4FF),
+      fuchsia100: Color(0xFFFAE8FF),
+      fuchsia200: Color(0xFFF6CFFF),
+      fuchsia300: Color(0xFFF4A8FF),
+      fuchsia400: Color(0xFFED6AFF),
+      fuchsia500: Color(0xFFE12AFB),
+      fuchsia600: Color(0xFFC800DE),
+      fuchsia700: Color(0xFFA800B7),
+      fuchsia800: Color(0xFF8A0194),
+      fuchsia900: Color(0xFF721378),
+      fuchsia950: Color(0xFF4B004F),
+      pink50: Color(0xFFFDF2F8),
+      pink100: Color(0xFFFCE7F3),
+      pink200: Color(0xFFFCCEE8),
+      pink300: Color(0xFFFDA5D5),
+      pink400: Color(0xFFFB64B6),
+      pink500: Color(0xFFF6339A),
+      pink600: Color(0xFFE60076),
+      pink700: Color(0xFFC6005C),
+      pink800: Color(0xFFA3004C),
+      pink900: Color(0xFF861043),
+      pink950: Color(0xFF510424),
+      rose50: Color(0xFFFFF1F2),
+      rose100: Color(0xFFFFE4E6),
+      rose200: Color(0xFFFFCCD3),
+      rose300: Color(0xFFFFA1AD),
+      rose400: Color(0xFFFF637E),
+      rose500: Color(0xFFFF2056),
+      rose600: Color(0xFFEC003F),
+      rose700: Color(0xFFC70036),
+      rose800: Color(0xFFA50036),
+      rose900: Color(0xFF8B0836),
+      rose950: Color(0xFF4D0218),
+      slate50: Color(0xFFF8FAFC),
+      slate100: Color(0xFFF1F5F9),
+      slate200: Color(0xFFE2E8F0),
+      slate300: Color(0xFFCAD5E2),
+      slate400: Color(0xFF90A1B9),
+      slate500: Color(0xFF62748E),
+      slate600: Color(0xFF45556C),
+      slate700: Color(0xFF314158),
+      slate800: Color(0xFF1D293D),
+      slate900: Color(0xFF0F172B),
+      slate950: Color(0xFF020618),
+      gray50: Color(0xFFF9FAFB),
+      gray100: Color(0xFFF3F4F6),
+      gray200: Color(0xFFE5E7EB),
+      gray300: Color(0xFFD1D5DC),
+      gray400: Color(0xFF99A1AF),
+      gray500: Color(0xFF6A7282),
+      gray600: Color(0xFF4A5565),
+      gray700: Color(0xFF364153),
+      gray800: Color(0xFF1E2939),
+      gray900: Color(0xFF101828),
+      gray950: Color(0xFF030712),
+      zinc50: Color(0xFFFAFAFA),
+      zinc100: Color(0xFFF4F4F5),
+      zinc200: Color(0xFFE4E4E7),
+      zinc300: Color(0xFFD4D4D8),
+      zinc400: Color(0xFF9F9FA9),
+      zinc500: Color(0xFF71717B),
+      zinc600: Color(0xFF52525C),
+      zinc700: Color(0xFF3F3F46),
+      zinc800: Color(0xFF27272A),
+      zinc900: Color(0xFF18181B),
+      zinc950: Color(0xFF09090B),
+      neutral50: Color(0xFFFAFAFA),
+      neutral100: Color(0xFFF5F5F5),
+      neutral200: Color(0xFFE5E5E5),
+      neutral300: Color(0xFFD4D4D4),
+      neutral400: Color(0xFFA1A1A1),
+      neutral500: Color(0xFF737373),
+      neutral600: Color(0xFF525252),
+      neutral700: Color(0xFF404040),
+      neutral800: Color(0xFF262626),
+      neutral900: Color(0xFF171717),
+      neutral950: Color(0xFF0A0A0A),
+      stone50: Color(0xFFFAFAF9),
+      stone100: Color(0xFFF5F5F4),
+      stone200: Color(0xFFE7E5E4),
+      stone300: Color(0xFFD6D3D1),
+      stone400: Color(0xFFA6A09B),
+      stone500: Color(0xFF79716B),
+      stone600: Color(0xFF57534D),
+      stone700: Color(0xFF44403B),
+      stone800: Color(0xFF292524),
+      stone900: Color(0xFF1C1917),
+      stone950: Color(0xFF0C0A09),
+      black: Color(0xFF000000),
+      white: Color(0xFFFFFFFF),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is FlyColorToken &&
+        _allValues.toString() == other._allValues.toString();
+  }
+
+  @override
+  int get hashCode => _allValues.hashCode;
+}

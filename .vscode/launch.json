@@ -5,21 +5,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "flywind",
-      "request": "launch",
-      "type": "dart"
-    },
-    {
-      "name": "flywind (profile mode)",
+      "name": "flywind_example",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "profile"
+      "cwd": "example"
     },
     {
-      "name": "flywind (release mode)",
+      "name": "flywind_example (profile mode)",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "release"
+      "flutterMode": "profile",
+      "cwd": "example"
+    },
+    {
+      "name": "flywind_example (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "cwd": "example"
     }
   ]
 }

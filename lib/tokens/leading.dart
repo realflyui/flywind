@@ -1,0 +1,156 @@
+// GENERATED FILE - DO NOT EDIT MANUALLY
+// To regenerate, run: dart cli/generate_defaults.dart
+
+import '../core/token.dart';
+
+/// Line height values
+class FlyLeadingToken implements FlyToken<double> {
+  const FlyLeadingToken({
+    required this.tight,
+    required this.snug,
+    required this.normal,
+    required this.relaxed,
+    required this.loose,
+    this.extras = const {},
+  });
+
+  /// tight Line height values
+  final double tight;
+
+  /// snug Line height values
+  final double snug;
+
+  /// normal Line height values
+  final double normal;
+
+  /// relaxed Line height values
+  final double relaxed;
+
+  /// loose Line height values
+  final double loose;
+
+  /// Additional custom values
+  final Map<String, double> extras;
+
+  /// All values in a single map for easier iteration
+  Map<String, double> get _allValues => {
+    'tight': tight,
+    'snug': snug,
+    'normal': normal,
+    'relaxed': relaxed,
+    'loose': loose,
+    ...extras,
+  };
+
+  /// Access value by key (canonical or extra)
+  @override
+  double? operator [](String key) => _allValues[key];
+
+  /// Get all available keys (canonical + extras)
+  @override
+  Iterable<String> get keys => _allValues.keys;
+
+  /// Put a new value for the given key
+  @override
+  FlyLeadingToken put(String key, double value) {
+    switch (key) {
+      case 'tight':
+        return copyWith(tight: value);
+      case 'snug':
+        return copyWith(snug: value);
+      case 'normal':
+        return copyWith(normal: value);
+      case 'relaxed':
+        return copyWith(relaxed: value);
+      case 'loose':
+        return copyWith(loose: value);
+      default:
+        final newExtras = Map<String, double>.from(extras);
+        newExtras[key] = value;
+        return copyWith(extras: newExtras);
+    }
+  }
+
+  /// Merge another token into this one (right side wins)
+  @override
+  FlyLeadingToken merge(FlyToken<double> other) {
+    if (other is! FlyLeadingToken) return this;
+
+    return copyWith(
+      tight: other.tight,
+      snug: other.snug,
+      normal: other.normal,
+      relaxed: other.relaxed,
+      loose: other.loose,
+      extras: {...extras, ...other.extras},
+    );
+  }
+
+  /// Create a copy with updated values
+  FlyLeadingToken copyWith({
+    double? tight,
+    double? snug,
+    double? normal,
+    double? relaxed,
+    double? loose,
+    Map<String, double>? extras,
+  }) {
+    return FlyLeadingToken(
+      tight: tight ?? this.tight,
+      snug: snug ?? this.snug,
+      normal: normal ?? this.normal,
+      relaxed: relaxed ?? this.relaxed,
+      loose: loose ?? this.loose,
+      extras: extras ?? this.extras,
+    );
+  }
+
+  /// Linear interpolation between two tokens
+  FlyLeadingToken lerp(FlyLeadingToken other, double t) {
+    final result = <String, double>{};
+    final allKeys = {..._allValues.keys, ...other._allValues.keys};
+
+    for (final key in allKeys) {
+      final valueA = _allValues[key];
+      final valueB = other._allValues[key];
+      final numA = valueA ?? 0.0;
+      final numB = valueB ?? 0.0;
+      result[key] = numA + (numB - numA) * t;
+    }
+
+    return FlyLeadingToken(
+      tight: result['tight']!,
+      snug: result['snug']!,
+      normal: result['normal']!,
+      relaxed: result['relaxed']!,
+      loose: result['loose']!,
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) =>
+              !['tight', 'snug', 'normal', 'relaxed', 'loose'].contains(e.key),
+        ),
+      ),
+    );
+  }
+
+  /// Create default values
+  static FlyLeadingToken defaultLeading() {
+    return const FlyLeadingToken(
+      tight: 1.25,
+      snug: 1.375,
+      normal: 1.5,
+      relaxed: 1.625,
+      loose: 2.0,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is FlyLeadingToken &&
+        _allValues.toString() == other._allValues.toString();
+  }
+
+  @override
+  int get hashCode => _allValues.hashCode;
+}

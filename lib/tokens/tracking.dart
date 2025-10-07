@@ -1,0 +1,174 @@
+// GENERATED FILE - DO NOT EDIT MANUALLY
+// To regenerate, run: dart cli/generate_defaults.dart
+
+import '../core/token.dart';
+
+/// Letter spacing values
+class FlyTrackingToken implements FlyToken<double> {
+  const FlyTrackingToken({
+    required this.tighter,
+    required this.tight,
+    required this.normal,
+    required this.wide,
+    required this.wider,
+    required this.widest,
+    this.extras = const {},
+  });
+
+  /// tighter Letter spacing values
+  final double tighter;
+
+  /// tight Letter spacing values
+  final double tight;
+
+  /// normal Letter spacing values
+  final double normal;
+
+  /// wide Letter spacing values
+  final double wide;
+
+  /// wider Letter spacing values
+  final double wider;
+
+  /// widest Letter spacing values
+  final double widest;
+
+  /// Additional custom values
+  final Map<String, double> extras;
+
+  /// All values in a single map for easier iteration
+  Map<String, double> get _allValues => {
+    'tighter': tighter,
+    'tight': tight,
+    'normal': normal,
+    'wide': wide,
+    'wider': wider,
+    'widest': widest,
+    ...extras,
+  };
+
+  /// Access value by key (canonical or extra)
+  @override
+  double? operator [](String key) => _allValues[key];
+
+  /// Get all available keys (canonical + extras)
+  @override
+  Iterable<String> get keys => _allValues.keys;
+
+  /// Put a new value for the given key
+  @override
+  FlyTrackingToken put(String key, double value) {
+    switch (key) {
+      case 'tighter':
+        return copyWith(tighter: value);
+      case 'tight':
+        return copyWith(tight: value);
+      case 'normal':
+        return copyWith(normal: value);
+      case 'wide':
+        return copyWith(wide: value);
+      case 'wider':
+        return copyWith(wider: value);
+      case 'widest':
+        return copyWith(widest: value);
+      default:
+        final newExtras = Map<String, double>.from(extras);
+        newExtras[key] = value;
+        return copyWith(extras: newExtras);
+    }
+  }
+
+  /// Merge another token into this one (right side wins)
+  @override
+  FlyTrackingToken merge(FlyToken<double> other) {
+    if (other is! FlyTrackingToken) return this;
+
+    return copyWith(
+      tighter: other.tighter,
+      tight: other.tight,
+      normal: other.normal,
+      wide: other.wide,
+      wider: other.wider,
+      widest: other.widest,
+      extras: {...extras, ...other.extras},
+    );
+  }
+
+  /// Create a copy with updated values
+  FlyTrackingToken copyWith({
+    double? tighter,
+    double? tight,
+    double? normal,
+    double? wide,
+    double? wider,
+    double? widest,
+    Map<String, double>? extras,
+  }) {
+    return FlyTrackingToken(
+      tighter: tighter ?? this.tighter,
+      tight: tight ?? this.tight,
+      normal: normal ?? this.normal,
+      wide: wide ?? this.wide,
+      wider: wider ?? this.wider,
+      widest: widest ?? this.widest,
+      extras: extras ?? this.extras,
+    );
+  }
+
+  /// Linear interpolation between two tokens
+  FlyTrackingToken lerp(FlyTrackingToken other, double t) {
+    final result = <String, double>{};
+    final allKeys = {..._allValues.keys, ...other._allValues.keys};
+
+    for (final key in allKeys) {
+      final valueA = _allValues[key];
+      final valueB = other._allValues[key];
+      final numA = valueA ?? 0.0;
+      final numB = valueB ?? 0.0;
+      result[key] = numA + (numB - numA) * t;
+    }
+
+    return FlyTrackingToken(
+      tighter: result['tighter']!,
+      tight: result['tight']!,
+      normal: result['normal']!,
+      wide: result['wide']!,
+      wider: result['wider']!,
+      widest: result['widest']!,
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) => ![
+            'tighter',
+            'tight',
+            'normal',
+            'wide',
+            'wider',
+            'widest',
+          ].contains(e.key),
+        ),
+      ),
+    );
+  }
+
+  /// Create default values
+  static FlyTrackingToken defaultTracking() {
+    return const FlyTrackingToken(
+      tighter: -1.0,
+      tight: 0.0,
+      normal: 0.0,
+      wide: 0.0,
+      wider: 1.0,
+      widest: 2.0,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is FlyTrackingToken &&
+        _allValues.toString() == other._allValues.toString();
+  }
+
+  @override
+  int get hashCode => _allValues.hashCode;
+}

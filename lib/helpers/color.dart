@@ -1,29 +1,21 @@
 import 'package:flutter/material.dart';
+
+import '../core/theme.dart';
 import 'style.dart';
-import 'theme.dart';
-import '../parsers/color_parser.dart';
+import 'value.dart';
 
 /// Utility class for handling Tailwind-like color logic
 class FlyColorUtils {
-  /// Resolves color from FlyStyle and FlyConfig into Color
+  /// Resolves color from FlyStyle and FlyThemeData into Color
   static Color? resolve(BuildContext context, FlyStyle style) {
     if (style.color == null) return null;
 
-    final theme = Theme.of(context);
-    final flywind = theme.extension<FlyTheme>();
-    if (flywind == null) {
-      throw FlutterError(
-        'FlyTheme extension not found. Make sure to add FlyTheme to your ThemeData.extensions',
-      );
+    try {
+      final colors = FlyTheme.of(context).colors;
+      return FlyValue.resolveColor(style.color, context, colors);
+    } catch (e) {
+      throw ArgumentError('Failed to resolve color "${style.color}": $e');
     }
-    final config = flywind;
-    final color = _getColorValue(config, style.color!);
-
-    if (color == null) {
-      _handleMissingColor(style.color!, _getAvailableColors(config));
-    }
-
-    return color;
   }
 
   /// Applies color to a TextStyle
@@ -45,52 +37,21 @@ class FlyColorUtils {
   static Color? applyToContainer(BuildContext context, FlyStyle style) {
     return resolve(context, style);
   }
-
-  /// Gets color value from FlyColors class or parses color string
-  static Color? _getColorValue(FlyTheme theme, String key) {
-    // First try to get from theme colors
-    final themeColor = theme.colors[key];
-    if (themeColor != null) {
-      return themeColor;
-    }
-
-    // If not found in theme, try to parse as color string
-    return FlyColorParser.parse(key, themeColors: theme.colors.customColors);
-  }
-
-  /// Gets list of available color keys from the actual theme
-  static List<String> _getAvailableColors(FlyTheme theme) {
-    final defaultColors = theme.colors.values.keys.toList();
-    final customColors = theme.colors.customColors.keys.toList();
-    return [...defaultColors, ...customColors];
-  }
-
-  /// Handles missing color errors with helpful messages
-  static void _handleMissingColor(
-    String colorKey,
-    List<String> availableColors,
-  ) {
-    final sortedColors = availableColors.toList()..sort();
-
-    String errorMessage =
-        'Color "$colorKey" not found in FlyConfig. Available colors: ${sortedColors.join(', ')}.';
-
-    // In debug mode, throw an assertion error with helpful message
-    assert(false, errorMessage);
-
-    // In release mode, print a warning
-    print('⚠️ FlyColor Warning: $errorMessage');
-  }
 }
 
 /// Mixin that provides Tailwind-like color methods for any widget
 mixin FlyColor<T> {
-  FlyStyle get style;
+  FlyStyle get flyStyle;
 
   T Function(FlyStyle newStyle) get copyWith;
 
-  /// Set text color using named token
-  T color(String key) {
-    return copyWith(style.copyWith(color: key));
+  /// Set text color - accepts Color object or String (token name/hex)
+  T color(dynamic value) {
+    return copyWith(flyStyle.copyWith(color: value));
+  }
+
+  /// Set background color - accepts Color object or String (token name/hex)
+  T bg(dynamic value) {
+    return copyWith(flyStyle.copyWith(color: value));
   }
 }

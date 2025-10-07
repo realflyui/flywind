@@ -1,0 +1,41 @@
+# FlyWind Configuration
+#
+# This file defines custom tokens that extend the default FlyWind tokens.
+# Run 'dart generate/generate_custom.dart' to generate custom token classes.
+
+extend:
+  colors:
+    test: "#FF0000"
+
+  spacing:
+    test: "99"
+
+  radius:
+    test: "99"
+
+  breakpoint:
+    test: "999"
+
+  container:
+    test: "999"
+
+  text:
+    test: "99"
+
+  text_line_height:
+    test: "99"
+
+  font_weight:
+    test: "999"
+
+  tracking:
+    test: "0.99"
+
+  blur:
+    test: "99"
+
+  perspective:
+    test: "999"
+
+  leading:
+    test: "9.9"

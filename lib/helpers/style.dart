@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
-import 'padding.dart';
-import 'margin.dart';
-import 'color.dart';
-import 'rounded.dart';
-
-/// Internal style storage for FlyText widget
+/// Internal style storage for Flywind widgets
+///
+/// NAMING CONVENTION: All properties should match the actual method names
+/// used in the API. For example:
+/// - Use `grow` not `flexGrow` (matches .grow() method)
+/// - Use `shrink` not `flexShrink` (matches .shrink() method)
+/// - Use `basis` not `flexBasis` (matches .basis() method)
+/// - Use `flex` for the main flex property (matches .flex() method)
 class FlyStyle {
   const FlyStyle({
     this.p,
@@ -31,59 +32,231 @@ class FlyStyle {
     this.roundedTr,
     this.roundedBl,
     this.roundedBr,
+    this.border,
+    this.borderT,
+    this.borderR,
+    this.borderB,
+    this.borderL,
+    this.borderColor,
+    this.borderStyle,
+    this.h,
+    this.w,
+    this.maxH,
+    this.maxW,
+    this.minH,
+    this.minW,
+    this.text,
+    this.textAlign,
+    this.textTransform,
+    this.leading,
+    this.textDecoration,
+    this.font,
+    this.fontWeight,
+    this.tracking,
+    this.layoutType,
+    this.justify,
+    this.items,
+    this.gap,
+    this.gapX,
+    this.gapY,
+    this.reverse,
+    this.inline,
+    this.col,
+    this.row,
+    this.wrap,
+    this.stack,
+    this.flex,
+    this.grow,
+    this.shrink,
+    this.basis,
+    this.top,
+    this.right,
+    this.bottom,
+    this.left,
+    this.inset,
+    this.insetX,
+    this.insetY,
   });
 
-  final String? p; // Uniform padding (all sides)
-  final String? px; // Horizontal padding (left + right)
-  final String? py; // Vertical padding (top + bottom)
-  final String? pl; // Left padding
-  final String? pr; // Right padding
-  final String? pb; // Bottom padding
-  final String? pt; // Top padding
-  final String? m; // Uniform margin (all sides)
-  final String? mx; // Horizontal margin (left + right)
-  final String? my; // Vertical margin (top + bottom)
-  final String? ml; // Left margin
-  final String? mr; // Right margin
-  final String? mb; // Bottom margin
-  final String? mt; // Top margin
-  final String? color;
-  final String? rounded; // Uniform border radius (all corners)
-  final String? roundedT; // Top border radius (top-left + top-right)
-  final String? roundedR; // Right border radius (top-right + bottom-right)
-  final String? roundedB; // Bottom border radius (bottom-left + bottom-right)
-  final String? roundedL; // Left border radius (top-left + bottom-left)
-  final String? roundedTl; // Top-left border radius
-  final String? roundedTr; // Top-right border radius
-  final String? roundedBl; // Bottom-left border radius
-  final String? roundedBr; // Bottom-right border radius
+  final dynamic p; // Uniform padding (all sides) - can be int, double, String
+  final dynamic
+  px; // Horizontal padding (left + right) - can be int, double, String
+  final dynamic
+  py; // Vertical padding (top + bottom) - can be int, double, String
+  final dynamic pl; // Left padding - can be int, double, String
+  final dynamic pr; // Right padding - can be int, double, String
+  final dynamic pb; // Bottom padding - can be int, double, String
+  final dynamic pt; // Top padding - can be int, double, String
+  final dynamic m; // Uniform margin (all sides) - can be int, double, String
+  final dynamic
+  mx; // Horizontal margin (left + right) - can be int, double, String
+  final dynamic
+  my; // Vertical margin (top + bottom) - can be int, double, String
+  final dynamic ml; // Left margin - can be int, double, String
+  final dynamic mr; // Right margin - can be int, double, String
+  final dynamic mb; // Bottom margin - can be int, double, String
+  final dynamic mt; // Top margin - can be int, double, String
+  final dynamic color; // Color - can be Color, String
+  final dynamic
+  rounded; // Uniform border radius (all corners) - can be int, double, String
+  final dynamic
+  roundedT; // Top border radius (top-left + top-right) - can be int, double, String
+  final dynamic
+  roundedR; // Right border radius (top-right + bottom-right) - can be int, double, String
+  final dynamic
+  roundedB; // Bottom border radius (bottom-left + bottom-right) - can be int, double, String
+  final dynamic
+  roundedL; // Left border radius (top-left + bottom-left) - can be int, double, String
+  final dynamic
+  roundedTl; // Top-left border radius - can be int, double, String
+  final dynamic
+  roundedTr; // Top-right border radius - can be int, double, String
+  final dynamic
+  roundedBl; // Bottom-left border radius - can be int, double, String
+  final dynamic
+  roundedBr; // Bottom-right border radius - can be int, double, String
+  final dynamic
+  border; // Uniform border width (all sides) - can be int, double, String
+  final dynamic borderT; // Top border width - can be int, double, String
+  final dynamic borderR; // Right border width - can be int, double, String
+  final dynamic borderB; // Bottom border width - can be int, double, String
+  final dynamic borderL; // Left border width - can be int, double, String
+  final dynamic borderColor; // Border color - can be Color, String
+  final dynamic
+  borderStyle; // Border style - can be String ('solid', 'dashed', 'dotted', 'none', 'hidden')
+  final dynamic h; // Height - can be int, double, String (token name/unit)
+  final dynamic w; // Width - can be int, double, String (token name/unit)
+  final dynamic
+  maxH; // Max height - can be int, double, String (token name/unit)
+  final dynamic
+  maxW; // Max width - can be int, double, String (token name/unit)
+  final dynamic
+  minH; // Min height - can be int, double, String (token name/unit)
+  final dynamic
+  minW; // Min width - can be int, double, String (token name/unit)
+  final dynamic
+  text; // Text style token name - can be String ('xs', 'sm', 'base', 'lg', etc.) or TextStyle
+  final dynamic
+  textAlign; // Text alignment - can be String ('left', 'right', 'center', 'justify', 'start', 'end') or TextAlign
+  final dynamic
+  textTransform; // Text transformation - can be String ('uppercase', 'lowercase', 'capitalize', 'none')
+  final dynamic
+  leading; // Line height - can be int, double, or String (token name like 'tight', 'normal', 'relaxed')
+  final dynamic
+  textDecoration; // Text decoration - can be String ('underline', 'line-through', 'none') or TextDecoration
+  final dynamic
+  font; // Font family - can be String token ('sans', 'serif', 'mono'), raw String family, List<String> stack, or TextStyle
+  final dynamic
+  fontWeight; // Font weight - can be String ('thin', 'light', 'normal', 'medium', 'bold', etc.) or FontWeight
+  final dynamic
+  tracking; // Letter spacing - can be int, double, or String token ('tighter', 'tight', 'normal', 'wide', 'wider', 'widest')
+  final dynamic
+  layoutType; // Layout type - can be String ('col', 'row', 'grid', 'stack')
+  final dynamic
+  justify; // Main axis alignment - can be String ('start', 'end', 'center', 'between', 'around', 'evenly')
+  final dynamic
+  items; // Cross axis alignment - can be String ('start', 'end', 'center', 'stretch', 'baseline')
+  final dynamic gap; // Gap spacing - can be String ('s0' to 's96', 'px')
+  final dynamic
+  gapX; // Horizontal gap spacing - can be String ('s0' to 's96', 'px')
+  final dynamic
+  gapY; // Vertical gap spacing - can be String ('s0' to 's96', 'px')
+  final dynamic reverse; // Reverse direction - can be bool
+  final dynamic inline; // Inline layout - can be bool
+  final dynamic col; // Column Flutter API parameters - can be ColParams
+  final dynamic row; // Row Flutter API parameters - can be RowParams
+  final dynamic wrap; // Wrap Flutter API parameters - can be WrapParams
+  final dynamic stack; // Stack Flutter API parameters - can be StackParams
+  final dynamic
+  flex; // Flex value - can be int (1-12) or String ('auto', 'initial', 'none')
+  final dynamic grow; // Flex grow - can be int (0-2)
+  final dynamic shrink; // Flex shrink - can be int (0-1)
+  final dynamic basis; // Flex basis - can be String ('s32', 's40', 's48', etc.)
+  final dynamic
+  top; // Top position - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  right; // Right position - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  bottom; // Bottom position - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  left; // Left position - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  inset; // Inset (all sides) - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  insetX; // InsetX (left and right) - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  insetY; // InsetY (top and bottom) - can be int, double, or String (token name like 's2', 's4', etc.)
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
-    String? p,
-    String? px,
-    String? py,
-    String? pl,
-    String? pr,
-    String? pb,
-    String? pt,
-    String? m,
-    String? mx,
-    String? my,
-    String? ml,
-    String? mr,
-    String? mb,
-    String? mt,
-    String? color,
-    String? rounded,
-    String? roundedT,
-    String? roundedR,
-    String? roundedB,
-    String? roundedL,
-    String? roundedTl,
-    String? roundedTr,
-    String? roundedBl,
-    String? roundedBr,
+    dynamic p,
+    dynamic px,
+    dynamic py,
+    dynamic pl,
+    dynamic pr,
+    dynamic pb,
+    dynamic pt,
+    dynamic m,
+    dynamic mx,
+    dynamic my,
+    dynamic ml,
+    dynamic mr,
+    dynamic mb,
+    dynamic mt,
+    dynamic color,
+    dynamic rounded,
+    dynamic roundedT,
+    dynamic roundedR,
+    dynamic roundedB,
+    dynamic roundedL,
+    dynamic roundedTl,
+    dynamic roundedTr,
+    dynamic roundedBl,
+    dynamic roundedBr,
+    dynamic border,
+    dynamic borderT,
+    dynamic borderR,
+    dynamic borderB,
+    dynamic borderL,
+    dynamic borderColor,
+    dynamic borderStyle,
+    dynamic h,
+    dynamic w,
+    dynamic maxH,
+    dynamic maxW,
+    dynamic minH,
+    dynamic minW,
+    dynamic text,
+    dynamic textAlign,
+    dynamic textTransform,
+    dynamic leading,
+    dynamic textDecoration,
+    dynamic font,
+    dynamic fontWeight,
+    dynamic tracking,
+    dynamic layoutType,
+    dynamic justify,
+    dynamic items,
+    dynamic gap,
+    dynamic gapX,
+    dynamic gapY,
+    dynamic reverse,
+    dynamic inline,
+    dynamic col,
+    dynamic row,
+    dynamic wrap,
+    dynamic stack,
+    dynamic flex,
+    dynamic grow,
+    dynamic shrink,
+    dynamic basis,
+    dynamic top,
+    dynamic right,
+    dynamic bottom,
+    dynamic left,
+    dynamic inset,
+    dynamic insetX,
+    dynamic insetY,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -110,101 +283,50 @@ class FlyStyle {
       roundedTr: roundedTr ?? this.roundedTr,
       roundedBl: roundedBl ?? this.roundedBl,
       roundedBr: roundedBr ?? this.roundedBr,
-    );
-  }
-
-  /// Apply all style utilities to a widget in the correct order
-  Widget apply(BuildContext context, Widget child) {
-    Widget result = child;
-
-    // Apply utilities in the correct order (inner to outer)
-    // For text widgets, we need to apply color first to preserve text styling
-    if (child is Text && color != null) {
-      result = _applyTextColorDirect(context, child);
-    }
-
-    // 1. Padding (applied to the content)
-    if (hasPadding) {
-      result = FlyPaddingUtils.apply(context, this, result);
-    }
-
-    // 2. Background Color (for non-text widgets or containers)
-    if (color != null && child is! Text) {
-      result = _applyBackgroundColor(context, result);
-    }
-
-    // 3. Border Radius (applied to the background container)
-    if (hasBorderRadius) {
-      result = FlyRoundedUtils.apply(context, this, result);
-    }
-
-    // 4. Margin (outermost - wraps the background)
-    if (hasMargin) {
-      result = FlyMarginUtils.apply(context, this, result);
-    }
-
-    // Future utilities would go here:
-    // 5. Border (wraps margin)
-    // 6. Shadow (wraps border)
-
-    return result;
-  }
-
-  /// Check if any padding is set
-  bool get hasPadding =>
-      p != null ||
-      px != null ||
-      py != null ||
-      pl != null ||
-      pr != null ||
-      pb != null ||
-      pt != null;
-
-  /// Check if any margin is set
-  bool get hasMargin =>
-      m != null ||
-      mx != null ||
-      my != null ||
-      ml != null ||
-      mr != null ||
-      mb != null ||
-      mt != null;
-
-  /// Check if any border radius is set
-  bool get hasBorderRadius =>
-      rounded != null ||
-      roundedT != null ||
-      roundedR != null ||
-      roundedB != null ||
-      roundedL != null ||
-      roundedTl != null ||
-      roundedTr != null ||
-      roundedBl != null ||
-      roundedBr != null;
-
-  /// Apply text color directly to a Text widget
-  Widget _applyTextColorDirect(BuildContext context, Text textWidget) {
-    return Text(
-      textWidget.data ?? '',
-      style: FlyColorUtils.applyToTextStyle(context, this, textWidget.style),
-      textAlign: textWidget.textAlign,
-      textDirection: textWidget.textDirection,
-      locale: textWidget.locale,
-      softWrap: textWidget.softWrap,
-      overflow: textWidget.overflow,
-      textScaler: textWidget.textScaler,
-      maxLines: textWidget.maxLines,
-      semanticsLabel: textWidget.semanticsLabel,
-      textWidthBasis: textWidget.textWidthBasis,
-      textHeightBehavior: textWidget.textHeightBehavior,
-    );
-  }
-
-  /// Apply background color to a widget
-  Widget _applyBackgroundColor(BuildContext context, Widget child) {
-    return Container(
-      color: FlyColorUtils.applyToContainer(context, this),
-      child: child,
+      border: border ?? this.border,
+      borderT: borderT ?? this.borderT,
+      borderR: borderR ?? this.borderR,
+      borderB: borderB ?? this.borderB,
+      borderL: borderL ?? this.borderL,
+      borderColor: borderColor ?? this.borderColor,
+      borderStyle: borderStyle ?? this.borderStyle,
+      h: h ?? this.h,
+      w: w ?? this.w,
+      maxH: maxH ?? this.maxH,
+      maxW: maxW ?? this.maxW,
+      minH: minH ?? this.minH,
+      minW: minW ?? this.minW,
+      text: text ?? this.text,
+      textAlign: textAlign ?? this.textAlign,
+      textTransform: textTransform ?? this.textTransform,
+      leading: leading ?? this.leading,
+      textDecoration: textDecoration ?? this.textDecoration,
+      font: font ?? this.font,
+      fontWeight: fontWeight ?? this.fontWeight,
+      tracking: tracking ?? this.tracking,
+      layoutType: layoutType ?? this.layoutType,
+      justify: justify ?? this.justify,
+      items: items ?? this.items,
+      gap: gap ?? this.gap,
+      gapX: gapX ?? this.gapX,
+      gapY: gapY ?? this.gapY,
+      reverse: reverse ?? this.reverse,
+      inline: inline ?? this.inline,
+      col: col ?? this.col,
+      row: row ?? this.row,
+      wrap: wrap ?? this.wrap,
+      stack: stack ?? this.stack,
+      flex: flex ?? this.flex,
+      grow: grow ?? this.grow,
+      shrink: shrink ?? this.shrink,
+      basis: basis ?? this.basis,
+      top: top ?? this.top,
+      right: right ?? this.right,
+      bottom: bottom ?? this.bottom,
+      left: left ?? this.left,
+      inset: inset ?? this.inset,
+      insetX: insetX ?? this.insetX,
+      insetY: insetY ?? this.insetY,
     );
   }
 }

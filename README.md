@@ -4,16 +4,17 @@ A Tailwind-like utility-first Flutter component library that brings the power an
 
 ## 🚀 Features
 
+- **Flexible Value System**: Accepts `int`, `double`, `String`, and `Color` objects for maximum flexibility
+- **Multiple Input Types**: Support for numeric values, token names, CSS units, and direct theme access
 - **String-Based Unit System**: Flexible CSS-like units supporting `px`, `rem`, `em`, `%`, and plain numbers
 - **Utility-First Components**: `FlyText` and `FlyContainer` with Tailwind-like method chaining
 - **Theme Integration**: Seamless integration with Flutter's `ThemeData` extensions via `FlyTheme`
-- **Type-Safe Access**: Full autocomplete support with `context.flywind` extension
-- **Custom Configuration**: Easy custom colors and spacing via `FlyConfig` class
-- **Comprehensive Utilities**: Padding, margin, colors, and border radius with 80+ tests
-- **Error Handling**: Helpful debug messages for invalid tokens with graceful fallbacks
+- **Type-Safe Access**: Full autocomplete support with direct property access (`colors.blue500`)
+- **Robust Error Handling**: Comprehensive validation with helpful error messages and graceful fallbacks
 - **Flexible API**: Both dot notation (`colors.blue600`) and bracket notation (`colors['blue600']`)
-- **Design Token System**: Centralized `FlySpacing`, `FlyColors`, and `FlyBorderRadius` classes
+- **Design Token System**: Centralized typed tokens with `FlySpacingToken`, `FlyColorToken`, and `FlyRadiusToken`
 - **Method Chaining**: Fluent API for clean, readable code composition
+- **CSS Unit Support**: Handles `px`, `em`, `rem`, and `%` units with proper validation
 
 ## 📦 Components
 
@@ -43,6 +44,102 @@ FlyContainer(
 ```
 
 ## 🎨 Design System
+
+### Syntax & Supported Value Types
+Flywind supports multiple input types for maximum flexibility:
+
+#### Colors
+```dart
+// Color objects
+FlyText('Hello').color(Colors.blue)
+FlyText('Hello').bg(Colors.red.shade100)
+
+// Token names (from FlyColorToken)
+FlyText('Hello').color('blue500')
+FlyText('Hello').bg('red100')
+
+// Hex colors
+FlyText('Hello').color('#FF5733')
+FlyText('Hello').bg('#00FF00')
+
+// Direct theme access
+final colors = FlyTheme.of(context).colors;
+FlyText('Hello').color(colors.blue500)  // Type-safe access
+```
+
+#### Spacing (Padding & Margin)
+```dart
+// Numeric values
+FlyText('Hello').p(16)        // int
+FlyText('Hello').px(16.0)     // double
+FlyText('Hello').my(8)        // int
+FlyText('Hello').mt(12.5)     // double
+
+// Token names (from FlySpacingToken)
+FlyText('Hello').p('s3')    // Uses spacing token
+FlyText('Hello').mx('px')  // Uses spacing token
+
+// CSS units
+FlyText('Hello').p('16px')    // pixels
+FlyText('Hello').px('1.5em')  // em units (1.5 * 16px = 24px)
+FlyText('Hello').py('2rem')   // rem units (2 * 16px = 32px)
+FlyText('Hello').m('50%')     // percentage (0.5 as decimal)
+
+// Direct theme access
+final spacing = FlyTheme.of(context).spacing;
+FlyText('Hello').p(spacing.s3)           // Type-safe access
+FlyText('Hello').m(spacing['s3'] ?? 16)  // Bracket access with fallback
+```
+
+#### Border Radius
+```dart
+// Numeric values
+FlyText('Hello').rounded(8)     // int
+FlyText('Hello').rounded(8.0)   // double
+FlyText('Hello').roundedT(4)    // int
+FlyText('Hello').roundedL(12.5) // double
+
+// Token names (from FlyRadiusToken)
+FlyText('Hello').rounded('md')  // Uses radius token
+FlyText('Hello').roundedT('sm') // Uses radius token
+FlyText('Hello').roundedTl('lg') // Uses radius token
+
+// CSS units
+FlyText('Hello').rounded('8px') // pixels
+FlyText('Hello').roundedT('0.5em') // em units
+FlyText('Hello').roundedL('1rem')  // rem units
+
+// Direct theme access
+final radius = FlyTheme.of(context).radius;
+FlyText('Hello').rounded(radius.md)  // Type-safe access
+```
+
+#### Combined Examples
+```dart
+// Complex styling with mixed types
+FlyText('Hello World')
+  .color('blue500')           // Token name
+  .p(16)                      // int
+  .mx('large')                // Token name
+  .rounded('md')              // Token name
+  .bg('#F0F0F0');             // Hex color
+
+// Container with mixed values
+FlyContainer(
+  child: FlyText('Content'),
+)
+  .bg(Colors.blue.shade50)    // Color object
+  .p('20px')                  // CSS unit
+  .m(8)                       // int
+  .rounded('xl');             // Token name
+
+// Using direct theme access
+final theme = FlyTheme.of(context);
+FlyText('Token-based')
+  .p(theme.spacing.s4)        // Direct token access
+  .color(theme.colors.blue500) // Direct token access
+  .rounded(theme.radius.md);   // Direct token access
+```
 
 ### String-Based Unit System
 Flywind uses a flexible string-based unit system that supports multiple CSS-like formats:
@@ -113,6 +210,46 @@ Matching Tailwind CSS border radius system:
 - **Uniform**: `rounded('lg')` - all corners
 - **Directional**: `roundedT('xl')`, `roundedR('md')`, `roundedB('lg')`, `roundedL('sm')`
 - **Individual**: `roundedTl('2xl')`, `roundedTr('lg')`, `roundedBl('md')`, `roundedBr('xl')`
+
+## 🛡️ Error Handling & Validation
+
+Flywind provides comprehensive error handling with helpful messages:
+
+### Input Validation
+```dart
+// ❌ These will throw helpful errors:
+
+// Invalid hex colors
+FlyText('Hello').color('#GGGGGG')  // "Invalid hex color: contains non-hex characters"
+FlyText('Hello').color('#12345')   // "Invalid hex color: must be 6 or 8 characters"
+
+// Negative values
+FlyText('Hello').p(-10)            // "Value resolved to negative number. Must be non-negative."
+
+// Invalid percentages
+FlyText('Hello').p('150%')         // "Invalid percentage: must be between 0% and 100%"
+
+// Invalid units
+FlyText('Hello').p('10xyz')        // "Invalid unit: expected format like '10px', '1.5em'"
+
+// Invalid token names
+FlyText('Hello').color('invalid')  // "Cannot resolve color value: expected Color object, hex string, or token name. Available tokens: red50, blue100, ..."
+```
+
+### Graceful Fallbacks
+```dart
+// Safe bracket access with fallbacks
+FlyText('Hello').m(spacing['s3'] ?? 16)  // Falls back to 16 if token doesn't exist
+
+// Theme access with error handling
+try {
+  final colors = FlyTheme.of(context).colors;
+  FlyText('Hello').color(colors.blue500);
+} catch (e) {
+  // Graceful fallback
+  FlyText('Hello').color(Colors.blue);
+}
+```
 
 ## 🛠️ Usage
 
@@ -194,7 +331,7 @@ class HomePage extends StatelessWidget {
           // Access theme values directly
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: colors.leif, // Custom color with autocomplete
+              backgroundColor: colors.blue200, // Custom color with autocomplete
               padding: EdgeInsets.all(spacing.s4), // Type-safe spacing
             ),
             onPressed: () {},
@@ -252,13 +389,13 @@ Define your custom colors and spacing in `FlyConfig`:
 ```dart
 class FlyConfig {
   static const Map<String, Color> customColors = {
-    'leif': Color(0xFF8B5CF6),     // Purple
+    'blue200': Color(0xFF8B5CF6),     // Purple
     'brand': Color(0xFF10B981),    // Green
     'accent': Color(0xFFF59E0B),   // Orange
   };
 
   static const Map<String, double> customSpacing = {
-    'leif': 64.0,
+    'blue200': 64.0,
     'brand': 80.0,
     'large': 96.0,
   };
@@ -283,7 +420,7 @@ final colors = flywind.colors;
 // Type-safe dot notation
 spacing.s4        // 16.0
 colors.blue600    // Color(0xFF2563EB)
-colors.leif       // Custom color with autocomplete
+colors.blue200       // Custom color with autocomplete
 
 // Bracket notation still works
 spacing[4]        // 16.0
@@ -354,7 +491,7 @@ Widget build(BuildContext context) {
   return Container(
     padding: EdgeInsets.all(flywind.spacing.s4),
     decoration: BoxDecoration(
-      color: flywind.colors.leif,
+      color: flywind.colors.blue200,
       borderRadius: BorderRadius.circular(flywind.borderRadius.lg),
     ),
     child: Text('Styled with theme'),
@@ -364,12 +501,48 @@ Widget build(BuildContext context) {
 
 ## 🚀 Getting Started
 
+### Quick Setup
+```bash
+# 1. Add to your Flutter project
+flutter pub add flywind
+
+# 2. Activate CLI globally (one-time setup)
+dart pub global activate flywind
+
+# 3. Initialize FlyWind in your project
+fly init
+
+# 4. Generate design tokens
+fly generate
+```
+
+### Project Structure
+This repository contains:
+- **Library code**: The main Flywind package in the root directory
+- **Example app**: A complete Flutter app demonstrating Flywind usage in the `example/` directory
+
+### Running the Example
+You can run the example app to see Flywind in action:
+
+```bash
+# Option 1: Use the provided script
+./run_example.sh
+
+# Option 2: Manual steps
+cd example
+flutter pub get
+flutter run
+```
+
+### Development Setup
 1. **Clone the repository**
 2. **Run the example app**:
    ```bash
+   cd example
+   flutter pub get
    flutter run
    ```
-3. **Explore the code** in `lib/main.dart`
+3. **Explore the code** in `example/main.dart`
 4. **Run the tests**:
    ```bash
    flutter test

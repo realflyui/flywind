@@ -1,0 +1,200 @@
+// GENERATED FILE - DO NOT EDIT MANUALLY
+// To regenerate, run: dart cli/generate_defaults.dart
+
+import '../core/token.dart';
+
+/// Border radius values for rounded corners
+class FlyRadiusToken implements FlyToken<double> {
+  const FlyRadiusToken({
+    required this.xs,
+    required this.sm,
+    required this.md,
+    required this.lg,
+    required this.xl,
+    required this.xl2,
+    required this.xl3,
+    required this.xl4,
+    this.extras = const {},
+  });
+
+  /// xs Border radius values for rounded corners
+  final double xs;
+
+  /// sm Border radius values for rounded corners
+  final double sm;
+
+  /// md Border radius values for rounded corners
+  final double md;
+
+  /// lg Border radius values for rounded corners
+  final double lg;
+
+  /// xl Border radius values for rounded corners
+  final double xl;
+
+  /// 2xl Border radius values for rounded corners
+  final double xl2;
+
+  /// 3xl Border radius values for rounded corners
+  final double xl3;
+
+  /// 4xl Border radius values for rounded corners
+  final double xl4;
+
+  /// Additional custom values
+  final Map<String, double> extras;
+
+  /// All values in a single map for easier iteration
+  Map<String, double> get _allValues => {
+    'xs': xs,
+    'sm': sm,
+    'md': md,
+    'lg': lg,
+    'xl': xl,
+    'xl2': xl2,
+    'xl3': xl3,
+    'xl4': xl4,
+    ...extras,
+  };
+
+  /// Access value by key (canonical or extra)
+  @override
+  double? operator [](String key) => _allValues[key];
+
+  /// Get all available keys (canonical + extras)
+  @override
+  Iterable<String> get keys => _allValues.keys;
+
+  /// Put a new value for the given key
+  @override
+  FlyRadiusToken put(String key, double value) {
+    switch (key) {
+      case 'xs':
+        return copyWith(xs: value);
+      case 'sm':
+        return copyWith(sm: value);
+      case 'md':
+        return copyWith(md: value);
+      case 'lg':
+        return copyWith(lg: value);
+      case 'xl':
+        return copyWith(xl: value);
+      case 'xl2':
+        return copyWith(xl2: value);
+      case 'xl3':
+        return copyWith(xl3: value);
+      case 'xl4':
+        return copyWith(xl4: value);
+      default:
+        final newExtras = Map<String, double>.from(extras);
+        newExtras[key] = value;
+        return copyWith(extras: newExtras);
+    }
+  }
+
+  /// Merge another token into this one (right side wins)
+  @override
+  FlyRadiusToken merge(FlyToken<double> other) {
+    if (other is! FlyRadiusToken) return this;
+
+    return copyWith(
+      xs: other.xs,
+      sm: other.sm,
+      md: other.md,
+      lg: other.lg,
+      xl: other.xl,
+      xl2: other.xl2,
+      xl3: other.xl3,
+      xl4: other.xl4,
+      extras: {...extras, ...other.extras},
+    );
+  }
+
+  /// Create a copy with updated values
+  FlyRadiusToken copyWith({
+    double? xs,
+    double? sm,
+    double? md,
+    double? lg,
+    double? xl,
+    double? xl2,
+    double? xl3,
+    double? xl4,
+    Map<String, double>? extras,
+  }) {
+    return FlyRadiusToken(
+      xs: xs ?? this.xs,
+      sm: sm ?? this.sm,
+      md: md ?? this.md,
+      lg: lg ?? this.lg,
+      xl: xl ?? this.xl,
+      xl2: xl2 ?? this.xl2,
+      xl3: xl3 ?? this.xl3,
+      xl4: xl4 ?? this.xl4,
+      extras: extras ?? this.extras,
+    );
+  }
+
+  /// Linear interpolation between two tokens
+  FlyRadiusToken lerp(FlyRadiusToken other, double t) {
+    final result = <String, double>{};
+    final allKeys = {..._allValues.keys, ...other._allValues.keys};
+
+    for (final key in allKeys) {
+      final valueA = _allValues[key];
+      final valueB = other._allValues[key];
+      final numA = valueA ?? 0.0;
+      final numB = valueB ?? 0.0;
+      result[key] = numA + (numB - numA) * t;
+    }
+
+    return FlyRadiusToken(
+      xs: result['xs']!,
+      sm: result['sm']!,
+      md: result['md']!,
+      lg: result['lg']!,
+      xl: result['xl']!,
+      xl2: result['xl2']!,
+      xl3: result['xl3']!,
+      xl4: result['xl4']!,
+      extras: Map.fromEntries(
+        result.entries.where(
+          (e) => ![
+            'xs',
+            'sm',
+            'md',
+            'lg',
+            'xl',
+            'xl2',
+            'xl3',
+            'xl4',
+          ].contains(e.key),
+        ),
+      ),
+    );
+  }
+
+  /// Create default values
+  static FlyRadiusToken defaultRadius() {
+    return const FlyRadiusToken(
+      xs: 2.0,
+      sm: 4.0,
+      md: 6.0,
+      lg: 8.0,
+      xl: 12.0,
+      xl2: 16.0,
+      xl3: 24.0,
+      xl4: 32.0,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is FlyRadiusToken &&
+        _allValues.toString() == other._allValues.toString();
+  }
+
+  @override
+  int get hashCode => _allValues.hashCode;
+}
