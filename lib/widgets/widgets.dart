@@ -7,9 +7,8 @@
 //
 // - [FlyText] - Text widget with utility styling
 // - [FlyBox] - Unified container and layout widget (recommended)
-// - [FlyContainer] - Container widget with utility styling (legacy)
-// - [FlyLayout] - Layout widget with col/row utilities (legacy)
 // - [FlyIcon] - Icon widget with utility styling
+// - [FlyGestureDetector] - Gesture detector with utility styling
 //
 // ## Usage
 //
@@ -60,8 +59,17 @@
 //   .h('s6')
 //   .p('s2')
 //   .m('s1');
+//
+// // Button with utilities
+// FlyButton('Click me', onPressed: () => print('Clicked!'))
+//   .bg('blue500')
+//   .color('white')
+//   .px('s4')
+//   .py('s2')
+//   .rounded('md');
 // ```
 
 export 'box/box.dart';
+export 'gesture_detector.dart';
 export 'icon.dart';
 export 'text.dart';

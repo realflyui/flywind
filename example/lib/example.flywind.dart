@@ -231,7 +231,36 @@ class FlywindApp extends StatelessWidget {
                 ).tracking('0.1em').color('pink600').mb('s6'),
 
                 // ========================================
-                // 3. ICON UTILITIES
+                // 3. GESTURE DETECTOR UTILITIES
+                // ========================================
+                _buildSectionHeader('Gesture Detector Utilities'),
+
+                // Basic Gesture Examples
+                _buildSubsectionHeader('Basic Gestures'),
+                FlyGestureDetector(
+                  child: FlyText('Tap me'),
+                  onTap: () => print('Gesture clicked!'),
+                ).bg('blue500').color('white').p('s3').rounded('md').mb('s2'),
+
+                FlyGestureDetector(
+                      onTap: () {},
+                      children: [
+                        FlyText('Star'),
+                        FlyIcon(Icons.star).color('yellow500').w('s4').h('s4'),
+                      ],
+                    )
+                    .row()
+                    .gap('s2')
+                    .justify('center')
+                    .items('center')
+                    .bg('green500')
+                    .color('white')
+                    .p('s3')
+                    .rounded('md')
+                    .mb('s4'),
+
+                // ========================================
+                // 4. ICON UTILITIES
                 // ========================================
                 _buildSectionHeader('Icon Utilities'),
 
@@ -333,7 +362,7 @@ class FlywindApp extends StatelessWidget {
                 ).row().items('center').gap('s2').mb('s4'),
 
                 // ========================================
-                // 3. CONTAINER UTILITIES
+                // 4. CONTAINER UTILITIES
                 // ========================================
                 _buildSectionHeader('Container Utilities'),
 
@@ -594,7 +623,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s6'),
 
                 // ========================================
-                // 4. ADVANCED SYNTAX
+                // 5. ADVANCED SYNTAX
                 // ========================================
                 _buildSectionHeader('Advanced Syntax'),
 
@@ -731,7 +760,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s6'),
 
                 // ========================================
-                // 5. LAYOUT UTILITIES
+                // 6. LAYOUT UTILITIES
                 // ========================================
                 _buildSectionHeader('Layout Utilities'),
 
@@ -854,7 +883,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s4'),
 
                 // ========================================
-                // 6. STYLE INHERITANCE
+                // 7. STYLE INHERITANCE
                 // ========================================
                 _buildSectionHeader('Style Inheritance'),
 
@@ -988,7 +1017,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s4'),
 
                 // ========================================
-                // 7. FLEX UTILITIES
+                // 8. FLEX UTILITIES
                 // ========================================
                 _buildSectionHeader('Flex Utilities'),
 
