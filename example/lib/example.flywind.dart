@@ -260,7 +260,153 @@ class FlywindApp extends StatelessWidget {
                     .mb('s4'),
 
                 // ========================================
-                // 4. ICON UTILITIES
+                // 4. IMAGE UTILITIES
+                // ========================================
+                _buildSectionHeader('Image Utilities'),
+
+                // Basic Image Examples
+                _buildSubsectionHeader('Basic Images'),
+
+                // 1. Image that loads successfully
+                FlyImage(
+                  imageUrl: 'https://picsum.photos/200/150?random=1',
+                ).w('s48').h('s32').object('cover').rounded('md').mb('s4'),
+
+                // // 2. Image that fails to load (shows error widget)
+                FlyImage(
+                  imageUrl: 'https://invalid-url-that-will-fail.com/image.jpg',
+                  errorWidget:
+                      FlyBox(
+                            child: FlyText(
+                              'Failed to load',
+                            ).color('red500').text('sm'),
+                          )
+                          .w('s48')
+                          .h('s32')
+                          .bg('red50')
+                          .rounded('md')
+                          .justify('center')
+                          .items('center'),
+                ).w('s48').h('s32').object('cover').rounded('md').mb('s4'),
+
+                // // 3. Image with box properties (wrapped in FlyBox for styling)
+                FlyBox(
+                      child: FlyImage(
+                        imageUrl: 'https://picsum.photos/200/150?random=3',
+                      ).w('s48').h('s32').object('cover').rounded('lg'),
+                    )
+                    .bg('blue100')
+                    .p('s2')
+                    .border(2)
+                    .borderColor('blue500')
+                    .rounded('lg')
+                    .mb('s4'),
+
+                // Advanced Image Examples
+                _buildSubsectionHeader('Advanced Image Styling'),
+
+                // // Image with padding (using FlyImage's built-in padding)
+                FlyImage(imageUrl: 'https://picsum.photos/200/150?random=4')
+                    .w('100')
+                    .h('100')
+                    .object('fill')
+                    .px('s3')
+                    .py('s2')
+                    .rounded('md')
+                    .mb('s2'),
+
+                // // Image with margin and positioning (using FlyImage's built-in utilities)
+                FlyImage(imageUrl: 'https://picsum.photos/200/150?random=5')
+                    .w('s40')
+                    .h('s24')
+                    .object('fill')
+                    .m('s2')
+                    .mt('s4')
+                    .rounded('xl')
+                    .mb('s2'),
+
+                // // Image with directional border radius and background (wrapped in FlyBox)
+                FlyBox(
+                      child: FlyImage(
+                        imageUrl: 'https://picsum.photos/200/150?random=6',
+                      ).w('s48').h('s32').object('scaleDown'),
+                    )
+                    .roundedT('lg')
+                    .roundedB('sm')
+                    .bg('orange100')
+                    .border(1)
+                    .borderColor('orange300')
+                    .mb('s2'),
+
+                // // Image with flex properties (using FlyImage's built-in flex)
+
+                // Image Layout Examples
+                _buildSubsectionHeader('Image Layout Examples'),
+
+                // // Row of images with different object fits
+                FlyBox(
+                  children: [
+                    FlyImage(
+                      imageUrl: 'https://picsum.photos/100/100?random=8',
+                    ).w('s20').h('s20').object('cover').rounded('sm'),
+                    FlyImage(
+                      imageUrl: 'https://picsum.photos/100/100?random=9',
+                    ).w('s20').h('s20').object('contain').rounded('sm'),
+                    FlyImage(
+                      imageUrl: 'https://picsum.photos/100/100?random=10',
+                    ).w('s20').h('s20').object('fill').rounded('sm'),
+                  ],
+                ).row().gap('s2').mb('s4'),
+
+                // Card with image and text
+                FlyBox(
+                      children: [
+                        FlyImage(
+                          imageUrl: 'https://picsum.photos/300/200?random=11',
+                        ).object('cover').roundedT('md'),
+                        FlyBox(
+                          children: [
+                            FlyText('Image Card')
+                                .text('lg')
+                                .weight('bold')
+                                .color('gray900')
+                                .mb('s1'),
+                            FlyText(
+                              'This card demonstrates image with text content below it.',
+                            ).text('sm').color('gray600').leading('relaxed'),
+                          ],
+                        ).p('s4'),
+                      ],
+                    )
+                    .col()
+                    .bg('white')
+                    .border(1)
+                    .borderColor('gray200')
+                    .rounded('md')
+                    .mb('s4')
+                    .w('s80'),
+
+                // Image with overlay using stack
+                FlyBox(
+                  children: [
+                    FlyImage(
+                      imageUrl: 'https://picsum.photos/300/200?random=12',
+                    ).w('s40').h('s40').object('cover').rounded('md'),
+                    FlyBox(
+                          child: FlyText(
+                            'Overlay Text',
+                          ).color('white').text('lg').weight('bold').p('s2'),
+                        )
+                        .bg(Colors.black.withOpacity(0.5))
+                        .rounded('md')
+                        .justify('center')
+                        .items('center')
+                        .inset(0),
+                  ],
+                ).stack().mb('s4'),
+
+                // ========================================
+                // 5. ICON UTILITIES
                 // ========================================
                 _buildSectionHeader('Icon Utilities'),
 
@@ -362,7 +508,7 @@ class FlywindApp extends StatelessWidget {
                 ).row().items('center').gap('s2').mb('s4'),
 
                 // ========================================
-                // 4. CONTAINER UTILITIES
+                // 6. CONTAINER UTILITIES
                 // ========================================
                 _buildSectionHeader('Container Utilities'),
 
@@ -593,37 +739,8 @@ class FlywindApp extends StatelessWidget {
                   child: FlyText('Min Height').color('white').p('s2'),
                 ).bg('purple500').minH('s20').w('s52').rounded('sm').mb('s4'),
 
-                // Complex Example
-                _buildSubsectionHeader('Complex Example'),
-                FlyBox(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          FlyText(
-                            'Card Title',
-                          ).text('lg').weight('bold').color('gray900').mb('s2'),
-                          FlyText(
-                            'This is a complex card with multiple utilities applied.',
-                          ).text('sm').color('gray600').leading('relaxed').mb('s3'),
-                          FlyBox(
-                            child: FlyText('Action Button')
-                                .color('white')
-                                .text('sm')
-                                .weight('medium')
-                                .p('s2'),
-                          ).bg('blue500').rounded('sm').p('s3'),
-                        ],
-                      ),
-                    )
-                    .bg('white')
-                    .border(1)
-                    .borderColor('gray200')
-                    .rounded('lg')
-                    .p('s5')
-                    .mb('s6'),
-
                 // ========================================
-                // 5. ADVANCED SYNTAX
+                // 8. ADVANCED SYNTAX
                 // ========================================
                 _buildSectionHeader('Advanced Syntax'),
 
@@ -760,7 +877,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s6'),
 
                 // ========================================
-                // 6. LAYOUT UTILITIES
+                // 9. LAYOUT UTILITIES
                 // ========================================
                 _buildSectionHeader('Layout Utilities'),
 
@@ -883,7 +1000,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s4'),
 
                 // ========================================
-                // 7. STYLE INHERITANCE
+                // 10. STYLE INHERITANCE
                 // ========================================
                 _buildSectionHeader('Style Inheritance'),
 
@@ -1017,7 +1134,7 @@ class FlywindApp extends StatelessWidget {
                     .mb('s4'),
 
                 // ========================================
-                // 8. FLEX UTILITIES
+                // 11. FLEX UTILITIES
                 // ========================================
                 _buildSectionHeader('Flex Utilities'),
 
