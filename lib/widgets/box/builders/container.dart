@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/style.dart';
 import '../../../core/style_applier.dart';
 import '../../../mixins/border.dart';
+import '../../../mixins/size.dart';
 import '../resolvers/alignment.dart';
 import '../resolvers/property.dart';
 import 'border.dart';
@@ -82,6 +83,7 @@ class BoxContainer {
       child: child,
     );
 
-    return containerWidget;
+    // Apply intrinsic width constraints if needed
+    return FlySizeUtils.apply(context, flyStyle, containerWidget);
   }
 }

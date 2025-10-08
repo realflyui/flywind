@@ -8,8 +8,10 @@ This specification defines the comprehensive sizing system for Flywind, providin
 
 | Tailwind class  | CSS meaning                             | Flutter equivalent                                                                 | Notes                                                          |
 | --------------- | --------------------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **`.w-min`**    | `width: min-content;`                   | `IntrinsicWidth(child: ...)` or `Row(mainAxisSize: MainAxisSize.min)`              | Shrinks to the smallest size that fits content                 |
-| **`.w-max`**    | `width: max-content;`                   | `IntrinsicWidth(child: ...)` with `maxIntrinsicWidth` logic                        | Expands to fit the widest unbroken content                     |
+| **`.w-auto`**   | `width: auto;`                          | No width constraint, content determines size                                      | Allows element to size itself based on content                 |
+| **`.w-min`**    | `width: min-content;`                   | `IntrinsicWidth(child: ...)`                                                      | Shrinks to the smallest size that fits content                 |
+| **`.w-max`**    | `width: max-content;`                   | `IntrinsicWidth(child: ...)`                                                      | Expands to fit the widest unbroken content                     |
+| **`.w-fit`**    | `width: fit-content;`                   | `IntrinsicWidth(child: ...)` with constraints                                     | Adjusts width based on content while respecting constraints    |
 | **`.h-min`**    | `height: min-content;`                  | `IntrinsicHeight(child: ...)` or `Column(mainAxisSize: MainAxisSize.min)`          | Shrinks vertically to fit content                              |
 | **`.h-max`**    | `height: max-content;`                  | `IntrinsicHeight(child: ...)` with max logic                                       | Expands vertically to show full content                        |
 | **`.w-full`**   | `width: 100%;` (fills parent)           | `SizedBox.expand(width: double.infinity)` or `Container(width: double.infinity)`   | Expands to parent's max width constraint                       |
@@ -21,7 +23,7 @@ This specification defines the comprehensive sizing system for Flywind, providin
 
 * **`full` = relative to parent constraints** (container-based)
 * **`screen` = relative to device viewport** (global size)
-* **`min/max` = relative to intrinsic content** (content-driven)
+* **`auto/min/max/fit` = relative to intrinsic content** (content-driven)
 * **`50%` = percentage of parent** (fractional sizing)
 
 ## 🧱 Flutter examples
@@ -42,7 +44,15 @@ FlyBox(
 ).w('screen').bg('blue500');
 ```
 
-### `.w-min` (fit to content)
+### `.w-auto` (auto size to content)
+
+```dart
+FlyBox(
+  child: FlyText('Auto size to content'),
+).w('auto').bg('blue500');
+```
+
+### `.w-min` (shrink to content)
 
 ```dart
 FlyBox(
@@ -56,6 +66,14 @@ FlyBox(
 FlyBox(
   child: FlyText('Expand to max content'),
 ).w('max').bg('green500');
+```
+
+### `.w-fit` (fit content with constraints)
+
+```dart
+FlyBox(
+  child: FlyText('Fit content with constraints'),
+).w('fit').bg('purple500');
 ```
 
 ### `.w-50%` (percentage sizing)
@@ -100,6 +118,12 @@ FlyBox(
 - **Equivalent to**: CSS `width: 100vw` / `height: 100vh`
 - **Implementation**: `MediaQuery.of(context).size.width/height`
 
+#### `'auto'` - Auto Size to Content
+- **Width**: `w('auto')` - Allows element to size itself based on content
+- **Height**: `h('auto')` - Allows element to size itself based on content
+- **Equivalent to**: CSS `width: auto` / `height: auto`
+- **Implementation**: No width/height constraints, content determines size
+
 #### `'min'` - Shrink to Content
 - **Width**: `w('min')` - Shrinks to fit content width
 - **Height**: `h('min')` - Shrinks to fit content height
@@ -110,7 +134,13 @@ FlyBox(
 - **Width**: `w('max')` - Expands to fit content width
 - **Height**: `h('max')` - Expands to fit content height
 - **Equivalent to**: CSS `width: max-content` / `height: max-content`
-- **Implementation**: `IntrinsicWidth` / `IntrinsicHeight` (same as min in Flutter)
+- **Implementation**: `IntrinsicWidth` / `IntrinsicHeight`
+
+#### `'fit'` - Fit Content with Constraints
+- **Width**: `w('fit')` - Adjusts width based on content while respecting constraints
+- **Height**: `h('fit')` - Adjusts height based on content while respecting constraints
+- **Equivalent to**: CSS `width: fit-content` / `height: fit-content`
+- **Implementation**: `IntrinsicWidth` / `IntrinsicHeight` with constraint handling
 
 ## Code Examples
 
@@ -132,7 +162,10 @@ FlyBox(child: FlyText('Half width')).w('50%').h('100%')
 // Special keywords
 FlyBox(child: FlyText('Full width')).w('full')
 FlyBox(child: FlyText('Screen height')).h('screen')
+FlyBox(child: FlyText('Auto size')).w('auto')
 FlyBox(child: FlyText('Minimal')).w('min').h('min')
+FlyBox(child: FlyText('Maximum')).w('max').h('max')
+FlyBox(child: FlyText('Fit content')).w('fit').h('fit')
 ```
 
 ### Complex Layouts
@@ -151,12 +184,23 @@ FlyBox(
   child: FlyText('This text determines the width'),
 ).w('min').bg('blue100')
 
+FlyBox(
+  child: FlyText('Auto-sized content'),
+).w('auto').bg('green100')
+
+FlyBox(
+  child: FlyText('Fit content with constraints'),
+).w('fit').bg('purple100')
+
 // Mixed sizing
 FlyBox(
   children: [
     FlyBox(child: FlyText('Fixed')).w(100).h('full'),
     FlyBox(child: FlyText('Flexible')).w('full'),
+    FlyBox(child: FlyText('Auto')).w('auto'),
     FlyBox(child: FlyText('Minimal')).w('min'),
+    FlyBox(child: FlyText('Maximum')).w('max'),
+    FlyBox(child: FlyText('Fit')).w('fit'),
   ],
 ).row().h(200)
 ```
@@ -183,6 +227,16 @@ FlyImage(
 FlyImage(
   imageUrl: 'https://example.com/image.jpg',
 ).w('min').h('min')
+
+// Auto size
+FlyImage(
+  imageUrl: 'https://example.com/image.jpg',
+).w('auto').h('auto')
+
+// Fit content
+FlyImage(
+  imageUrl: 'https://example.com/image.jpg',
+).w('fit').h('fit')
 ```
 
 ## Performance Considerations
@@ -210,9 +264,10 @@ FlyImage(
 - **0% and 100%**: `w('0%')` creates zero-width, `w('100%')` fills parent
 
 ### Intrinsic Sizing
-- **Flutter limitation**: `'min'` and `'max'` behave identically (both use Intrinsic widgets)
-- **CSS difference**: In CSS, `min-content` and `max-content` have different behaviors
-- **Performance**: Can be slow with complex layouts
+- **Flutter limitation**: `'min'`, `'max'`, and `'fit'` all use `IntrinsicWidth`/`IntrinsicHeight` widgets
+- **CSS difference**: In CSS, `min-content`, `max-content`, and `fit-content` have different behaviors
+- **`'auto'` behavior**: No intrinsic widgets used, relies on Flutter's natural sizing
+- **Performance**: `'auto'` is most efficient, intrinsic widgets can be slow with complex layouts
 
 ### Screen Sizing
 - **Viewport only**: `w('screen')` / `h('screen')` always uses full viewport
@@ -228,17 +283,22 @@ FlyImage(
 | `width: 100%` | `w('full')` | Fill parent |
 | `width: 100vw` | `w('screen')` | Fill viewport |
 | `width: 50%` | `w('50%')` | Half parent |
+| `width: auto` | `w('auto')` | Auto size to content |
 | `width: min-content` | `w('min')` | Shrink to content |
 | `width: max-content` | `w('max')` | Expand to content |
+| `width: fit-content` | `w('fit')` | Fit content with constraints |
 | `width: 200px` | `w('200px')` or `w(200)` | Fixed size |
 
 ### Best Practices
 
 1. **Use `'full'` for responsive layouts** instead of `'100%'` when you want to fill parent
 2. **Use `'screen'` for viewport-based layouts** like full-screen modals
-3. **Use `'min'` for content-driven sizing** like buttons or badges
-4. **Use percentages for proportional layouts** like sidebars and main content
-5. **Combine with flex layouts** for complex responsive designs
+3. **Use `'auto'` for natural content sizing** - most efficient option
+4. **Use `'min'` for content-driven sizing** like buttons or badges
+5. **Use `'max'` for expanding to full content width** like text blocks
+6. **Use `'fit'` for content that needs constraint handling** like form inputs
+7. **Use percentages for proportional layouts** like sidebars and main content
+8. **Combine with flex layouts** for complex responsive designs
 
 ## API Reference
 

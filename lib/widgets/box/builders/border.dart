@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/style.dart';
 import '../../../mixins/border.dart';
+import '../../../mixins/size.dart';
 import '../resolvers/property.dart';
 
 /// Handles custom border building for FlyBox widgets
@@ -59,7 +60,8 @@ class BoxBorderBuilder {
       container = Container(margin: margin, child: container);
     }
 
-    return container;
+    // Apply intrinsic width constraints if needed
+    return FlySizeUtils.apply(context, flyStyle, container);
   }
 
   /// Creates a background container with optional border (from old implementation)
