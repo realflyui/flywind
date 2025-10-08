@@ -1,14 +1,15 @@
 library;
 
-// Core exports
-export 'core/core.dart';
-export 'widgets/widgets.dart';
-export 'mixins/helpers.dart';
-export 'tokens/tokens.dart';
-
 // Auto-generation hook
 import 'dart:io';
+
 import 'package:path/path.dart' as path;
+
+// Core exports
+export 'core/core.dart';
+export 'mixins/helpers.dart';
+export 'tokens/tokens.dart';
+export 'widgets/widgets.dart';
 
 /// Initialize Flywind and ensure tokens are generated
 /// This should be called in your main() function

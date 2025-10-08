@@ -72,4 +72,5 @@
 export 'box/box.dart';
 export 'gesture_detector.dart';
 export 'icon.dart';
+export 'image.dart';
 export 'text.dart';

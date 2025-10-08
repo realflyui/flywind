@@ -77,6 +77,7 @@ class FlyStyle {
     this.inset,
     this.insetX,
     this.insetY,
+    this.object,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -188,6 +189,8 @@ class FlyStyle {
   insetX; // InsetX (left and right) - can be int, double, or String (token name like 's2', 's4', etc.)
   final dynamic
   insetY; // InsetY (top and bottom) - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  object; // Object fit for images - can be BoxFit or String ('cover', 'contain', 'fill', 'scaleDown', 'none', 'fitWidth', 'fitHeight')
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -260,6 +263,7 @@ class FlyStyle {
     dynamic inset,
     dynamic insetX,
     dynamic insetY,
+    dynamic object,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -331,6 +335,7 @@ class FlyStyle {
       inset: inset ?? this.inset,
       insetX: insetX ?? this.insetX,
       insetY: insetY ?? this.insetY,
+      object: object ?? this.object,
     );
   }
 }

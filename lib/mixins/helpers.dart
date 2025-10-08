@@ -37,6 +37,7 @@ export 'font_weight.dart';
 export 'layout.dart';
 export 'leading.dart';
 export 'margin.dart';
+export 'object.dart';
 export 'padding.dart';
 export 'position.dart';
 export 'rounded.dart';
