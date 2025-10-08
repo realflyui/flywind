@@ -156,6 +156,57 @@ class FlywindApp extends StatelessWidget {
                     .rounded('sm')
                     .mb('s4'),
 
+                // Intrinsic Width Examples
+                _buildSubsectionHeader('Intrinsic Width'),
+
+                // w-auto example
+                FlyBox(
+                      child: FlyText(
+                        'w(\'auto\'): Sizes to content',
+                      ).color('blue600').p('s3'),
+                    )
+                    .w('auto')
+                    .border(1)
+                    .borderColor('blue300')
+                    .rounded('sm')
+                    .mb('s2'),
+
+                // w-min example
+                FlyBox(
+                      child: FlyText(
+                        'w(\'min\'): Minimum content width',
+                      ).color('green600').p('s3'),
+                    )
+                    .w('min')
+                    .border(1)
+                    .borderColor('green300')
+                    .rounded('sm')
+                    .mb('s2'),
+
+                // w-max example
+                FlyBox(
+                      child: FlyText(
+                        'w(\'max\'): Maximum content width',
+                      ).color('purple600').p('s3'),
+                    )
+                    .w('max')
+                    .border(1)
+                    .borderColor('purple300')
+                    .rounded('sm')
+                    .mb('s2'),
+
+                // w-fit example
+                FlyBox(
+                      child: FlyText(
+                        'w(\'fit\'): Fit content with constraints',
+                      ).color('orange600').p('s3'),
+                    )
+                    .w('fit')
+                    .border(1)
+                    .borderColor('orange300')
+                    .rounded('sm')
+                    .mb('s4'),
+
                 // Text Transformations
                 _buildSubsectionHeader('Text Transformations'),
                 FlyText('uppercase text').uppercase().color('blue600').mb('s2'),

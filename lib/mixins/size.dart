@@ -23,12 +23,24 @@ class FlySizeUtils {
   static double? resolveWidth(BuildContext context, FlyStyle style) {
     if (style.w == null) return null;
 
+    // Check if it's an intrinsic width keyword first
+    final intrinsicWidth = FlyValue.resolveIntrinsicWidth(style.w);
+    if (intrinsicWidth != null) {
+      return null; // Intrinsic width is handled separately
+    }
+
     try {
       final spacing = FlyTheme.of(context).spacing;
       return _resolveValue(style.w, context, spacing);
     } catch (e) {
       throw ArgumentError('Failed to resolve width: $e');
     }
+  }
+
+  /// Resolves intrinsic width from FlyStyle
+  static FlyIntrinsicWidth? resolveIntrinsicWidth(FlyStyle style) {
+    if (style.w == null) return null;
+    return FlyValue.resolveIntrinsicWidth(style.w);
   }
 
   /// Resolves max height from FlyStyle and FlyTheme into double
@@ -93,6 +105,7 @@ class FlySizeUtils {
   static Widget apply(BuildContext context, FlyStyle style, Widget child) {
     final height = resolveHeight(context, style);
     final width = resolveWidth(context, style);
+    final intrinsicWidth = resolveIntrinsicWidth(style);
     final maxHeight = resolveMaxHeight(context, style);
     final maxWidth = resolveMaxWidth(context, style);
     final minHeight = resolveMinHeight(context, style);
@@ -101,11 +114,25 @@ class FlySizeUtils {
     // If no size constraints are set, return the child as-is
     if (height == null &&
         width == null &&
+        intrinsicWidth == null &&
         maxHeight == null &&
         maxWidth == null &&
         minHeight == null &&
         minWidth == null) {
       return child;
+    }
+
+    // Handle intrinsic width constraints
+    if (intrinsicWidth != null) {
+      return _applyIntrinsicWidth(
+        child,
+        intrinsicWidth,
+        height,
+        maxHeight,
+        maxWidth,
+        minHeight,
+        minWidth,
+      );
     }
 
     // If we have max/min constraints, use ConstrainedBox
@@ -126,6 +153,70 @@ class FlySizeUtils {
 
     // If only fixed size constraints, use SizedBox
     return SizedBox(height: height, width: width, child: child);
+  }
+
+  /// Applies intrinsic width constraints to a widget
+  static Widget _applyIntrinsicWidth(
+    Widget child,
+    FlyIntrinsicWidth intrinsicWidth,
+    double? height,
+    double? maxHeight,
+    double? maxWidth,
+    double? minHeight,
+    double? minWidth,
+  ) {
+    // Create constraints based on intrinsic width type
+    BoxConstraints constraints;
+
+    switch (intrinsicWidth) {
+      case FlyIntrinsicWidth.auto:
+        // Auto width - no width constraints, let content determine size
+        constraints = BoxConstraints(
+          minWidth: minWidth ?? 0,
+          maxWidth: maxWidth ?? double.infinity,
+          minHeight: minHeight ?? 0,
+          maxHeight: maxHeight ?? double.infinity,
+        );
+        break;
+      case FlyIntrinsicWidth.min:
+        // Min content width - as narrow as possible without overflowing
+        constraints = BoxConstraints(
+          minWidth: minWidth ?? 0,
+          maxWidth: maxWidth ?? double.infinity,
+          minHeight: minHeight ?? 0,
+          maxHeight: maxHeight ?? double.infinity,
+        );
+        child = IntrinsicWidth(child: child);
+        break;
+      case FlyIntrinsicWidth.max:
+        // Max content width - expand to accommodate full content width
+        constraints = BoxConstraints(
+          minWidth: minWidth ?? 0,
+          maxWidth: maxWidth ?? double.infinity,
+          minHeight: minHeight ?? 0,
+          maxHeight: maxHeight ?? double.infinity,
+        );
+        child = IntrinsicWidth(child: child);
+        break;
+      case FlyIntrinsicWidth.fit:
+        // Fit content width - adjust based on content while respecting constraints
+        constraints = BoxConstraints(
+          minWidth: minWidth ?? 0,
+          maxWidth: maxWidth ?? double.infinity,
+          minHeight: minHeight ?? 0,
+          maxHeight: maxHeight ?? double.infinity,
+        );
+        child = IntrinsicWidth(child: child);
+        break;
+    }
+
+    // Apply height constraint if specified
+    if (height != null) {
+      child = SizedBox(height: height, child: child);
+    }
+
+    // Apply all constraints
+    return ConstrainedBox(constraints: constraints, child: child);
   }
 }
 
@@ -193,6 +284,11 @@ mixin FlySize<T> {
   /// Resolves min width from FlyStyle and FlyTheme into double
   double? resolveMinWidth(BuildContext context) {
     return FlySizeUtils.resolveMinWidth(context, flyStyle);
+  }
+
+  /// Resolves intrinsic width from FlyStyle
+  FlyIntrinsicWidth? resolveIntrinsicWidth() {
+    return FlySizeUtils.resolveIntrinsicWidth(flyStyle);
   }
 
   /// Applies size constraints to a widget using the resolved values
