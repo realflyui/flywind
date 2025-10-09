@@ -1,5 +1,21 @@
 import 'package:flutter/material.dart';
+
 import '../core/token.dart';
+
+/// Intrinsic width values for Tailwind-like sizing
+enum FlyIntrinsicWidth {
+  /// Sets width to auto, allowing the element to size itself based on its content
+  auto,
+
+  /// Sets width to min-content, making the element as narrow as possible without overflowing
+  min,
+
+  /// Sets width to max-content, expanding the element to accommodate its content's full width
+  max,
+
+  /// Sets width to fit-content, allowing the element to adjust its width based on content while respecting constraints
+  fit,
+}
 
 /// Value resolver that handles type conversion for Flywind utilities
 class FlyValue {
@@ -131,6 +147,28 @@ class FlyValue {
       default:
         return numValue;
     }
+  }
+
+  /// Resolves intrinsic width values from string keywords
+  static FlyIntrinsicWidth? resolveIntrinsicWidth(dynamic value) {
+    if (value is FlyIntrinsicWidth) return value;
+
+    if (value is String) {
+      switch (value.toLowerCase()) {
+        case 'auto':
+          return FlyIntrinsicWidth.auto;
+        case 'min':
+          return FlyIntrinsicWidth.min;
+        case 'max':
+          return FlyIntrinsicWidth.max;
+        case 'fit':
+          return FlyIntrinsicWidth.fit;
+        default:
+          return null;
+      }
+    }
+
+    return null;
   }
 
   /// Parses color strings (hex, named colors, etc.)

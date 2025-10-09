@@ -23,6 +23,7 @@ class FlyStyle {
     this.mb,
     this.mt,
     this.color,
+    this.bg,
     this.rounded,
     this.roundedT,
     this.roundedR,
@@ -76,6 +77,7 @@ class FlyStyle {
     this.inset,
     this.insetX,
     this.insetY,
+    this.object,
   });
 
   final dynamic p; // Uniform padding (all sides) - can be int, double, String
@@ -96,7 +98,8 @@ class FlyStyle {
   final dynamic mr; // Right margin - can be int, double, String
   final dynamic mb; // Bottom margin - can be int, double, String
   final dynamic mt; // Top margin - can be int, double, String
-  final dynamic color; // Color - can be Color, String
+  final dynamic color; // Text/Icon color - can be Color, String
+  final dynamic bg; // Background color - can be Color, String
   final dynamic
   rounded; // Uniform border radius (all corners) - can be int, double, String
   final dynamic
@@ -186,6 +189,8 @@ class FlyStyle {
   insetX; // InsetX (left and right) - can be int, double, or String (token name like 's2', 's4', etc.)
   final dynamic
   insetY; // InsetY (top and bottom) - can be int, double, or String (token name like 's2', 's4', etc.)
+  final dynamic
+  object; // Object fit for images - can be BoxFit or String ('cover', 'contain', 'fill', 'scaleDown', 'none', 'fitWidth', 'fitHeight')
 
   /// Create a copy of this style with updated values
   FlyStyle copyWith({
@@ -204,6 +209,7 @@ class FlyStyle {
     dynamic mb,
     dynamic mt,
     dynamic color,
+    dynamic bg,
     dynamic rounded,
     dynamic roundedT,
     dynamic roundedR,
@@ -257,6 +263,7 @@ class FlyStyle {
     dynamic inset,
     dynamic insetX,
     dynamic insetY,
+    dynamic object,
   }) {
     return FlyStyle(
       p: p ?? this.p,
@@ -274,6 +281,7 @@ class FlyStyle {
       mb: mb ?? this.mb,
       mt: mt ?? this.mt,
       color: color ?? this.color,
+      bg: bg ?? this.bg,
       rounded: rounded ?? this.rounded,
       roundedT: roundedT ?? this.roundedT,
       roundedR: roundedR ?? this.roundedR,
@@ -327,6 +335,7 @@ class FlyStyle {
       inset: inset ?? this.inset,
       insetX: insetX ?? this.insetX,
       insetY: insetY ?? this.insetY,
+      object: object ?? this.object,
     );
   }
 }

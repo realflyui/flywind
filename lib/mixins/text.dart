@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../core/style.dart';
 import '../core/theme.dart';
 import 'font.dart';
 import 'font_weight.dart';
 import 'leading.dart';
-import 'style.dart';
 import 'tracking.dart';
 
 /// Utility class for handling Tailwind-like text style logic

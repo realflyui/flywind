@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../core/style.dart';
 import '../core/theme.dart';
 import 'flex.dart';
 import 'position.dart';
-import 'style.dart';
 import 'value.dart';
 
 /// Parameters for Column widget direct Flutter API access
@@ -156,9 +156,10 @@ class FlyLayoutUtils {
       if (child is StatelessWidget) {
         // Try to access the style property through reflection or type checking
         try {
-          // Check if it's a FlyText or FlyContainer with flex properties
+          // Check if it's a FlyText, FlyContainer, or FlyBox with flex properties
           if (child.runtimeType.toString().contains('FlyText') ||
-              child.runtimeType.toString().contains('FlyContainer')) {
+              child.runtimeType.toString().contains('FlyContainer') ||
+              child.runtimeType.toString().contains('FlyBox')) {
             // Use reflection to get the flyStyle property
             final dynamic widget = child;
             if (widget.flyStyle != null && widget.flyStyle is FlyStyle) {
@@ -186,9 +187,10 @@ class FlyLayoutUtils {
       if (child is StatelessWidget) {
         // Try to access the style property through reflection or type checking
         try {
-          // Check if it's a FlyText or FlyContainer with position properties
+          // Check if it's a FlyText, FlyContainer, or FlyBox with position properties
           if (child.runtimeType.toString().contains('FlyText') ||
-              child.runtimeType.toString().contains('FlyContainer')) {
+              child.runtimeType.toString().contains('FlyContainer') ||
+              child.runtimeType.toString().contains('FlyBox')) {
             // Use reflection to get the flyStyle property
             final dynamic widget = child;
             if (widget.flyStyle != null && widget.flyStyle is FlyStyle) {

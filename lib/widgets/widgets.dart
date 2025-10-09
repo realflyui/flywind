@@ -6,9 +6,9 @@
 // ## Available Widgets
 //
 // - [FlyText] - Text widget with utility styling
-// - [FlyContainer] - Container widget with utility styling
-// - [FlyLayout] - Layout widget with col/row utilities
+// - [FlyBox] - Unified container and layout widget (recommended)
 // - [FlyIcon] - Icon widget with utility styling
+// - [FlyGestureDetector] - Gesture detector with utility styling
 //
 // ## Usage
 //
@@ -21,28 +21,32 @@
 //   .px('16')
 //   .py('8');
 //
-// // Container with utilities
-// FlyContainer(
+// // Container mode
+// FlyBox(
 //   child: FlyText('Content'),
 // ).bg('gray100').p('16');
 //
-// // Layout with utilities
-// FlyLayout([
-//   FlyText('Header'),
-//   FlyText('Content'),
-//   FlyText('Footer'),
-// ])
+// // Layout mode - Column
+// FlyBox(
+//   children: [
+//     FlyText('Header'),
+//     FlyText('Content'),
+//     FlyText('Footer'),
+//   ],
+// )
 //   .col()
 //   .items('center')
 //   .justify('between')
 //   .gap('s4');
 //
-// // Row layout
-// FlyLayout([
-//   FlyText('Left'),
-//   FlyText('Center'),
-//   FlyText('Right'),
-// ])
+// // Layout mode - Row
+// FlyBox(
+//   children: [
+//     FlyText('Left'),
+//     FlyText('Center'),
+//     FlyText('Right'),
+//   ],
+// )
 //   .row()
 //   .justify('between')
 //   .items('center')
@@ -55,9 +59,18 @@
 //   .h('s6')
 //   .p('s2')
 //   .m('s1');
+//
+// // Button with utilities
+// FlyButton('Click me', onPressed: () => print('Clicked!'))
+//   .bg('blue500')
+//   .color('white')
+//   .px('s4')
+//   .py('s2')
+//   .rounded('md');
 // ```
 
-export 'container.dart';
+export 'box/box.dart';
+export 'gesture_detector.dart';
 export 'icon.dart';
-export 'layout.dart';
+export 'image.dart';
 export 'text.dart';

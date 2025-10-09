@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../core/style.dart';
 import '../core/theme.dart';
 import '../tokens/spacing.dart';
-import 'style.dart';
 import 'value.dart';
 
 /// Utility class for handling Tailwind-like margin logic

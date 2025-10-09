@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/color.dart';
-import '../helpers/flex.dart';
-import '../helpers/margin.dart';
-import '../helpers/padding.dart';
-import '../helpers/position.dart';
-import '../helpers/size.dart';
-import '../helpers/style.dart';
-import '../helpers/style_applier.dart';
+import '../core/style.dart';
+import '../core/style_applier.dart';
+import '../core/style_context.dart';
+import '../mixins/color.dart';
+import '../mixins/flex.dart';
+import '../mixins/margin.dart';
+import '../mixins/padding.dart';
+import '../mixins/position.dart';
+import '../mixins/size.dart';
+import '../mixins/text_color.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for icons
 class FlyIcon extends StatelessWidget
     with
         FlyPadding<FlyIcon>,
         FlyMargin<FlyIcon>,
-        FlyColor<FlyIcon>,
+        FlyTextColor<FlyIcon>,
         FlySize<FlyIcon>,
         FlyFlex<FlyIcon>,
         FlyPosition<FlyIcon> {
@@ -26,11 +28,23 @@ class FlyIcon extends StatelessWidget
     this.semanticLabel, // Direct semantic label
     this.textDirection, // Direct text direction
     FlyStyle flyStyle = const FlyStyle(),
-  }) : _flyStyle = _buildStyleWithDefaults(flyStyle);
+  }) : _flyStyle = flyStyle; // Don't apply defaults in constructor
 
-  static FlyStyle _buildStyleWithDefaults(FlyStyle style) {
+  /// Build style with inherited context applied
+  static FlyStyle _buildStyleWithInheritance(
+    FlyStyle style,
+    BuildContext context,
+  ) {
+    // Look up inherited style from FlyStyleContext
+    final inheritedStyle = FlyStyleContext.of(context);
+
     return style.copyWith(
-      color: style.color ?? 'gray900', // Default icon color (Tailwind-like)
+      // Priority: explicit style → inherited context style → widget default
+      // Only inherit color for icons
+      color:
+          style.color ??
+          inheritedStyle?.color ??
+          'gray900', // Default icon color (Tailwind-like)
       w: style.w ?? 's6', // Default icon size (24px)
       h: style.h ?? 's6', // Default icon size (24px)
     );
@@ -46,6 +60,11 @@ class FlyIcon extends StatelessWidget
   @override
   FlyStyle get flyStyle => _flyStyle;
 
+  /// Override this to provide component-specific default styles
+  /// The incoming flyStyle will be merged with these defaults
+  @protected
+  FlyStyle getDefaultStyle(FlyStyle incomingStyle) => incomingStyle;
+
   @override
   FlyIcon Function(FlyStyle newStyle) get copyWith =>
       (newStyle) => FlyIcon(
@@ -60,14 +79,17 @@ class FlyIcon extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    // Apply inheritance and defaults in one step
+    final mergedStyle = _buildStyleWithInheritance(_flyStyle, context);
+
     // Always resolve the icon properties first
     final resolvedSize =
         iconSize ??
-        FlySizeUtils.resolveWidth(context, _flyStyle) ??
-        FlySizeUtils.resolveHeight(context, _flyStyle);
+        FlySizeUtils.resolveWidth(context, mergedStyle) ??
+        FlySizeUtils.resolveHeight(context, mergedStyle);
 
     final resolvedColor =
-        iconColor ?? FlyColorUtils.resolve(context, _flyStyle);
+        iconColor ?? FlyColorUtils.resolve(context, mergedStyle);
 
     // Create Icon with resolved properties
     Widget iconWidget = Icon(
@@ -79,10 +101,10 @@ class FlyIcon extends StatelessWidget
     );
 
     // Always apply other utilities (padding, margin, etc.) if any are set
-    if (_flyStyle.hasPadding ||
-        _flyStyle.hasMargin ||
-        _flyStyle.hasBorderRadius) {
-      return FlyStyleApplier.apply(context, _flyStyle, iconWidget);
+    if (mergedStyle.hasPadding ||
+        mergedStyle.hasMargin ||
+        mergedStyle.hasBorderRadius) {
+      return FlyStyleApplier.apply(context, mergedStyle, iconWidget);
     }
 
     // If no utilities are set, return the Icon directly

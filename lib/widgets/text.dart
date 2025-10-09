@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/color.dart';
-import '../helpers/flex.dart';
-import '../helpers/margin.dart';
-import '../helpers/padding.dart';
-import '../helpers/position.dart';
-import '../helpers/style.dart';
-import '../helpers/style_applier.dart';
-import '../helpers/text.dart';
-import '../helpers/tracking.dart';
+import '../core/style.dart';
+import '../core/style_applier.dart';
+import '../core/style_context.dart';
+import '../mixins/color.dart';
+import '../mixins/flex.dart';
+import '../mixins/margin.dart';
+import '../mixins/padding.dart';
+import '../mixins/position.dart';
+import '../mixins/text.dart';
+import '../mixins/text_color.dart';
+import '../mixins/tracking.dart';
 
 /// A builder-style widget that mimics Tailwind-like utilities for text
 class FlyText extends StatelessWidget
     with
         FlyPadding<FlyText>,
         FlyMargin<FlyText>,
-        FlyColor<FlyText>,
+        FlyTextColor<FlyText>,
         FlyTextHelper<FlyText>,
         FlyTracking<FlyText>,
         FlyFlex<FlyText>,
@@ -35,21 +37,52 @@ class FlyText extends StatelessWidget
     this.textWidthBasis,
     this.textHeightBehavior,
     FlyStyle flyStyle = const FlyStyle(),
-  }) : _flyStyle = _buildStyleWithDefaults(flyStyle);
+  }) : _flyStyle = flyStyle; // Don't apply defaults in constructor
 
-  static FlyStyle _buildStyleWithDefaults(FlyStyle style) {
+  /// Build style with inherited context applied
+  static FlyStyle _buildStyleWithInheritance(
+    FlyStyle style,
+    BuildContext context,
+  ) {
+    // Look up inherited style from FlyStyleContext
+    final inheritedStyle = FlyStyleContext.of(context);
+
     return style.copyWith(
-      text: style.text ?? 'base', // Default to base text style
-      color: style.color ?? 'gray900', // Default text color (Tailwind-like)
-      leading: style.leading ?? 'normal', // Default line height (Tailwind-like)
-      textAlign: style.textAlign ?? 'left', // Default to left alignment
-      font: style.font ?? 'sans', // Default to sans font
-      fontWeight: style.fontWeight ?? 'normal', // Default to normal weight
-      tracking: style.tracking ?? 'normal', // Default to normal letter spacing
+      // Priority: explicit style → inherited context style → widget default
+      text:
+          style.text ??
+          inheritedStyle?.text ??
+          'base', // Default to base text style
+      color:
+          style.color ??
+          inheritedStyle?.color ??
+          'gray900', // Default text color (Tailwind-like)
+      leading:
+          style.leading ??
+          inheritedStyle?.leading ??
+          'normal', // Default line height (Tailwind-like)
+      textAlign:
+          style.textAlign ??
+          inheritedStyle?.textAlign ??
+          'left', // Default to left alignment
+      font:
+          style.font ?? inheritedStyle?.font ?? 'sans', // Default to sans font
+      fontWeight:
+          style.fontWeight ??
+          inheritedStyle?.fontWeight ??
+          'normal', // Default to normal weight
+      tracking:
+          style.tracking ??
+          inheritedStyle?.tracking ??
+          'normal', // Default to normal letter spacing
       textTransform:
-          style.textTransform ?? 'none', // Default to no transformation
+          style.textTransform ??
+          inheritedStyle?.textTransform ??
+          'none', // Default to no transformation
       textDecoration:
-          style.textDecoration ?? 'none', // Default to no decoration
+          style.textDecoration ??
+          inheritedStyle?.textDecoration ??
+          'none', // Default to no decoration
     );
   }
 
@@ -69,6 +102,11 @@ class FlyText extends StatelessWidget
 
   @override
   FlyStyle get flyStyle => _flyStyle;
+
+  /// Override this to provide component-specific default styles
+  /// The incoming flyStyle will be merged with these defaults
+  @protected
+  FlyStyle getDefaultStyle(FlyStyle incomingStyle) => incomingStyle;
 
   @override
   FlyText Function(FlyStyle newStyle) get copyWith =>
@@ -91,16 +129,19 @@ class FlyText extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    // Apply inheritance and defaults in one step
+    final mergedStyle = _buildStyleWithInheritance(_flyStyle, context);
+
     // Always resolve the text properties first
-    final resolvedStyle = _buildResolvedTextStyle(context);
-    final resolvedTextAlign = textAlign ?? _buildResolvedTextAlign();
-    final resolvedText = _buildResolvedText();
+    final resolvedTextStyle = _buildResolvedTextStyle(context, mergedStyle);
+    final resolvedTextAlign = textAlign ?? _buildResolvedTextAlign(mergedStyle);
+    final resolvedText = _buildResolvedText(mergedStyle);
 
     // Create Text with resolved properties
     Widget textWidget = Text(
       resolvedText,
       key: key,
-      style: resolvedStyle,
+      style: resolvedTextStyle,
       textAlign: resolvedTextAlign,
       textDirection: textDirection,
       locale: locale,
@@ -114,10 +155,10 @@ class FlyText extends StatelessWidget
     );
 
     // Always apply other utilities (padding, margin, etc.) if any are set
-    if (_flyStyle.hasPadding ||
-        _flyStyle.hasMargin ||
-        _flyStyle.hasBorderRadius) {
-      return FlyStyleApplier.apply(context, _flyStyle, textWidget);
+    if (mergedStyle.hasPadding ||
+        mergedStyle.hasMargin ||
+        mergedStyle.hasBorderRadius) {
+      return FlyStyleApplier.apply(context, mergedStyle, textWidget);
     }
 
     // If no utilities are set, return the Text directly
@@ -125,20 +166,27 @@ class FlyText extends StatelessWidget
   }
 
   /// Build resolved text style from FlyStyle utilities
-  TextStyle _buildResolvedTextStyle(BuildContext context) {
+  TextStyle _buildResolvedTextStyle(
+    BuildContext context,
+    FlyStyle mergedStyle,
+  ) {
     // Start with direct style if provided, otherwise use styled text style
     TextStyle finalStyle =
         style ??
-        (FlyTextUtils.resolve(context, _flyStyle) ?? const TextStyle());
+        (FlyTextUtils.resolve(context, mergedStyle) ?? const TextStyle());
 
     // Apply text-related utilities (font, weight, leading, tracking, etc.)
-    finalStyle = FlyTextUtils.applyToTextStyle(context, _flyStyle, finalStyle);
+    finalStyle = FlyTextUtils.applyToTextStyle(
+      context,
+      mergedStyle,
+      finalStyle,
+    );
 
     // Apply color if set (this will override the color from the text style token or direct style)
-    if (_flyStyle.color != null) {
+    if (mergedStyle.color != null) {
       finalStyle = FlyColorUtils.applyToTextStyle(
         context,
-        _flyStyle,
+        mergedStyle,
         finalStyle,
       );
     }
@@ -147,17 +195,17 @@ class FlyText extends StatelessWidget
   }
 
   /// Build resolved text alignment from FlyStyle utilities
-  TextAlign? _buildResolvedTextAlign() {
-    if (_flyStyle.textAlign != null) {
-      return FlyTextUtils.resolveTextAlign(_flyStyle.textAlign);
+  TextAlign? _buildResolvedTextAlign(FlyStyle mergedStyle) {
+    if (mergedStyle.textAlign != null) {
+      return FlyTextUtils.resolveTextAlign(mergedStyle.textAlign);
     }
     return null;
   }
 
   /// Build resolved text with transformations applied
-  String _buildResolvedText() {
-    if (_flyStyle.textTransform != null) {
-      return FlyTextUtils.transformText(data, _flyStyle.textTransform);
+  String _buildResolvedText(FlyStyle mergedStyle) {
+    if (mergedStyle.textTransform != null) {
+      return FlyTextUtils.transformText(data, mergedStyle.textTransform);
     }
     return data;
   }
