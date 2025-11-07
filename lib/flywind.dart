@@ -8,6 +8,9 @@ import 'package:path/path.dart' as path;
 // Core exports
 export 'core/core.dart';
 export 'mixins/helpers.dart';
+// Theme exports
+export 'theme/color_generator.dart';
+export 'theme/radix_colors.dart';
 export 'tokens/tokens.dart';
 export 'widgets/widgets.dart';
 

@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'example.cupertino.dart' as cupertino;
 import 'example.flywind.dart' as flywind;
 import 'example.material.dart' as material;
+import 'example.radix_colors.dart' as radix;
 
 void main() {
   runApp(MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final String _selectedExample = 'flywind';
+  final String _selectedExample = 'radix';
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +28,13 @@ class _MyAppState extends State<MyApp> {
         return const cupertino.FlywindExample();
       case 'material':
         return const material.FlywindExample();
+      case 'radix':
+        return MaterialApp(
+          title: 'Radix Colors',
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          home: const radix.RadixColorsExample(),
+        );
       default:
         return const flywind.FlywindExample();
     }
