@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2024-12-19
+
+### Added
+- FlyBox widget with comprehensive styling utilities
+- FlyImage widget for image display with Tailwind-like utilities
+- FlyGestureDetector widget for gesture handling
+- Style inheritance system for FlyBox
+- Intrinsic value support for sizing
+- Package model restructure
+
+### Changed
+- Moved to package model structure
+- Improved size handling and calculations
+
 ## [0.1.0] - 2024-12-19
 
 ### Added
