@@ -1,5 +1,3 @@
-import 'dart:math';
-
 /// Text shadow conversion utilities for CSS to Flutter
 class TextShadowConverter {
   /// Convert CSS text shadow string to Flutter Shadow
@@ -110,7 +108,6 @@ class TextShadowConverter {
     }
 
     if (hex.length == 6) {
-      final colorValue = int.parse(hex, radix: 16);
       return 'Color(0xFF${hex.toUpperCase()})';
     }
 

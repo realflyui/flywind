@@ -1,5 +1,3 @@
-import 'dart:math';
-
 /// Shadow conversion utilities for CSS to Flutter
 class ShadowConverter {
   /// Convert CSS shadow string to Flutter BoxShadow
@@ -131,7 +129,6 @@ class ShadowConverter {
     }
 
     if (hex.length == 6) {
-      final colorValue = int.parse(hex, radix: 16);
       return 'Color(0xFF${hex.toUpperCase()})';
     }
 
